@@ -8,7 +8,7 @@ script:
 after_success:
 - openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv -in travis.id_rsa.enc -out travis.id_rsa -d
 - tar -caf .site.tar.gz _site
-- scp -i travis.id_rsa .site.tar.gz $USER@$HOST:
+- scp -i travis.id_rsa .site.tar.gz '$USER@$HOST:'
 - ssh -t $USER@$HOST "rm -rf _site && tar -xaf .site.tar.gz && cd _site && sudo /data/www/deploy_rustycrate.sh"
 after_script:
 - shred -u travis.id_rsa
