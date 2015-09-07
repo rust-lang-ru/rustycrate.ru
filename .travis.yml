@@ -1,8 +1,8 @@
 language: ruby
 env:
-  secure: fX7q1GzICgUgdNygM5vn20bbShhRFfS7Re33vzNUI3a84ZV0Gt/avKOWqPyY2GNq69bLnHStprjMNHwjwOQ6ww0hnWd12VMU/RrRzUhCrKc+zOODy7B/USc8fRxmhsgs+qqtru+j4SF+sE4+kmP4+a8tm+eynB/I+Yi/cux4h9BqVago3HIcFj5+374FWSqWqygf1pyhXEd3sbyJ24t8EEmtZ7qoAWaV6PJaICxjfAKMD8oSU+OO7ccT9Gqj/6HSNx5bJTdLrT68akPad3qPf9mCkttiDPFaznA64RrYSH4YYQBCNzGvPqyPKCl+OSVIA+IZc/+4pcw6Sgnk32MX0062QcsLeewCRKxGXbrEX+Ak6GYbVNOXtpg06fpuljb5oFa7j51PkZjvqnHY7PoUM3cVmOW8TNi0dLZoavBfeGRkXpy/8RvMhgSiuhqObaOl+cNdE+gkh+p3gkAYrl5bc3gpZBhCtAuSVKam0iWeDXwMmm8Xa0W4vaMbYV95EUDnLm5JK/ObxK6JjK6L4wMYgV94v+Wt/UfNPNhxTkxM+6RCoM4OTL9HgpO0NLQjrq/9DzzHtWv3N7f+NkOYCBoMDn5/lxliu3pFOXT0TRWE+CfFSkyduX7wcyyeNw77Jm8eb1JlPLEmvPZYAHtEaaCHjhWzx1yydeUE11MZEPyaHU0=
   global:
-    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - secure: csl2OVpn0L49E+L/rRMSR0Iq6Qb/1oEpoRaQFehJE7RiZXeAVHrILINLq+4HN2JrqOjeg8cBunKzUhp0sHBxly0M36NsJN8ITZVKbNENzwcenVfNlJPgxVomBUWmWk4w96w5eFRfxVLR5UDN6Rf7ohkQMxYjd2KWL9iugzIb8+Epq7akSyM0XCXeJpL9T6Z+WDWrX3xeiLgTUfdofik5GAyEcLLjz1ncdCwvBrnj4s1//tb35ex+6MDNr3bO9KD0rpuwIPzFYGwZcYchK8TfqFB/3fseUHVzb6/Q0V9K8meOwfKxU8Rd9o0CS6Z02rizz6zjnu5TcMFR65HOlVsQ1SzDIb7I7Me6jnDYrPhhJulu9x1jxNALHWO0cF/phMldoj6KyZ3qZ/NVv8R/6Ukj7S3B4IgzPSO7/Z5QWDkv72L3CKheof8tmSC5SGv6mShxCqQqIbajRbc/yeWP8HNNsEjUUjnf5/DK3s458LeCHh0472KJKgo0eLea2LD8sd16Xx0IK1WYFgv+WUUnI3MhERPxepL4ugFlGmHAwA/V/smmRRMnqKYMTAw//4ceZO9ylRzuyWzWmWbRzExHgK6jVZqxtjp2UKG6L39n1LFDbQErw3TrJdBso9ZKKWjUff/tyDBglkgw05OGYgc8TpQW3AHWs7t/O1JBXzP94bMPVkw=
 addons:
   ssh_known_hosts: rustycrate.ru
 sudo: false
@@ -17,6 +17,7 @@ after_success:
 - tar -caf .site.tar.gz _site
 - chmod 600 travis.trash.id_rsa
 - scp -i travis.trash.id_rsa .site.tar.gz "$USER@$HOST:"
-- ssh -i travis.trash.id_rsa -t $USER@$HOST "rm -rf _site && tar -xaf .site.tar.gz && cd _site && sudo /data/www/deploy_rustycrate.sh"
+- ssh -i travis.trash.id_rsa -t $USER@$HOST "rm -rf _site && tar -xaf .site.tar.gz
+  && cd _site && sudo /data/www/deploy_rustycrate.sh"
 after_script:
 - if [ -f travis.trash.id_rsa ]; then shred -u travis.trash.id_rsa; fi;
