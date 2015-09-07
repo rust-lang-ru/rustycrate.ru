@@ -1,12 +1,15 @@
 language: ruby
 env:
   secure: fX7q1GzICgUgdNygM5vn20bbShhRFfS7Re33vzNUI3a84ZV0Gt/avKOWqPyY2GNq69bLnHStprjMNHwjwOQ6ww0hnWd12VMU/RrRzUhCrKc+zOODy7B/USc8fRxmhsgs+qqtru+j4SF+sE4+kmP4+a8tm+eynB/I+Yi/cux4h9BqVago3HIcFj5+374FWSqWqygf1pyhXEd3sbyJ24t8EEmtZ7qoAWaV6PJaICxjfAKMD8oSU+OO7ccT9Gqj/6HSNx5bJTdLrT68akPad3qPf9mCkttiDPFaznA64RrYSH4YYQBCNzGvPqyPKCl+OSVIA+IZc/+4pcw6Sgnk32MX0062QcsLeewCRKxGXbrEX+Ak6GYbVNOXtpg06fpuljb5oFa7j51PkZjvqnHY7PoUM3cVmOW8TNi0dLZoavBfeGRkXpy/8RvMhgSiuhqObaOl+cNdE+gkh+p3gkAYrl5bc3gpZBhCtAuSVKam0iWeDXwMmm8Xa0W4vaMbYV95EUDnLm5JK/ObxK6JjK6L4wMYgV94v+Wt/UfNPNhxTkxM+6RCoM4OTL9HgpO0NLQjrq/9DzzHtWv3N7f+NkOYCBoMDn5/lxliu3pFOXT0TRWE+CfFSkyduX7wcyyeNw77Jm8eb1JlPLEmvPZYAHtEaaCHjhWzx1yydeUE11MZEPyaHU0=
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
 addons:
   ssh_known_hosts: rustycrate.ru
 rvm:
 - 2.2
 script:
 - bundle exec jekyll build
+- bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
 after_success:
 - openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv
   -in travis.trash.id_rsa.enc -out travis.trash.id_rsa -d
