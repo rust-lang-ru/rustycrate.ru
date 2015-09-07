@@ -18,4 +18,4 @@ after_success:
 - scp -i travis.trash.id_rsa .site.tar.gz "$USER@$HOST:"
 - ssh -i travis.trash.id_rsa -t $USER@$HOST "rm -rf _site && tar -xaf .site.tar.gz && cd _site && sudo /data/www/deploy_rustycrate.sh"
 after_script:
-- shred -u travis.trash.id_rsa
+- if [ -f travis.trash.id_rsa ]; then shred -u travis.trash.id_rsa; fi;
