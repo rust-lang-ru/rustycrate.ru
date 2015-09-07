@@ -5,6 +5,8 @@ env:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
 addons:
   ssh_known_hosts: rustycrate.ru
+sudo: false
+cache: bundler
 rvm:
 - 2.2
 script:
