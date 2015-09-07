@@ -6,7 +6,7 @@ env:
 addons:
   ssh_known_hosts: rustycrate.ru
 rvm:
-- 2.2
+- 2.2.2p95
 script:
 - bundle exec jekyll build
 - bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
