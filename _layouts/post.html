@@ -10,9 +10,9 @@
 
     <link rel="icon" type="image/png" href="/rust-logo-32x32.png" />
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
 
@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="rust-logo-32x32.png" alt="Logo" width="24px" height="24px"></a>
+          <a class="navbar-brand" href="/"><img src="/rust-logo-32x32.png" alt="Logo" width="24px" height="24px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,7 +56,9 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    {{ content }}
+    <div class="jumbotron">
+      {{ content }}
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
