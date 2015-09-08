@@ -2,7 +2,22 @@
 layout: default
 title: Ржавеющий контейнер
 ---
-<div class="jumbotron">
-  <h1>Ржавеющий контейнер</h1>
-  <p>Неофициальный русскоязычный сайт о языке программирования Rust</p>
+<div class="page-header">
+  <h1>Ржавеющий контейнер <small>Неофициальный русскоязычный сайт о языке программирования Rust</small></h1>
 </div>
+{% for page in site.posts %}
+<div class="jumbotron">
+  <article>
+    <header>
+      <h1><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
+      <p>{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | date: "%b %-d, %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
+    </header>
+    <div>
+      {{ page.excerpt }}
+    </div>
+    <footer>
+      <a href="{{ page.url | prepend: site.baseurl }}">читать дальше</a>
+    </footer>
+  </article>
+</div>
+{% endfor %}
