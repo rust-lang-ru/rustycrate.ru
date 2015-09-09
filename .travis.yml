@@ -12,12 +12,14 @@ script:
 - bundle exec jekyll build
 - bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
 after_success:
-- openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv
-  -in travis.trash.id_rsa.enc -out travis.trash.id_rsa -d
-- tar -caf .site.tar.gz _site
-- chmod 600 travis.trash.id_rsa
-- scp -i travis.trash.id_rsa .site.tar.gz "$USER@$HOST:"
-- ssh -i travis.trash.id_rsa -t $USER@$HOST "rm -rf _site && tar -xaf .site.tar.gz
-  && cd _site && sudo /data/www/deploy_rustycrate.sh"
+- if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
+  openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv
+    -in travis.trash.id_rsa.enc -out travis.trash.id_rsa -d;
+  tar -caf .site.tar.gz _site;
+  chmod 600 travis.trash.id_rsa;
+  scp -i travis.trash.id_rsa .site.tar.gz "$USER@$HOST:";
+  ssh -i travis.trash.id_rsa -t $USER@$HOST "rm -rf _site && tar -xaf .site.tar.gz
+    && cd _site && sudo /data/www/deploy_rustycrate.sh";
+  fi;
 after_script:
 - if [ -f travis.trash.id_rsa ]; then shred -u travis.trash.id_rsa; fi;
