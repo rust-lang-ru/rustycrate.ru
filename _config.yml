@@ -7,6 +7,14 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://rustycrate.ru" # the base hostname & protocol for your site
 twitter_username: 
 github_username:  ruRust
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts"
+    values:
+      layout: "default"
+      comments: true
 
 # Build settings
 markdown: kramdown
