@@ -13,7 +13,7 @@ defaults:
       path: "" # an empty string here means all files in the project
       type: "posts"
     values:
-      layout: "default"
+      layout: "post"
       comments: true
 
 # Build settings
