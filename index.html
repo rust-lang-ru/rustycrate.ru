@@ -5,18 +5,18 @@ title: Ржавеющий контейнер
 <div class="page-header">
   <h1>Ржавеющий контейнер <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
 </div>
-{% for page in site.posts %}
+{% for post in site.posts %}
 <div class="well well-sm">
   <article>
     <header>
-      <h1><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
-      <p>{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
+      <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+      <p>{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
     </header>
     <div>
-      {{ page.excerpt }}
+      {{ post.excerpt }}
     </div>
     <footer>
-      <a href="{{ page.url | prepend: site.baseurl }}">читать дальше</a>
+      <a href="{{ post.url | prepend: site.baseurl }}">читать дальше</a>
     </footer>
   </article>
 </div>
