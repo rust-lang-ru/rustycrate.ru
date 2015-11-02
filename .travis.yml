@@ -24,5 +24,11 @@ after_success:
 after_script:
 - if [ -f travis.trash.id_rsa ]; then shred -u travis.trash.id_rsa; fi;
 notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/59ec843adc18db665a54
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always  
   slack:
     secure: f2tvffqlKcJL+f2BAT7+1n5KmUfPk8nJW73DXPOce/MO18KL5Ftyjg4Kx2wyycxlj1/c+w3KeqIOYw2QPiFkVUqc/klKWeEUM9efDzv5zjibaUgEWuSaN62sdckkVqvG/IMGTGK92LT3XphjVy6YFNqSurwq8Wp0w+9n1h4wRQ6EWavD2QfZ1WalxWRyYV3wQOX6QsgWaAAfDaJS7PyK9Gp09MIqHsTpQDssp13qxFTc3pfvoVp8lBSn0OTZR68IA2Nehk5gbS7DK3U+++228Kq60k8ie/u7dgnV7BbI0BtCqSAejoTL5jC5FMzGUbLwclGyF8VJKzxjl5TDB88XUKwcC7+4Ilni77j5scCqzLcA3dORMTa/hPIN7FC/kx44HNjDLxmNkQJWzHyYse+DXDDN4qM/+Wcp8QasJ9LAh8Pnzm0fMJd82/c8GqgAWz1H2SyCIh/3+hZwzK2Fc0S5jBCUN7i4kEZdamvdlcJYzWSqOxpwj5df34SVNYKyn/egV4V++dbOGOVWDYLUu67m87UL6dUXKAED3JdD2PjrOzWDMzfQCutzSAZf+jOXtKeO0BOppnL9IRcK+k0C84+g/ydtjzIXZ8LaORAt5dNUcy4HMQMiRkeqo9fQ8MTUCk4N0mr0N4oC7Y8VS3xiles68ItiAWtf0jbqXoOYNmNw7tc=
