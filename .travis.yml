@@ -11,7 +11,7 @@ rvm:
 script:
 - bundle exec jekyll build
 - if ! bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html; then
-  tree ./_site;
+  find ./_site;
   fi;
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
