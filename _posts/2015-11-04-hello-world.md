@@ -1,7 +1,7 @@
 ---
 title: "Здравствуй, мир!"
 categories: новости
-published: false
+published: true
 
 ---
 
