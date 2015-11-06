@@ -10,7 +10,7 @@ rvm:
 - 2.2
 script:
 - bundle exec jekyll build
-- if !bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html; then
+- if ! bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html; then
   tree ./_site;
   fi;
 after_success:
