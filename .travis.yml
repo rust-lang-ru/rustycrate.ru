@@ -9,7 +9,6 @@ sudo: true
 rvm:
 - 2.2
 script:
-- sudo pip install pygments
 - bundle exec jekyll build
 - bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
 after_success:
