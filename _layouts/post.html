@@ -2,33 +2,30 @@
 <!-- Page last generated {{ site.time }} -->
 <html lang="ru">
   {% include head.html %}
-  <body class="container">
+  <body>
     {% include header.html %}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/js/bootstrap.min.js"></script>
+    <div class="container">
+      <div class="well well-sm">
+        <h1><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
+        {{ content }}
+      </div>
+      {% if page.comments %}
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'rustycrate';
 
-    <div class="well well-sm">
-      <h1><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
-      {{ content }}
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      {% endif %}
     </div>
-    {% if page.comments %}
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = 'rustycrate';
-
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-    {% endif %}
     {% include footer.html %}
   </body>
 </html>
