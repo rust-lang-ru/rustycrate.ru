@@ -5,15 +5,13 @@ env:
   - secure: csl2OVpn0L49E+L/rRMSR0Iq6Qb/1oEpoRaQFehJE7RiZXeAVHrILINLq+4HN2JrqOjeg8cBunKzUhp0sHBxly0M36NsJN8ITZVKbNENzwcenVfNlJPgxVomBUWmWk4w96w5eFRfxVLR5UDN6Rf7ohkQMxYjd2KWL9iugzIb8+Epq7akSyM0XCXeJpL9T6Z+WDWrX3xeiLgTUfdofik5GAyEcLLjz1ncdCwvBrnj4s1//tb35ex+6MDNr3bO9KD0rpuwIPzFYGwZcYchK8TfqFB/3fseUHVzb6/Q0V9K8meOwfKxU8Rd9o0CS6Z02rizz6zjnu5TcMFR65HOlVsQ1SzDIb7I7Me6jnDYrPhhJulu9x1jxNALHWO0cF/phMldoj6KyZ3qZ/NVv8R/6Ukj7S3B4IgzPSO7/Z5QWDkv72L3CKheof8tmSC5SGv6mShxCqQqIbajRbc/yeWP8HNNsEjUUjnf5/DK3s458LeCHh0472KJKgo0eLea2LD8sd16Xx0IK1WYFgv+WUUnI3MhERPxepL4ugFlGmHAwA/V/smmRRMnqKYMTAw//4ceZO9ylRzuyWzWmWbRzExHgK6jVZqxtjp2UKG6L39n1LFDbQErw3TrJdBso9ZKKWjUff/tyDBglkgw05OGYgc8TpQW3AHWs7t/O1JBXzP94bMPVkw=
 addons:
   ssh_known_hosts: rustycrate.ru
-sudo: false
+sudo: true
 rvm:
 - 2.2
 script:
+- sudo pip install pygments
 - bundle exec jekyll build
-- if ! bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html; then
-  find ./_site;
-  exit 1;
-  fi;
+- bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
   openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv
