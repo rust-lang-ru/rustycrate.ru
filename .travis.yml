@@ -10,10 +10,7 @@ rvm:
 - 2.2
 script:
 - bundle exec jekyll build
-- if ! bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html; then
-  find ./_site;
-  exit 1;
-  fi;
+- bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
   openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv
