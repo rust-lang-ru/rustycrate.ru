@@ -17,4 +17,4 @@ defaults:
       comments: true
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
