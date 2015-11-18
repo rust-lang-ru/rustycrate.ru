@@ -13,8 +13,11 @@ title: Ржавеющий контейнер
       <p>{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
     </header>
     <div>
-      {{ post.content }}
+      {{ post.excerpt }}
     </div>
+    <footer>
+      <a href="{{ post.url | prepend: site.baseurl }}">читать дальше</a>
+    </footer>
   </article>
 </div>
 {% endfor %}
