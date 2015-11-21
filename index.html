@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Ржавеющий контейнер
+title: Ржавеющий контейнер | Лента
 ---
 <div class="page-header">
     <h1>Ржавеющий контейнер <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
@@ -16,10 +16,11 @@ title: Ржавеющий контейнер
             {{ post.excerpt }}
         </div>
         <footer>
-            <div id="buttons" style="float: right;">
+            <div id="buttons">
                 <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default" id="read-more">читать дальше</a>
+                <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread" class="btn btn-default" id="comments">комментарии</a>
             </div>
-            <div id="placeholder" style="clear: both;"></div>
+            <div id="placeholder"></div>
         </footer>
     </article>
 </div>
