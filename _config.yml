@@ -17,4 +17,5 @@ defaults:
       comments: true
 
 # Build settings
+exclude: [vendor]
 markdown: redcarpet
