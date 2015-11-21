@@ -3,21 +3,21 @@ layout: default
 title: Ржавеющий контейнер
 ---
 <div class="page-header">
-  <h1>Ржавеющий контейнер <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
+    <h1>Ржавеющий контейнер <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
 </div>
 {% for post in site.posts %}
 <div class="well well-sm">
-  <article>
-    <header>
-      <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
-      <p>{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
-    </header>
-    <div>
-      {{ post.excerpt }}
-    </div>
-    <footer>
-      <a href="{{ post.url | prepend: site.baseurl }}">читать дальше</a>
-    </footer>
-  </article>
+    <article>
+        <header>
+            <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+            <p>{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
+        </header>
+        <div>
+            {{ post.excerpt }}
+        </div>
+        <footer>
+            <a href="{{ post.url | prepend: site.baseurl }}">читать дальше</a>
+        </footer>
+    </article>
 </div>
 {% endfor %}
