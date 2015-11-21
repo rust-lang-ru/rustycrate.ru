@@ -16,7 +16,10 @@ title: Ржавеющий контейнер
             {{ post.excerpt }}
         </div>
         <footer>
-            <a href="{{ post.url | prepend: site.baseurl }}">читать дальше</a>
+            <div id="buttons" style="float: right;">
+                <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default" id="read-more">читать дальше</a>
+            </div>
+            <div id="placeholder" style="clear: both;"></div>
         </footer>
     </article>
 </div>
