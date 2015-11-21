@@ -9,7 +9,7 @@
       <div class="well">
         <h1><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
 
-        <p>{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
+        <p class="post-header">{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
 
         {{ content }}
       </div>

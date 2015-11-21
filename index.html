@@ -10,7 +10,7 @@ title: Лента
     <article>
         <header>
             <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
-            <p>{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
+            <p class="post-header">{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
         </header>
         <div>
             {{ post.excerpt }}
