@@ -14,7 +14,7 @@ radial-gradient(circle at 0% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgb
   }
 
   .brand-icon {
-    height: 48px;
+    height: 44px;
   }
 
   &.navbar-bottom {
@@ -65,4 +65,11 @@ h1#post-title {
 
 .container#content {
     padding-top: 15px;
+}
+
+.nav li div.dropdown {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
