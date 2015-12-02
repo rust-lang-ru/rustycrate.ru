@@ -19,7 +19,7 @@ title: Лента
             <div id="buttons">
                 <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default" id="read-more">читать дальше</a>
                 <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
-                    <span class="disqus-comment-count" data-disqus-url="{{ post.url | prepend: site.baseurl }}#disqus_thread"></span>
+                    <span class="disqus-comment-count" data-disqus-url="{{ site.url }}{{ post.url | prepend: site.baseurl }}#disqus_thread"></span>
                     <img src="/images/comments.svg" alt="комментарии" class="comments-icon">
                 </a>
             </div>
