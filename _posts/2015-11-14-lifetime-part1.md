@@ -101,7 +101,7 @@ impl Logger {
 
 fn main() {
     let mut logger = Logger::new();
-    let my_log = logger.log_copy();
+    let my_log = logger.get_log_copy();
 }
 ```
 
@@ -196,7 +196,7 @@ fn main() {
 impl Logger {
     // ... прочие методы Logger ...
 
-    pub gn get_log<'a>(&'a self) -> &'a String {
+    pub fn get_log<'a>(&'a self) -> &'a String {
         &self.log
     }
 }
