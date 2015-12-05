@@ -1,5 +1,4 @@
 body {
-    padding: 70px 0px;
     line-height: 1.618;
     background-color: rgba(150, 104, 39, 1);
     background-image: url("/images/purty-wood.png");
@@ -9,6 +8,10 @@ body {
   border-radius: 0;
   .navbar-text {
     padding: 0 15px;
+  }
+
+  &.navbar-top {
+    margin-bottom: 30px;
   }
 
   .brand-icon {
