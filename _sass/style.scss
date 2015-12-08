@@ -86,5 +86,10 @@ h1#post-title {
 }
 
 .well p img {
-    width: 100%;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
