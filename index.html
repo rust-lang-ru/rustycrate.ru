@@ -5,7 +5,7 @@ title: Лента
 <div class="page-header">
     <h1>Ржавый ящик <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
 </div>
-{% for post in site.posts %}
+{% for post in site.posts limit:3 %}
 <div class="well">
     <article>
         <header>
@@ -28,4 +28,9 @@ title: Лента
     </article>
 </div>
 {% endfor %}
+<div id="buttons">
+    <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default all-posts">все публикации</a>
+</div>
+<div id="placeholder"></div>
+
 <script id="dsq-count-scr" src="//rustycrate.disqus.com/count.js" async></script>
