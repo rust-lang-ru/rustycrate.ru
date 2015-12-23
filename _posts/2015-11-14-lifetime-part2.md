@@ -105,7 +105,7 @@ impl <'a> Customer<'a> {
 
 # Использование
 
-Отлично! У нас есть две структуры `Person` и `Car`. Давайте попробуем
+Отлично! У нас есть две структуры `Customer` и `Car`. Давайте попробуем
 использовать эти структуры в программе:
 
 ```rust
@@ -275,10 +275,10 @@ fn main() {
 всегда эта модель работает. Добавим функцию в наш код:
 
 ```rust
-fn shop_for_car(p: &mut Person) {
+fn shop_for_car(c: &mut Customer) {
     let car = Car{ model: "BMW M4 Coupe".to_string() };
 
-    p.buy_car(&car);    // Ошибка!
+    c.buy_car(&car);    // Ошибка!
 }
 ```
 
