@@ -79,7 +79,7 @@ _Проверено для Linux (ArchLinux) и для Mac OS X (El Capitan 10.1
   * В редакторе нажимаем _Shift+Ctrl+P_
   * Набираем Open Keyboard Shortcuts
   * Назначаем следующее сочетание:
-  ```json
+  ```
   {"key": "shift+cmd+b",           "command": "workbench.action.tasks.runTask"}
   ```
 8. Всё готово
