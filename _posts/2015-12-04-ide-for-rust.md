@@ -48,7 +48,7 @@ _Это вики-статья. Примем Pull Request с описанием �
 ![Sublime 3 with Rust](/images/2015-12-04-ide-for-rust/sublime-3-rust.png)
 
 # Visual Studio Code
-_Проверял для Linux (ArchLinux) и для Mac OS X (El Capitan 10.11.2)_
+_Проверено для Linux (ArchLinux) и для Mac OS X (El Capitan 10.11.2)_
 
 0. Устанавливаем Rust и Cargo
   * [официальный сайт](https://www.rust-lang.org/)
