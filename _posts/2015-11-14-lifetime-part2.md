@@ -123,7 +123,7 @@ fn main() {
 
 ```rust
 fn main() {
-    let bob = Customer::new();
+    let mut bob = Customer::new();
     let car = Car{ model: "Skoda Fabia".to_string() };
 
     bob.buy_car(&car); // Ошибка!
