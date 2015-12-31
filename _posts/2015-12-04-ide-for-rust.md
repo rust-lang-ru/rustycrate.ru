@@ -89,5 +89,98 @@ _Проверено для Linux (ArchLinux) и для Mac OS X (El Capitan 10.1
 
 ![Visual Studio Code with Rust](/images/2015-12-04-ide-for-rust/visual_studio_code_rust.png)
 
+# Emacs
+_Проверено для Manjaro Linux 15.2 и Windows 10_
+
+1. Устанавливаем Rust и Cargo (свежая версия есть в репозитории)
+   * sudo pacman -S rust cargo
+2. Скачиваем исходный код Rust'a (требуется для работы racer'a)
+   * git clone https://github.com/rust-lang/rust.git ~/.rust
+3. Устанавливаем racer
+   * cargo install racer (_не забудьте добавить ~/.cargo/bin в переменную PATH_)
+4. Добавляем переменную RUST_SRC_PATH
+   * в файл .bash_profile добавляем строки
+      ```
+      RUST_SRC_PATH=~/.rust/src
+      export RUST_SRC_PATH
+      ```
+     После этого выполните `source ~/.bash_profile` в терминале, чтобы обновить пути
+5. Устанавливаем Emacs
+   * `pacman -S emacs`
+6. Активируем репозиторий MELPA для Emacs
+   * создаем файл ~/.emacs.d/init.el
+   * добавляем в него следующие строки (активируем репозиторий и сразу же указываем необходимые пакеты):
+   ```
+   (require 'package)
+
+   (add-to-list 'package-archives
+          '("melpa" . "http://melpa.org/packages/") t)
+
+   (package-initialize)
+   (when (not package-archive-contents)
+     (package-refresh-contents))
+
+   ;; В этом месте мы указываем все необходимые пакеты для работы с Rust
+   (defvar myPackages
+     '(flycheck
+       company
+       company-racer
+       racer
+       flycheck-rust
+       rust-mode))
+
+   (mapc #'(lambda (package)
+       (unless (package-installed-p package)
+         (package-install package)))
+         myPackages)
+   ```
+7. Добавляем сниппеты в свой init.el
+      ```
+      ;; Enable company globally for all mode
+      (global-company-mode)
+    
+      ;; Reduce the time after which the company auto completion popup opens
+      (setq company-idle-delay 0.2)
+    
+      ;; Reduce the number of characters before company kicks in
+      (setq company-minimum-prefix-length 1)
+    
+      ;; Здесь указываем путь к бинарнику racer
+      (setq racer-cmd "/usr/local/bin/racer")
+    
+      ;; Путь к исходникам Rust
+      (setq racer-rust-src-path "/Users/YOURUSERNAME/.rust/src/")
+    
+      ;; Load rust-mode when you open `.rs` files
+      (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+    
+      ;; Setting up configurations when you load rust-mode
+      (add-hook 'rust-mode-hook
+    
+           '(lambda ()
+           ;; Enable racer
+           (racer-activate)
+        
+           ;; Hook in racer with eldoc to provide documentation
+           (racer-turn-on-eldoc)
+    	 
+           ;; Use flycheck-rust in rust-mode
+           (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+    	 
+           ;; Use company-racer in rust mode
+           (set (make-local-variable 'company-backends) '(company-racer))
+    	 
+           ;; Key binding to jump to method definition
+           (local-set-key (kbd "M-.") #'racer-find-definition)
+    	 
+           ;; Key binding to auto complete and indent
+           (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
+      ```
+8. Перезапускаем Emacs, дожидаемся установки пакетов.
+9. Готово
+  * _TAB_ - автодополнение
+  * _M + ._ - go-to definition
+![Emacs with Rust](/images/2015-12-04-ide-for-rust/emacs_rust.png)
+
 # Ссылки
 * [Прекрасная табличка со статусом поддержки возможностей для всех IDE (или почти всех), которые умеют работать с Rust](http://areweideyet.com/)
