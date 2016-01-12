@@ -10,4 +10,7 @@
 
 ## Локальный запуск
 
-`jekyll serve`
+```
+gem install jekyll i18n redcarpet
+jekyll serve
+```
