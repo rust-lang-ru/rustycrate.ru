@@ -98,84 +98,82 @@ _Проверено для Manjaro Linux 15.2 и Windows 10_
   * git clone https://github.com/rust-lang/rust.git ~/.rust
 3. Устанавливаем racer
   * cargo install racer (_не забудьте добавить ~/.cargo/bin в переменную PATH_)
-4. Добавляем переменную RUST_SRC_PATH
-  * в файл .bash_profile добавляем строки
-  ```
-  RUST_SRC_PATH=~/.rust/src
-  export RUST_SRC_PATH
-  ```
-  После этого выполните `source ~/.bash_profile` в терминале, чтобы обновить пути
+4. Добавляем переменную RUST\_SRC\_PATH
+  * в файл .bash\_profile добавляем `export RUST_SRC_PATH=~/.rust/src`
+  * После этого выполните `source ~/.bash_profile` в терминале, чтобы обновить пути
 5. Устанавливаем Emacs
   * `pacman -S emacs`
 6. Активируем репозиторий MELPA для Emacs
   * создаем файл ~/.emacs.d/init.el
   * добавляем в него следующие строки (активируем репозиторий и сразу же указываем необходимые пакеты):
-  ```
-  (require 'package)
 
-  (add-to-list 'package-archives
-        '("melpa" . "http://melpa.org/packages/") t)
+        ```
+        (require 'package)
 
-  (package-initialize)
-  (when (not package-archive-contents)
-    (package-refresh-contents))
+        (add-to-list 'package-archives
+                '("melpa" . "http://melpa.org/packages/") t)
 
-  ;; В этом месте мы указываем все необходимые пакеты для работы с Rust
-  (defvar myPackages
-    '(flycheck
-      company
-      company-racer
-      racer
-      flycheck-rust
-      rust-mode))
+        (package-initialize)
+        (when (not package-archive-contents)
+            (package-refresh-contents))
 
-  (mapc #'(lambda (package)
-      (unless (package-installed-p package)
-        (package-install package)))
-        myPackages)
-  ```
+        ;; В этом месте мы указываем все необходимые пакеты для работы с Rust
+        (defvar myPackages
+            '(flycheck
+            company
+            company-racer
+            racer
+            flycheck-rust
+            rust-mode))
+
+        (mapc #'(lambda (package)
+            (unless (package-installed-p package)
+                (package-install package)))
+                myPackages)
+        ```
+
 7. Добавляем сниппеты в свой init.el
-  ```
-  ;; Enable company globally for all mode
-  (global-company-mode)
 
-  ;; Reduce the time after which the company auto completion popup opens
-  (setq company-idle-delay 0.2)
+        ;; Enable company globally for all mode
+        (global-company-mode)
 
-  ;; Reduce the number of characters before company kicks in
-  (setq company-minimum-prefix-length 1)
+        ;; Reduce the time after which the company auto completion popup opens
+        (setq company-idle-delay 0.2)
 
-  ;; Здесь указываем путь к бинарнику racer
-  (setq racer-cmd "/usr/local/bin/racer")
+        ;; Reduce the number of characters before company kicks in
+        (setq company-minimum-prefix-length 1)
 
-  ;; Путь к исходникам Rust
-  (setq racer-rust-src-path "/Users/YOURUSERNAME/.rust/src/")
+        ;; Здесь указываем путь к бинарнику racer
+        (setq racer-cmd "/usr/local/bin/racer")
 
-  ;; Load rust-mode when you open `.rs` files
-  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+        ;; Путь к исходникам Rust
+        (setq racer-rust-src-path "/Users/YOURUSERNAME/.rust/src/")
 
-  ;; Setting up configurations when you load rust-mode
-  (add-hook 'rust-mode-hook
+        ;; Load rust-mode when you open `.rs` files
+        (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
-      '(lambda ()
-      ;; Enable racer
-      (racer-activate)
+        ;; Setting up configurations when you load rust-mode
+        (add-hook 'rust-mode-hook
 
-      ;; Hook in racer with eldoc to provide documentation
-      (racer-turn-on-eldoc)
+            '(lambda ()
+            ;; Enable racer
+            (racer-activate)
 
-      ;; Use flycheck-rust in rust-mode
-      (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+            ;; Hook in racer with eldoc to provide documentation
+            (racer-turn-on-eldoc)
 
-      ;; Use company-racer in rust mode
-      (set (make-local-variable 'company-backends) '(company-racer))
+            ;; Use flycheck-rust in rust-mode
+            (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
-      ;; Key binding to jump to method definition
-      (local-set-key (kbd "M-.") #'racer-find-definition)
+            ;; Use company-racer in rust mode
+            (set (make-local-variable 'company-backends) '(company-racer))
 
-      ;; Key binding to auto complete and indent
-      (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
-  ```
+            ;; Key binding to jump to method definition
+            (local-set-key (kbd "M-.") #'racer-find-definition)
+
+            ;; Key binding to auto complete and indent
+            (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
+
 8. Перезапускаем Emacs, дожидаемся установки пакетов.
 9. Готово
   * _TAB_ - автодополнение
