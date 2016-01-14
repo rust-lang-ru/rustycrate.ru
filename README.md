@@ -10,4 +10,10 @@
 
 ## Локальный запуск
 
-`jekyll serve`
+```
+git clone https://github.com/ruRust/rustycrate.ru.git
+cd rustycrate.ru
+gem install bundler
+bundle install
+bundle exec jekyll serve
+```
