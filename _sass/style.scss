@@ -118,3 +118,47 @@ h1#post-title {
 .all-posts {
     margin-bottom: 20px;
 }
+
+.gitter-button {
+    background-color: #f5f5f5;
+    border: 3px solid #e3e3e3;
+    border-bottom-color: #FFF;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    bottom: 0px;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 19.4167px;
+    padding-bottom: 12px;
+    padding-left: 36px;
+    padding-right: 36px;
+    padding-top: 12px;
+    position: fixed;
+    right: 10px;
+    text-align: center;
+    text-decoration: none;
+    text-decoration-color: #FFF;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-transform: uppercase;
+    transition-delay: 0s;
+    transition-duration: 0.3s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    z-index: 100;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+}
