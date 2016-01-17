@@ -37,6 +37,26 @@ div#buttons {
     float: right;
 }
 
+div#badge {
+    float: left;
+
+    h1 {
+        margin-top: 0px;
+    }
+
+    p.post-header {
+        border-bottom: none;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+div#buttons-badge {
+    margin-top: 25px;
+    float: right;
+}
+
+
 .page-header {
     margin-top: 0;
     h1 {
