@@ -2,8 +2,12 @@
 title: "Rust и парадокс Блаба"
 categories: размышления
 published: true
-author: Иващенко Иван
+author: Jonathan Turner (перевел Иван Иващенко)
 excerpt:
+    *Эта статья – перевод статьи
+    [Rust and the Blub Paradox](http://www.jonathanturner.org/2016/01/rust-and-blub-paradox.html)
+    за авторством Jonathan Turner*
+
     Несколько недель назад я наткнулся на сравнительный анализ Rust, D и Go
     от Андрея Александреску. Андрей, уважаемый член сообщества C++
     и главный разработчик языка программирования D, нанес Rust
@@ -11,6 +15,10 @@ excerpt:
     проницательным наблюдением.
 
 ---
+
+*Эта статья – перевод статьи
+[Rust and the Blub Paradox](http://www.jonathanturner.org/2016/01/rust-and-blub-paradox.html)
+за авторством Jonathan Turner*
 
 Несколько недель назад я наткнулся на
 [сравнительный анализ Rust, D и Go](https://www.quora.com/Which-language-has-the-brightest-future-in-replacement-of-C-between-D-Go-and-Rust-And-Why)
