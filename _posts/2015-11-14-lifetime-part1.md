@@ -39,16 +39,16 @@ impl Logger {
     }
 
     // Метод добавления текста в лог
-    pub fn addText(&mut self, data: &str) {
+    pub fn add_text(&mut self, data: &str) {
         self.log.push_str(data);
     }
 }
 
 fn main() {
-    let mut logger = Logger:new();
+    let mut logger = Logger::new();
 
-    logger.addText("foo");
-    logger.addText("bar");
+    logger.add_text("foo");
+    logger.add_text("bar");
 }
 ```
 
@@ -132,7 +132,7 @@ impl Logger {
     // ... прочие методы Logger ...
 
     pub fn get_log(&self) -> &String {
-        &self.text
+        &self.log
     }
 }
 
@@ -173,10 +173,10 @@ fn main() {
         logger.add_text("foo");
         logger.add_text("baz");
 
-        my_log = logger.get_log();
+        my_log = logger.get_log(); // error: `logger` does not live long enough 
     } // Конец времени жизни для logger
 
-    println!("{}", my_log); // ОШИБКА!
+    println!("{}", my_log); // сылаeтся на уничтоженный участок памяти! ОШИБКА!
 }
 ```
 
@@ -289,5 +289,5 @@ Objective-C, то вас удивит использование времени 
 Сборщик мусора требует дополнительных вычислительных затрат процессора и памяти,
 а главное требует паузы программы для освобождения ненужных данных.  Подсчёт
 ссылок также требует дополнительных вычислительных затрат. Время жизни в Rust
-предлагает решение без использования дополнительных вычислительных затрат.
+предлагает решение без использования дополнительных вычислительных затрат во время выполнения.
 
