@@ -28,6 +28,20 @@ body {
     padding: 8px;
 }
 
+div.header-left {
+    float: left;
+}
+
+div.header-right {
+    margin-top: 20px;
+    float: right;
+    text-align: right;
+}
+
+div.posts-notice {
+    color: #777;
+}
+
 div#placeholder {
     clear: both;
 }
