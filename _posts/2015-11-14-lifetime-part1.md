@@ -139,8 +139,8 @@ impl Logger {
 fn main() {
     let mut logger = Logger::new();
 
-    logger.add_text('foo');
-    logger.add_text('baz');
+    logger.add_text("foo");
+    logger.add_text("baz");
 
     // Получаем указатель на текст с данными
     let my_log = logger.get_log();  // Тип: &String
