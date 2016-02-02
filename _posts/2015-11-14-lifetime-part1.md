@@ -173,10 +173,10 @@ fn main() {
         logger.add_text("foo");
         logger.add_text("baz");
 
-        my_log = logger.get_log(); // error: `logger` does not live long enough 
+        my_log = logger.get_log(); // error: `logger` does not live long enough
     } // Конец времени жизни для logger
 
-    println!("{}", my_log); // сылаeтся на уничтоженный участок памяти! ОШИБКА!
+    println!("{}", my_log); // ссылаeтся на уничтоженный участок памяти! ОШИБКА!
 }
 ```
 
