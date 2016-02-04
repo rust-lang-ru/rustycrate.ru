@@ -9,6 +9,8 @@ sudo: false
 rvm:
 - 2.2
 script:
+- bundle exec jekyll --version
+- bundle exec htmlproof --version
 - bundle exec jekyll build
 - bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html --href-ignore https://crates.io
 after_success:
