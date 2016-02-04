@@ -12,7 +12,8 @@ script:
 - bundle exec jekyll --version
 - bundle exec htmlproof --version
 - bundle exec jekyll build
-- bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html --href-ignore https://crates.io
+- bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
+  --url-ignore https://crates.io
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
   openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv
