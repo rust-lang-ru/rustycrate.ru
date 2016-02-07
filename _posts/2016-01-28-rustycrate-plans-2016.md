@@ -289,8 +289,8 @@ Rust. Я экспериментально применяю Rust на свое�
       * [IDE](http://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/04.12.2015/ide-for-rust.html)
         для Rust
       * Статьи о времени жизни в Rust:
-        [часть 1](http://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/14.11.2015/lifetime-part1.html),
-        [часть 2](http://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/14.11.2015/lifetime-part2.html)
+        [часть 1](http://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2015/11/14/lifetime-part1.html),
+        [часть 2](http://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2015/11/14/lifetime-part2.html)
   * Хабрахабр, [хаб «Rust»](https://habrahabr.ru/hub/rust/), в частности:
       * [Начинаем](https://habrahabr.ru/post/270137/) использовать Rust
       * Обработка [ошибок](https://habrahabr.ru/post/270371/) в Rust
