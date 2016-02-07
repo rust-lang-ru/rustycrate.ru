@@ -286,7 +286,7 @@ Rust. Я экспериментально применяю Rust на свое�
   * Rust Launch Party Kyiv + Lviv + Friends:
     [запись](https://youtu.be/k7amezcV0AI) Hangouts в день выпуска 1.0
   * Наш блог [rustycrate.ru](http://rustycrate.ru/)
-      * [IDE](http://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/04.12.2015/ide-for-rust.html)
+      * [IDE](http://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2015/12/04/ide-for-rust.html)
         для Rust
       * Статьи о времени жизни в Rust:
         [часть 1](http://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2015/11/14/lifetime-part1.html),
