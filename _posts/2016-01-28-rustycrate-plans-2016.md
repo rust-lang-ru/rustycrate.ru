@@ -223,7 +223,7 @@ Rust. Я экспериментально применяю Rust на свое�
   * [@kstep](https://github.com/kstep)
       * [cronparse](https://crates.io/crates/cronparse/) — парсер файлов crontab
       * [kernlog](https://crates.io/crates/kernlog/) — реализация
-        низкоуровневого журналирования в `/dev/kernlog`
+        низкоуровневого журналирования в `/dev/kmsg`
       * [mpd](https://crates.io/crates/mpd/) — клиентская библиотека для MPD
         (music player daemon)
       * [pb](https://crates.io/crates/pb/) — клиент REST API сервиса
