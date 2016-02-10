@@ -181,5 +181,63 @@ _Проверено для Manjaro Linux 15.2 и Windows 10_
 
 ![Emacs with Rust](/images/2015-12-04-ide-for-rust/emacs_rust.png)
 
+# Vim
+_Проверено для Fedora 23_
+
+Простой способ начать работу с Rust в Vim - установить плагины [YouCompleteMe][]
+с автодополнением на основе [racer][] и [rust.vim][] для подсветки кода.
+
+## Возможности
+Согласно документации YouCompleteMe, на данный момент поддерживается:
+
+* Семантическое автодополнение
+* Переход к определению (команды `GoTo`, `GoToDefinition`, `GoToDeclaration`
+работают для Rust идентично)
+* Управление экземпляром сервера `racer`.
+
+## Настройка
+
+1. Устанавливаем Rust и Cargo. Например, с помощью rustup:
+
+        curl -sSf https://static.rust-lang.org/rustup.sh | sh
+
+2. Скачиваем исходный код Rust'a (требуется для работы racer'a)
+
+        git clone https://github.com/rust-lang/rust.git ~/.rust
+
+3. Устанавливаем дополнения [YouCompleteMe][] и [rust.vim][]. К примеру, с
+помощью [Vundle][]. Добавляем в `~/.vimrc`:
+
+        Plugin 'Valloric/YouCompleteMe'
+        Plugin 'rust-lang/rust.vim'
+И устанавливаем дополнения:
+
+        vim +PluginInstall +qall
+
+4. Собираем плагин YouCompleteMe:
+
+        cd ~/.vim/bundle/YouCompleteMe
+        ./install.py --racer-completer
+
+5. Указываем путь к исходному коду Rust в `~/.vimrc`:
+
+        let g:ycm_rust_src_path = '~/.rust/src'
+Или в `~/.bash_profile`:
+
+        export RUST_SRC_PATH=~/.rust/src
+
+6. (опционально) Добавляем в `~/.vimrc` сочетание клавиш для команды 'Goto':
+
+        nmap <leader>j :YcmCompleter GoTo<CR>
+
+7. Готово!
+
+[YouCompleteMe]: https://github.com/valloric/YouCompleteMe
+[racer]: https://github.com/phildawes/racer
+[rust.vim]: https://github.com/rust-lang/rust.vim
+[Vundle]: https://github.com/VundleVim/Vundle.vim
+
+![Vim with Rust](/images/2015-12-04-ide-for-rust/vim_rust.gif)
+
 # Ссылки
 * [Прекрасная табличка со статусом поддержки возможностей для всех IDE (или почти всех), которые умеют работать с Rust](http://areweideyet.com/)
