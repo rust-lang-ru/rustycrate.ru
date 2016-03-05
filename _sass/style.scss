@@ -181,3 +181,9 @@ h1#post-title {
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
 }
+
+@media (max-width: 992px) {
+  .gitter-button {
+        display: none;
+  }
+}
