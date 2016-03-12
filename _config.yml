@@ -20,6 +20,9 @@ defaults:
 exclude: [vendor]
 markdown: redcarpet
 
+redcarpet:
+    extensions: ["tables", "autolink", "strikethrough", "with_toc_data", "no_styles", "safe_links_only", "hover_anchors", "smart"]
+
 sitemap:
     file: "/sitemap.xml"
     exclude:

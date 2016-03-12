@@ -15,6 +15,7 @@ script:
 - bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
   --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/
   --file-ignore /yandex_6b9a121b20becc7c.html/,/googlea5495ce52829dd37.html/
+  --ignore-script-embeds
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
   openssl aes-256-cbc -K $encrypted_b635d6f2115a_key -iv $encrypted_b635d6f2115a_iv

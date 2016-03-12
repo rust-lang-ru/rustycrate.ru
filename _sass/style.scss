@@ -187,3 +187,56 @@ h1#post-title {
         display: none;
   }
 }
+
+a.header-link:hover {
+    text-decoration: none;
+}
+
+h1 a i,
+h2 a i,
+h3 a i,
+h4 a i,
+h5 a i,
+h6 a i {
+    font-size: 10pt;
+}
+
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a,
+h6:hover a {
+    display: inline;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    display: none;
+}
+
+#badge h1 a,
+header h1 a {
+    display: inline;
+}
+
+h1#post-title a {
+    display: inline;
+}
+
+h1#post-title a.header-link {
+    display: none;
+}
+
+th,td {
+    border: 1px solid #e3e3e3;
+    padding: 0 5px;
+}
+
+table {
+    margin-bottom: 10px;
+}
