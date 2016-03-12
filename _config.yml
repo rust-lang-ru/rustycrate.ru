@@ -22,14 +22,3 @@ markdown: redcarpet
 
 redcarpet:
     extensions: ["tables", "autolink", "strikethrough", "with_toc_data", "no_styles", "safe_links_only", "hover_anchors", "smart"]
-
-sitemap:
-    file: "/sitemap.xml"
-    exclude:
-        - "/atom.xml"
-        - "/feed.xml"
-        - "/feed/index.xml"
-    include_posts:
-        - "/index.html"
-    change_frequency_name: "change_frequency"
-    priority_name: "priority"
