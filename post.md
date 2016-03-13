@@ -9,8 +9,9 @@ title: Написать публикацию
 
 Написать новую публикацию можно в веб-интерфейсе GitHub.
 
-Если вы уже знакомы с такими блогами --- нажмите [здесь][post] для
-перехода на GitHub.
+Если вы уже знакомы с такими блогами --- нажмите <a
+href="https://github.com/ruRust/rustycrate.ru/new/master/_posts"
+target="blank">здесь</a>, чтобы открыть GitHub в новой вкладке.
 
 Для распознавания файла как публикации, его нужно назвать в формате
 `год-месяц-число-тема.md`, где год-месяц-число обозначают дату
@@ -51,6 +52,5 @@ excerpt: >
 внизу страницы.
 
 Для перехода на GitHub в интерфейс написания новой публикации нажмите
-[здесь][post].
-
-[post]: https://github.com/ruRust/rustycrate.ru/new/master/_posts
+<a href="https://github.com/ruRust/rustycrate.ru/new/master/_posts"
+target="blank">здесь</a>.
