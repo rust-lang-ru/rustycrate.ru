@@ -4,7 +4,7 @@ email: rustycrate@michaelpankov.com
 description: > # this means to ignore newlines until "baseurl:"
   Неофициальный русскоязычный сайт о языке программирования Rust
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://rustycrate.ru" # the base hostname & protocol for your site
+url: "https://rustycrate.ru" # the base hostname & protocol for your site
 twitter_username: 
 github_username:  ruRust
 defaults:
@@ -19,3 +19,6 @@ defaults:
 # Build settings
 exclude: [vendor]
 markdown: redcarpet
+
+redcarpet:
+    extensions: ["tables", "autolink", "strikethrough", "with_toc_data", "no_styles", "safe_links_only", "hover_anchors", "smart"]

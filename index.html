@@ -1,6 +1,10 @@
 ---
 layout: default
 title: Лента | Главная
+sitemap:
+  priority: 0.7
+  changefreq: 'daily'
+
 ---
 <div>
     <div class="header-left page-header">
@@ -8,6 +12,7 @@ title: Лента | Главная
     </div>
     <div class="header-right">
         <div class="posts-notice"><p>показаны 3 последние записи</p></div>
+        <a href="/post.html" class="btn btn-default all-posts btn-primary">написать публикацию</a>
         <a href="/archive.html" class="btn btn-default all-posts btn-primary">все публикации</a>
     </div>
     <div id="placeholder">
@@ -27,7 +32,7 @@ title: Лента | Главная
             <div id="buttons">
                 <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default" id="read-more">читать дальше</a>
                 <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
-                    <span class="disqus-comment-count" data-disqus-url="{{ site.url }}{{ post.url | prepend: site.baseurl }}#disqus_thread"></span>
+                    <span class="disqus-comment-count" data-disqus-url="{{ post.url | prepend: site.url }}#disqus_thread"></span>
                     <img src="/images/comments.svg" alt="комментарии" class="comments-icon">
                 </a>
             </div>
@@ -37,6 +42,7 @@ title: Лента | Главная
 </div>
 {% endfor %}
 <div id="buttons">
+    <a href="/post.html" class="btn btn-default all-posts btn-primary">написать публикацию</a>
     <a href="/archive.html" class="btn btn-default all-posts btn-primary">все публикации</a>
 </div>
 <div id="placeholder"></div>

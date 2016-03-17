@@ -7,7 +7,7 @@
 
     <div class="container" id="content">
       <div class="well">
-        <h1 id="post-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
+        <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
 
         <p class="post-header">{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
 
@@ -19,7 +19,11 @@
       </div>
       <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'rustycrate';
+       var disqus_shortname = 'rustycrate';
+       var disqus_config = function () {
+           this.page.url = "{{ page.url | prepend: site.url }}";
+           this.page.identifier = "{{ page.id }}";
+       };
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
@@ -32,5 +36,6 @@
       {% endif %}
     </div>
     {% include footer.html %}
+    {% include anchor_links.html %}
   </body>
 </html>
