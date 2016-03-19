@@ -1,6 +1,9 @@
 ---
+# Выбор шаблона для страницы. Шаблоны находятся в `_layouts`.
 layout: default
+# Заголовок. Становится тегом <title> в <head>
 title: Лента | Главная
+# Метаданные для карты сайта
 sitemap:
   priority: 0.7
   changefreq: 'daily'
@@ -18,11 +21,20 @@ sitemap:
     <div id="placeholder">
     </div>
 </div>
+<!-- Цикл по публикациям, перебираем 3 последние из них -->
+<!-- Для каждой будет повторён код ниже до endfor -->
 {% for post in site.posts limit:3 %}
 <div class="well">
     <article>
         <header>
+            <!-- post.url - свойство страницы, автоматически заполняемое Jekyll. -->
+            <!-- | prepend: site.baseurl означает "взять то, что слева, и приписать в его начало то, что после двоеточия" -->
+            <!-- Так мы получаем полный URL до страницы -->
+            <!-- Строго говоря, это не нужно, т.к. URL вида "/abc.html" ведёт на ту же страницу -->
+            <!-- Все остальные фильтры работают так же. Напр., localize означает "вывести в локализованном формате" -->
+            <!-- post.title - свойство страницы title из front matter. -->
             <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+            <!-- >{% if post.author %}{{ post.author }} • {% endif %} означает, что код внутри if выполняется если условие верно. -->
             <p class="post-header">{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
         </header>
         <div>
@@ -31,11 +43,14 @@ sitemap:
         <footer>
             <div id="buttons">
                 <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default" id="read-more">читать дальше</a>
+                <!-- Ссылка на комментарии -->
                 <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
+                    <!-- Счётчик комментариев -->
                     <span class="disqus-comment-count" data-disqus-url="{{ post.url | prepend: site.url }}#disqus_thread"></span>
                     <img src="/images/comments.svg" alt="комментарии" class="comments-icon">
                 </a>
             </div>
+            <!-- div, который очищает выравнивание (clear: both для отключения float: right) -->
             <div id="placeholder"></div>
         </footer>
     </article>
@@ -47,4 +62,5 @@ sitemap:
 </div>
 <div id="placeholder"></div>
 
+<!-- Скрипт, загружающий счётчики комментариев -->
 <script id="dsq-count-scr" src="//rustycrate.disqus.com/count.js" async></script>

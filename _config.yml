@@ -1,24 +1,29 @@
-# Site settings
+# Настройки сайта
+# Доступны через Liquid-теги site.title и т.д.
 title: Ржавый ящик
 email: rustycrate@michaelpankov.com
-description: > # this means to ignore newlines until "baseurl:"
+description: > # это позволяет отключить переводы строк до начала "baseurl:"
   Неофициальный русскоязычный сайт о языке программирования Rust
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://rustycrate.ru" # the base hostname & protocol for your site
+# Здесь переводы строк можно делать с помощью <br/>
+baseurl: "" # путь до сайта от корня, напр. /blog/. В нашем случае сайт прямо в корне
+url: "https://rustycrate.ru" # базовое имя хоста и протокол
+# Эти параметры могут использоваться темой для Jekyll, чтобы поставить ссылки на профили
 twitter_username: 
 github_username:  ruRust
+# Настройки по умолчанию для определённых полей front matter
 defaults:
   -
     scope:
-      path: "" # an empty string here means all files in the project
-      type: "posts"
+      path: "" # пустая строка означает "все файлы в проекте"
+      type: "posts" # эти настройки влияют на публикации
     values:
-      layout: "post"
-      comments: true
+      layout: "post" # шаблон по умолчанию
+      comments: true # включены ли комментарии
 
-# Build settings
-exclude: [vendor]
-markdown: redcarpet
+# Настройки сборки
+exclude: [vendor] # эта директория будет исключена из обработки Jekyll
+markdown: redcarpet # выбираем процессор Markdown
 
 redcarpet:
-    extensions: ["tables", "autolink", "strikethrough", "with_toc_data", "no_styles", "safe_links_only", "hover_anchors", "smart"]
+  # Включаем кучу расширений, чтобы было как на GitHub
+  extensions: ["tables", "autolink", "strikethrough", "with_toc_data", "no_styles", "safe_links_only", "hover_anchors", "smart"]
