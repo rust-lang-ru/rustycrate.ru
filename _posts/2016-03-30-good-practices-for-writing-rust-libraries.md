@@ -154,7 +154,6 @@ excerpt:
     
     [*.md]
     trim_trailing_whitespace = false
-    Continuous Integration
 
 
 ### Непрерывная интеграция
