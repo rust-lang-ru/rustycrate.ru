@@ -21,7 +21,8 @@ defaults:
       comments: true # включены ли комментарии
 
 # Настройки сборки
-exclude: [vendor] # эта директория будет исключена из обработки Jekyll
+# эти файлы и директории будут исключены из обработки Jekyll
+exclude: [vendor, Gemfile, Gemfile.lock, travis.trash.id_rsa.enc]
 markdown: redcarpet # выбираем процессор Markdown
 
 redcarpet:
