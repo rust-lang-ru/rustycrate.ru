@@ -16,4 +16,4 @@ title: Rust в продакшен
 * [Skylight](http://blog.skylight.io/rust-means-never-having-to-close-a-socket/)
 * [Wit.ai](https://github.com/wit-ai/witd)
 * [Codius](https://codius.org/blog/codius-rust/)
-* [Terminal.com](https://www.terminal.com/)
+* [Terminal.com](http://slides.com/jonathanreem/implementing-http-1#/)
