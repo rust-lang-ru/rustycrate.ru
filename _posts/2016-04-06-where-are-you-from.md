@@ -32,11 +32,12 @@ E0117](https://doc .rust-lang.org /error-index.html#E0117) содержит ег
 описание).
 
 Но реализация From/Into это только полдела. Важно еще знать, где их использовать.
-Если вы долго программируете на Rust, вы должно быть заметили, что мы,
+Если вы давно программируете на Rust, вы должно быть заметили, что мы,
 Растофарианцы, очень интенсивно используем систему типов; в результате у нас
 есть очень много типов, что в свою очередь означает, что есть огромное число
 мест, где необходимо применять преобразования одних типов в другие.
 
+<<<<<<< 0cb5486adac8a8ef5e2c49311b6dc5a9afe35c2d
 # Время для примера!
 
 Предположим, что у нас есть очень скучная функция foo(bar: &Bar), в которой Bar
@@ -225,8 +226,13 @@ fn foobar() -> Result<String, Error> {
 }
 ```
 
-Также участник reddit killercup [рекомендовал](https://www.reddit.com/r/rust/comments/3ughsf/blog_where_are_you_fromfrom/cxestlh) контейнер [quick-error](https://crates.io/crates/quick-error), который позволяет очень быстро добавлять обработку перехвата ошибок.
+Также участник reddit killercup [рекомендовал](https://www.reddit.com/r/rust/com
+ments/3ughsf/blog_where_are_you_fromfrom/cxestlh) контейнер [quick-
+error](https://crates.io/crates/quick-error), который позволяет очень быстро
+добавлять обработку перехвата ошибок.
 
-Обсуждение [/r/rust](https://www.reddit.com/r/rust/comments/3ughsf/blog_where_are_you_fromfrom/) и/или [rust-users](https://users.rust-lang.org/t/blog-where-are-you-from-from/3794/1).
+Обсуждение [/r/rust](https://www.reddit.com/r/rust/comments/3ughsf/blog_where_ar
+e_you_fromfrom/) и/или [rust-users](https://users.rust-lang.org/t/blog-where-
+are-you-from-from/3794/1).
 
 [Профиль автора статьи на GitHub](https://github.com/llogiq)
