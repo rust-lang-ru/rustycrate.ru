@@ -93,7 +93,7 @@ fn foo<'b, B: Into<&'b Bar>>(bar: B) {
 Теперь можем поменять наш вызов foo(blob.into()) на foo(blob), получилось классно.
 К сожалению, появилась и ошибка при вызове foo(buzz.into()):
 
-```ignore
+```text
 conv.rs:30:15: 30:21 error: unable to infer enough type information about `_`; type annotations or generic parameter binding required [E0282]
 conv.rs:30     foo(&buzz.into());
                          ^~~~~~
