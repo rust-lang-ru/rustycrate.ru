@@ -14,7 +14,7 @@ script:
 - bundle exec jekyll build
 - bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
   --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/
-  --file-ignore /yandex_6b9a121b20becc7c.html/,/googlea5495ce52829dd37.html/
+  --file-ignore /yandex_6b9a121b20becc7c.html/,/googlea5495ce52829dd37.html/,/where-are-you-from.html/
   --ignore-script-embeds
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
