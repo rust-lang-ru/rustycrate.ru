@@ -9,6 +9,7 @@ title: Rust в продакшен
 
 Дополнения [приветствуются](https://github.com/ruRust/rustycrate.ru/edit/master/adopters.md).
 
+* [Twitter](https://github.com/twitter/rpc-perf)
 * [Dropbox](http://www.wired.com/2016/03/epic-story-dropboxs-exodus-amazon-cloud-empire/)
 * [OpenDNS](https://labs.opendns.com/2013/10/04/zeromq-helping-us-block-malicious-domains/)
 * [Ethcore](https://ethcore.io/parity.html)
