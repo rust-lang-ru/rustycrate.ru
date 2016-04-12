@@ -24,7 +24,7 @@ title: Кто использует Rust
 # Список интересных проектов на Rust
 * [Rust](https://github.com/rust-lang/rust) — сам компилятор Rust'а написан на Rust.
 * [Cargo](https://github.com/rust-lang/cargo) — менеджер пакетов для Rust.
-* [Servo](https://github.com/servo/servo) — многопоточный браузерные движок.
+* [Servo](https://github.com/servo/servo) — многопоточный браузерный движок.
 * [Redox](https://github.com/redox-os/redox) — операционная система, полностью написанная на Rust.
 * [Leaf](https://github.com/autumnai/leaf) — фреймворк машинного обучения.
 * [Список интересностей](https://github.com/kud1ing/awesome-rust), написанных на Rust.
