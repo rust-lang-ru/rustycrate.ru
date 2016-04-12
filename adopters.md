@@ -11,7 +11,7 @@ title: Кто использует Rust
   систему хранения блоков.
 * [OpenDNS](https://labs.opendns.com/2013/10/04/zeromq-helping-us-block-malicious-domains/) использует 
   Rust и ZeroMQ для поиска вредоносных доменов.
-* [Ethcore](https://ethcore.io/parity.html) пишут клиент для [Ethereum](https://ru.wikipedia.org/wiki/Ethereum)
+* [Ethcore](https://ethcore.io/parity.html) пишут клиент для [Ethereum](https://ru.wikipedia.org/wiki/Ethereum).
 * [MaidSafe](http://blog.maidsafe.net/2015/07/01/the-ants-are-coming/) активно используют Rust и делятся [библиотеками](https://crates.io/search?q=maidsafe) для сетевых вещей.
 * [Skylight](http://blog.skylight.io/rust-means-never-having-to-close-a-socket/) показывают как [RAII](https://uk.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization), заимствование и 
   понятие владения в Rust помогают эффективно заменить сборщик мусора.
