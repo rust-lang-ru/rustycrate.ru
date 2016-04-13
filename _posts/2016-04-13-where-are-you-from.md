@@ -1,5 +1,5 @@
 ---
-title: "Перевод статьи о From/Into"
+title: "Как пользоваться типажами From и Into"
 author: llogic (перевёл Сергей Ефремов)
 categories: обучение
 excerpt:
