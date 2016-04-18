@@ -29,6 +29,7 @@ excerpt: >
  
 Нам необходимо использовать объявленную в С функцию ioctl и передать туда структуру ifreq. Посмотрев в 
 /usr/include/net/if.h, мы увидим, что ifreq определена следующим образом:
+
 ```c
 struct  ifreq {
         char    ifr_name[IFNAMSIZ];
