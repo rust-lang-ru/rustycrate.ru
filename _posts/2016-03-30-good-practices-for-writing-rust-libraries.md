@@ -1,7 +1,7 @@
 ---
 title: "Советы по написанию библиотек на Rust"
 categories: руководства
-published: true
+published: false
 author: Pascal Hertleif (перевел Андрей Лесников)
 excerpt: >
     Перевод статьи "Good Practices for Writing Rust Libraries" (2015.10.24).<br/>
