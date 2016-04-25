@@ -97,6 +97,3 @@ DEPENDENCIES
   redcarpet (= 3.3.2)
   sass
   therubyracer
-
-BUNDLED WITH
-   1.11.2
