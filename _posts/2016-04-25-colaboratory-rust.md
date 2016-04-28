@@ -14,6 +14,10 @@ excerpt: >
 ---
 
 <a href="https://laboratoriya-kasperskogo.timepad.ru/event/323535/">
+<img src="/images/2016-04-25-colaboratory-rust/splash.jpg" alt="лого" style="width: 800px;"/>
+</a>
+
+<a href="https://laboratoriya-kasperskogo.timepad.ru/event/323535/">
 <img src="/images/2016-04-25-colaboratory-rust/button.png" alt="зарегистрироваться" style="width: 248px;"/>
 </a>
 
