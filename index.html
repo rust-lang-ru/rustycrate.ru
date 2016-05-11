@@ -14,16 +14,16 @@ sitemap:
         <h1>Ржавый ящик <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
     </div>
     <div class="header-right">
-        <div class="posts-notice"><p>показаны 5 последние записи</p></div>
+        <div class="posts-notice"><p>показаны 3 последние записи</p></div>
         <a href="/post.html" class="btn btn-default all-posts btn-primary">написать публикацию</a>
         <a href="/archive.html" class="btn btn-default all-posts btn-primary">все публикации</a>
     </div>
     <div id="placeholder">
     </div>
 </div>
-<!-- Цикл по публикациям, перебираем 5 последние из них -->
+<!-- Цикл по публикациям, перебираем 3 последние из них -->
 <!-- Для каждой будет повторён код ниже до endfor -->
-{% for post in site.posts limit:5 %}
+{% for post in site.posts limit:3 %}
 <div class="well">
     <article>
         <header>
