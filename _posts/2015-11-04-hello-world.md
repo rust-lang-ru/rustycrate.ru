@@ -104,11 +104,11 @@ Rust стабилен, экосистема растёт как на дрожж
 
 Стройка и отделка ещё не закончены, поэтому вы можете наткнуться на недоделки
 или баги. Пожалуйста, не молчите — пишите о них на
-[rustycrate@michaelpankov.com](mailto: rustycrate@michaelpankov.com).
+[rustycrate@michaelpankov.com](mailto:rustycrate@michaelpankov.com).
 
 Если вы хотите помочь — будем рады вашим вопросам, идеям или предложениям о
 конкретной помощи:
-[rustycrate@michaelpankov.com](mailto: rustycrate@michaelpankov.com).
+[rustycrate@michaelpankov.com](mailto:rustycrate@michaelpankov.com).
 
 Также можно заглянуть в
 [задачи](https://github.com/ruRust/rustycrate.ru/issues). Если хотите
