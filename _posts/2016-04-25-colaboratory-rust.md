@@ -117,3 +117,9 @@ Rust - быстрый и надежный язык без сборщика му�
 <a href="https://laboratoriya-kasperskogo.timepad.ru/event/323535/">
 <img src="/images/2016-04-25-colaboratory-rust/button.png" alt="зарегистрироваться" style="width: 248px;"/>
 </a>
+
+# Обновление
+
+## Доклады
+
+Доступны презентации к докладам. [Скачать](https://rustycrate.ru/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2016/04/25/colaboratory-rust.html).
