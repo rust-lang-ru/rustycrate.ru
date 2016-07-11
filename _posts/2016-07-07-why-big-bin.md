@@ -1,16 +1,16 @@
 ---
-title: "Большие Rust бинари в моем Rust? (Why is a Rust executable large?)"
+title: "Большие бинари в моем Rust? (Why is a Rust executable large?)"
 author: lifthrasiir (адаптация от kitsu)
 categories: обучение
 excerpt: >
-  Перевод статьи Why is a Rust executable large? (2016-06-02)<br/>
-  В этой статье узнаем почему hello-world больше Сишного аналога в 6 раз, разберемся, что лежит внутри и попробуем уменьшить его до приемлемых размеров
+  Перевод статьи "Why is a Rust executable large?" от 02.06.2016.<br/>
+  Из этой статьи мы узнаем, почему hello world больше Сишного аналога в 6 раз, разберемся, что лежит внутри и попробуем уменьшить его до приемлимых размеров
 
 ---
 
 Это статья - перевод статьи [Why is a Rust executable large?](https://lifthrasiir.github.io/rustlog/why-is-a-rust-executable-large.html)
 
-# Большие Rust бинари в моем Rust?
+# Большие бинари в моем Rust?
 
 Бороздя просторы интернета вы наверняка уже успели услышать про Rust. После всех красноречивых отзывов и расхваливаний вы, конечно же, не смогли не потрогать это чудо. Первая программа выглядела не иначе как:
 
