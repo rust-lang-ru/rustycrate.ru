@@ -9,6 +9,8 @@ title: Кто использует Rust
 * [Twitter](https://github.com/twitter/rpc-perf) выложили утилиту для проверки производительности RPC.
 * [Dropbox](http://www.wired.com/2016/03/epic-story-dropboxs-exodus-amazon-cloud-empire/) пишет на Rust
   систему хранения блоков.
+* [Coursera](https://building.coursera.org/blog/2016/07/07/rust-docker-in-production-coursera/) использует 
+  Rust для управления кластером.
 * [OpenDNS](https://labs.opendns.com/2013/10/04/zeromq-helping-us-block-malicious-domains/) использует 
   Rust и ZeroMQ для поиска вредоносных доменов.
 * [Ethcore](https://ethcore.io/parity.html) пишут клиент для [Ethereum](https://ru.wikipedia.org/wiki/Ethereum).
