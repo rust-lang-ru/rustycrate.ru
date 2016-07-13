@@ -7,14 +7,34 @@ excerpt: >
   Это вводная статья по веб-фреймворку Iron.
 ---
 
-#####Создание проекта
+##Немного о Iron
+
+> Iron - это высокоуровневый веб-фреймворк написаный на языке программирования
+Rust и построенный на базе другой небезызвестной библиотеки hyper. Iron разработан
+таким образом, чтобы пользоваться всеми прелестями, которые нам предоставляет Rust.
+Так же он может быть масштабируемым на нескольких машинах с использованием
+балансера нагрузки или с помощью запуска большего количества потоков. Iron старается
+избегать блокирующих записей в своём ядре.
+
+##Философия
+Iron построен на принципе расширяемости настолько насколько это возможно.
+Таким образом он вводит понятия для расширения собственного функционала:
+- "промежуточные" типажи - используются для реализации сквозного функционала в обработке запросов;
+- модификаторы - используются для изменения запросов и ответов наиболее эргономичным
+способом;
+
+С базовой частью модификтаоров и промежуточных типажей вы познакомитесь в ходе
+статьи, а другая часть - базовые расширения, которые разрабатваются командой
+разработки Iron будет представлена в заключении.
+
+##Создание проекта
 
 Для начала создадим проект при помощи Cargo используя команду:
 ``cargo new rust-iron-tutorial --bin``
 
 Далее добавим в раздел `[dependencies]` файла Cargo.toml зависимость `iron = "0.4.0"`.
 
-#####Пишем первую программу с использованием Iron
+##Пишем первую программу с использованием Iron
 Напишем первую простенькую программу на Rust с использованием Iron,
 которая будет на любые запросы по порту 3000 отвечать текстом "Hello rustycrate!".
 
@@ -47,22 +67,22 @@ Hello World!
 принимает параметром объект реализующий типаж `Handler`, в нашем случае мы передаём замыкание аргументом которого
 является изменяемая ссылка на переданный запрос.
 
-#####Указываем mime-type в заголовке ответа
+##Указываем mime-type в заголовке ответа
 
 Чаще всего при построении веб-сервисов (soap, rest)
 требуется отсылать ответы с указанием типа контента, который они содержат.
 Для этого в Iron предусмотрены специальные средства.
 
 Выполним следующее:
-1. Подключим соответствующую структуру:
+Подключим соответствующую структуру:
 ```Rust
 use iron::mime::Mime;
 ```
-2. Связываем имя `content_type`, которое будет хранить распарсенное при помощи подключенного типажа `Mime` значение типа:
+Связываем имя `content_type`, которое будет хранить распарсенное при помощи подключенного типажа `Mime` значение типа:
 ```Rust
 let content_type = "application/json".parse::<Mime>().unwrap();
 ```
-3. Модифицируем строку ответа на запрос следующим образом:
+Модифицируем строку ответа на запрос следующим образом:
 ```Rust
 Ok(Response::with((content_type, status::Ok, "{}")))
 ```
@@ -87,7 +107,7 @@ Ok(Response::with((content_type, status::Ok, "{}")))
 {}
 ```
 
-#####Управление статус-кодами ответов
+##Управление статус-кодами ответов
 
 В перечислении `StatusCode` расположенном в модуле `status` распологаются всевозможные статус-коды.
 Давайте воспользуемся этим и вернём "клиенту" ошибку 404 -
@@ -119,28 +139,28 @@ Ok(Response::with((content_type, status::NotFound)))
 Примечание: по-сути весь модуль `status` является обёрткой для соответствующих
 перечислений в библиотеке `hyper`, на которй базируется `iron`.
 
-#####Перенаправление запросов
+##Перенаправление запросов
 
 Для редиректа в `iron` используется структура `Redirect` из модуля `modifiers` (не путать с `modifier`).
 Она состоит из url цели, куда необходимо будет произвести перенаправление.
 Попробуем её применить проделав следующие изменения:
 
-1. Подключаем структуру `Redirect`:
+Подключаем структуру `Redirect`:
 ```Rust
 use iron::modifiers::Redirect;
 ```
 
-2. К подключению модуля `status` добавляем подключение структуры `Url`:
+К подключению модуля `status` добавляем подключение модуля `Url`:
 ```Rust
 use iron::{Url, status};
 ```
 
-3. Связываем имя `url` , которое будет хранить распарсенное значение адреса редиректа:
+Связываем имя `url` , которое будет хранить распарсенное значение адреса редиректа:
 ```Rust
 let url = Url::parse("https://rustycrate.ru/").unwrap();
 ```
 
-4. Меняем блок инициализации Iron следующим образом:
+Меняем блок инициализации Iron следующим образом:
 ```Rust
     Iron::new(move |_: &mut Request | {
         Ok(Response::with((status::Found, Redirect(url.clone()))))
@@ -169,27 +189,47 @@ let url = Url::parse("https://rustycrate.ru/").unwrap();
 Так же вы можете воспользоваться ещё одной структурой `RedirectRaw`
 из модуля `modifiers`, для конструирования которой требуется лишь строка.
 
-#####Работа с типом http-запроса
+##Работа с типом http-запроса
 
 У структуры `Request` есть поле `method` позволяющее определять,
 какой тип http-запроса пришёл.
 Напишем сервис, который будет сохранять данные в файл, которые были переданы в
 теле запроса в случае если тип запроса был `Put` и считывать данные из-файла и
-передавать их в ответе на запрос, в случа если тип запроса был `Get`:
+передавать их в ответе на запрос, в случае если тип запроса был `Get.
+
+Аннотируем импортируемый контейнер `iron` с помощью атрибута `macro_use`,
+чтобы в дальнейшем использовать макросы `iexpect` и `itry` для обработки ошибочных
+ситуаций:
 
 ```Rust
 #[macro_use]
 extern crate iron;
+```
 
+Подключаем модули для работы с файловой системой и вводом/выводом
+из стандартной библиотеки:
+
+```Rust
 use std::io;
 use std::fs;
-
-use iron::prelude::*;
-use iron::status;
+```
+Подключаем модуль `method` содержащий список типов http-запросов:
+```Rust
 use iron::method;
-
-fn main() {
-    Iron::new(|req: &mut Request| {
+```
+Меняем блок инициализации `Iron` таким образом, чтобы связать полученный запрос
+с именем `req`:
+```Rust
+Iron::new(|req: &mut Request| {
+    ...
+    ...
+    ...
+}.http("localhost:3000").unwrap();
+```
+Добавляем в обработку запроса сопоставления с образцом поля `method` для
+двух типов запросов `Get` и `Put`, а для остальных будем использовать
+ответ в виде статус-кода `BadRequest`:
+```Rust
         Ok(match req.method {
             method::Get => {
                 let f = iexpect!(fs::File::open("foo.txt").ok(), (status::Ok, ""));
@@ -201,14 +241,15 @@ fn main() {
                 Response::with(status::Created)
             },
             _ => Response::with(status::BadRequest)
-        })
-    }).http("localhost:3000").unwrap();
-}
+        }
 ```
-В этой программе добавился импорт перечисления `method`
-содержащее все типы http-запросов, а так же обработка самого запроса
-с использованием сопоставления с образцом его поля и элементов из вышеуказанного
-перечисления. Попробуем запустить и проверить работоспособность этой программы.
+
+В `Iron` макрос `iexcept` используется для разворачивания переданного в него
+объекта типа `Option` и в случае, если `Option` - содержит `None` макрос
+вернёт `Ok(Response::new())` с модификатором по-умолчанию `status::BadRequest`.
+Макрос `itry` используется для оборачивания ошибки в `IronError`.
+
+Пробуем запустить и проверить работоспособность.
 
 PUT:
 ```
@@ -241,5 +282,210 @@ POST:
 * Connection #0 to host localhost left intact
 ```
 
-Всё как и ожидалось. Но, если вы были внимательны - то могли заметить,
-что `Iron` вводит собственные макросы для обработки ошибок: `itry` и `iexpect`.
+##Реализация сквозного функционала при помощи пре и пост-процессинга
+
+В `iron` так же присутствуют типажи `BeforeMiddleware`,`AfterMiddleware`,
+и `AroundMiddleware` для реализации сквозного функционала
+позволяющие реализовывать логику по обработке запроса до того как
+она началась в основном обработчике и после того как она там завершилась.
+
+Напишем пример использования ~~AOP'о подобных~~ указанных типажей:
+
+```Rust
+extern crate iron;
+
+use iron::prelude::*;
+use iron::{BeforeMiddleware, AfterMiddleware, AroundMiddleware, Handler};
+
+struct SampleStruct;
+struct SampleStructAroundHandler<H:Handler> { logger: SampleStruct, handler: H}
+
+impl BeforeMiddleware for SampleStruct {
+    fn before(&self, req: &mut Request) -> IronResult<()> {
+        println!("До обработки запроса.");
+        Ok(())
+    }
+}
+
+impl AfterMiddleware for SampleStruct {
+    fn after(&self, req: &mut Request, res: Response) -> IronResult<Response> {
+        println!("После обработки запроса.");
+        Ok(res)
+    }
+}
+
+impl<H: Handler> Handler for SampleStructAroundHandler<H> {
+    fn handle(&self, req: &mut Request) -> IronResult<Response> {
+        println!("А я ещё один обработчик запроса.");
+        let res = self.handler.handle(req);
+        res
+    }
+}
+
+impl AroundMiddleware for SampleStruct {
+    fn around(self, handler: Box<Handler>) -> Box<Handler> {
+        Box::new(SampleStructAroundHandler {
+            logger: self,
+            handler: handler
+        }) as Box<Handler>
+    }
+}
+
+fn sample_of_middlewares(_:&mut Request) -> IronResult<Response> {
+    println!("В основном обработчике запроса.");
+    Ok(Response::with((iron::status::Ok, "Привет, я ответ на запрос!")))
+}
+
+fn main() {
+    let mut chain = Chain::new(sample_of_middlewares);
+    chain.link_before(SampleStruct);
+    chain.link_after(SampleStruct);
+    chain.link_around(SampleStruct);
+    Iron::new(chain).http("localhost:3000").unwrap();
+}
+```
+
+В этом примере вводится структура `SampleStruct` для которой
+реализуются типажи `BeforeMiddleware` с функцией `before` и `AfterMiddleware`
+с функцией `after` в которых и должна быть написана вся сквозная логика.
+Типаж `AroundMiddleware` используется совместно с типажом `Handler` для
+добавления дополнительного обработчика. Добавление всех реализованных
+"процессоров" в жизненный цикл обработки запроса производится с помощью
+специального типажа `Chain` - цепь, позволяющего формировать цепь вызовов пре
+и пост обработчиков.
+
+Протестируем программу.
+В консоли:
+```
+[loomaclin@loomaclin ~]$ curl localhost:3000
+Привет, я ответ на запрос!
+```
+В выводе программы:
+```
+    Running `target/debug/cycle`
+До обработки запроса.
+А я ещё один обработчик запроса.
+В основном обработчике запроса.
+После обработки запроса.
+```
+
+##Роутинг
+
+Какое серверное API может обойтись без роутинга? Добавим его =)
+Модифицируем наш базовый пример в начале статьи следующим образом:
+
+Подключаем коллекцию из стандартной библиотеки:
+```Rust
+use std::collections:HashMap;
+```
+Объявим структуру для хранения коллекции вида "путь - обработчик" и опишем
+для этой структуры конструктор, который будет производить инициализацию этой
+коллекции и фукнцию для добавления в коллекцию новых роутов с их обработчиками:
+
+```Rust
+struct Router {
+
+    routes: HashMap<String, Box<Handler>>
+
+}
+
+impl Router {
+
+    fn new() -> Self {
+
+        Router {
+            routes: HashMap::new()
+        }
+    }
+
+    fn add_route<H>(&mut self, path: String, handler: H) where H: Handler {
+        self.routes.insert(path, Box::new(handler));
+    }
+}
+```
+
+Для использования нашей структуры в связке с `Iron` необходимо для неё
+реализовать типаж `Handler` с функцией `handle`:
+
+```Rust
+impl Handler for Router {
+fn handle(&self, req: &mut Request) -> IronResult<Response> {
+match self.routes.get(&req.url.path().join("/")) {
+Some(handler) => handler.handle(req),
+None => Ok(Response::with(status::NotFound))
+        }
+    }
+}
+```
+В функции `handle` мы по пути переданному в запросе находим соответствующий обработчик в
+коллекции и вызываем обработчик этого пути с передачей в него запроса. В случае,
+если переданный в запросе путь не "зарегестрирован" в коллекции - возвращается
+ответ с кодом ошибки `NotFound`.
+
+Последнее что осталось реализовать - это инициализацию нашего роутера и
+регистрацию в нём необходимых нам путей с их обработчиками:
+```Rust
+fn main() {
+    let mut router = Router::new();
+    router.add_route("hello_rustycrate".to_string(), |_: &mut Request| {
+    Ok(Response::with((status::Ok, "Hello Loo Maclin!\n")))
+    });
+    router.add_route("hello_rustycrate/again".to_string(), |_: &mut Request| {
+    Ok(Response::with((status::Ok, "Ты повторяешься!\n")))
+    });
+    router.add_route("error".to_string(), |_: &mut Request| {
+    Ok(Response::with(status::BadRequest))
+});
+...
+```
+Добавление новых путей происходит путём вызова реалиованной выше функции.
+Инициализируем инстанс `Iron` с использованием нашего роутера:
+```Rust
+Iron::new(router).http("localhost:3000").unwrap();
+```
+Тестируем:
+
+```
+[loomaclin@loomaclin ~]$ curl localhost:3000/hello_rustycrate
+Hello Loo Maclin!
+[loomaclin@loomaclin ~]$ curl localhost:3000/hello_rustycrate/again
+Ты повторяешься!
+[loomaclin@loomaclin ~]$ curl -v localhost:3000/error
+*   Trying ::1...
+* Connected to localhost (::1) port 3000 (#0)
+> GET /error HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/7.49.1
+> Accept: */*
+>
+< HTTP/1.1 400 Bad Request
+< Date: Wed, 13 Jul 2016 21:29:20 GMT
+< Content-Length: 0
+<
+* Connection #0 to host localhost left intact
+```
+
+##Заключение
+
+На этом вводная часть по Iron подходит к концу.
+Помимо расмотренного функционала Iron выносит большую часть типичной для
+веб-фреймворка функциональности по базовым расширениям:
+
+- [Роутинг](https://github.com/iron/router)
+- [Монтирование](https://github.com/iron/mount)
+- [Работу со статичными файлами](https://github.com/iron/staticfile)
+- [Логирование](https://github.com/iron/logger)
+- [Парсинг JSON в структуры](https://github.com/iron/body-parser)
+- [Работа с закодированным URL](https://github.com/iron/urlencoded)
+- [Куки](https://github.com/iron/cookie)
+- [Механизм сессий](https://github.com/iron/session)
+
+Статья предназначалась для базового ознакомления с Iron и хочется надеется, что
+она с ним справилась.
+
+Спасибо за прочтение!
+
+
+
+
+
