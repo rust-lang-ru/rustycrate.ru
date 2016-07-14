@@ -2,10 +2,6 @@
 layout: post
 categories: обучение
 title: "Введение в Iron"
-author: Галимов Арсе---
-layout: post
-categories: обучение
-title: "Введение в Iron"
 author: Галимов Арсен aka "Loo Maclin"
 excerpt: >
  Это вводная статья по веб-фреймворку Iron.
