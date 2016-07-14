@@ -55,7 +55,7 @@ fn main() {
 
 ```
 [loomaclin@loomaclin ~]$ curl localhost:3000
-Hello World!
+Hello rustycrate!
 ```
 
 Давайте разберём программу, чтобы понимать, что тут происходит.
