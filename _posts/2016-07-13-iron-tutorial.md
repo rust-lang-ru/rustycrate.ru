@@ -2,7 +2,7 @@
 layout: post
 categories: обучение
 title: "Введение в Iron"
-author: Галимов Арсен aka "Loo Maclin"
+author: Арсен Галимов aka "Loo Maclin"
 excerpt: >
  Iron - это высокоуровневый веб-фреймворк, написанный на языке программирования
  Rust и построенный на базе другой небезызвестной библиотеки hyper. Iron разработан
