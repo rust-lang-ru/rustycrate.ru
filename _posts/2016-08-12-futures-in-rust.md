@@ -72,8 +72,7 @@ threading`). В модели зеленых потоков функция `read_
 системы выполнения или увеличения цены FFI: мы так и не нашли стратегию их
 реализации, которая бы не накладывала дополнительных серьезных глобальных
 расходов. Вы можете почитать больше [в RFC, в котором были удалены зеленые
-потоки](https://github.com/aturon/rfcs/blob/remove-runtime/active/0000-remove-
-runtime.md).
+потоки](https://github.com/aturon/rfcs/blob/remove-runtime/active/0000-remove-runtime.md).
 
 Итак, если мы хотим держать большое число одновременных подключений, многие из
 которых ждут I/O, но при этом держать число потоков ОС на минимуме, что еще мы
@@ -316,9 +315,7 @@ futures на каждом уровне своей реализации, начи
 случае, futures framework).
 
 TechEmpower используется для сравнения большого количества веб фреймворков на
-разных языках. Мы [сравнили](https://github.com/alexcrichton/futures-
-rs/blob/master/futures-minihttp/README.md) minihttp с несколькими лучшими
-представителями:
+разных языках. Мы [сравнили](https://github.com/alexcrichton/futures-rs/blob/master/futures-minihttp/README.md) minihttp с несколькими лучшими представителями:
 
 - [rapidoid](https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/frameworks/Java/rapidoid),
 Java framework, который был первым в последнем раунде официальных тестов.
@@ -337,8 +334,8 @@ Linux машины:
 дополнительных расходов.
 
 *Дополнительно*: для предоставления дополнительных свидетельств, мы [добавили
-сравнение](https://github.com/alexcrichton/futures-rs/blob/master/futures-
-minihttp/README.md) minihttp с версией с вручную созданным конечным автоматом на 
+сравнение](https://github.com/alexcrichton/futures-rs/blob/master/futures-minihttp/README.md) 
+minihttp с версией с вручную созданным конечным автоматом на 
 Rust (см. "raw mio" по ссылке). Они находятся в 0.3% друг от друга.
 
 #### Будущее
@@ -348,7 +345,7 @@ Rust (см. "raw mio" по ссылке). Они находятся в 0.3% др
 
 На текущий момент библиотека достаточно готова к использованию, и довольно
 тщательно документирована; в нее входит
-[tutorial](https://github.com/alexcrichton /futures-rs/blob/master/TUTORIAL.md)
+[tutorial](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md)
 и несколько примеров, включающих:
 
 - простой [TCP echo server](https://github.com/alexcrichton/futures-rs/blob/master/futures-mio/src/bin/echo.rs)
@@ -370,14 +367,13 @@ Rust (см. "raw mio" по ссылке). Они находятся в 0.3% др
 
 Кроме того, если вы просто хотите обрабатывать HTTP, вы можете работать с
 [minihttp](https://github.com/alexcrichton/futures-rs/tree/master/futures-
-minihttp) предоставляя `службу`: функцию, котороая принимает HTTP запрос, и
+minihttp) предоставляя `службу`: функцию, которая принимает HTTP запрос, и
 возвращает `future` HTTP ответа. Этот вид абстракций RPC/служб открывает двери
 написанию огромного числа повторного использования "middleware" для серверов, и
 нашел отражение в библиотеке Twitter
 [Finagle](https://twitter.github.io/finagle) на Scala; он также используется в
 библиотеке Facebook [Wangle](https://github.com/facebook/wangle). В мире Rust
-уже в разработке библиотека [Tokio](https://medium.com/@carllerche /announcing-
-tokio- df6bb4ddb34#.g9ugbqg71), которая строит абстракцию общей службы с помощью
+уже в разработке библиотека [Tokio](https://medium.com/@carllerche/announcing-tokio-df6bb4ddb34#.g9ugbqg71), которая строит абстракцию общей службы с помощью
 нашей библиотеки futures, и может играть роль, похожую на Finagle.
 
 Предстоит еще очень много работы:
