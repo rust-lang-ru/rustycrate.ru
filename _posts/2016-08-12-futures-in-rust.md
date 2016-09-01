@@ -304,7 +304,7 @@ StreamWriter::new(responsesm, output)
 покажут, как мы использовали преимущества Rust для получения нулевой стоимости.
 
 Но лучше один раз увидеть, чем сто раз услышать. Мы написали простой фреймворк
-HTTP-серверов [minihttp](https://github.com/alexcrichton/futures-rs/tree/master/futures-minihttp),
+HTTP-серверов [minihttp](https://github.com/alexcrichton/futures-rs/tree/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-minihttp),
 который поддерживает конвейерную обработку и TLS. *Этот сервер использует
 futures на каждом уровне своей реализации, начиная с чтения байт из сокета и
 заканчивая обработкой потоков запросов*. Помимо того, что писать сервер таким
