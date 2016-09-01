@@ -72,7 +72,7 @@ _Проверено для Linux (ArchLinux) и для Mac OS X (El Capitan 10.1
    ([инструкция на github'e](https://github.com/phildawes/racer))
   * Выполняем: _git_ _clone_ _https://github.com/phildawes/racer.git_
   * Заходим в созданную директорию: _cd ./racer_
-  * Собираем cargo: _cargo build --release_
+  * Собираем cargo: `cargo build --release`
   * Копируем исполняемый файл _.racer_ в _/usr/bin/_: _cp ./target/release/racer
     /usr/bin/_
 3. Добавляем переменную окружения _RUST\_SRC\_PATH_
