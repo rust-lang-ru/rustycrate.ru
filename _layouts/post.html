@@ -7,9 +7,17 @@
 
         <div class="container" id="content">
             <div class="well">
-                <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
+                <div class="header-left">
+                    <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
 
-                <p class="post-header">{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
+                    <p class="post-header">{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
+                </div>
+                <div class="header-right">
+                    <div id="buttons">
+                        <a href={{ page.path | prepend: "https://github.com/ruRust/rustycrate.ru/edit/master/" }} class="btn btn-default" id="edit">редактировать</a>
+                    </div>
+                </div>
+                <div id="placeholder"></div>
 
                 {{ content }}
             </div>
