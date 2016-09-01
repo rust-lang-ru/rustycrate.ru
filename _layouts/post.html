@@ -20,7 +20,14 @@
                 <div id="placeholder"></div>
 
                 {{ content }}
+
+                <hr/>
+
+                <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                <script src="//yastatic.net/share2/share.js"></script>
+                <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter,reddit,linkedin,pocket" data-counter=""></div>
             </div>
+
             {% if page.comments %}
             <div id="comments">
                 <div id="disqus_thread"></div>
