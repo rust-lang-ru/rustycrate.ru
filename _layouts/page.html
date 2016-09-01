@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <!-- Page last generated {{ site.time }} -->
 <html lang="ru">
-  {% include head.html %}
-  <body>
-    {% include header.html %}
+    {% include head.html %}
+    <body>
+        {% include header.html %}
 
-    <div class="container" id="content">
-      <div class="well">
-        <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
-        {{ content }}
-      </div>
+        <div class="container" id="content">
+            <div class="well">
+                <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
+                {{ content }}
+            </div>
 
-    </div>
+        </div>
 
-    {% include footer.html %}
-    {% include anchor_links.html %}
-  </body>
+        {% include footer.html %}
+        {% include anchor_links.html %}
+    </body>
 </html>

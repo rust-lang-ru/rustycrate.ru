@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <!-- Page last generated {{ site.time }} -->
 <html lang="ru">
-  {% include head.html %}
-  <body>
-    {% include header.html %}
+    {% include head.html %}
+    <body>
+        {% include header.html %}
 
-    <div class="container" id="content">
-      <div class="well">
-        <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
+        <div class="container" id="content">
+            <div class="well">
+                <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
 
-        <p class="post-header">{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
+                <p class="post-header">{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time>{{ page.date | localize: "%d %B %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | join: ','}}{% endif %}</p>
 
-        {{ content }}
-      </div>
-      {% if page.comments %}
-      <div id="comments">
-        <div id="disqus_thread"></div>
-      </div>
-      <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-       var disqus_shortname = 'rustycrate';
-       var disqus_config = function () {
-           this.page.url = "{{ page.url | prepend: site.url }}";
-           this.page.identifier = "{{ page.id }}";
-       };
+                {{ content }}
+            </div>
+            {% if page.comments %}
+            <div id="comments">
+                <div id="disqus_thread"></div>
+            </div>
+            <script type="text/javascript">
+             /* * * CONFIGURATION VARIABLES * * */
+             var disqus_shortname = 'rustycrate';
+             var disqus_config = function () {
+                 this.page.url = "{{ page.url | prepend: site.url }}";
+                 this.page.identifier = "{{ page.id }}";
+             };
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-      {% endif %}
-    </div>
-    {% include footer.html %}
-    {% include anchor_links.html %}
-  </body>
+             /* * * DON'T EDIT BELOW THIS LINE * * */
+             (function() {
+                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                 dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+             })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            {% endif %}
+        </div>
+        {% include footer.html %}
+        {% include anchor_links.html %}
+    </body>
 </html>
