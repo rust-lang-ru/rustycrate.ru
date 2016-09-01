@@ -191,7 +191,7 @@ id_rpc(&my_server).and_then(|id| {
 })
 ```
 
-Смотри [этот код](https://github.com/alexcrichton/futures-rs/blob/master/futures-minihttp/techempower2/src/main.rs) с более конкретными примерами.
+Смотри [этот код](https://github.com/alexcrichton/futures-rs/blob/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-minihttp/techempower2/src/main.rs) с более конкретными примерами.
 
 
 Это неблокирующий код, который проходит через несколько состояний: сначала мы
@@ -319,7 +319,7 @@ futures на каждом уровне своей реализации, начи
 нашем случае, futures framework).
 
 TechEmpower используется для сравнения большого количества веб фреймворков на
-разных языках. Мы [сравнили](https://github.com/alexcrichton/futures-rs/blob/master/futures-minihttp/README.md) minihttp с несколькими лучшими представителями:
+разных языках. Мы [сравнили](https://github.com/alexcrichton/futures-rs/blob/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-minihttp/README.md) minihttp с несколькими лучшими представителями:
 
 - [rapidoid](https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/frameworks/Java/rapidoid),
 фреймворка на Java, который был первым в последнем раунде официальных тестов.
@@ -338,7 +338,7 @@ Linux машины:
 дополнительных расходов.
 
 *Дополнительно*: для предоставления дополнительных свидетельств, мы [добавили
-сравнение](https://github.com/alexcrichton/futures-rs/blob/master/futures-minihttp/README.md) 
+сравнение](https://github.com/alexcrichton/futures-rs/blob/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-minihttp/README.md) 
 minihttp с версией с вручную созданным конечным автоматом на 
 Rust (см. "raw mio" по ссылке). Они находятся в 0.3% друг от друга.
 
@@ -352,10 +352,10 @@ Rust (см. "raw mio" по ссылке). Они находятся в 0.3% др
 [tutorial](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md)
 и несколько примеров, включающих:
 
-- простой [TCP echo server](https://github.com/alexcrichton/futures-rs/blob/master/futures-mio/src/bin/echo.rs)
-- эффективный [SOCKSv5 proxy server](https://github.com/alexcrichton/futures-rs/blob/master/futures-socks5/src/main.rs)
-- `minihttp`, высокоэффективный [HTTP server](https://github.com/alexcrichton/futures-rs/tree/master/futures-minihttp), поддерживающий TLS и использующий [Hyper's parser](https://crates.io/crates/httparse)
-- пример [использования minihttp](https://github.com/alexcrichton/futures-rs/tree/master/futures-minihttp/tls-example) для TLS соединений,
+- простой [TCP echo server](https://github.com/alexcrichton/futures-rs/blob/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-mio/src/bin/echo.rs)
+- эффективный [SOCKSv5 proxy server](https://github.com/alexcrichton/futures-rs/blob/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-socks5/src/main.rs)
+- `minihttp`, высокоэффективный [HTTP server](https://github.com/alexcrichton/futures-rs/tree/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-minihttp), поддерживающий TLS и использующий [Hyper's parser](https://crates.io/crates/httparse)
+- пример [использования minihttp](https://github.com/alexcrichton/futures-rs/tree/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-minihttp/tls-example) для TLS соединений,
 
 
 а также разные интеграции, т.е. основанные на futures интерфейсы к
