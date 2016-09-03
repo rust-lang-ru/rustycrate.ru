@@ -26,12 +26,7 @@ _Это вики-статья. Примем Pull Request с описанием �
 Ниже приведены способы настройки различных редакторов. Вам потребуется
 меньше 10 минут!
 
-* [Sublime Text 3](#sublime-text-3)
-* [Visual Studio Code](#visual-studio-code)
-* [Emacs](#emacs)
-* [Vim](#vim)
-
-# Sublime Text 3
+{% spoiler Инструкция по настройке Sublime Text 3 %}
 
 0. Rust
   * Ставим [Rust](https://www.rust-lang.org/)
@@ -58,8 +53,10 @@ _Это вики-статья. Примем Pull Request с описанием �
 4. Profit!
 
 ![Sublime 3 with Rust](/images/2015-12-04-ide-for-rust/sublime-3-rust.png)
+{% endspoiler %}
 
-# Visual Studio Code
+{% spoiler Инструкция по настройке Visual Studio Code %}
+
 _Проверено для Linux (ArchLinux) и для Mac OS X (El Capitan 10.11.2)_
 
 0. Устанавливаем Rust и Cargo
@@ -108,7 +105,10 @@ _Проверено для Linux (ArchLinux) и для Mac OS X (El Capitan 10.1
 
 ![Visual Studio Code with Rust](/images/2015-12-04-ide-for-rust/visual_studio_code_rust.png)
 
-# Emacs
+{% endspoiler %}
+
+{% spoiler Инструкция по настройке Emacs %}
+
 _Проверено для Manjaro Linux 15.2 и Windows 10_
 
 1. Устанавливаем Rust и Cargo (свежая версия есть в репозитории)
@@ -202,7 +202,10 @@ _Проверено для Manjaro Linux 15.2 и Windows 10_
 
 ![Emacs with Rust](/images/2015-12-04-ide-for-rust/emacs_rust.png)
 
-# Vim
+{% endspoiler %}
+
+{% spoiler Инструкция по настройке Vim %}
+
 _Проверено для Fedora 23_
 
 Простой способ начать работу с Rust в Vim - установить плагины [YouCompleteMe][]
@@ -259,6 +262,8 @@ _Проверено для Fedora 23_
 [Vundle]: https://github.com/VundleVim/Vundle.vim
 
 ![Vim with Rust](/images/2015-12-04-ide-for-rust/vim_rust.gif)
+
+{% endspoiler %}
 
 # Ссылки
 * [Прекрасная табличка со статусом поддержки возможностей для всех IDE (или почти всех), которые умеют работать с Rust](http://areweideyet.com/)
