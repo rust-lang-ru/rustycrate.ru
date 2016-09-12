@@ -22,6 +22,7 @@ title: Кто использует Rust
 * [Terminal.com](http://slides.com/jonathanreem/implementing-http-1#/) показали 
   [несколько](https://github.com/terminalcloud/libnetfilter_queue) 
   [обвязок](https://github.com/terminalcloud/rust-scheduler) для Rust.
+* В Firefox 48 [добавлен компонент](https://hacks.mozilla.org/2016/07/shipping-rust-in-firefox/), написанный на Rust.
 
 # Список интересных проектов на Rust
 * [Rust](https://github.com/rust-lang/rust) — сам компилятор Rust'а написан на Rust.
