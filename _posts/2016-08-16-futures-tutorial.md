@@ -164,26 +164,26 @@ let tls_handshake = socket.and_then(|socket| {
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect). Метод 
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect) принимает 
 замыкание, которое получает значение предыдущего future. В этом случае `socket` будет иметь тип
-[TcpStream](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpStream.html). Стоит отметить, что замыкание,
+[TcpStream](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html). Стоит отметить, что замыкание,
 переданное в [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then), не будет
 выполнено в случае если 
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect) вернёт
 ошибку.
 
 Как только получен `socket`, мы создаём клиентский TLS контекст с помощью 
-[ClientContext::new](http://alexcrichton.com/futures-rs/futures_tls/struct.ClientContext.html#method.new). Этот тип 
-из контейнера `tokio-tls` представляет клиентскую 
-часть TLS соединения. Далее вызываем метод 
-[handshake](http://alexcrichton.com/futures-rs/futures_tls/struct.ClientContext.html#method.handshake), 
+[ClientContext::new](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.ClientContext.html#method.new). Этот тип 
+из контейнера `tokio-tls` представляет клиентскую часть TLS соединения. 
+Далее вызываем метод 
+[handshake](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.ClientContext.html#method.handshake), 
 чтобы выполнить TLS хэндшейк. Первый аргумент - доменное имя, к которому мы подключаемся, второй - объект 
 ввода/вывода (в данном случае объект `socket`). 
 
 Как и [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect)
-раннее, метод [handshake](http://alexcrichton.com/futures-rs/futures_tls/struct.ClientContext.html#method.handshake) 
+раннее, метод [handshake](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.ClientContext.html#method.handshake) 
 возвращает future. TLS хэндшэйк может занять некоторое время, потому что клиенту и серверу необходимо 
 выполнить некоторый ввод/вывод, подтверждение сертификатов и т.д. После выполнения future вернёт 
-`http://alexcrichton.com/futures-rs/futures_tls/struct.TlsStream.html`, похожий на расмотренный выше 
-[TcpStream](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpStream.html).
+[TlsStream](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.TlsStream.html), похожий на расмотренный выше 
+[TcpStream](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html).
 
 Комбинатор [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) выполняет
 много скрытой работы, обеспечивая выполнение futures в правильном порядке и отслеживая их на лету. 
@@ -212,9 +212,9 @@ let request = tls_handshake.and_then(|socket| {
 вычисление. Комбинатор [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html) полностью 
 записывает HTTP запрос, производя многократные записи по необходимости.
 
-Future, возвращаемый методом [write_all](http://alexcrichton.com/futures-rs/futures_io/fn.write_all.html), будет 
+Future, возвращаемый методом [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html), будет 
 выполнен, как только все данные будут записаны в сокет. Примечательно, что 
-[TlsStream](http://alexcrichton.com/futures-rs/futures_tls/struct.TlsStream.html) скрыто шифрует все данные, которые 
+[TlsStream](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.TlsStream.html) скрыто шифрует все данные, которые 
 мы записывали, перед тем как отправить в сокет.
 
 Третья и последняя часть запроса выглядит так:
@@ -255,10 +255,10 @@ println!("{}", String::from_utf8_lossy(&data));
 означает, что `data` имеет тип `Vec<u8>`. Тогда мы можем напечатать это в stdout как обычно.
 
 Фух! Мы рассмотрели futures, 
-[инициализирующие TCP соедениение](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect), 
+[инициализирующие TCP соедениение](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect), 
 [создающие цепочки вычислений](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) и 
-[читающие данные из сокета](http://alexcrichton.com/futures-rs/futures_io/fn.read_to_end.html). Но это только пример 
-возможностей futures, далее рассмотрим нюансы.
+[читающие данные из сокета](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.read_to_end.html). Но это только 
+пример возможностей futures, далее рассмотрим нюансы.
 
 #Типаж future
 
@@ -575,7 +575,7 @@ println!("Listening for connections on {}", addr);
 ```
 
 Вызываем метод 
-[local_addr](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpListener.html#method.local_addr) для печати 
+[local_addr](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.local_addr) для печати 
 адреса, с которым связали слушатель. С этого момента порт успешно связан, так что клиенты могут 
 подключиться.
 
