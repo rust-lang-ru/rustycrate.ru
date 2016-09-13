@@ -118,7 +118,7 @@ let addr = "www.rust-lang.org:443".to_socket_addrs().unwrap().next().unwrap();
 
 ```
 
-Здесь создается [цикл событий](http://alexcrichton.com/futures-rs/futures_mio/struct.Loop.html#method.new), в
+[Здесь создается цикл событий](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Core.html#method.new), в
 котором будет выполняться весь ввод/вывод. После преобразуем имя хоста 
 ["www.rust-lang.org"](https://www.rust-lang.org) с использованием метода `to_socket_addrs` из стандартной библиотеки.
 
@@ -130,11 +130,11 @@ let socket = TcpStream::connect(&addr, &core.handle());
 
 ```
 
-[Получаем хэндл](https://tokio-rs.github.io/tokio-core/tokio_core/struct.Loop.html#method.handle) цикла событий и
-соединяемся с хостом при помощи 
-[tcp_connect](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect).
+[Получаем хэндл](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Core.html#method.handle) цикла событий 
+и соединяемся с хостом при помощи 
+[TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect).
 Примечательно, что 
-[tcp_connect](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect) возвращает
+[TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect) возвращает
 future. В действительности, сокет не подключен, но подключение произойдёт позже.
 
 После того, как сокет станет доступным, нам необходимо выполнить три шага для загрузки домашней страницы rust-lang.org:
@@ -161,13 +161,13 @@ let tls_handshake = socket.and_then(|socket| {
 
 Здесь используется метод [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then)
 типажа future, вызывая его у результата выполнения метода 
-[tcp_connect](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect). Метод 
-[tcp_connect](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect) принимает 
+[TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect). Метод 
+[TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect) принимает 
 замыкание, которое получает значение предыдущего future. В этом случае `socket` будет иметь тип
 [TcpStream](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpStream.html). Стоит отметить, что замыкание,
 переданное в [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then), не будет
 выполнено в случае если 
-[tcp_connect](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect) вернёт
+[TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect) вернёт
 ошибку.
 
 Как только получен `socket`, мы создаём клиентский TLS контекст с помощью 
@@ -178,7 +178,7 @@ let tls_handshake = socket.and_then(|socket| {
 чтобы выполнить TLS хэндшейк. Первый аргумент - доменное имя, к которому мы подключаемся, второй - объект 
 ввода/вывода (в данном случае объект `socket`). 
 
-Как и [tcp_connect](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect)
+Как и [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect)
 раннее, метод [handshake](http://alexcrichton.com/futures-rs/futures_tls/struct.ClientContext.html#method.handshake) 
 возвращает future. TLS хэндшэйк может занять некоторое время, потому что клиенту и серверу необходимо 
 выполнить некоторый ввод/вывод, подтверждение сертификатов и т.д. После выполнения future вернёт 
@@ -228,8 +228,8 @@ let response = request.and_then(|(socket, _)| {
 ```
 
 Предыдущий future `request` снова связан, на этот раз с результатом выполнения комбинатора 
-[read_to_end](http://alexcrichton.com/futures-rs/futures_io/fn.read_to_end.html). Этот future будет читать все данные 
-из сокета и помещать их в предоставленный буфер и вернёт буфер, когда обрабатываемое соединение передаст EOF.
+[read_to_end](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.read_to_end.html). Этот future будет читать все 
+данные из сокета и помещать их в предоставленный буфер и вернёт буфер, когда обрабатываемое соединение передаст EOF.
 
 Как и ранее, чтение из сокета на самом деле скрыто расшифровывает данные, полученные от сервера, так что мы читаем 
 расшифрованную версию.
@@ -496,7 +496,7 @@ future](http://alexcrichton.com/futures-rs/futures/stream/struct.StreamFuture.ht
 
 Пример использования futures рассматривался в начале этого руководства, а сейчас посмотрим на пример 
 использования потоков, применив реализацию метода 
-[incoming](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpListener.html#method.incoming). Этот 
+[incoming](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html#method.incoming). Этот 
 простой сервер, который принимает соединения, пишет слово "Hello!" и закрывает сокет:
 
 ```rust
@@ -542,7 +542,7 @@ let listener = lp.handle().tcp_listen(&address);
 ```
 
 Здесь мы инициализировали цикл событий, вызвав метод 
-[tcp_listen](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_listen) у 
+[TcpListener::bind](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html#method.bind) у 
 [LoopHandle](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html) для создания TCP слушателя, 
 который будет принимать сокеты.
 
@@ -557,9 +557,9 @@ let server = listener.and_then(|listener| {
 ```
 
 Здесь видно, что 
-[tcp_listen](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_listen), как и 
-[tcp_connect](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html#method.tcp_connect), не 
-возвращает [TcpListener](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpListener.html), скорее, future его 
+[TcpListener::bind](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html#method.bind), как и 
+[TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect), не 
+возвращает [TcpListener](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html), скорее, future его 
 вычисляет. Затем мы используем метод 
 [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) у 
 [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), чтобы определить, что случится, 
@@ -587,9 +587,9 @@ let clients = listener.incoming();
 
 ```
 
-Здесь метод [incoming](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpListener.html#method.incoming) 
+Здесь метод [incoming](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html#method.incoming) 
 возвращает [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) пары 
-[TcpListener](http://alexcrichton.com/futures-rs/futures_mio/struct.TcpListener.html) и 
+[TcpListener](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html) и 
 [SocketAddr](https://doc.rust-lang.org/std/net/enum.SocketAddr.html). 
 Это похоже на [TcpListener из стандартной библиотеки](https://doc.rust-lang.org/std/net/struct.TcpListener.html) 
 и [метод accept](https://doc.rust-lang.org/std/net/struct.TcpListener.html#method.accept), только в данном случае
@@ -613,7 +613,7 @@ let welcomes = clients.and_then(|(socket, _peer_addr)| {
 [and_then](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.and_then) типажа 
 [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html), чтобы выполнить действие над каждым 
 элементом потока. В данном случае мы формируем цепочку вычислений для каждого элемента потока (`TcpStream`). В действии
-метод [write_all](http://alexcrichton.com/futures-rs/futures_io/fn.write_all.html) мы видели ранее, он записывает 
+метод [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html) мы видели ранее, он записывает 
 переданный буфер данных в переданный сокет.
 
 Этот блок означает, что `welcomes` теперь является потоком сокетов, в которые записана "Hello!" 
@@ -630,7 +630,7 @@ welcomes.for_each(|(_socket, _welcome)| {
 ```
 
 Сбрасываем результат выполнения предыдущего future 
-[write_all](http://alexcrichton.com/futures-rs/futures_io/fn.write_all.html), закрывая сокет.
+[write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html), закрывая сокет.
 
 Следует отметить, что важным ограничением этого сервера является отсутствие параллельности. Потоки 
 представляют собой упорядоченную обработку данных, и в данном случае порядок исходного потока -  
