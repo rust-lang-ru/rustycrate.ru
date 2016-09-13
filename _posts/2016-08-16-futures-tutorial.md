@@ -504,29 +504,27 @@ future](http://alexcrichton.com/futures-rs/futures/stream/struct.StreamFuture.ht
 extern crate futures;
 extern crate tokio_core;
 
-use futures::Future;
 use futures::stream::Stream;
-use tokio_core::Loop;
+use tokio_core::reactor::Core;
+use tokio_core::net::TcpListener;
 
 fn main() {
-    let mut lp = Loop::new().unwrap();
+    let mut core = Core::new().unwrap();
     let address = "127.0.0.1:8080".parse().unwrap();
-    let listener = lp.handle().tcp_listen(&address);
+    let listener = TcpListener::bind(&address, &core.handle()).unwrap();
 
-    let server = listener.and_then(|listener| {
-        let addr = listener.local_addr().unwrap();
-        println!("Listening for connections on {}", addr);
+    let addr = listener.local_addr().unwrap();
+    println!("Listening for connections on {}", addr);
 
-        let clients = listener.incoming();
-        let welcomes = clients.and_then(|(socket, _peer_addr)| {
-            tokio_core::io::write_all(socket, b"Hello!\n")
-        });
-        welcomes.for_each(|(_socket, _welcome)| {
-            Ok(())
-        })
+    let clients = listener.incoming();
+    let welcomes = clients.and_then(|(socket, _peer_addr)| {
+        tokio_core::io::write_all(socket, b"Hello!\n")
+    });
+    let server = welcomes.for_each(|(_socket, _welcome)| {
+        Ok(())
     });
 
-    lp.run(server).unwrap();
+    core.run(server).unwrap();
 }
 
 ```
@@ -535,16 +533,16 @@ fn main() {
 
 ```rust
 
-let mut lp = Loop::new().unwrap();
+let mut core = Core::new().unwrap();
 let address = "127.0.0.1:8080".parse().unwrap();
-let listener = lp.handle().tcp_listen(&address);
+let listener = TcpListener::bind(&address, &core.handle()).unwrap();
 
 ```
 
 Здесь мы инициализировали цикл событий, вызвав метод 
 [TcpListener::bind](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html#method.bind) у 
-[LoopHandle](http://alexcrichton.com/futures-rs/futures_mio/struct.LoopHandle.html) для создания TCP слушателя, 
-который будет принимать сокеты.
+[LoopHandle](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Core.html#method.handle) для создания TCP 
+слушателя, который будет принимать сокеты.
 
 Далее взглянем на следующий код:
 
@@ -623,9 +621,9 @@ let welcomes = clients.and_then(|(socket, _peer_addr)| {
 
 ```rust
 
-welcomes.for_each(|(_socket, _welcome)| {
-    Ok(())
-})
+let welcomes = clients.and_then(|(socket, _peer_addr)| {
+    tokio_core::io::write_all(socket, b"Hello!\n")
+});
 
 ```
 
@@ -647,12 +645,13 @@ welcomes.for_each(|(_socket, _welcome)| {
 
 let clients = listener.incoming();
 let welcomes = clients.map(|(socket, _peer_addr)| {
-    tokio_core::io::write_all(socket, b"Hello!\n")
+    tokio_core::io::write_all(socket, b"hello!\n")
 });
-welcomes.for_each(|future| {
-    future.forget();
+let handle = core.handle();
+let server = welcomes.for_each(|future| {
+    handle.spawn(future.then(|_| Ok(())));
     Ok(())
-})
+});
 
 ```
 
