@@ -47,8 +47,8 @@ tokio-tls = { git = "https://github.com/tokio-rs/tokio-tls" }
 
 ```
 
-> Примечание: эта библиотека в активной разработке и требует сливаний с git напрямую, но позже контейнер будет
-опубликован на crates.io.
+> Примечание: эта библиотека в активной разработке и требует получения исходников с git напрямую, но позже контейнер 
+будет опубликован на crates.io.
 
 Здесь мы добавляем в зависимости три контейнера:
 
@@ -893,13 +893,14 @@ fn add_10<F>(f: F) -> impl Future<Item = i32, Error = F::Error>
 
 Когда future 
 [порождается](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) она сливается с 
-задачей и тогда она эта структура может быть опрошена для завершения. Обычно вы не будете вызывать 
+задачей и тогда эта структура может быть опрошена для завершения. Как и когда именно происходит опрос (poll), 
+остаётся во власти функции, которая запустила future. Обычно вы не будете вызывать 
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn), а скорее 
 [СpuPool::spawn](http://alexcrichton.com/futures-rs/futures_cpupool/struct.CpuPool.html#method.spawn) с пулом потоков 
-или [Handle::spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) с цикла 
+или [Handle::spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) с циклом  
 событий. Внутри они использут 
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) и обрабатывают 
-управляющий вызовы `poll` за вас.
+управляющие вызовы `poll` за вас.
 
 
 В продуманной реализации типажа `Task` кроется эффективность контейнера `futures`: когда `Task` создан, все `Future` 
