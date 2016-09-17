@@ -21,7 +21,6 @@ before_script:
 - bundle exec htmlproofer --version
 script:
 - bundle exec jekyll build
-- for f in $(find _site); do echo $f; cat $f; done
 - bundle exec htmlproofer ./_site
   --log-level debug --trace --only-4xx --check-favicon --check-html
   --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/,/is.gd/,
