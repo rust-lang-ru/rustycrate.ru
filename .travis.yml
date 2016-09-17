@@ -8,9 +8,13 @@ addons:
 sudo: false
 rvm:
 - 2.2
-script:
+before_script:
+- npm install typograf
+- npm install typograf-cli
+- typograf --version
 - bundle exec jekyll --version
 - bundle exec htmlproof --version
+script:
 - bundle exec jekyll build
 - bundle exec htmlproof ./_site --only-4xx --check-favicon --check-html
   --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/,/is.gd/,
