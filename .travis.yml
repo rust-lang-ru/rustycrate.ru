@@ -21,11 +21,11 @@ before_script:
 - npm install typograf-cli
 - typograf --version
 - bundle exec jekyll --version
-- bundle exec htmlproof --version
+- bundle exec htmlproofer --version
 script:
 - bundle exec jekyll build
-- bundle exec htmlproof ./_site
-  --verbose --verbosity debug --trace --only-4xx --check-favicon --check-html
+- bundle exec htmlproofer ./_site
+  --log-level debug --trace --only-4xx --check-favicon --check-html
   --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/,/is.gd/,
     /github.com/ruRust/rustycrate.ru/edit/master/
   --file-ignore /yandex_6b9a121b20becc7c.html/,/googlea5495ce52829dd37.html/,/where-are-you-from.html/
