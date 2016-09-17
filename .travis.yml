@@ -13,6 +13,8 @@ sudo: false
 rvm:
 - 2.2
 before_script:
+- node --version
+- npm --version
 - npm install typograf
 - npm install typograf-cli
 - typograf --version
