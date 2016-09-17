@@ -1,15 +1,16 @@
-def typografy(filename)
-  if filename.end_with?('.html')
-    `typograf -l ru #{filename} | sponge #{filename}`
+def typografy(file)
+  if file.end_with?('.html')
+    stdout = `typograf -l ru #{file}`
+    File.write(file, stdout)
   end
 end
 
 Jekyll::Hooks.register :pages, :post_write do |document|
-  filename = document.destination(document.site.dest)
-  typografy(filename)
+  file = document.destination(document.site.dest)
+  typografy(file)
 end
 
 Jekyll::Hooks.register :posts, :post_write do |document|
-  filename = document.destination(document.site.dest)
-  typografy(filename)
+  file = document.destination(document.site.dest)
+  typografy(file)
 end
