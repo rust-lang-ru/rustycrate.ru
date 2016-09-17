@@ -11,7 +11,7 @@ module Jekyll
       id = SecureRandom.uuid
 
       site = context.registers[:site]
-      converter = site.getConverterImpl(Jekyll::Converters::Markdown)
+      converter = site.find_converter_instance(Jekyll::Converters::Markdown)
 
       content = super
       content = converter.convert(content)
