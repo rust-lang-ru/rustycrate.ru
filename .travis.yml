@@ -8,6 +8,7 @@ addons:
   apt:
     packages:
     - moreutils
+    - nodejs
 sudo: false
 rvm:
 - 2.2
