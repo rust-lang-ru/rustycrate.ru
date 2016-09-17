@@ -8,11 +8,16 @@ addons:
   apt:
     packages:
     - moreutils
-    - nodejs
 sudo: false
 rvm:
 - 2.2
 before_script:
+- curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+- export NVM_DIR="$HOME/.nvm"
+- [ -s "$NVM_DIR/nvm.sh" ]
+- . "$NVM_DIR/nvm.sh"
+- command -v nvm
+- nvm install 4.5.0
 - node --version
 - npm --version
 - npm install typograf
