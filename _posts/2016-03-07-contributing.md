@@ -144,7 +144,6 @@ Changes not staged for commit:
 	modified:   src/protobaz.rs
 
 no changes added to commit (use "git add" and/or "git commit -a")
-
 ```
 
 В выводе есть все необходимые вам команды:
@@ -181,7 +180,6 @@ no changes added to commit (use "git add" and/or "git commit -a")
 Смотри http://foobar.org/bugs?id=1234
 
 Fix #123
-
 ```
 
 Из всех частей сообщения, только первая является обязательной.
