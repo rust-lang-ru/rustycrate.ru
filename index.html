@@ -18,7 +18,7 @@ sitemap:
         <a href="/post.html" class="btn btn-default all-posts btn-primary">написать публикацию</a>
         <a href="/archive.html" class="btn btn-default all-posts btn-primary">все публикации</a>
     </div>
-    <div id="placeholder">
+    <div class="float-cleaner">
     </div>
 </div>
 <!-- Цикл по публикациям, перебираем 3 последние из них -->
@@ -41,8 +41,8 @@ sitemap:
             {{ post.excerpt }}
         </div>
         <footer>
-            <div id="buttons">
-                <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default" id="read-more">читать дальше</a>
+            <div class="buttons">
+                <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default read-more">читать дальше</a>
                 <!-- Ссылка на комментарии -->
                 <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
                     <!-- Счётчик комментариев -->
@@ -51,16 +51,16 @@ sitemap:
                 </a>
             </div>
             <!-- div, который очищает выравнивание (clear: both для отключения float: right) -->
-            <div id="placeholder"></div>
+            <div class="float-cleaner"></div>
         </footer>
     </article>
 </div>
 {% endfor %}
-<div id="buttons">
+<div class="buttons">
     <a href="/post.html" class="btn btn-default all-posts btn-primary">написать публикацию</a>
     <a href="/archive.html" class="btn btn-default all-posts btn-primary">все публикации</a>
 </div>
-<div id="placeholder"></div>
+<div class="float-cleaner"></div>
 
 <!-- Скрипт, загружающий счётчики комментариев -->
 <script id="dsq-count-scr" src="//rustycrate.disqus.com/count.js" async></script>

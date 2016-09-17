@@ -42,16 +42,16 @@ div.posts-notice {
     color: #777;
 }
 
-div#placeholder {
+div.float-cleaner {
     clear: both;
 }
 
-div#buttons {
+div.buttons {
     margin-top: 10px;
     float: right;
 }
 
-div#badge {
+div.post-metadata {
     float: left;
 
     h1 {
@@ -65,7 +65,7 @@ div#badge {
     }
 }
 
-div#buttons-badge {
+div.post-buttons {
     margin-top: 25px;
     float: right;
 }
@@ -219,7 +219,7 @@ h6 a {
     display: none;
 }
 
-#badge h1 a,
+.post-metadata h1 a,
 header h1 a {
     display: inline;
 }

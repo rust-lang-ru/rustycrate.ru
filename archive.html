@@ -12,18 +12,18 @@ sitemap:
 {% for post in site.posts %}
 <div class="well">
     <article>
-        <div id="badge">
+        <div class="post-metadata">
             <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
             <p class="post-header">{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
         </div>
-        <div id="buttons-badge">
-            <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default" id="read-more">читать дальше</a>
+        <div class="post-buttons">
+            <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default read-more">читать дальше</a>
             <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
                 <span class="disqus-comment-count" data-disqus-url="{{ site.url }}{{ post.url | prepend: site.baseurl }}#disqus_thread"></span>
                 <img src="/images/comments.svg" alt="комментарии" class="comments-icon">
             </a>
         </div>
-        <div id="placeholder"></div>
+        <div class="float-cleaner"></div>
     </article>
 </div>
 {% endfor %}
