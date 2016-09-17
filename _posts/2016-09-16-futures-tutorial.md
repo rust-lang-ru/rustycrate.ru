@@ -776,7 +776,7 @@ fn add_10<F>(f: F) -> Map<F, fn(i32) -> i32>
 ```
 
 Здесь возвращаемый тип именуется так, как компилятор видит его. Функция
-[map](alexcrichton.com/futures-rs/futures/struct.Map.html) возвращает структуру
+[map](http://alexcrichton.com/futures-rs/futures/struct.Map.html) возвращает структуру
 [map](http://alexcrichton.com/futures-rs/futures/struct.Map.html), которая содержит внутри future и функцию, которая
 вычисляет значения для `map`.
 
