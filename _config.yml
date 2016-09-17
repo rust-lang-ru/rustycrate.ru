@@ -25,3 +25,5 @@ defaults:
 exclude: [vendor, Gemfile, Gemfile.lock, travis.trash.id_rsa.enc]
 markdown: kramdown
 
+kramdown:
+  transliterated_header_ids: true
