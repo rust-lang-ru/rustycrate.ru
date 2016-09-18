@@ -2,7 +2,19 @@
     <article>
         <div class="post-metadata">
             <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
-            <p class="post-header">{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
+            <p class="post-header">
+                {% if post.author %}
+                {{ post.author }} •
+                {% endif %}
+                {% if post.date %}
+                <time>
+                    {{ post.date | localize: "%d %B %Y" }}
+                </time>
+                {% endif %}
+                {% if post.categories %} •
+                {{ post.categories | join: ','}}
+                {% endif %}
+            </p>
         </div>
         <div class="post-buttons">
             <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default read-more">читать дальше</a>
