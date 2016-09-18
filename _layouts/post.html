@@ -19,9 +19,8 @@
                             {{ page.date | localize: "%d %B %Y" }}
                         </time>
                         {% endif %}
-                        {% if page.categories %}
-                        • {{ page.categories | join: ','}}
-                        {% endif %}
+                        {% assign post = page %}
+                        {% include category-link.html %}
                     </p>
                 </div>
                 <div class="header-right">
