@@ -1,0 +1,15 @@
+{% if post.categories %} •
+{% for category in post.categories %}
+{% case category %}
+{% when 'новости' %}
+{% assign category_file = "news.html" %}
+{% when 'руководства' %}
+{% assign category_file = "howtos.html" %}
+{% when 'обучение' %}
+{% assign category_file = "tutorials.html" %}
+{% when 'размышления' %}
+{% assign category_file = "thoughts.html" %}
+{% endcase  %}
+<a href="/{{ category_file }}">{{ category }}</a>
+{% endfor %}
+{% endif %}
