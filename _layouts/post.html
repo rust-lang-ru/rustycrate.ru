@@ -10,7 +10,7 @@
                 <div class="header-left">
                     <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
 
-                    <p class="post-header">
+                    <p class="post-header-text">
                         {% if page.author %}
                         {{ page.author }} •
                         {% endif %}
@@ -29,6 +29,7 @@
                     </div>
                 </div>
                 <div class="float-cleaner"></div>
+                <div class="post-header"></div>
 
                 {{ content }}
 
