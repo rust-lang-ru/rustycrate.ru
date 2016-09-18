@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Лента | Все записи
+title: Лента | Руководства
 sitemap:
   priority: 0.7
   changefreq: 'daily'
@@ -10,7 +10,9 @@ sitemap:
     <h1>Ржавый ящик <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
 </div>
 {% for post in site.posts %}
+{% if post.categories contains "руководства" %}
 {% include archive-item.html %}
+{% endif %}
 {% endfor %}
 
 <script id="dsq-count-scr" src="//rustycrate.disqus.com/count.js" async></script>
