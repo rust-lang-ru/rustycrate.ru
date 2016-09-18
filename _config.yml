@@ -26,4 +26,5 @@ exclude: [vendor, Gemfile, Gemfile.lock, travis.trash.id_rsa.enc]
 markdown: kramdown
 
 kramdown:
+  smart_quotes: lsquo,rsquo,laquo,raquo
   transliterated_header_ids: true
