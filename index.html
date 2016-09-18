@@ -33,9 +33,23 @@ sitemap:
             <!-- Строго говоря, это не нужно, т.к. URL вида "/abc.html" ведёт на ту же страницу -->
             <!-- Все остальные фильтры работают так же. Напр., localize означает "вывести в локализованном формате" -->
             <!-- post.title - свойство страницы title из front matter. -->
-            <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+            <h1>
+                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h1>
             <!-- >{% if post.author %}{{ post.author }} • {% endif %} означает, что код внутри if выполняется если условие верно. -->
-            <p class="post-header">{% if post.author %}{{ post.author }} • {% endif %}{% if post.date %}<time>{{ post.date | localize: "%d %B %Y" }}</time>{% endif %}{% if post.categories %} • {{ post.categories | join: ','}}{% endif %}</p>
+            <p class="post-header">
+                {% if post.author %}
+                {{ post.author }} •
+                {% endif %}
+                {% if post.date %}
+                <time>
+                    {{ post.date | localize: "%d %B %Y" }}
+                </time>
+                {% endif %}
+                {% if post.categories %} •
+                {{ post.categories | join: ','}}
+                {% endif %}
+            </p>
         </header>
         <div>
             {{ post.excerpt }}
