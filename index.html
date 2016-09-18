@@ -46,9 +46,7 @@ sitemap:
                     {{ post.date | localize: "%d %B %Y" }}
                 </time>
                 {% endif %}
-                {% if post.categories %} •
-                {{ post.categories | join: ','}}
-                {% endif %}
+                {% include category-link.html %}
             </p>
         </header>
         <div>
