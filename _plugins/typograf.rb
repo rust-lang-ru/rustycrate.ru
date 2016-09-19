@@ -1,6 +1,6 @@
 def typografy(file)
   if file.end_with?('.html')
-    stdout = `typograf -l ru #{file}`
+    stdout = `typograf -l ru -e 'ru/optalign/*' #{file}`
     File.write(file, stdout)
   end
 end
