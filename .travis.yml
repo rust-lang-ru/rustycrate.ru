@@ -16,7 +16,9 @@ before_script:
 - npm --version
 - npm install typograf
 - npm install typograf-cli
+- npm install eyo
 - typograf --version
+- eyo --version
 - bundle exec jekyll --version
 - bundle exec htmlproofer --version
 script:
