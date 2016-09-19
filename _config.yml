@@ -22,7 +22,7 @@ defaults:
 
 # Настройки сборки
 # эти файлы и директории будут исключены из обработки Jekyll
-exclude: [vendor, Gemfile, Gemfile.lock, travis.trash.id_rsa.enc]
+exclude: [vendor, Gemfile, Gemfile.lock, travis.trash.id_rsa.enc, node_modules]
 markdown: kramdown
 
 kramdown:
