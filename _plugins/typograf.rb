@@ -5,12 +5,15 @@ def typografy(file)
   end
 end
 
-Jekyll::Hooks.register :pages, :post_write do |document|
-  file = document.destination(document.site.dest)
-  typografy(file)
-end
+if ENV['RUSTYCRATE_MODE'] == 'production'
 
-Jekyll::Hooks.register :posts, :post_write do |document|
-  file = document.destination(document.site.dest)
-  typografy(file)
+  Jekyll::Hooks.register :pages, :post_write do |document|
+    file = document.destination(document.site.dest)
+    typografy(file)
+  end
+
+  Jekyll::Hooks.register :posts, :post_write do |document|
+    file = document.destination(document.site.dest)
+    typografy(file)
+  end
 end
