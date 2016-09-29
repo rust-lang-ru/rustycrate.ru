@@ -1,19 +1,20 @@
-def typografy(file)
+def eyoify(file)
   if file.end_with?('.html')
-    stdout = `typograf -l ru -e 'ru/optalign/*' #{file}`
+    stdout = `eyo #{file}`
     File.write(file, stdout)
   end
 end
 
-if ENV['RUSTYCRATE_MODE'] == 'production'
+if ENV['RUSTYCRATE_MODE'] == 'production' and
+   ENV['RUSTYCRATE_ENABLE_EYO'] == 'yes'
 
   Jekyll::Hooks.register :pages, :post_write do |document|
     file = document.destination(document.site.dest)
-    typografy(file)
+    eyoify(file)
   end
 
   Jekyll::Hooks.register :posts, :post_write do |document|
     file = document.destination(document.site.dest)
-    typografy(file)
+    eyoify(file)
   end
 end
