@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1800"
-   height="1300"
-   viewBox="0 0 1800 1300"
+   width="2000"
+   height="1500"
+   viewBox="0 0 2000 1500"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -181,11 +181,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.10263363"
-     inkscape:cx="354.0767"
-     inkscape:cy="755.54972"
+     inkscape:zoom="0.1"
+     inkscape:cx="1054.8349"
+     inkscape:cy="796.63223"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer4"
      showgrid="true"
      units="px"
      inkscape:snap-grids="false"
@@ -218,7 +218,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -226,21 +226,21 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,247.63784)">
+     transform="translate(0,447.63784)">
     <rect
        style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4704"
-       width="839.67999"
-       height="839.67999"
-       x="-113.47784"
-       y="-1079.84"
+       width="920.909"
+       height="920.909"
+       x="-216.68184"
+       y="-1171.2935"
        transform="matrix(0,1,-1,0,0,0)"
        inkscape:export-filename="/home/mkpankov/rustycrate/images/rustycrate-logo-32px.png"
        inkscape:export-xdpi="2.8099999"
        inkscape:export-ydpi="2.8099999" />
     <g
        id="g3560"
-       transform="translate(-142.69639,-11.053824)">
+       transform="matrix(1.096738,0,0,1.096738,-169.50862,-204.34952)">
       <rect
          y="-60.997833"
          x="292.63998"
@@ -332,28 +332,28 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:180px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1000.5198"
-       y="-6.3485184"
+       style="font-style:normal;font-weight:normal;font-size:197.4128418px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1084.3"
+       y="-199.18903"
        id="text3381"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="1000.5198"
-         y="-6.3485184"
+         x="1084.3"
+         y="-199.18903"
          id="tspan3387"
-         style="font-size:120px">О языке </tspan><tspan
+         style="font-size:131.60856628px">О языке </tspan><tspan
          sodipodi:role="line"
-         x="1000.5198"
-         y="143.65149"
+         x="1084.3"
+         y="-34.678318"
          id="tspan3389"
-         style="font-size:120px">Rust </tspan><tspan
+         style="font-size:131.60856628px">Rust </tspan><tspan
          sodipodi:role="line"
-         x="1000.5198"
-         y="293.65149"
+         x="1084.3"
+         y="129.83238"
          id="tspan3385"
-         style="font-size:120px">на русском</tspan></text>
+         style="font-size:131.60856628px">на русском</tspan></text>
     <g
-       transform="matrix(0.38486645,0,0,-0.38486645,250.14807,945.8016)"
+       transform="matrix(0.42209767,0,0,-0.42209767,321.33884,865.07021)"
        inkscape:label="ink_ext_XXXXXX"
        id="g3651">
       <g
@@ -377,7 +377,7 @@
      id="layer2"
      inkscape:label="Layer 2"
      style="display:none"
-     transform="translate(0,20)">
+     transform="translate(0,220)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:180px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -395,7 +395,7 @@
      id="layer3"
      inkscape:label="Layer 3"
      style="display:none"
-     transform="translate(0,20)">
+     transform="translate(0,220)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -414,18 +414,18 @@
      id="layer4"
      inkscape:label="Layer 4"
      style="display:inline"
-     transform="translate(0,20)">
+     transform="translate(0,220)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="536"
-       y="1140"
+       style="font-style:normal;font-weight:normal;font-size:43.86952209px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="634.84351"
+       y="1056.0337"
        id="text3584"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3586"
-         x="536"
-         y="1140"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:200px;font-family:'PT Sans Caption';-inkscape-font-specification:'PT Sans Caption'">rustycrate</tspan></text>
+         x="634.84351"
+         y="1056.0337"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:219.34761047px;font-family:'PT Sans Caption';-inkscape-font-specification:'PT Sans Caption'">rustycrate</tspan></text>
   </g>
 </svg>
