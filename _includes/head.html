@@ -36,5 +36,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
   <meta name="keywords" content="Rust, язык программирования Rust, язык раст, язык rust, Mozilla Rust, неофициальный сайт, книга о rust, язык программирования rust книга, чат о rust, форум о rust, язык программирования rust чат, язык программирования rust форум, программирование rust, rust уроки">
-  <meta name="description" content="Системный язык программирования, который быстро работает, предотвращает почти все падения, и не допускает гонок данных. Неофициальный сайт.">
+  <meta name="description" content="
+        {% if page.excerpt %}
+        {{ page.excerpt | strip_html | escape }}
+        {% else %}
+        Системный язык программирования, который быстро работает, предотвращает почти все падения, и не допускает гонок данных. Неофициальный сайт.
+        {% endif %}">
 </head>
