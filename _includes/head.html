@@ -17,7 +17,7 @@
 
   <link rel="alternate" type="application/rss+xml" title="Atom" href="http://feeds.feedburner.com/rustycrate/yMtS">
 
-  <title>{{ page.title }} | Ржавый ящик</title>
+  <title>{{ page.title | strip_html | escape }} | Ржавый ящик</title>
 
   <link rel="icon" type="image/png" href="/images/rustycrate-logo-16px.png" />
   <!-- Bootstrap -->
