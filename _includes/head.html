@@ -17,7 +17,7 @@
 
   <link rel="alternate" type="application/rss+xml" title="Atom" href="http://feeds.feedburner.com/rustycrate/yMtS">
 
-  <title>{{ page.title | strip_html | escape }} | Ржавый ящик</title>
+  <title>{{ page.title | strip_html | escape_once }} | Ржавый ящик</title>
 
   <link rel="icon" type="image/png" href="/images/rustycrate-logo-16px.png" />
   <!-- Bootstrap -->
@@ -38,7 +38,7 @@
   <meta name="keywords" content="Rust, язык программирования Rust, язык раст, язык rust, Mozilla Rust, неофициальный сайт, книга о rust, язык программирования rust книга, чат о rust, форум о rust, язык программирования rust чат, язык программирования rust форум, программирование rust, rust уроки">
   <meta name="description" content="
         {% if page.excerpt %}
-        {{ page.excerpt | strip_html | escape }}
+        {{ page.excerpt | strip_html | escape_once }}
         {% else %}
         Системный язык программирования, который быстро работает, предотвращает почти все падения, и не допускает гонок данных. Неофициальный сайт.
         {% endif %}">
