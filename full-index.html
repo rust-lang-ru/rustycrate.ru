@@ -1,0 +1,78 @@
+---
+# Выбор шаблона для страницы. Шаблоны находятся в `_layouts`.
+layout: default
+# Заголовок. Становится тегом <title> в <head>
+title: Лента | Главная
+# Метаданные для карты сайта
+sitemap:
+  priority: 0.7
+  changefreq: 'daily'
+
+---
+<div>
+    <div class="header-left page-header">
+        <h1>Ржавый ящик <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
+    </div>
+    <div class="header-right">
+        <div class="posts-notice"><p>показаны 3 последние записи</p></div>
+        <a href="/post.html" class="btn btn-default all-posts btn-primary">написать публикацию</a>
+        <a href="/archive.html" class="btn btn-default all-posts btn-primary">все публикации</a>
+    </div>
+    <div class="float-cleaner">
+    </div>
+</div>
+<!-- Цикл по публикациям, перебираем 3 последние из них -->
+<!-- Для каждой будет повторён код ниже до endfor -->
+{% for post in site.posts %}
+<div class="well">
+    <article>
+        <header>
+            <!-- post.url - свойство страницы, автоматически заполняемое Jekyll. -->
+            <!-- | prepend: site.baseurl означает "взять то, что слева, и приписать в его начало то, что после двоеточия" -->
+            <!-- Так мы получаем полный URL до страницы -->
+            <!-- Строго говоря, это не нужно, т.к. URL вида "/abc.html" ведёт на ту же страницу -->
+            <!-- Все остальные фильтры работают так же. Напр., localize означает "вывести в локализованном формате" -->
+            <!-- post.title - свойство страницы title из front matter. -->
+            <h1>
+                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h1>
+            <!-- >{% if post.author %}{{ post.author }} • {% endif %} означает, что код внутри if выполняется если условие верно. -->
+            <p class="post-header">
+                {% if post.author %}
+                {{ post.author }} •
+                {% endif %}
+                {% if post.date %}
+                <time>
+                    {{ post.date | localize: "%d %B %Y" }}
+                </time>
+                {% endif %}
+                {% include category-link.html %}
+            </p>
+        </header>
+        <div>
+            {{ post.excerpt }}
+        </div>
+        <footer>
+            <div class="buttons">
+                <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default read-more">читать дальше</a>
+                <!-- Ссылка на комментарии -->
+                <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
+                    <!-- Счётчик комментариев -->
+                    <span class="disqus-comment-count" data-disqus-url="{{ post.url | prepend: site.url }}#disqus_thread"></span>
+                    <img src="/images/comments.svg" alt="комментарии" class="comments-icon">
+                </a>
+            </div>
+            <!-- div, который очищает выравнивание (clear: both для отключения float: right) -->
+            <div class="float-cleaner"></div>
+        </footer>
+    </article>
+</div>
+{% endfor %}
+<div class="buttons">
+    <a href="/post.html" class="btn btn-default all-posts btn-primary">написать публикацию</a>
+    <a href="/archive.html" class="btn btn-default all-posts btn-primary">все публикации</a>
+</div>
+<div class="float-cleaner"></div>
+
+<!-- Скрипт, загружающий счётчики комментариев -->
+<script id="dsq-count-scr" src="//rustycrate.disqus.com/count.js" async></script>
