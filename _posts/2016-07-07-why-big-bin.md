@@ -2,10 +2,6 @@
 title: "Большие бинари в моем Rust? (Why is a Rust executable large?)"
 author: lifthrasiir (адаптация от kitsu)
 categories: обучение
-excerpt: >
-  Перевод статьи "Why is a Rust executable large?" от 02.06.2016.<br/>
-  Из этой статьи мы узнаем, почему hello world больше Сишного аналога в 6 раз, разберемся, что лежит внутри и попробуем уменьшить его до приемлемых размеров
-
 ---
 
 Это статья - перевод статьи [Why is a Rust executable large?](https://lifthrasiir.github.io/rustlog/why-is-a-rust-executable-large.html)
@@ -29,6 +25,8 @@ $ du -h hello
 ```
 
 632 килобайт для простого принта?! Rust позиционируется как системный язык, который имеет потенциал для замены C/C++, верно? Так почему бы не проверить аналогичную программу на ближайшем конкуренте?
+
+<cut/>
 
 ```bash
 $ cat hello.c

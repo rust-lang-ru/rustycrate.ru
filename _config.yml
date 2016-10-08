@@ -19,6 +19,7 @@ defaults:
     values:
       layout: "post" # шаблон по умолчанию
       comments: true # включены ли комментарии
+      excerpt_separator: <cut/>
 
 # Настройки сборки
 # эти файлы и директории будут исключены из обработки Jekyll
