@@ -2,8 +2,6 @@
 title: "От &amp;str к Cow"
 author: Joe Wilm (перевел Алексей Сидоров)
 categories: обучение
-excerpt:
-    В этой статье описывается использование copy on write для эффективного хранения строк в структурах
 ---
 
 Эта статья – перевод статьи [From &str to Cow](http://blog.jwilm.io/from-str-to-cow) за авторством Joe Wilm
