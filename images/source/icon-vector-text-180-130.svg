@@ -17,7 +17,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="icon-vector-text-180-130.svg"
-   inkscape:export-filename="/home/mkpankov/rustycrate.ru/images/rustycrate-logo-text-240x180px-vk.png"
+   inkscape:export-filename="/home/mkpankov/rustycrate.ru/images/rustycrate-logo-text-180x130px.png"
    inkscape:export-xdpi="9"
    inkscape:export-ydpi="9">
   <defs
@@ -181,11 +181,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.1"
-     inkscape:cx="374.83493"
-     inkscape:cy="1596.6322"
+     inkscape:zoom="0.4"
+     inkscape:cx="647.71937"
+     inkscape:cy="450.7928"
      inkscape:document-units="px"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer1"
      showgrid="true"
      units="px"
      inkscape:snap-grids="false"
@@ -273,7 +273,7 @@
        inkscape:export-ydpi="2.8099999" />
     <g
        id="g3560"
-       transform="matrix(0.68667868,0,0,0.68667868,84.14477,128.79911)">
+       transform="matrix(0.68667868,0,0,0.68667868,440.14477,128.79911)">
       <rect
          y="-60.997833"
          x="292.63998"
@@ -363,28 +363,6 @@
          id="path4506-9-4-7"
          style="opacity:1;fill:url(#radialGradient4514-3-7-4);fill-opacity:1;stroke:#000000;stroke-width:4.92000008;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:142.31515503px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="959.20276"
-       y="160.15869"
-       id="text3381"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         x="959.20276"
-         y="160.15869"
-         id="tspan3387"
-         style="font-size:94.87677765px">О языке </tspan><tspan
-         sodipodi:role="line"
-         x="959.20276"
-         y="278.75467"
-         id="tspan3389"
-         style="font-size:94.87677765px">Rust </tspan><tspan
-         sodipodi:role="line"
-         x="959.20276"
-         y="397.35065"
-         id="tspan3385"
-         style="font-size:94.87677765px">на русском</tspan></text>
     <g
        transform="matrix(0.30429072,0,0,-0.30429072,389.1831,787.38445)"
        inkscape:label="ink_ext_XXXXXX"
