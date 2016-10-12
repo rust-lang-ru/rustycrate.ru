@@ -182,10 +182,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.4"
-     inkscape:cx="647.71937"
+     inkscape:cx="221.46937"
      inkscape:cy="450.7928"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer4"
      showgrid="true"
      units="px"
      inkscape:snap-grids="false"
@@ -218,7 +218,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -245,15 +245,15 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:31.62559319px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="615.18896"
+       x="405.18896"
        y="988.58368"
        id="text3584"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3586"
-         x="615.18896"
+         x="405.18896"
          y="988.58368"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:158.12794495px;font-family:'PT Sans Caption';-inkscape-font-specification:'PT Sans Caption'">rustycrate</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:158.12794495px;font-family:'PT Sans Caption';-inkscape-font-specification:'PT Sans Caption'">rustycrate.ru</tspan></text>
   </g>
   <g
      inkscape:label="Layer 1"
@@ -362,25 +362,6 @@
          cx="974.24408"
          id="path4506-9-4-7"
          style="opacity:1;fill:url(#radialGradient4514-3-7-4);fill-opacity:1;stroke:#000000;stroke-width:4.92000008;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
-    <g
-       transform="matrix(0.30429072,0,0,-0.30429072,389.1831,787.38445)"
-       inkscape:label="ink_ext_XXXXXX"
-       id="g3651">
-      <g
-         transform="scale(0.1,0.1)"
-         id="g3653">
-        <path
-           inkscape:connector-curvature="0"
-           id="path3655"
-           style="fill:#4d71a9;fill-opacity:1;fill-rule:evenodd;stroke:none"
-           d="m 639.418,4149.59 2870.752,0 c 353.13,0 639.42,-286.29 639.42,-639.42 l 0,-2870.748 C 4149.59,286.289 3863.3,0 3510.17,0 L 639.418,0 C 286.285,0 0,286.289 0,639.422 L 0,3510.17 c 0,353.13 286.285,639.42 639.418,639.42 l 0,0" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path3657"
-           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-           d="m 2039.98,1244.75 169.74,0 c 0,0 51.26,5.65 77.47,33.85 24.09,25.92 23.32,74.56 23.32,74.56 0,0 -3.32,227.76 102.37,261.3 104.23,33.06 238.04,-220.12 379.86,-317.48 107.25,-73.65 188.75,-57.53 188.75,-57.53 l 379.25,5.3 c 0,0 198.38,12.24 104.31,168.22 -7.7,12.74 -54.8,115.38 -281.99,326.26 -237.82,220.72 -205.94,185.01 80.51,566.8 174.45,232.51 244.18,374.45 222.39,435.24 -20.76,57.92 -149.08,42.62 -149.08,42.62 l -427,-2.64 c 0,0 -31.68,4.31 -55.14,-9.73 -22.95,-13.73 -37.68,-45.81 -37.68,-45.81 0,0 -67.61,-179.91 -157.71,-332.94 -190.14,-322.86 -266.18,-339.95 -297.26,-319.87 -72.31,46.73 -54.24,187.69 -54.24,287.86 0,312.9 47.46,443.36 -92.42,477.13 -46.41,11.2 -80.6,18.61 -199.31,19.82 -152.37,1.55 -281.3,-0.47 -354.32,-36.24 -48.58,-23.79 -86.06,-76.79 -63.22,-79.84 28.23,-3.76 92.13,-17.25 126.01,-63.35 43.77,-59.55 42.24,-193.23 42.24,-193.23 0,0 25.15,-368.33 -58.72,-414.07 -57.55,-31.38 -136.51,32.68 -306.03,325.6 -86.84,150.04 -152.43,315.91 -152.43,315.91 0,0 -12.63,30.99 -35.19,47.58 -27.36,20.1 -65.59,26.47 -65.59,26.47 l -405.78,-2.65 c 0,0 -60.902,-1.7 -83.277,-28.19 -19.911,-23.58 -1.59,-72.29 -1.59,-72.29 0,0 317.66,-743.22 677.377,-1117.76 329.87,-343.44 704.38,-320.9 704.38,-320.9 l 0,0" />
-      </g>
     </g>
   </g>
   <g
