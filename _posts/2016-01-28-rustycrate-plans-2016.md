@@ -24,7 +24,7 @@ author: Михаил Панков
 мне на [почту](http://rustycrate.ru/contacts.html) или в
 [чате](https://gitter.im/ruRust/general).
 
-<cut/>
+<!--cut-->
 
 # Результаты
 

@@ -18,7 +18,7 @@ Rust — это язык программирования, целью котор
 [игнорирования ошибок](https://doc.rust-lang.org/std/result/#results-must-be-used) и, 
 как мы увидим, [переполнения целых чисел](https://en.wikipedia.org/wiki/Integer_overflow).
 
-<cut/>
+<!--cut-->
 
 #### Переполнение в Rust
 

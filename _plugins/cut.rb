@@ -1,5 +1,5 @@
 def cut(content)
-  excerpt, cut, body = content.to_s.partition('<cut/>')
+  excerpt, cut, body = content.to_s.partition('<!--cut-->')
   excerpt +
     cut +
     '<div id="after_cut"></div>' +

@@ -20,7 +20,7 @@ categories: обучение
 внедрение *futures* (или promises) во [многие языки](https://en.wikipedia.org/wiki/Futures_and_promises#List_of_implementations), поддерживающие синтаксический
 сахар ввиде *async/await* на вершине.
 
-<cut/>
+<!--cut-->
 
 Основным принципом Rust является возможность строить 
 [абстракции с нулевой стоимостью](https://blog.rust-lang.org/2015/05/11/traits.html),
