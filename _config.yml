@@ -1,6 +1,6 @@
 # Настройки сайта
 # Доступны через Liquid-теги site.title и т.д.
-title: Ржавый ящик
+title: rustycrate.ru
 email: rustycrate@michaelpankov.com
 description: > # это позволяет отключить переводы строк до начала "baseurl:"
   Неофициальный русскоязычный сайт о языке программирования Rust
