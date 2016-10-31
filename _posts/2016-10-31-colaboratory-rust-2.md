@@ -4,11 +4,11 @@ categories: новости
 author: Михаил Панков
 ---
 
-<a href="https://laboratoriya-kasperskogo.timepad.ru/event/397843/" target="blank">
+<a href="https://events.kaspersky.com/event/rust2" target="blank">
 <img src="/images/2016-04-25-colaboratory-rust/splash.jpg" alt="лого" style="width: 800px;"/>
 </a>
 
-<a href="https://laboratoriya-kasperskogo.timepad.ru/event/397843/" target="blank">
+<a href="https://events.kaspersky.com/event/rust2" target="blank">
 <img src="/images/2016-04-25-colaboratory-rust/button.png" alt="зарегистрироваться" style="width: 248px;"/>
 </a>
 
@@ -74,6 +74,6 @@ Rust.
 
 Ждём вас! И обязательно расскажите о событии друзьям.
 
-<a href="https://laboratoriya-kasperskogo.timepad.ru/event/397843/" target="blank">
+<a href="https://events.kaspersky.com/event/rust2" target="blank">
 <img src="/images/2016-04-25-colaboratory-rust/button.png" alt="зарегистрироваться" style="width: 248px;"/>
 </a>
