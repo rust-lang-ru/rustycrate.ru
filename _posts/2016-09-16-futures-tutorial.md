@@ -829,7 +829,7 @@ fn add_10<F>(f: F) -> impl Future<Item = i32, Error = F::Error>
 задачей и тогда эта структура может быть опрошена для завершения. Как и когда именно происходит опрос (poll),
 остаётся во власти функции, которая запустила future. Обычно вы не будете вызывать
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn), а скорее
-[СpuPool::spawn](https://docs.rs/futures/0.1.3/futures_cpupool/struct.CpuPool.html#method.spawn) с пулом потоков
+[СpuPool::spawn](https://docs.rs/futures-cpupool/0.1.2/futures_cpupool/struct.CpuPool.html#method.spawn) с пулом потоков
 или [Handle::spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) с циклом
 событий. Внутри они использут
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) и обрабатывают

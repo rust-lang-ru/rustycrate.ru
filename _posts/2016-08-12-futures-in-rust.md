@@ -123,7 +123,7 @@ future станет законченным, а в его значении буд
 *future*, без блокировки, при том, что *значение*, которое представляет future,
 будет готовым только в какой то момент в будущем (future).
 
-В Rust мы представляем futures в виде [типажа](http://alexcrichton.com/futures-rs/futures/trait.Future.html)
+В Rust мы представляем futures в виде [типажа](https://docs.rs/futures/0.1.3/futures/trait.Future.html)
 (например, интерфейса), грубо говоря:
 
 ```rust
@@ -157,7 +157,7 @@ future представляет; функции неблокирующие.
 Все становится еще интереснее с futures, когда вы сочетаете их. Существует
 бесчисленное количество вариантов их сочетания, например:
 
-- [Sequential composition](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then): *f.and_then(|val| some_new_future(val))*.
+- [Sequential composition](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then): *f.and_then(|val| some_new_future(val))*.
 Возвращает вам future, который выполняет future `f`, берет `val`, который он
 создает, и строит еще один future `some_new_future(val)`, затем выполняет его.
 
@@ -166,11 +166,11 @@ future представляет; функции неблокирующие.
 Возвращает вам future, который выполняет future `f` и применяет его к результату
 `some_new_value(val)`.
 
-- [Joining](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.join):`f.join(g)`. 
+- [Joining](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.join):`f.join(g)`. 
 Возвращает вам future, который выполняет futures `f` и `g` в параллель, и
 заканчивается, когда оба из них закончатся, возвращая оба их значения.
 
-- [Selecting](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.select):`f.select(g)`.
+- [Selecting](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.select):`f.select(g)`.
 Возвращает вам future, который выполняет futures `f` и `g` в параллель, и
 заканчивается, когда *один* из них закончится, возвращая его значения и другой
 future. (Хотите добавить таймаут к любому future? Просто выполните `select`
@@ -218,7 +218,7 @@ Futures предназначены для получения *одного* зн
 
 Библиотека futures также включает в себя
 типаж
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html),
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html),
 который очень похож на futures, но настраивается на создание
 последовательности значений с течением времени. Внутри есть набор
 комбинаторов, некоторые из которых работают с futures.
@@ -266,7 +266,7 @@ let responses = requests.map(|req| service.process(req)).buffered(32); // <--
 StreamWriter::new(responsesm, output)
 ```
 
-Комбинатор [buffered](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.buffered) берет поток `futures` и
+Комбинатор [buffered](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.buffered) берет поток `futures` и
 буферизирует их до какого-то конечного числа. Буферизация потока означает, что
 будет с жадностью выдергиваться большее, чем запрошено количество объектов, а
 полученные futures будут прятаться в буфер для дальнейшей обработки. В данном
