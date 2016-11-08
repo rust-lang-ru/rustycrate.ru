@@ -161,7 +161,7 @@ future представляет; функции неблокирующие.
 Возвращает вам future, который выполняет future `f`, берет `val`, который он
 создает, и строит еще один future `some_new_future(val)`, затем выполняет его.
 
-- [Mapping](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.map):
+- [Mapping](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.map):
 `f.map(|val| some_new_value(val))`. 
 Возвращает вам future, который выполняет future `f` и применяет его к результату
 `some_new_value(val)`.

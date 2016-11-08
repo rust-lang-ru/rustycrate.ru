@@ -148,13 +148,13 @@ let tls_handshake = socket.and_then(|socket| {
 });
 ```
 
-Здесь используется метод [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then)
+Здесь используется метод [and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then)
 типажа future, вызывая его у результата выполнения метода
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect). Метод
-[and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) принимает
+[and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then) принимает
 замыкание, которое получает значение предыдущего future. В этом случае `socket` будет иметь тип
 [TcpStream](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html). Стоит отметить, что замыкание,
-переданное в [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then), не будет
+переданное в [and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then), не будет
 выполнено в случае если
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect) вернёт
 ошибку.
@@ -174,11 +174,11 @@ let tls_handshake = socket.and_then(|socket| {
 [TlsStream](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.TlsStream.html), похожий на расмотренный выше
 [TcpStream](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html).
 
-Комбинатор [and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) выполняет
+Комбинатор [and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then) выполняет
 много скрытой работы, обеспечивая выполнение futures в правильном порядке и отслеживая их на лету.
 При этом значение, возвращаемое
-[and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then), реализует типаж
-[Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), поэтому мы можем составлять цепочки
+[and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then), реализует типаж
+[Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html), поэтому мы можем составлять цепочки
 вычислений.
 
 Далее отправляем HTTP запрос:
@@ -194,7 +194,7 @@ let request = tls_handshake.and_then(|socket| {
 ```
 
 Здесь мы получили future из предыдущего шага (`tls_handshake`) и использовали
-[and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) снова, чтобы продолжить
+[and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then) снова, чтобы продолжить
 вычисление. Комбинатор [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html) полностью
 записывает HTTP запрос, производя многократные записи по необходимости.
 
@@ -238,7 +238,7 @@ println!("{}", String::from_utf8_lossy(&data));
 
 Фух! Мы рассмотрели futures,
 [инициализирующие TCP соедениение](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect),
-[создающие цепочки вычислений](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) и
+[создающие цепочки вычислений](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then) и
 [читающие данные из сокета](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.read_to_end.html). Но это только
 пример возможностей futures, далее рассмотрим нюансы.
 
@@ -303,27 +303,27 @@ fn foo<F>(future: F)
 fn poll(&mut self) -> Poll<Self::Item, Self::Error>;
 ```
 
-Работа типажа [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html) построена на этом методе.
-Метод [poll](http://alexcrichton.com/futures-rs/futures/trait.Future.html#tymethod.poll) - это единственная точка
+Работа типажа [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html) построена на этом методе.
+Метод [poll](https://docs.rs/futures/0.1.3/futures/trait.Future.html#tymethod.poll) - это единственная точка
 входа для извлечения вычисленного в future значения. Как пользователю future вам редко понадобится вызывать этот
 метод напрямую. Скорее всего, вы будете взаимодействовать с futures через комбинаторы, которые создают
 высокоуровневые абстракции вокруг futures. Однако знание того, как futures работают под капотом, будет полезным.
 
-Подробнее рассмотрим метод [poll](http://alexcrichton.com/futures-rs/futures/trait.Future.html#tymethod.poll).
+Подробнее рассмотрим метод [poll](https://docs.rs/futures/0.1.3/futures/trait.Future.html#tymethod.poll).
 Обратим внимание на аргумент `&mut self`, который вызывает ряд ограничений и свойств:
 
 - futures могут быть опрошены только одним потоком единовременно;
 - во время выполнения метода `poll`, futures могут изменять своё состояние;
 - после заврешения `poll` владение futures может быть передано другой сущности.
 
-На самом деле тип [Poll](http://alexcrichton.com/futures-rs/futures/type.Poll.html) является псевдонимом:
+На самом деле тип [Poll](https://docs.rs/futures/0.1.3/futures/type.Poll.html) является псевдонимом:
 
 ```
 type Poll<T, E> = Result<Async<T>, E>;
 ```
 
 Так же взглянем, что из себя представляет перечисление
-[Async](http://alexcrichton.com/futures-rs/futures/enum.Async.html):
+[Async](https://docs.rs/futures/0.1.3/futures/enum.Async.html):
 
 ```rust
 pub enum Async<T> {
@@ -334,34 +334,34 @@ pub enum Async<T> {
 
 Посредством этого перечисления futures могут взаимодействовать, когда значение future готово
 к использованию. Если произошла ошибка, тогда будет сразу возвращено `Err`. В противном случае, перечисление
-[Async](http://alexcrichton.com/futures-rs/futures/enum.Async.html) отображает, когда значение Future полностью
+[Async](https://docs.rs/futures/0.1.3/futures/enum.Async.html) отображает, когда значение Future полностью
 получено или ещё не готово.
 
-Типаж [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), как и `Iterator`, не определяет, что
-происходит после вызова метода [poll](http://alexcrichton.com/futures-rs/futures/trait.Future.html#tymethod.poll),
+Типаж [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html), как и `Iterator`, не определяет, что
+происходит после вызова метода [poll](https://docs.rs/futures/0.1.3/futures/trait.Future.html#tymethod.poll),
 если future уже обработан. Это означает, что тем, кто реализует типаж
-[Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), не нужно поддерживать состояние,
+[Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html), не нужно поддерживать состояние,
 чтобы проверить, успешно ли вернул результат метод
-[poll](http://alexcrichton.com/futures-rs/futures/trait.Future.html#tymethod.poll).
+[poll](https://docs.rs/futures/0.1.3/futures/trait.Future.html#tymethod.poll).
 
-Если вызов [poll](http://alexcrichton.com/futures-rs/futures/trait.Future.html#tymethod.poll) возвращает
+Если вызов [poll](https://docs.rs/futures/0.1.3/futures/trait.Future.html#tymethod.poll) возвращает
 `NotReady`, future всё ещё требуется знать, когда необходимо выполниться снова.
 Для достижения этой цели future должен обеспечить следующий механизм: при получении `NotReady`
 текущая задача должна иметь возможность получить уведомление, когда значение станет доступным.
 
-Метод [park](http://alexcrichton.com/futures-rs/futures/task/fn.park.html) является основной точкой входа доставки
-уведомлений. Эта функция возвращает [Task](http://alexcrichton.com/futures-rs/futures/task/struct.Task.html),
+Метод [park](https://docs.rs/futures/0.1.3/futures/task/fn.park.html) является основной точкой входа доставки
+уведомлений. Эта функция возвращает [Task](https://docs.rs/futures/0.1.3/futures/task/struct.Task.html),
 который реализует типажи `Send` и `'static`, и имеет основной метод -
-[unpark](http://alexcrichton.com/futures-rs/futures/task/struct.Task.html#method.unpark). Вызов метода
-[unpark](http://alexcrichton.com/futures-rs/futures/task/struct.Task.html#method.unpark) указывает, что future
+[unpark](https://docs.rs/futures/0.1.3/futures/task/struct.Task.html#method.unpark). Вызов метода
+[unpark](https://docs.rs/futures/0.1.3/futures/task/struct.Task.html#method.unpark) указывает, что future
 может производить вычисления и возвращать значение.
 
 Более детальную документацию можно найти
-[здесь](http://alexcrichton.com/futures-rs/futures/trait.Future.html#tymethod.poll).
+[здесь](https://docs.rs/futures/0.1.3/futures/trait.Future.html#tymethod.poll).
 
 ## Комбинаторы future
 
-Теперь кажется, что метод [poll](http://alexcrichton.com/futures-rs/futures/trait.Future.html#tymethod.poll)
+Теперь кажется, что метод [poll](https://docs.rs/futures/0.1.3/futures/trait.Future.html#tymethod.poll)
 может внести немного боли в ваш рабочий процесс. Что если у вас есть future, который
 должен вернуть `String`, а вы хотите конвертировать его в future, возвращающий `u32`? Для получения такого рода
 композиций типаж future обеспечивает большое число *комбинаторов*.
@@ -380,24 +380,24 @@ fn parse<F>(future: F) -> Box<Future<Item=u32, Error=F::Error>>
 ```
 
 Здесь для преобразования future, возвращающий тип `String`, во future, возвращающий `u32`, используется
-[map](http://alexcrichton.com/futures-rs/futures/struct.Map.html). Упаковывание в
+[map](https://docs.rs/futures/0.1.3/futures/struct.Map.html). Упаковывание в
 [Box](https://doc.rust-lang.org/std/boxed/struct.Box.html) не всегда необходимо и более подробно будет рассмотрено в
 разделе [возвращений futures](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md#returning-futures).
 
 Комбинаторы позволяют выражать следующие понятия:
 
-- изменение типа future ([map](http://alexcrichton.com/futures-rs/futures/struct.Map.html),
-[map_err](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.map_err));
+- изменение типа future ([map](https://docs.rs/futures/0.1.3/futures/struct.Map.html),
+[map_err](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.map_err));
 - запуск другого future, когда исходный будет выполнен (
-[then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.then),
-[and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then),
-[or_else](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.or_else));
+[then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.then),
+[and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then),
+[or_else](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.or_else));
 - продолжение выполнения, когда хотя бы один из futures выполнился (
-[select](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.select));
+[select](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.select));
 - ожидание выполнения двух future (
-[join](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.join));
+[join](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.join));
 - определение поведения `poll` после вычислений (
-[fuse](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.fuse)).
+[fuse](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.fuse)).
 
 Использование комбинаторов похоже на использование типажа `Iterator` в Rust или `futures` в Scala.
 Большинство манипуляций с futures заканчивается использованием этих комбинаторов. Все комбинаторы имеют нулевую
@@ -406,12 +406,12 @@ fn parse<F>(future: F) -> Box<Future<Item=u32, Error=F::Error>>
 
 # Типаж `Stream`
 
-Предварительно мы рассмотрели типаж [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), который
+Предварительно мы рассмотрели типаж [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html), который
 полезен в случае вычисления всего лишь одного значения в течение всего времени. Но иногда вычисления лучше
 представить в виде *потока* значений. Для примера, TCP слушатель
 производит множество TCP соединений в течение своего времени жизни. Посмотрим, какие сущности из стандартной
-библиотеки эквиваленты [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html) и
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html):
+библиотеки эквиваленты [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html) и
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html):
 
 
 | # items | Sync | Async      | Common operations                              |
@@ -419,7 +419,7 @@ fn parse<F>(future: F) -> Box<Future<Item=u32, Error=F::Error>>
 | 1 | [Result]   | [Future] | [map], [and_then]                        |
 | ∞ | [Iterator] | [Stream] | [map][stream-map], [fold], [collect]   |
 
-Взглянем на типаж [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html):
+Взглянем на типаж [Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html):
 
 ```rust
 trait Stream {
@@ -430,31 +430,31 @@ trait Stream {
 }
 ```
 
-Вы могли заметить, что типаж [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) очень
-похож на типаж [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html). Основным отличием является
-то, что метод [poll](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#tymethod.poll) возвращает
+Вы могли заметить, что типаж [Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html) очень
+похож на типаж [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html). Основным отличием является
+то, что метод [poll](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#tymethod.poll) возвращает
 `Option<Self::Item>`, а не `Self::Item`.
 
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) со временем производит множество
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html) со временем производит множество
 опциональных значений, сигнализируя о завершении потока возвратом `Poll::Ok(None)`. По своей сути
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) представляет собой асинхронный поток,
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html) представляет собой асинхронный поток,
 который производит значения в определённом порядке.
 
-На самом деле, [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) - это специальный
+На самом деле, [Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html) - это специальный
 экземпляр
-типажа [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), и он может быть конвертирован в
+типажа [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html), и он может быть конвертирован в
 future при помощи метода
-[into_future](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.into_future). [Возвращённый
-future](http://alexcrichton.com/futures-rs/futures/stream/struct.StreamFuture.html) получает следующее
+[into_future](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.into_future). [Возвращённый
+future](https://docs.rs/futures/0.1.3/futures/stream/struct.StreamFuture.html) получает следующее
 значение из потока плюс сам поток, позволяющий получить больше значений позже. Это также позволяет составлять потоки
 и остальные произвольные futures с помощью базовых комбинаторов future.
 
-Как и типаж [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), типаж
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) обеспечивает большое количество
+Как и типаж [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html), типаж
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html) обеспечивает большое количество
 комбинаторов. Помимо future-подобных комбинаторов (например,
-[then](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.then)) поддерживаются
+[then](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.then)) поддерживаются
 потоко-специфичные комбинаторы, такие как
-[fold](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.fold).
+[fold](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.fold).
 
 ## Пример использования типажа `Stream`
 
@@ -517,8 +517,8 @@ let server = listener.and_then(|listener| {
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect), не
 возвращает [TcpListener](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html), скорее, future его
 вычисляет. Затем мы используем метод
-[and_then](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.and_then) у
-[Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html), чтобы определить, что случится,
+[and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then) у
+[Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html), чтобы определить, что случится,
 когда TCP слушатель станет доступным.
 
 Мы получили TCP слушатель и можем определить его состояние:
@@ -533,14 +533,14 @@ println!("Listening for connections on {}", addr);
 адреса, с которым связали слушатель. С этого момента порт успешно связан, так что клиенты могут
 подключиться.
 
-Далее создадим [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html).
+Далее создадим [Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html).
 
 ```rust
 let clients = listener.incoming();
 ```
 
 Здесь метод [incoming](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html#method.incoming)
-возвращает [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) пары
+возвращает [Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html) пары
 [TcpListener](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpListener.html) и
 [SocketAddr](https://doc.rust-lang.org/std/net/enum.SocketAddr.html).
 Это похоже на [TcpListener из стандартной библиотеки](https://doc.rust-lang.org/std/net/struct.TcpListener.html)
@@ -551,7 +551,7 @@ let clients = listener.incoming();
 их в остальную часть системы для обработки.
 
 Теперь, имея поток клиентских соединений, мы можем манипулировать им при помощи стандартных методов типажа
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html):
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html):
 
 ```rust
 let welcomes = clients.and_then(|(socket, _peer_addr)| {
@@ -560,8 +560,8 @@ let welcomes = clients.and_then(|(socket, _peer_addr)| {
 ```
 
 Здесь мы используем метод
-[and_then](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.and_then) типажа
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html), чтобы выполнить действие над каждым
+[and_then](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.and_then) типажа
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html), чтобы выполнить действие над каждым
 элементом потока. В данном случае мы формируем цепочку вычислений для каждого элемента потока (`TcpStream`). Мы видели
 метод [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html) ранее, он записывает
 переданный буфер данных в переданный сокет.
@@ -569,7 +569,7 @@ let welcomes = clients.and_then(|(socket, _peer_addr)| {
 Этот блок означает, что `welcomes` теперь является потоком сокетов, в которые записана последовательность символов
 "Hello!". В рамках этого руководства мы завершаем работу с соединением, так что преобразуем весь поток `welcomes` в
 future с помощью метода
-[for_each](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.for_each):
+[for_each](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.for_each):
 
 ```rust
 welcomes.for_each(|(_socket, _welcome)| {
@@ -584,8 +584,8 @@ welcomes.for_each(|(_socket, _welcome)| {
 Следует отметить, что важным ограничением этого сервера является отсутствие параллельности. Потоки
 представляют собой упорядоченную обработку данных, и в данном случае порядок исходного потока -
 это порядок, в котором сокеты были получены,
-а методы [and_then](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.and_then) и
-[for_each](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.for_each) этот порядок
+а методы [and_then](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.and_then) и
+[for_each](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.for_each) этот порядок
 сохраняют. Таким образом, сцепление(chaining) создаёт эффект, когда берётся каждый сокет из потока и обрабатываются все
 связанные операции на нём перед переходом к следующем сокету.
 
@@ -604,10 +604,10 @@ let server = welcomes.for_each(|future| {
 });
 ```
 
-Вместо метода [and_then](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.and_then)
-используется метод [map](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.map), который
+Вместо метода [and_then](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.and_then)
+используется метод [map](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.map), который
 преобразует поток клиентов в поток futures. Затем мы изменяем замыкание переданное в
-[for_each](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html#method.for_each) используя метод
+[for_each](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.for_each) используя метод
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn), что
 позволяет future быть запущенным параллельно в цикле событий. Обратите внимание, что
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) требует future
@@ -620,20 +620,20 @@ c item/error имеющими тип `()`.
 Взглянем на несколько конкретных реализаций futures и потоков.
 
 Первым делом, любое доступное значение future находится в состоянии "готового". Для этого достаточно функций
-[done](http://alexcrichton.com/futures-rs/futures/fn.done.html),
-[failed](http://alexcrichton.com/futures-rs/futures/fn.failed.html) и
-[finished](http://alexcrichton.com/futures-rs/futures/fn.finished.html). Функция
-[done](http://alexcrichton.com/futures-rs/futures/fn.done.html) принимает `Result<T,E>` и возвращает
-`Future<Item=I, Error=E>`. Для функций [failed](http://alexcrichton.com/futures-rs/futures/fn.failed.html) и
-[finished](http://alexcrichton.com/futures-rs/futures/fn.finished.html) можно указать `T` или `E` и оставить другой
+[done](https://docs.rs/futures/0.1.3/futures/fn.done.html),
+[failed](https://docs.rs/futures/0.1.3/futures/fn.failed.html) и
+[finished](https://docs.rs/futures/0.1.3/futures/fn.finished.html). Функция
+[done](https://docs.rs/futures/0.1.3/futures/fn.done.html) принимает `Result<T,E>` и возвращает
+`Future<Item=I, Error=E>`. Для функций [failed](https://docs.rs/futures/0.1.3/futures/fn.failed.html) и
+[finished](https://docs.rs/futures/0.1.3/futures/fn.finished.html) можно указать `T` или `E` и оставить другой
 ассоцированный тип в качестве шаблона (wildcard).
 
 Для потоков эквивалентным понятием "готового" значения потока является функция
-[iter](http://alexcrichton.com/futures-rs/futures/stream/fn.iter.html), которая создаёт поток, отдающий элементы
+[iter](https://docs.rs/futures/0.1.3/futures/stream/fn.iter.html), которая создаёт поток, отдающий элементы
 полученного итератора. В ситуациях, когда значение не находится в состоянии "готового", также имеется много общих
-реализаций [Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html) и
-[Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html), первая из которых - функция
-[oneshot](http://alexcrichton.com/futures-rs/futures/fn.oneshot.html):
+реализаций [Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html) и
+[Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html), первая из которых - функция
+[oneshot](https://docs.rs/futures/0.1.3/futures/fn.oneshot.html):
 
 ```rust
 extern crate futures;
@@ -657,29 +657,29 @@ fn main() {
 }
 ```
 
-Здесь видно, что функция [oneshot](http://alexcrichton.com/futures-rs/futures/fn.oneshot.html) возвращает
+Здесь видно, что функция [oneshot](https://docs.rs/futures/0.1.3/futures/fn.oneshot.html) возвращает
 кортеж из двух элементов, как, например, [mpsc::channel](https://doc.rust-lang.org/std/sync/mpsc/fn.channel.html).
-Первая часть `tx` ("transmitter") имеет тип [Complete](http://alexcrichton.com/futures-rs/futures/struct.Complete.html)
+Первая часть `tx` ("transmitter") имеет тип [Complete](https://docs.rs/futures/0.1.3/futures/struct.Complete.html)
 и используется для завершения `oneshot`, обеспечивая значение future на другом конце. Метод
-[Complete::complete](http://alexcrichton.com/futures-rs/futures/struct.Complete.html#method.complete) передаст значение
+[Complete::complete](https://docs.rs/futures/0.1.3/futures/struct.Complete.html#method.complete) передаст значение
 принимающей стороне.
 
 Вторая часть кортежа, это `rx` ("receiver"), имеет тип
-[Oneshot](http://alexcrichton.com/futures-rs/futures/struct.Oneshot.html), для которого реализован типаж
-[Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html). `Item` имеет тип `T`, это тип `Oneshot`.
-`Error` имеет тип [Canceled](http://alexcrichton.com/futures-rs/futures/struct.Canceled.html), что происходит, когда
-часть [Complete](http://alexcrichton.com/futures-rs/futures/struct.Complete.html) отбрасывается не завершая выполнения
+[Oneshot](https://docs.rs/futures/0.1.3/futures/struct.Oneshot.html), для которого реализован типаж
+[Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html). `Item` имеет тип `T`, это тип `Oneshot`.
+`Error` имеет тип [Canceled](https://docs.rs/futures/0.1.3/futures/struct.Canceled.html), что происходит, когда
+часть [Complete](https://docs.rs/futures/0.1.3/futures/struct.Complete.html) отбрасывается не завершая выполнения
 вычислений.
 
 Эта конкретная реализация future может быть использована (как здесь показано) для передачи значений между потоками.
 Каждая часть реализует типаж `Send` и по отдельности является владельцем сущности. Часто использовать эту реализацию,
 как правило, не рекомендуется, лучше использовать базовые future и комбинаторы, там где это возможно.
 
-Для типажа [Stream](http://alexcrichton.com/futures-rs/futures/stream/trait.Stream.html) доступен аналогичный примитив
-[channel](http://alexcrichton.com/futures-rs/futures/stream/fn.channel.html). Этот тип также имеет две части, одна из
+Для типажа [Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html) доступен аналогичный примитив
+[channel](https://docs.rs/futures/0.1.3/futures/stream/fn.channel.html). Этот тип также имеет две части, одна из
 которых используется для отправки сообщений, а другая, реализующая `Stream`, для их приёма.
 
-Канальный тип [Sender](http://alexcrichton.com/futures-rs/futures/stream/struct.Sender.html) имеет важное отличие от
+Канальный тип [Sender](https://docs.rs/futures/0.1.3/futures/stream/struct.Sender.html) имеет важное отличие от
 стандартной библиотеки: когда значение отправляется в канал, он потребляет отправителя, возвращая future, который, в
 свою очередь, возвращает исходного отправителя только когда посланное значение будет потреблено. Это
 создаёт противодействие, чтобы производитель не смог совершить прогресс пока потребитель от него отстаёт.
@@ -687,7 +687,7 @@ fn main() {
 # Возвращение futures
 
 Самое необходимое действие в работе с futures - это возвращение
-[Future](http://alexcrichton.com/futures-rs/futures/trait.Future.html). Однако как и с типажом
+[Future](https://docs.rs/futures/0.1.3/futures/trait.Future.html). Однако как и с типажом
 [Iterator](https://doc.rust-lang.org/std/iter/trait.Iterator.html), это пока что не так уж легко.
 Рассмотрим имеющиеся варианты:
 
@@ -710,7 +710,7 @@ fn foo() -> Box<Future<Item = u32, Error = io::Error>> {
 Достоинством этого подхода является простая запись и создание. Этот подход максимально гибок с точки зрения изменений
 future, так как любой тип future может быть возвращен в непрозрачном, упакованном виде.
 
-Обратите внимание, что метод [boxed](http://alexcrichton.com/futures-rs/futures/trait.Future.html#method.boxed)
+Обратите внимание, что метод [boxed](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.boxed)
 возвращает `BoxFuture`, который на самом деле является всего лишь псевдонимом для `Box<Future + Send>`:
 
 ```rust
@@ -770,8 +770,8 @@ fn add_10<F>(f: F) -> Map<F, fn(i32) -> i32>
 ```
 
 Здесь возвращаемый тип именуется так, как компилятор видит его. Функция
-[map](http://alexcrichton.com/futures-rs/futures/struct.Map.html) возвращает структуру
-[map](http://alexcrichton.com/futures-rs/futures/struct.Map.html), которая содержит внутри future и функцию, которая
+[map](https://docs.rs/futures/0.1.3/futures/struct.Map.html) возвращает структуру
+[map](https://docs.rs/futures/0.1.3/futures/struct.Map.html), которая содержит внутри future и функцию, которая
 вычисляет значения для `map`.
 
 Достоинством данного подхода является его эргономичность в отличие от пользовательских типов future, а также отсутствие
@@ -816,12 +816,12 @@ fn add_10<F>(f: F) -> impl Future<Item = i32, Error = F::Error>
 запускать. Ранее, когда разговор шёл о методе `poll`, было отмечено, что если `poll` возвращает `NotReady`, он
 обеспечивает отправку уведомления задаче, но откуда эта задача вообще взялась? Кроме того, где `poll` был вызван впервые?
 
-Рассмотрим [Task](http://alexcrichton.com/futures-rs/futures/task/struct.Task.html).
+Рассмотрим [Task](https://docs.rs/futures/0.1.3/futures/task/struct.Task.html).
 
-Структура [Task](http://alexcrichton.com/futures-rs/futures/task/struct.Task.html) управляет вычислениями,
+Структура [Task](https://docs.rs/futures/0.1.3/futures/task/struct.Task.html) управляет вычислениями,
 представленными futures. Любой конкретный экземпляр future может иметь короткий цикл жизни, являясь частью большого
 вычисления. В примере "Здраствуй, мир!" имелось некоторое количество future, но только один выполнялся в момент времени.
-Для всей программы был один [Task](http://alexcrichton.com/futures-rs/futures/task/struct.Task.html), который следовал
+Для всей программы был один [Task](https://docs.rs/futures/0.1.3/futures/task/struct.Task.html), который следовал
 логическому "потоку исполнения" по мере того, как обрабатывался каждый future и общее вычисление прогрессировало.
 
 Когда future
@@ -829,7 +829,7 @@ fn add_10<F>(f: F) -> impl Future<Item = i32, Error = F::Error>
 задачей и тогда эта структура может быть опрошена для завершения. Как и когда именно происходит опрос (poll),
 остаётся во власти функции, которая запустила future. Обычно вы не будете вызывать
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn), а скорее
-[СpuPool::spawn](http://alexcrichton.com/futures-rs/futures_cpupool/struct.CpuPool.html#method.spawn) с пулом потоков
+[СpuPool::spawn](https://docs.rs/futures/0.1.3/futures_cpupool/struct.CpuPool.html#method.spawn) с пулом потоков
 или [Handle::spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) с циклом
 событий. Внутри они использут
 [spawn](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Handle.html#method.spawn) и обрабатывают
@@ -865,7 +865,7 @@ Futures требуют `'static`, так что у нас есть два вар
 инициализируются этим способом, будут лениво инициализироваться при первом доступе к `Task`,
 а уничтожаться они будут, когда `Task` будет уничтожен;
 
-- структура [TaskRc](http://alexcrichton.com/futures-rs/futures/task/struct.TaskRc.html) обеспечивает возможность
+- структура [TaskRc](https://docs.rs/futures/0.1.3/futures/task/struct.TaskRc.html) обеспечивает возможность
 создания счётчика ссылок на данные, которые доступны только в соответствующей задаче. Она может быть клонирована,
 так же как и `Rc`.
 
