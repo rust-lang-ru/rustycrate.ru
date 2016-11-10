@@ -78,7 +78,7 @@ Rust.
 # Регистрация
 
 Событие требует регистрации. Зарегистрироваться можно
-[здесь](https://laboratoriya-kasperskogo.timepad.ru/event/397843/).
+[здесь](https://events.kaspersky.com/event/rust2).
 
 Ждём вас! И обязательно расскажите о событии друзьям.
 
