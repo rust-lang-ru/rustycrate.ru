@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'i18n'
 gem 'jekyll', '3.2.1'
-gem 'html-proofer', '3.0.0'
+gem 'html-proofer'
 gem 'jekyll-sass-converter'
 gem 'sass'
 gem 'therubyracer'
