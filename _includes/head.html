@@ -46,7 +46,7 @@
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:url" content="{{ page.url | prepend: site.url }}" />
-  <meta name="twitter:creator" content="{{ page.author}}" />
+  <meta name="twitter:creator" content="{{ page.author | strip_html | escape_once }}" />
   <meta name="twitter:title" content="{{ page.title | strip_html | escape_once }} | {{ site.title }}" />
   <meta name="twitter:site" content="@rustycrate1" />
   <meta name="twitter:description" content="
