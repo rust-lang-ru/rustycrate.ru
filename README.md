@@ -93,6 +93,21 @@ Jekyll.
 
 Рекомендуемый способ установки - [RVM](https://rvm.io).
 
+RVM нужен, чтобы легко поставить нужную версию Ruby. Вот как его установить:
+
+```
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.3
+```
+
+После этого откройте новый терминал и сделайте:
+
+```
+rvm use --default 2.2.3
+```
+
+Затем в том же терминале клонируем и собираем сайт:
+
 ```
 git clone https://github.com/ruRust/rustycrate.ru.git
 cd rustycrate.ru
@@ -100,3 +115,9 @@ gem install bundler
 bundle install
 bundle exec jekyll serve
 ```
+
+## Если не собирается
+
+Пишите в [Gitter-чат этого сайта][1] - мы поможем разобраться.
+
+[1]: https://gitter.im/ruRust/rustycrate.ru
