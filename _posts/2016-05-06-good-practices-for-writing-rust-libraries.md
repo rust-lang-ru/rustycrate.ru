@@ -9,9 +9,6 @@ author: Pascal Hertleif (перевел Андрей Лесников)
 https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries)
 (2015.10.24).
 
-
-# Советы по написанию библиотек на Rust
-
 Прошел примерно год, как меня заинтересовал [Rust](http://www.rust-lang.org), язык
 программирования от Mozilla Research, сосредоточенный на решении трёх задач:
 безопасность, скорость и параллелизм. Он такой же низкоуровневый,
