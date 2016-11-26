@@ -125,6 +125,12 @@ h1.page-title {
     color: black;
 }
 
+.navbar li a img {
+    max-width: 16px;
+    max-height: 16px;
+    margin: 2px;
+}
+
 .well p img {
     border: 1px solid #e3e3e3;
     border-radius: 4px;
