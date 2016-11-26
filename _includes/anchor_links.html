@@ -1,20 +1,20 @@
 <script>
-  var anchorForId = function (id) {
+  var anchorForId = function (id, href) {
     var anchor = document.createElement("a");
     anchor.className = "header-link";
-    anchor.href      = "#" + id;
+    anchor.href      = href + "#" + id;
     anchor.innerHTML = "<span class=\"sr-only\">Permalink</span> <i class=\"glyphicon glyphicon-link\"></i>";
     anchor.title = "постоянная ссылка";
     return anchor;
   };
 
-  var linkifyAnchors = function (level, containingElement) {
+  var linkifyAnchors = function (level, containingElement, href) {
     var headers = containingElement.getElementsByTagName("h" + level);
     for (var h = 0; h < headers.length; h++) {
       var header = headers[h];
 
       if (typeof header.id !== "undefined" && header.id !== "") {
-        header.appendChild(anchorForId(header.id));
+        header.appendChild(anchorForId(header.id, href));
       }
     }
   };
@@ -22,11 +22,14 @@
   document.onreadystatechange = function () {
     if (this.readyState === "complete") {
       var contentBlock = document.getElementsByClassName("well")[0];
+      var h1 = contentBlock.getElementsByTagName("h1")[0];
+      var a = h1.getElementsByTagName("a")[0];
+      var href = a.getAttribute("href");
       if (!contentBlock) {
         return;
       }
       for (var level = 1; level <= 6; level++) {
-        linkifyAnchors(level, contentBlock);
+        linkifyAnchors(level, contentBlock, href);
       }
     }
   };
