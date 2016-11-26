@@ -21,15 +21,19 @@
 
  document.onreadystatechange = function () {
      if (this.readyState === "complete") {
-         var contentBlock = document.getElementsByClassName("well")[0];
-         var h1 = contentBlock.getElementsByTagName("h1")[0];
-         var a = h1.getElementsByTagName("a")[0];
-         var href = a.getAttribute("href");
-         if (!contentBlock) {
-             return;
-         }
-         for (var level = 1; level <= 6; level++) {
-             linkifyAnchors(level, contentBlock, href);
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
          }
      }
  };
