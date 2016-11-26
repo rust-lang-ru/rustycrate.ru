@@ -62,3 +62,5 @@ title: Проекты участников нашего сообщества
 * [@zummenix](https://github.com/zummenix)
     * [expectest](https://crates.io/crates/expectest/) — библиотека для
       реализации модульных тестов на Rust
+* [@ozkriff](https://github.com/ozkriff)
+    * [Zone of Control](https://github.com/ozkriff/zoc) — пошаговая стратегическая игра
