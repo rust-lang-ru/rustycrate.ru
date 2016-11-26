@@ -49,6 +49,8 @@ title: Проекты участников нашего сообщества
       MPFR, библиотеки для вычислений с произвольной точностью
     * [xml-rs](https://crates.io/crates/xml-rs/) — библиотека для работы с
       XML, полностью на Rust
+* [@ozkriff](https://github.com/ozkriff)
+    * [Zone of Control](https://github.com/ozkriff/zoc) — пошаговая стратегическая игра
 * [@SCareAngel](https://github.com/SCareAngel)
     * [functional](https://crates.io/crates/functional/) — типажи для
       реализации функционального программирования на Rust (привет, монады!)
