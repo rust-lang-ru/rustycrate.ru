@@ -1,6 +1,6 @@
 {% include index/header.html records_string=include.records_string %}
 {% if include.records_num %}
-{% for post in site.posts limit:include.records_num %}
+{% for post in paginator.posts limit:include.records_num %}
     {% include index/item.html %}
 {% endfor %}
 {% else %}
@@ -8,4 +8,5 @@
     {% include index/item.html %}
 {% endfor %}
 {% endif %}
+{% include pagination.html %}
 {% include index/footer.html %}

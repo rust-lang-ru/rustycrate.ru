@@ -1,0 +1,23 @@
+<div class="pagination-area">
+    <nav aria-label="Переход по страницам">
+        <ul class="pagination">
+            {% for i in (1..paginator.total_pages) %}
+
+            {% if i == 1 %}
+            <li>
+                <a href="/index.html">{{ i }}</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="/page{{ i }}">{{ i }}</a>
+            </li>
+            {% endif %}
+
+            {% endfor %}
+
+            <li>
+                <a href="/index-full.html">все</a>
+            </li>
+        </ul>
+    </nav>
+</div>

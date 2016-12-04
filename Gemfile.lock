@@ -35,6 +35,7 @@ GEM
       pathutil (~> 0.9)
       rouge (~> 1.7)
       safe_yaml (~> 1.0)
+    jekyll-paginate (1.1.0)
     jekyll-sass-converter (1.5.0)
       sass (~> 3.4)
     jekyll-watch (1.5.0)
@@ -80,6 +81,7 @@ DEPENDENCIES
   html-proofer
   i18n
   jekyll (= 3.2.1)
+  jekyll-paginate
   jekyll-sass-converter
   json
   sass

@@ -10,6 +10,7 @@ url: "https://rustycrate.ru" # базовое имя хоста и проток�
 # Эти параметры могут использоваться темой для Jekyll, чтобы поставить ссылки на профили
 twitter_username:
 github_username:  ruRust
+paginate: 5
 # Настройки по умолчанию для определённых полей front matter
 defaults:
   -
@@ -28,3 +29,6 @@ markdown: kramdown
 
 kramdown:
   transliterated_header_ids: true
+
+gems:
+  - jekyll-paginate
