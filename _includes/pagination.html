@@ -3,13 +3,29 @@
         <ul class="pagination">
             {% for i in (1..paginator.total_pages) %}
 
+            {% if i == paginator.page %}
+                {% assign class = "active" %}
+            {% else %}
+                {% assign class = false %}
+            {% endif %}
+
             {% if i == 1 %}
-            <li>
-                <a href="/index.html">{{ i }}</a>
+                {% capture href %}"/index.html"{% endcapture %}
+            {% else %}
+                {% capture href %}"/page{{ i }}"{% endcapture %}
+            {% endif %}
+
+            {% capture element %}
+            <a href={{ href }}>{{ i }}</a>
+            {% endcapture %}
+
+            {% if class %}
+            <li class={{ class }}>
+                {{ element }}
             </li>
             {% else %}
             <li>
-                <a href="/page{{ i }}">{{ i }}</a>
+                {{ element }}
             </li>
             {% endif %}
 
