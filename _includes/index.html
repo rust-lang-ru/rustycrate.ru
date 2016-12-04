@@ -1,12 +1,14 @@
 {% include index/header.html %}
-{% if include.paginate %}
-{% for post in paginator.posts %}
-    {% include index/item.html %}
-{% endfor %}
+{% if include.do_paginate %}
+    {% for post in paginator.posts %}
+        {% include index/item.html %}
+    {% endfor %}
 {% else %}
-{% for post in site.posts %}
-    {% include index/item.html %}
-{% endfor %}
+    {% for post in site.posts %}
+        {% include index/item.html %}
+    {% endfor %}
 {% endif %}
-{% include pagination.html %}
+{% if include.do_paginate %}
+    {% include pagination.html %}
+{% endif %}
 {% include index/footer.html %}
