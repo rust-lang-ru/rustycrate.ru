@@ -33,9 +33,3 @@ kramdown:
 gems:
   - jekyll-assets
   - jekyll-paginate
-
-assets:
-  assets:
-    - "*.css"
-  sources:
-    - _assets/css
