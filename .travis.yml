@@ -21,6 +21,7 @@ before_script:
 - eyo --version
 - bundle exec jekyll --version
 - bundle exec htmlproofer --version
+- convert -version
 script:
 - JEKYLL_ENV=production RUSTYCRATE_MODE=production RUSTYCRATE_ENABLE_EYO=yes
   bundle exec jekyll build
