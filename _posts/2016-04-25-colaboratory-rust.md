@@ -5,11 +5,12 @@ author: Михаил Панков
 ---
 
 <a href="https://laboratoriya-kasperskogo.timepad.ru/event/323535/">
-<img src="/images/2016-04-25-colaboratory-rust/splash.jpg" alt="лого" style="width: 800px;"/>
+{% img '2016-04-25-colaboratory-rust/splash.jpg' alt:'лого' magick:resize:800 %}
 </a>
 
 <a href="https://laboratoriya-kasperskogo.timepad.ru/event/323535/">
-<img src="/images/2016-04-25-colaboratory-rust/button.png" alt="зарегистрироваться" style="width: 248px;"/>
+{% img '2016-04-25-colaboratory-rust/button.png' alt:'зарегистрироваться'
+   width:'248' height:'60' %}
 </a>
 
 Rust — современный системный язык программирования с мощной системой типов. Он
@@ -108,7 +109,8 @@ Rust - быстрый и надежный язык без сборщика му�
 Ждём вас! И обязательно расскажите о событии друзьям.
 
 <a href="https://laboratoriya-kasperskogo.timepad.ru/event/323535/">
-<img src="/images/2016-04-25-colaboratory-rust/button.png" alt="зарегистрироваться" style="width: 248px;"/>
+{% img '2016-04-25-colaboratory-rust/button.png' alt:'зарегистрироваться'
+   width:'248' height:'60' %}
 </a>
 
 # Обновление

@@ -46,7 +46,7 @@ _Это вики-статья. Примем Pull Request с описанием �
   * В меню редактора _Tools -> Build With..._ и выбираем _Rust - Run_
 4. Profit!
 
-![Sublime 3 with Rust](/images/2015-12-04-ide-for-rust/sublime-3-rust.png)
+{% img '2015-12-04-ide-for-rust/sublime-3-rust.png' alt:'Sublime 3 with Rust' %}
 {% endspoiler %}
 
 {% spoiler Инструкция по настройке Visual Studio Code %}
@@ -97,7 +97,7 @@ _Проверено для Linux (ArchLinux) и для Mac OS X (El Capitan 10.1
   * При наведении на символ с зажатой клавишей Ctrl (Cmd) определение появится в
     удобном окне (см. на изображении ниже)
 
-![Visual Studio Code with Rust](/images/2015-12-04-ide-for-rust/visual_studio_code_rust.png)
+{% img '2015-12-04-ide-for-rust/visual_studio_code_rust.png' alt:'Visual Studio Code with Rust' %}
 
 {% endspoiler %}
 
@@ -194,7 +194,7 @@ _Проверено для Manjaro Linux 15.2 и Windows 10_
   * _TAB_ - автодополнение
   * _M + ._ - go-to definition
 
-![Emacs with Rust](/images/2015-12-04-ide-for-rust/emacs_rust.png)
+{% img '2015-12-04-ide-for-rust/emacs_rust.png' alt:'Emacs with Rust' %}
 
 {% endspoiler %}
 
@@ -255,7 +255,7 @@ _Проверено для Fedora 23_
 [rust.vim]: https://github.com/rust-lang/rust.vim
 [Vundle]: https://github.com/VundleVim/Vundle.vim
 
-![Vim with Rust](/images/2015-12-04-ide-for-rust/vim_rust.gif)
+{% img '2015-12-04-ide-for-rust/vim_rust.gif' alt:'Vim with Rust' %}
 
 {% endspoiler %}
 

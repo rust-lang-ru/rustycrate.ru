@@ -59,6 +59,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     mercenary (0.3.6)
+    mini_magick (4.6.0)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     nokogiri (1.6.8.1)
@@ -100,6 +101,7 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-sass-converter
   json
+  mini_magick
   sass
   stringex
   therubyracer

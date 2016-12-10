@@ -33,3 +33,4 @@ kramdown:
 gems:
   - jekyll-assets
   - jekyll-paginate
+  - mini_magick
