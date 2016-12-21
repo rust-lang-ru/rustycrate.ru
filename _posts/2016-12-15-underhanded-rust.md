@@ -136,7 +136,7 @@ author: The Rust Community Team (перевели авторы rustycrate.ru)
 
 Содержимое вашего решения должно быть под 
 [OSI](https://opensource.org/licenses) или
-[FSF](https://www.gnu.org/licenses/license-list.html%20and) одобренными
+[FSF](https://www.gnu.org/licenses/license-list.html) одобренными
 лицензиями открытого кода. Хорошие кандидаты это
 [CC-BY](https://creativecommons.org/licenses/by/2.0/),
 [MIT](https://opensource.org/licenses/MIT),
