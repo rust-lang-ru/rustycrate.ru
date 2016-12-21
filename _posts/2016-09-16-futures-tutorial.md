@@ -160,15 +160,15 @@ let tls_handshake = socket.and_then(|socket| {
 ошибку.
 
 Как только получен `socket`, мы создаём клиентский TLS контекст с помощью
-[ClientContext::new](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.ClientContext.html#method.new). Этот тип
+ClientContext::new. Этот тип
 из контейнера `tokio-tls` представляет клиентскую часть TLS соединения.
 Далее вызываем метод
-[handshake](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.ClientContext.html#method.handshake),
+handshake,
 чтобы выполнить TLS хэндшейк. Первый аргумент - доменное имя, к которому мы подключаемся, второй - объект
 ввода/вывода (в данном случае объект `socket`).
 
 Как и [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect)
-раннее, метод [handshake](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.ClientContext.html#method.handshake)
+раннее, метод handshake
 возвращает future. TLS хэндшэйк может занять некоторое время, потому что клиенту и серверу необходимо
 выполнить некоторый ввод/вывод, подтверждение сертификатов и т.д. После выполнения future вернёт
 [TlsStream](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.TlsStream.html), похожий на расмотренный выше
