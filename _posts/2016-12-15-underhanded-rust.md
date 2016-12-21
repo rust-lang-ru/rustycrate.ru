@@ -20,6 +20,8 @@ author: The Rust Community Team (перевели авторы rustycrate.ru)
 [unsafe](https://doc.rust-lang.org/book/unsafe.html) коде, чтобы он прошел
 аудит? Попробуйте это сделать!
 
+<!--cut-->
+
 # Проблема 2016: нарезать колбасу
 
 Поздравляем!
