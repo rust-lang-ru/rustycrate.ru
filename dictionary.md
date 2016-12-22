@@ -69,6 +69,10 @@ title: Словарь терминов
 * **generic**
 
   обобщённый
+  
+* **irrefutable pattern**
+
+  безусловный шаблон
 
 * **length**
 
