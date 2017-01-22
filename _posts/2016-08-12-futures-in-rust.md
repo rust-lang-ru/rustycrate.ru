@@ -5,7 +5,7 @@ categories: обучение
 ---
 
 Это перевод [статьи](http://aturon.github.io/blog/2016/08/11/futures/).
-    
+
 > *Замечание*: проект futures-rs был реорганизован и многие вещи были переименованы.
 Где возможно, ссылки были обновлены.
 
@@ -38,7 +38,7 @@ Katz, и Nicholas Matsakis за понимание на все пути.)
 рассказываются самые яркие моменты, ключевые идеи и несколько предварительных
 тестов. Дальнейшие посты покажут, как возможности Rust используются в
 проектировании этих абстракций с нулевой стоимостью. Также вас уже ждет
-[tutorial](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md).
+[tutorial](https://tokio.rs/docs/getting-started/futures/).
 
 #### Почему async I/O?
 
@@ -348,7 +348,7 @@ Rust (см. "raw mio" по ссылке). Они находятся в 0.3% др
 
 На текущий момент библиотека достаточно готова к использованию, и довольно
 тщательно документирована; в нее входит
-[tutorial](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md)
+[tutorial](https://tokio.rs/docs/getting-started/futures/)
 и несколько примеров, включающих:
 
 - простой [TCP echo server](https://github.com/alexcrichton/futures-rs/blob/d7e72748f665b0851dd90a23871fe3419c0a7ef3/futures-mio/src/bin/echo.rs)

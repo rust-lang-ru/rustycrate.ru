@@ -5,6 +5,9 @@ title: "futures-rs: асинхронщина на Rust"
 author: Alex Crichton (перевёл Арсен Галимов)
 ---
 
+> *Замечание*: проект futures-rs был реорганизован и многие вещи были
+переименованы. Где возможно, ссылки были обновлены.
+
 # Начинаем работу с `futures`
 
 Этот документ поможет вам изучить контейнер для языка программирования Rust - `futures`,
@@ -382,7 +385,7 @@ fn parse<F>(future: F) -> Box<Future<Item=u32, Error=F::Error>>
 Здесь для преобразования future, возвращающий тип `String`, во future, возвращающий `u32`, используется
 [map](https://docs.rs/futures/0.1.3/futures/struct.Map.html). Упаковывание в
 [Box](https://doc.rust-lang.org/std/boxed/struct.Box.html) не всегда необходимо и более подробно будет рассмотрено в
-разделе [возвращений futures](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md#returning-futures).
+разделе [возвращений futures](https://tokio.rs/docs/going-deeper/returning/).
 
 Комбинаторы позволяют выражать следующие понятия:
 
@@ -691,10 +694,10 @@ fn main() {
 [Iterator](https://doc.rust-lang.org/std/iter/trait.Iterator.html), это пока что не так уж легко.
 Рассмотрим имеющиеся варианты:
 
-- [Типажи-объекты](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md#trait-objects);
-- [Пользовательские типы](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md#custom-types);
-- [Именованные типы](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md#named-types);
-- [impl Trait](https://github.com/alexcrichton/futures-rs/blob/master/TUTORIAL.md#impl-trait).
+- [Типажи-объекты](https://tokio.rs/docs/going-deeper/returning/#trait-objects);
+- [Пользовательские типы](https://tokio.rs/docs/going-deeper/returning/#custom-types);
+- [Именованные типы](https://tokio.rs/docs/going-deeper/returning/#named-types);
+- [impl Trait](https://tokio.rs/docs/going-deeper/returning/#impl-trait).
 
 ## Типажи-объекты
 
