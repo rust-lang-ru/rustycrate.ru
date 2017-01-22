@@ -18,7 +18,7 @@ author: Михаил Панков
 
 1. Статус задач
    * [Общие задачи](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#obshchiie-zadachi)
-   * [Книга](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#kniga)
+   * [Книга](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#knigha)
    * [mdBook](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#mdbook)
    * [Другие книги](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#drughiie-knighi)
    * [Сайт](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#sait)
