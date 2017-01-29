@@ -10,3 +10,7 @@ gem 'mini_magick'
 gem 'sass'
 gem 'stringex'
 gem 'therubyracer'
+
+group :jekyll_plugins do
+  gem 'jekyll-livereload'
+end
