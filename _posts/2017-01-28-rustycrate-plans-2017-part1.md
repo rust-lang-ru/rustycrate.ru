@@ -12,7 +12,9 @@ author: Михаил Панков
 Планы будут написаны по частям. Они будут публиковаться по мере готовности в
 виде отдельных статей. Ссылки на них также будут появляться здесь.
 
-Часть 1 (эта) - вступление, книги и социальные сети.
+* Часть 1 (эта) - вступление, книги и социальные сети.
+* [Часть 2](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/05/rustycrate-plans-2017-part2.html) -
+  митапы, выступления, календари событий, подкасты и конкурсы.
 
 # Вступление
 
@@ -172,3 +174,10 @@ continuous deployment с помощью Travis
 <script>(function(t,e,o,n){var c,s,a;t.SMCX=t.SMCX||[],e.getElementById(n)||(c=e.getElementsByTagName(o),s=c[c.length-1],a=e.createElement(o),a.type="text/javascript",a.async=!0,a.id=n,a.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/Ng7Gfq2jHNIQVaDra4DULocIA19LoCpUDuGEw_2BPF_2FnkQN9WTVhvPqN1M1_2BUdPxY0.js"].join(""),s.parentNode.insertBefore(a,s))})(window,document,"script","smcx-sdk");</script>
 
 </center>
+
+<hr/>
+
+Другие части обсуждения планов:
+
+* [Часть 2](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/05/rustycrate-plans-2017-part2.html) -
+  митапы, выступления, календари событий, подкасты и конкурсы.
