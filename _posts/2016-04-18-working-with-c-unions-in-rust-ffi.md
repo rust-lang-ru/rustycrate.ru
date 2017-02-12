@@ -232,4 +232,4 @@ pub struct Foo {
 До тех пор пока Rust не будет поддерживать объединения, такие проблемы сложно будет решить корректно. Удачи, но будьте 
 осторожны! 
   
-*Примечание переводчика: уже существует [несколько](https://github.com/retep998/rfcs/blob/master/text/0000-unsafe-enums.md) [предложений](https://github.com/joshtriplett/rfcs/blob/untagged_union/text/0000-union.md) по добавлению нужной функциональности в язык.*
+*Примечание переводчика: уже существует [несколько](https://github.com/retep998/rfcs/blob/master/text/0000-unsafe-enums.md) [предложений](https://github.com/rust-lang/rfcs/blob/master/text/1444-union.md) по добавлению нужной функциональности в язык.*
