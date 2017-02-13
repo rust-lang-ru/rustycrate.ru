@@ -203,7 +203,7 @@ Rust.
 На сегодня это всё. Ниже находится ссылка на страницу в Patreon и виджет
 голосования за предложенные идеи.
 
-<a href="https://www.patreon.com/mkpankov" target="blank">
+<a href="https://www.patreon.com/bePatron?u=30685" target="blank">
 {% img '2017-02-11-rustycrate-plans-2017-part3/button.png' alt:'Patreon' %}
 </a>
 
