@@ -12,11 +12,11 @@ categories: обучение
 Чтобы избежать путаницы, я попытался свести текст к минимуму. Данная заметка не является заменой различных учебных руководств, и лишь сделана для тех, 
 кто считает, что визуально информация воспринимается легче. Если вы только начали изучать Rust и считаете данные графики полезными, то я бы порекомендовал вам отмечать свой код похожими схемами для лучшего закрепления понятий.
 
-<!--cut-->
-
 <a href="{% asset_path '2017-02-17-rust-copy-move-borrow/rust-move-copy-borrow-ru.png' %}" target="blank">
 {% img '2017-02-17-rust-copy-move-borrow/rust-move-copy-borrow-ru.png' alt:'Схема' magick:1/2 %}
 </a>
+
+<!--cut-->
 
 Картинка кликабельна, вы можете её увеличить. Также вы можете получить схемы без перевода в виде [PNG](https://rufflewind.com/img/rust-move-copy-borrow.png), [SVG](https://rufflewind.com/img/rust-move-copy-borrow.svg) или [PDF](https://rufflewind.com/img/rust-move-copy-borrow.pdf).
 
