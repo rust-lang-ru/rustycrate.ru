@@ -27,7 +27,8 @@ script:
   bundle exec jekyll build
 - bundle exec htmlproofer ./_site
   --log-level error --only-4xx --check-favicon --check-html
-  --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/,/is.gd/,'/github.com\/ruRust\/rustycrate.ru\/edit\/master/'
+  --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/,/is.gd/,
+    /github.com/ruRust/rustycrate.ru/edit/master/
   --file-ignore /yandex_6b9a121b20becc7c.html/,/googlea5495ce52829dd37.html/,/where-are-you-from.html/
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
