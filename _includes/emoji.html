@@ -1,0 +1,9 @@
+<script src="/js/emojione.min.js"></script>
+
+<script type="text/javascript">
+function convertEmoji() {
+    var input = document.getElementById('content').innerHTML;
+    var output = emojione.shortnameToImage(input);
+    document.getElementById('content').innerHTML = output;
+  }
+</script>

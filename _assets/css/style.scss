@@ -131,7 +131,7 @@ h1.page-title {
     margin: 2px;
 }
 
-.well p img {
+.well p img:not(.emojione){
     border: 1px solid #e3e3e3;
     border-radius: 4px;
     padding: 10px;
@@ -140,6 +140,10 @@ h1.page-title {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+.well p img.emojione {
+    height: 1.5em;
 }
 
 .well p {
