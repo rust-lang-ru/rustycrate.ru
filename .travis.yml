@@ -11,8 +11,8 @@ rvm:
 before_script:
 - . $HOME/.nvm/nvm.sh
 - command -v nvm
-- nvm install --lts=boron
-- nvm use --default --lts=boron
+- nvm install v6.9.5
+- nvm use --default v6.9.5
 - node --version
 - npm --version
 - npm install typograf
