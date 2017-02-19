@@ -112,7 +112,7 @@ rvm use --default 2.2.3
 git clone https://github.com/ruRust/rustycrate.ru.git
 cd rustycrate.ru
 gem install bundler
-bundle install
+bundle install --path vendor/bundle
 bundle exec jekyll serve
 ```
 
