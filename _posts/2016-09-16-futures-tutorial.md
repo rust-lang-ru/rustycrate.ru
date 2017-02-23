@@ -2,7 +2,9 @@
 layout: post
 categories: обучение
 title: "futures-rs: асинхронщина на Rust"
-author: Alex Crichton (перевёл Арсен Галимов)
+author: Alex Crichton
+original: https://tokio.rs/docs/getting-started/tokio/
+translator: Арсен Галимов
 ---
 
 > *Замечание*: проект futures-rs был реорганизован и многие вещи были

@@ -1,13 +1,10 @@
 ---
 title: "Советы по написанию библиотек на Rust"
 categories: руководства
-author: Pascal Hertleif (перевел Андрей Лесников)
+author: Pascal Hertleif
+original: https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries
+translator: Андрей Лесников
 ---
-
-Перевод статьи [Pascal Hertleif](https://pascalhertleif.de)
-["Good Practices for Writing Rust Libraries"](
-https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries)
-(2015.10.24).
 
 Прошел примерно год, как меня заинтересовал [Rust](http://www.rust-lang.org), язык
 программирования от Mozilla Research, сосредоточенный на решении трёх задач:

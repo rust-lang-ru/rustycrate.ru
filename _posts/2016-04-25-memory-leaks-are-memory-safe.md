@@ -1,6 +1,6 @@
 ---
 title: "Утечки не нарушают безопасность памяти"
-author: Huon Wilson (перевёл Станислав Ткач)
+author: Huon Wilson
 original: https://huonw.github.io/blog/2016/04/memory-leaks-are-memory-safe/
 translator: Станислав Ткач
 categories: обучение
