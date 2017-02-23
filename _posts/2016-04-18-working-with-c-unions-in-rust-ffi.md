@@ -1,10 +1,10 @@
 ---
 title: "Работа с С-объединениями (union) в Rust FFI"
-author: Herman J. Radtke III (перевёл Станислав Ткач)
+author: Herman J. Radtke III
+original: http://hermanradtke.com/2016/03/17/unions-rust-ffi.html
+translator: Станислав Ткач
 categories: обучение
 ---
-
-Предлагаю вашему вниманию перевод статьи "[Working with C unions in Rust FFI](http://hermanradtke.com/2016/03/17/unions-rust-ffi.html)" за авторством Herman J. Radtke III.
 
 Примечание: Эта статья предполагает, что читатель знаком с [Rust FFI](https://doc.rust-lang.org/book/ffi.html) ([перевод](http://rurust.github.io/rust_book_ru/src/ffi.html)), [порядком байтов](https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA_%D0%B1%D0%B0%D0%B9%D1%82%D0%BE%D0%B2) (endianess) и [ioctl](https://en.wikipedia.org/wiki/Ioctl).
 

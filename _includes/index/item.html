@@ -11,18 +11,7 @@
                 <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
             </h1>
             <!-- >{% if post.author %}{{ post.author }} • {% endif %} означает, что код внутри if выполняется если условие верно. -->
-            <p class="post-header-text">
-                {% if post.author %}
-                {{ post.author }} •
-                {% endif %}
-                {% if post.date %}
-                <time>
-                    {{ post.date | localize: "%d %B %Y" }}
-                </time>
-                {% endif %}
-                {% include category-link.html %}
-                {% include patreon.html %}
-            </p>
+            {% include post-header-text.html %}
             <div class="post-header"></div>
         </header>
         <div>

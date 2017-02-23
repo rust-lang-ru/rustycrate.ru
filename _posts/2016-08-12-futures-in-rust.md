@@ -1,10 +1,10 @@
 ---
 title: "Futures нулевой стоимости в Rust"
-author: Aaron Turon (перевёл Сергей Ефремов)
+author: Aaron Turon
+original: http://aturon.github.io/blog/2016/08/11/futures/
+translator: Сергей Ефремов
 categories: обучение
 ---
-
-Это перевод [статьи](http://aturon.github.io/blog/2016/08/11/futures/).
 
 > *Замечание*: проект futures-rs был реорганизован и многие вещи были переименованы.
 Где возможно, ссылки были обновлены.

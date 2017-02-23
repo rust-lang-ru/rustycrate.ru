@@ -1,0 +1,16 @@
+<p class="post-header-text">
+    {% if post.author %}
+    {{ post.author }} •
+    {% endif %}
+    {% if post.translator %}
+    <a href={{ post.original }} target="_blank">оригинал</a> •
+    перевод: {{ post.translator }} •
+    {% endif %}
+    {% if post.date %}
+    <time>
+        {{ post.date | localize: "%d %B %Y" }}
+    </time>
+    {% endif %}
+    {% include category-link.html %}
+    {% include patreon.html %}
+</p>

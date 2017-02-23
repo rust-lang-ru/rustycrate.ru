@@ -1,10 +1,10 @@
 ---
 title: "Графическое описание владения и заимствования в Rust"
-author: Phil Ruffwind (перевёл Шерзод Муталов)
+author: Phil Ruffwind
+original: https://rufflewind.com/2017-02-15/rust-move-copy-borrow
+translator: Шерзод Муталов
 categories: обучение
 ---
-
-Это перевод [статьи](https://rufflewind.com/2017-02-15/rust-move-copy-borrow).
 
 Ниже представлено графическое описание перемещения, копирования и заимствования в [языке программирования Rust](https://www.rust-lang.org/). 
 В основном, эти понятия специфичны только для Rust и часто являются камнем преткновения для новичков.

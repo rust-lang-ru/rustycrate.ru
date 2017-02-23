@@ -2,12 +2,10 @@
 title: "Rust и парадокс Блаба"
 categories: размышления
 published: true
-author: Jonathan Turner (перевёл Иван Иващенко)
+author: Jonathan Turner
+original: http://www.jonathanturner.org/2016/01/rust-and-blub-paradox.html
+translator: Иван Иващенко
 ---
-
-*Эта статья – перевод статьи
-[Rust and the Blub Paradox](http://www.jonathanturner.org/2016/01/rust-and-blub-paradox.html)
-за авторством Jonathan Turner*
 
 Несколько недель назад я наткнулся на
 [сравнительный анализ Rust, D и Go](https://www.quora.com/Which-language-has-the-brightest-future-in-replacement-of-C-between-D-Go-and-Rust-And-Why)

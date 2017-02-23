@@ -1,10 +1,10 @@
 ---
 title: "Rust через его основополагающие принципы"
-author: Ian Whitney (перевёл Станислав Ткач)
+author: Ian Whitney
+original: http://designisrefactoring.com/2016/04/01/rust-via-its-core-values/
+translator: Станислав Ткач
 categories: обучение
 ---
-
-Это перевод [статьи](http://designisrefactoring.com/2016/04/01/rust-via-its-core-values/).
 
 У меня есть несколько мыслей об изучении языков программирования.
 

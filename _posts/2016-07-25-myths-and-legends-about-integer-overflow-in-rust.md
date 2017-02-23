@@ -1,10 +1,10 @@
 ---
 title: "Мифы и легенды о переполнении целых чисел в Rust"
-author: Huon Wilson (перевёл Станислав Ткач)
+author: Huon Wilson
+original: https://huonw.github.io/blog/2016/04/myths-and-legends-about-integer-overflow-in-rust/
+translator: Станислав Ткач
 categories: обучение
 ---
-
-Это перевод [статьи](https://huonw.github.io/blog/2016/04/myths-and-legends-about-integer-overflow-in-rust/).
 
 Примитивные целочисленные типы, поддерживаемые процессорами, являются ограниченным 
 приближением к бесконечному набору целых чисел, которыми мы привыкли оперировать в 

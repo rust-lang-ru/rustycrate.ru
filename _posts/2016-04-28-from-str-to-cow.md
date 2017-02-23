@@ -1,6 +1,8 @@
 ---
 title: "От &amp;str к Cow"
-author: Joe Wilm (перевел Алексей Сидоров)
+author: Joe Wilm
+original: http://blog.jwilm.io/from-str-to-cow
+translator: Алексей Сидоров
 categories: обучение
 ---
 

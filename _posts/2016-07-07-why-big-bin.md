@@ -1,6 +1,8 @@
 ---
 title: "Большие бинари в моем Rust? (Why is a Rust executable large?)"
-author: lifthrasiir (адаптация от kitsu)
+author: lifthrasiir
+original: https://lifthrasiir.github.io/rustlog/why-is-a-rust-executable-large.html
+translator: kitsu
 categories: обучение
 ---
 

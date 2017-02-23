@@ -1,10 +1,10 @@
 ---
 title: "Утечки не нарушают безопасность памяти"
 author: Huon Wilson (перевёл Станислав Ткач)
+original: https://huonw.github.io/blog/2016/04/memory-leaks-are-memory-safe/
+translator: Станислав Ткач
 categories: обучение
 ---
-
-Это перевод [статьи](https://huonw.github.io/blog/2016/04/memory-leaks-are-memory-safe/).
 
 Ошибки доступа к памяти и утечки памяти представляют собой две категории ошибок, 
 которые привлекают больше всего внимания, так что на предотвращение или хотя бы 

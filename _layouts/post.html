@@ -9,20 +9,8 @@
             <div class="well">
                 <div class="header-left">
                     <h1 class="page-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
-
-                    <p class="post-header-text">
-                        {% if page.author %}
-                        {{ page.author }} •
-                        {% endif %}
-                        {% if page.date %}
-                        <time>
-                            {{ page.date | localize: "%d %B %Y" }}
-                        </time>
-                        {% endif %}
-                        {% assign post = page %}
-                        {% include category-link.html %}
-                        {% include patreon.html %}
-                    </p>
+                    {% assign post = page %}
+                    {% include post-header-text.html %}
                 </div>
                 <div class="header-right">
                     <div id="buttons">

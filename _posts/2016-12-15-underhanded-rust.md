@@ -2,10 +2,10 @@
 layout: post
 categories: новости
 title: "Соревнование Underhanded Rust 2016"
-author: The Rust Community Team (перевели авторы rustycrate.ru)
+author: The Rust Community Team
+original: https://underhanded.rs/blog/2016/12/15/underhanded-rust.en-US.html
+translator: авторы rustycrate.ru
 ---
-
-*Это перевод [анонса](https://underhanded.rs/blog/2016/12/15/underhanded-rust.en-US.html) Rust Community Team.*
 
 [Команда связей с сообществом Rust](https://community.rs) рада сообщить о первом
 ежегодном соревновании Underhanded Rust. Это соревнование должно проверить наше 

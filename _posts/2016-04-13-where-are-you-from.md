@@ -1,14 +1,10 @@
 ---
 title: "Как пользоваться типажами From и Into"
-author: llogic (перевёл Сергей Ефремов)
+author: llogic
+original: https://llogiq.github.io/2015/11/27/from-into.html
+translator: Сергей Ефремов
 categories: обучение
 ---
-
-# Откуда ты? (Where are you From::from)
-
-Это перевод [статьи](https://llogiq.github.io/2015/11/27/from-into.html).
-
-# И в кого ты превратился? (And what have you turned Into::into)
 
 (Эта статья написана для Rust 1.4, и код по-прежнему работает в 1.7 без
 изменений)
