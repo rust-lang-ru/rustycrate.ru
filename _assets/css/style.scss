@@ -33,9 +33,9 @@ div.header-left {
 }
 
 div.header-right {
-    margin-top: 20px;
     float: right;
     text-align: right;
+    margin-bottom: 5px;
 }
 
 div.posts-notice {
@@ -260,14 +260,6 @@ th,td {
 
 table {
     margin-bottom: 10px;
-}
-
-.header-left {
-    float: left;
-}
-
-.header-right {
-    float: right;
 }
 
 .spoiler > input + label:after {
