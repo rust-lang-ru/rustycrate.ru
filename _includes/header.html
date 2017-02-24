@@ -37,17 +37,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="{{ site.baseurl }}/">
                 {% img 'rustycrate-logo-32px.png' alt:'rust' class='brand-icon' %}
             </a>
         </div>
         <div class="navbar-collapse collapse" id="main-menu">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="/">Блог</a></li>
+                <li><a href="{{ site.baseurl }}/">Блог</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Книги <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/dictionary.html">Словарь терминов</a></li>
+                        <li><a href="{{ site.baseurl }}/dictionary.html">Словарь терминов</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="http://rurust.github.io/rust_book_ru/" target="blank">Язык программирования Rust</a></li>
                         <li><a href="https://github.com/ruRust/tlborm" target="blank">Маленькая книжка по макросам в Rust</a></li>
@@ -71,14 +71,14 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Материалы сообщества <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="https://rurust.github.io/cargo-docs-ru/" target="blank">Документация по Cargo</a></li>
-                        <li><a href="/community-projects.html">Проекты участников нашего сообщества</a></li>
+                        <li><a href="{{ site.baseurl }}/community-projects.html">Проекты участников нашего сообщества</a></li>
                         <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Руководство по участию в проектах</a></li>
-                        <li><a href="/dictionary.html">Словарь терминов</a></li>
-                        <li><a href="/in-progress.html">Статьи, над которыми мы работаем</a></li>
-                        <li><a href="/contacts.html">Команда</a></li>
+                        <li><a href="{{ site.baseurl }}/dictionary.html">Словарь терминов</a></li>
+                        <li><a href="{{ site.baseurl }}/in-progress.html">Статьи, над которыми мы работаем</a></li>
+                        <li><a href="{{ site.baseurl }}/contacts.html">Команда</a></li>
                     </ul>
                 </li>
-                <li><a href="/adopters.html">Кто использует Rust</a></li>
+                <li><a href="{{ site.baseurl }}/adopters.html">Кто использует Rust</a></li>
                 <li><a href="http://forum.rustycrate.ru" target="blank">Форум</a></li>
                 <li><a href="http://ru.stackoverflow.com/questions/tagged/rust" target="blank">Stackoverflow</a></li>
             </ul>

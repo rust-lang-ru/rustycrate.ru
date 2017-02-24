@@ -13,11 +13,11 @@ author: Михаил Панков
 виде отдельных статей. Ссылки на них также будут появляться здесь.
 
 * Часть 1 (эта) - вступление, книги и социальные сети.
-* [Часть 2](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/04/rustycrate-plans-2017-part2.html) -
+* [Часть 2]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/04/rustycrate-plans-2017-part2.html) -
   митапы, выступления, календари событий, подкасты и конкурсы.
-* [Часть 3](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/11/rustycrate-plans-2017-part3.html) -
+* [Часть 3]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/11/rustycrate-plans-2017-part3.html) -
   cтатьи, сайт, Patreon, расширение тем и Ядро команды Сообщества.
-* [Часть 4](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/18/rustycrate-plans-2017-part4.html) -
+* [Часть 4]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/18/rustycrate-plans-2017-part4.html) -
   результаты голосования, процесс реализации запланированного и идеи участников.
 
 # Вступление
@@ -183,7 +183,7 @@ continuous deployment с помощью Travis
 
 Другие части обсуждения планов:
 
-* [Часть 2](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/04/rustycrate-plans-2017-part2.html) -
+* [Часть 2]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/04/rustycrate-plans-2017-part2.html) -
   митапы, выступления, календари событий, подкасты и конкурсы.
-* [Часть 3](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/11/rustycrate-plans-2017-part3.html) -
+* [Часть 3]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/11/rustycrate-plans-2017-part3.html) -
   cтатьи, сайт, Patreon, расширение тем и Ядро команды Сообщества.

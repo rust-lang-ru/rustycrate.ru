@@ -10,6 +10,6 @@
 {% when 'размышления' %}
 {% assign category_file = "thoughts.html" %}
 {% endcase  %}
-<a href="/{{ category_file }}">{{ category }}</a>
+<a href="{{ site.baseurl }}/{{ category_file }}">{{ category }}</a>
 {% endfor %}
 {% endif %}

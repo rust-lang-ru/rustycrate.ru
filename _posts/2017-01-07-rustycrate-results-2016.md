@@ -17,18 +17,18 @@ author: Михаил Панков
 # Содержание
 
 1. Статус задач
-   * [Общие задачи](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#obshchiie-zadachi)
-   * [Книга](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#knigha)
-   * [mdBook](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#mdbook)
-   * [Другие книги](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#drughiie-knighi)
-   * [Сайт](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#sait)
+   * [Общие задачи]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#obshchiie-zadachi)
+   * [Книга]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#knigha)
+   * [mdBook]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#mdbook)
+   * [Другие книги]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#drughiie-knighi)
+   * [Сайт]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#sait)
 2. Отчёт о состоянии ресурсов
-   * [Чат](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#chat)
-   * [Форум](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#forum)
-   * [Статьи](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#stati)
-   * [Группы в социальных сетях](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#gruppy-v-sotsialnykh-sietiakh)
-   * [Митапы](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#mitapy)
-   * [Работа](/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#rabota)
+   * [Чат]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#chat)
+   * [Форум]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#forum)
+   * [Статьи]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#stati)
+   * [Группы в социальных сетях]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#gruppy-v-sotsialnykh-sietiakh)
+   * [Митапы]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#mitapy)
+   * [Работа]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#rabota)
 3. Заключение
 
 <hr/>

@@ -10,9 +10,9 @@
             {% endif %}
 
             {% if i == 1 %}
-                {% capture href %}"/index.html"{% endcapture %}
+                {% capture href %}"{{ site.baseurl }}/index.html"{% endcapture %}
             {% else %}
-                {% capture href %}"/page{{ i }}"{% endcapture %}
+                {% capture href %}"{{ site.baseurl }}/page{{ i }}"{% endcapture %}
             {% endif %}
 
             {% capture element %}
