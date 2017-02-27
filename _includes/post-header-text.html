@@ -5,7 +5,7 @@
         </time> •
     {% endif %}
     {% if post.translator %}
-        оригинал: <a href={{ post.original }} target="_blank">{{ post.author }}</a> •
+        <a href={{ post.original }} target="_blank">оригинал</a>: {{ post.author }} •
         перевод: {{ post.translator }}
     {% elsif post.author %}
         {{ post.author }}
