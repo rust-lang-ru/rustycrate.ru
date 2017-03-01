@@ -120,6 +120,8 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
     (red, green, blue)
 }
 When ran, Image::gradient_magnitune takes our bird image, and returns this:  
+После запуска, Image::gradient_magnitune берет наше изображение птицы и возвращает это:
+
 
 Путь наименьшего сопротивления
 Now we have to implement the arguably hardest part of the program: the DP algorithm to find the path of least resistance. Let’s take a quick look at how this will work out. For simplicitys sake, we’ll only look at the case where we find a vertical path. Imagine the table below being the gradient image of a 6x6 image.
