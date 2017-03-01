@@ -1,0 +1,129 @@
+Content Aware Image Resize - изменение размеров картинки по содержимому.
+Изменение размеров картинки по содержанию, “liquid resizing”, “retargeting” или “seam carving”, относятся к методу изменения размеров изображения. Где можно вставлять или удалять “швы”, или “наименее важные пути”, для уменьшения или наращивания изображения. Об этой идее я узнал из видео-роликов в ютубе, авторы Shai Avidan и Ariel Shamir.
+В этой статье я покажу простую реализацию концепции изменения размеров изображения на основе содержания, естественно на языке Rust :)
+В качестве подопытной картинки, я погуглил  "sample image", и нашел его: 
+Sketching out a top down approach
+Схема метода сверху вниз.
+Делаем наброски.
+Let’s start with some brainstorming. I imagine the library to be used like this:
+Давайте начнем мозговой штурм. Думаю, наша библиотека может использоваться так:
+/// caller.rs
+// Загружаем картинку.
+let mut image = car::load_image(path);
+// Зададим определенный размер?
+image.resize_to(car::Dimensions::Absolute(800, 580));
+// Удалим 20 строк?
+image.resize_to(car::Dimensions::Relative(0, -20));
+// Может покажем в окне?
+car::show_image(&image);
+// Или сохраним на диске?
+image.save("resized.jpeg");
+Самые важные функции в lib.rs могли бы быть такими:
+/// lib.rs
+pub fn load_image(path: Path) -> Image {
+    // Забудем пока об обработке ошибок :)
+    Image {
+        inner: some_image_lib::load(path).unwrap(),
+    }
+}
+
+impl Image {
+    pub fn resize_to(&mut self, dimens: Dimensions) {
+        // Сколько столбцов и строк вставить/удалить?
+        let (mut xs, mut ys) = self.size_diffs(dimens);
+        // Когда мы будем добавлять строки и столбцы,
+        // мы бы хотели выбирать путь с наименьшим счетом,
+        // не важно, строку или столбец.
+        while xs != 0 && ys != 0 {
+            let best_horizontal = image.best_horizontal_path();
+            let best_vertical = image.best_vertical_path();
+            // Вставляем с наибольшим счетом.
+            if best_horizontal.score < best_vertical.score {
+                self.handle_path(best_horizontal, &mut xs);
+            } else {
+                self.handle_path(best_vertical, &mut ys);
+            }
+        }
+        // Insert the rest in either direction.
+	// Остальные в любом направлении.
+        while xs != 0 {
+            let path = image.best_horizontal_path();
+            self.handle_path(path, &mut xs);
+        }
+        while ys != 0 {
+            let path = image.best_vertical_path();
+            self.handle_path(path, &mut ys);
+        }
+    }
+}
+This gives us some idea on how to approach writing system. We need to load an image, we need to find these seams, or paths, and we need to handle removing such a path from the image. In addition, we would perhaps like to be able to see our result.
+Это дает нам некоторое представление о том, как подходить к написанию системы. Нам нужно загрузить картинку, найти эти швы, или пути, и мы должны обработать удаление такого шва/пути из изображения. Кроме того, нам бы хотелось увидеть результат.
+Let’s do the image loading first, so we know what kind of API we’re working with.
+Давайте сначала загрузим наше изображение, значит нам известно, какой API мы используем.
+image
+The image library from the Piston developers seems useful, so we’ll add image = "0.12" to our Cargo.toml. A quick search in the docs is all that it takes for us to write the image loading:
+Библиотеки image от разработчиков “Piston” кажется полезным, поэтому мы добавим в наш Cargo.toml запись: image = "0.12". Быстрый поиск в документации это все, что требуется для нас, чтобы написать загрузку изображения:
+struct Image {
+    inner: image::DynamicImage,
+}
+
+impl Image {
+    pub fn load_image(path: &Path) -> Image {
+        Image {
+            inner: image::open(path).unwrap()
+        }
+    }
+}
+Естественным следующим шагом необходимо узнать как получить амплитуду градиента из image::DynamicImage. Крейт image не может этого сделать, но крейт imageproc может: imageproc::gradients::sobel_gradients. Однако нас поджидает нежданчик. Функция sobel_gradient прнимает 8-битное изображение в градациях серого, и возвращает 16-битное изображение в градациях серого. Изображение, которое мы загрузили - это изображение RGB с 8 битами на канал. Так что придется разложить каналы на R, G, B, затем преобразовать каждый канал в отдельные изображения в оттенках серого и вычислить градиенты каждого из них. А затем объединить градиенты вместе в одно изображение, в котором мы и будем искать путь.
+Это элегантно? Нет. Это будет работать? Возможно :)
+type GradientBuffer = image::ImageBuffer<image::Luma<u16>, Vec<u16>>;
+
+impl Image {
+    pub fn load_image(path: &Path) -> Image {
+        Image {
+            inner: image::open(path).unwrap()
+        }
+    }
+
+    fn gradient_magnitude(&self) -> GradientBuffer {
+        // Мы принимаем RGB
+        let (red, green, blue) = decompose(&self.inner);
+        let r_grad = imageproc::gradients::sobel_gradients(red.as_luma8().unwrap());
+        let g_grad = imageproc::gradients::sobel_gradients(green.as_luma8().unwrap());
+        let b_grad = imageproc::gradients::sobel_gradients(blue.as_luma8().unwrap());
+
+        let (w, h) = r_grad.dimensions();
+        let mut container = Vec::with_capacity((w * h) as usize);
+        for (r, g, b) in izip!(r_grad.pixels(), g_grad.pixels(), b_grad.pixels()) {
+            container.push(r[0] + g[0] + b[0]);
+        }
+        image::ImageBuffer::from_raw(w, h, container).unwrap()
+    }
+}
+
+fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
+                                              image::DynamicImage,
+                                              image::DynamicImage) {
+    let w = image.width();
+    let h = image.height();
+    let mut red = image::DynamicImage::new_luma8(w, h);
+    let mut green = image::DynamicImage::new_luma8(w, h);
+    let mut blue = image::DynamicImage::new_luma8(w, h);
+    for (x, y, pixel) in image.pixels() {
+        let r = pixel[0];
+        let g = pixel[1];
+        let b = pixel[2];
+        red.put_pixel(x, y, *image::Rgba::from_slice(&[r, r, r, 255]));
+        green.put_pixel(x, y, *image::Rgba::from_slice(&[g, g, g, 255]));
+        blue.put_pixel(x, y, *image::Rgba::from_slice(&[b, b, b, 255]));
+    }
+    (red, green, blue)
+}
+When ran, Image::gradient_magnitune takes our bird image, and returns this:  
+The path of least resistance
+Путь наименьшего сопротивления
+Now we have to implement the arguably hardest part of the program: the DP algorithm to find the path of least resistance. Let’s take a quick look at how this will work out. For simplicitys sake, we’ll only look at the case where we find a vertical path. Imagine the table below being the gradient image of a 6x6 image.
+Теперь мы должны реализовать, пожалуй, самую сложную часть программы: DP алгоритм, поиск пути наименьшего сопротивления. Давайте глянем как это будет работать. Для simplicitys сакэ, мы будем смотреть только на том случае, где нам найти вертикальный путь. Представьте в таблице ниже является градиент изображения 6х6 изображения.
+ 
+The point of the algorithm is to find a path P=p1… p6
+Смысл алгоритма состоит в поиске пути P=p1… p6
