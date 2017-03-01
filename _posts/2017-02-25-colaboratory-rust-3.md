@@ -4,9 +4,7 @@ categories: новости
 author: Михаил Панков
 ---
 
-<a href="https://events.kaspersky.com/event/rust2" target="blank">
 {% img '2017-02-25-colaboratory-rust-3/colab.jpg' alt:'лого' magick:resize:800 %}
-</a>
 
 Rust продолжает развиваться с космической скоростью, а мы только и успеваем
 собираться и обсуждать нововведения.
