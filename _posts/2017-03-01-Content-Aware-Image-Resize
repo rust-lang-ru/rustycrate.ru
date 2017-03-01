@@ -152,3 +152,63 @@ says how long the shortest path from that cell to a bottom cell is.
 говорят насколько весом кратчайший путь от текущей клетки к самой нижней клетке.
 Also note that there are two paths that sum to 8 (the two bottom cells differ in the two paths).
 Также обратите внимание, что есть два пути, которые в сумме дают 8 (две нижние клетки различаются по двум путям).
+
+
+Implementation
+Реализация
+Since we are just prototyping we will do the simplest thing. We’ll make a struct with an array for the table, and just for loop our way through the algorithm.
+Так-как у нас лишь макетирование программы, дальше мы сделаем по-простому. Мы создадим структуру с нашей таблицей в виде массива, и применим цикл for для нашего пути с помощью нашего алгоритма.
+struct DPTable {
+    width: usize,
+    height: usize,
+    table: Vec<u16>,
+}
+
+impl DPTable {
+    fn from_gradient_buffer(gradient: &GradientBuffer) -> Self {
+        let dims = gradient.dimensions();
+        let w = dims.0 as usize;
+        let h = dims.1 as usize;
+        let mut table = DPTable {
+            width: w,
+            height: h,
+            table: vec![0; w * h],
+        };
+        // Получаем градиент[h][w], кастуя в другой тип
+        let get = |w, h| gradient.get_pixel(w as u32, h as u32)[0];
+
+        // Инициализируем самую нижнюю строку
+        for i in 0..w {
+            let px = get(i, h - 1);
+            table.set(i, h - 1, px)
+        }
+        // For each cell in row j, select the smaller of the cells in the
+	// Для каждой ячейки в строке J, выбрать меньшее из клетки в
+        // row above. Special case the end rows
+	// строке выше. Особый случай конца строки
+        for row in (0..h - 1).rev() {
+            for col in 1..w - 1 {
+                let l = table.get(col - 1, row + 1);
+                let m = table.get(col    , row + 1);
+                let r = table.get(col + 1, row + 1);
+                table.set(col, row, get(col, row) + min(min(l, m), r));
+            }
+            // special case far left and far right:
+	    // особый случай крайний слева и крайний справа:
+            let left = get(0, row) + min(table.get(0, row + 1), table.get(1, row + 1));
+            table.set(0, row, left);
+            let right = get(0, row) + min(table.get(w - 1, row + 1), table.get(w - 2, row + 1));
+            table.set(w - 1, row, right);
+        }
+        table
+    }
+}
+After running, we can convert the DPTable back to a GradientBuffer, and write it to a file. The 
+pixels in the image below are the path weights divided by 128. 
+После запуска, мы можем преобразовать таблицу DPTable обратно в GradientBuffer, и записать его в файл. Пиксели на картинке, что изображена ниже – это веса пути, разделенные на 128.
+
+The image can be interpreted as follows: white pixels are cells that have a large sum from it to the bottom. These pixels has so much detail (change of color) around it (which we would like to preserve) so the gradient, which tells something about the rate of change, is large. Since the path finding algorithm will search for the smallest sum, which here is the “darkest path”, the algorithm will try its best to avoid these pixels. That is, the white parts in the gradient image are the most distinct parts.
+Эту картинку можно описать так: белые пиксели - это клетки, которые имеют наибольший вес. Градиент этих пикселей более детализирован, что говорит о высокой скорости изменений цвета (и именно эти участки картинки мы хотели бы сохранить).
+Поскольку путь алгоритма поиска будет искать наименьшие веса, которые представлены здесь “более темными путями”, то алгоритм будет стараться избегать светлых пикселей. То есть белые участки картинки.
+
+
