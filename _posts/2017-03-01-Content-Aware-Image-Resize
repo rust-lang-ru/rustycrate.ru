@@ -120,10 +120,33 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
     (red, green, blue)
 }
 When ran, Image::gradient_magnitune takes our bird image, and returns this:  
-The path of least resistance
+
 Путь наименьшего сопротивления
 Now we have to implement the arguably hardest part of the program: the DP algorithm to find the path of least resistance. Let’s take a quick look at how this will work out. For simplicitys sake, we’ll only look at the case where we find a vertical path. Imagine the table below being the gradient image of a 6x6 image.
 Теперь мы должны реализовать, пожалуй, самую сложную часть программы: DP алгоритм, поиск пути наименьшего сопротивления. Давайте глянем как это будет работать. Для simplicitys сакэ, мы будем смотреть только на том случае, где нам найти вертикальный путь. Представьте в таблице ниже является градиент изображения 6х6 изображения.
  
 The point of the algorithm is to find a path P=p1… p6
 Смысл алгоритма состоит в поиске пути P=p1… p6
+from one of the top cells G1i to one of the bottom cells G6j, such that we minimize ∑1≤i≤6pi. This can be done by creating a new table S
+
+от одного из верхних клеток G1i в один из нижних ячеек G6j, так, чтобы минимизировать ∑1≤i≤6pi. Это может быть сделано путем создания новой таблицы S
+using the following recurrence relation (ignoring boundaries):
+используя следующее рекуррентное соотношение (без учета границы):
+S6i=G6i
+Sji=Gji+min(Sj+1,i−1,Sj+1,i,Sj+1,i+1)
+That is, each cell in S
+То есть, каждая клетка в S
+is the minimum sum from that cell to a cell on the bottom. Every cell selects the smallest of the three cells below it in the table to be the next cell in the path. When we have completed S
+
+это минимальная сумма из этой ячейки к самой нижней ячейке. Каждая клетка выбирает наименьшее из трех ячеек ниже в таблице следующей ячейки пути. Когда мы закончили S
+, we simply select the smallest number in the top row to be our start.
+, мы просто выбираем наименьшее число в самой верхней строке – это будет начало.
+Let’s find S
+Давайте найдем S:
+ 
+And there it is! We can see that there is a path which sums to only 8, and that the path starts in the upper right corner. In order to find the path, we could have saved which way we went for each cell (left, down, or right), but we don’t have to: we can simply choose the minimum child of each cell, because the cells in S
+И вот оно! Мы видим, что есть путь, с суммой всех ячеек пути равной 8, и то, что путь начинается в верхнем правом углу. Для того, чтобы найти путь, мы могли бы сохранить, в какую сторону мы пошли для каждой ячейки (влево, вниз или вправо), но нам это не нужно: мы можем просто выбрать наименьшего потомка каждой клетки, потому что клетки в S
+says how long the shortest path from that cell to a bottom cell is.
+говорят насколько весом кратчайший путь от текущей клетки к самой нижней клетке.
+Also note that there are two paths that sum to 8 (the two bottom cells differ in the two paths).
+Также обратите внимание, что есть два пути, которые в сумме дают 8 (две нижние клетки различаются по двум путям).
