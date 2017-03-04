@@ -1,5 +1,5 @@
 Content Aware Image Resize - изменение размеров картинки по содержимому.
-“Content Aware Image Resize”, “liquid resizing”, “retargeting” или “seam carving”, относятся к методу изменения размеров изображения, где можно вставлять или удалять “швы”, или “наименее важные пути”, для уменьшения или наращивания изображения. Об этой идее я узнал [из видео-роликов в ютубе](https://www.youtube.com/watch?v=qadw0BRKeMk), авторы Shai Avidan и Ariel Shamir.
+“Content Aware Image Resize”, “liquid resizing”, “retargeting” или “seam carving”, относятся к методу изменения размеров изображения, где можно вставлять или удалять “швы”, или “наименее важные пути”, для уменьшения или наращивания изображения. Об этой идее я узнал [На YouTube, авторов](https://www.youtube.com/watch?v=qadw0BRKeMk), авторы Shai Avidan и Ariel Shamir.
 В этой статье я покажу простую реализацию концепции изменения размеров изображения на основе содержания, естественно на языке Rust :)
 В качестве подопытной картинки, я погуглил[1]  "sample image", и нашел его[2]:
 {% img '2017-03-01-Content-Aware-Image-Resize/sample-image.jpeg' alt:'sample image' magick:resize:800 %}
@@ -162,7 +162,7 @@ impl DPTable {
             height: h,
             table: vec![0; w * h],
         };
-        // Получаем градиент[h][w], кастуя в другой тип
+        // Получаем градиент[h][w], приводя к другому типу
         let get = |w, h| gradient.get_pixel(w as u32, h as u32)[0];
 
         // Инициализируем самую нижнюю строку
