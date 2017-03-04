@@ -1,7 +1,7 @@
 Content Aware Image Resize - изменение размеров картинки по содержимому.
 “Content Aware Image Resize”, “liquid resizing”, “retargeting” или “seam carving”, относятся к методу изменения размеров изображения, где можно вставлять или удалять “швы”, или “наименее важные пути”, для уменьшения или наращивания изображения. Об этой идее я узнал [На YouTube, авторов](https://www.youtube.com/watch?v=qadw0BRKeMk), авторы Shai Avidan и Ariel Shamir.
 В этой статье я покажу простую реализацию концепции изменения размеров изображения на основе содержания, естественно на языке Rust :)
-В качестве подопытной картинки, я погуглил[1]  "sample image", и нашел его[2]:
+В качестве подопытной картинки, я погуглил[[1]](#ref1)  "sample image", и нашел его[[2]](#ref2):
 {% img '2017-03-01-Content-Aware-Image-Resize/sample-image.jpeg' alt:'sample image' magick:resize:800 %}
 Делаем наброски сверху вниз.
 Давайте начнем мозговой штурм. Думаю, наша библиотека может использоваться так:
@@ -436,7 +436,7 @@ fn main() {
 •	/r/Programming thread
 •	HackerNews
 ________________________________________
-1.	Somehow, duckduckgoed doesn’t work as well as googled when used as a verb. [return]
-2.	http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg [return]
-3.	I’d like to know if there is an easier way to do this! In addition, saving the resulting gradient is seemingly not possible at the moment, as the function returns an ImageBuffer over u16, while ImageBuffer::save requires the underlying data to be u8. I also couldn’t figure out how to create a DynamicImage (which also has a ::save, with a slightly cleaner interface) from an ImageBuffer, but this might be possible. [return]
+1. <a name='ref1'></a>Somehow, duckduckgoed doesn’t work as well as googled when used as a verb. [[↑]](#ref1ret)
+2. <a name='ref2'></a>http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg [[↑]](#ref2ret)
+3. <a name='ref3'></a>I’d like to know if there is an easier way to do this! In addition, saving the resulting gradient is seemingly not possible at the moment, as the function returns an ImageBuffer over u16, while ImageBuffer::save requires the underlying data to be u8. I also couldn’t figure out how to create a DynamicImage (which also has a ::save, with a slightly cleaner interface) from an ImageBuffer, but this might be possible. [[↑]](#ref3ret)
 
