@@ -62,7 +62,7 @@ title: Поддержали нас на Patreon
   <tr>
     <td>
       <a href="https://twitter.com/ozkriff">
-      <img src="https://pbs.twimg.com/profile_images/753253858877595648/OgszetAK.jpg" alt='ozkriff'></a>
+      {% img 'patrons/ozkriff.jpg' alt:'ozkriff' magick:resize:48 %}</a>
       <a href="https://twitter.com/ozkriff">
       ozkriff
       </a>
