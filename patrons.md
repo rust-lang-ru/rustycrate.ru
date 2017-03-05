@@ -141,8 +141,6 @@ title: Поддержали нас на Patreon
       Кирилл Гольдштейн
       </a>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href="https://twitter.com/grossws">
       <img src="https://cdn3.patreon.com/1/patreon.user/MSA2h3KOrxJZJL4VdFJBXpkFGV1kTpSj4jm1iTBI7bCOjNIcpf0CYsURhTUc8b0I.jpeg?w=400&v=lncf9sVRZzUU2Pyvdr2zV78_YMdEGuoK0zFRvjpXo6U%3D" alt='Константин Грибов'></a>
