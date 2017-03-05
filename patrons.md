@@ -97,13 +97,6 @@ title: Поддержали нас на Patreon
       Никита Баксаляр
       </a>
     </td>
-  </tr>
-</table>
-<table class="patrons three-bucks">
-  <tr>
-    <td><b>3$/месяц или больше</b></td>
-  </tr>
-  <tr>
     <td>
       <a href="https://www.patreon.com/user?u=5142542">
       <img src="https://cdn3.patreon.com/1/patreon.user/U1HyAHC9xBE3hqcY720jp1Cy61KhvbErEeeytWrb65STIGdsyCOMQY8hghM7Lhyr.jpeg?w=400&v=18u90JXJuAa8Xg71tKirnBzM7YzEMOxlr_GCpStYj94%3D" alt='Сергей Куценко'></a>
@@ -111,6 +104,22 @@ title: Поддержали нас на Patreon
       Сергей Куценко
       </a>
     </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://www.patreon.com/user?u=5103235">
+      <img src="https://cdn3.patreon.com/1/patreon.user/aNmMlLkh0IuG56TU3EBF5GORMtw6aX7nKa23RgTo1vRJdlLEzCEw7TKxk19NIijB.png?w=400&v=YKKTPO2PgiJ6sSljzzRiHoK-zeviYkv0MqOYPVw_JAI%3D" alt='Алексей'></a>
+      <a href="https://www.patreon.com/user?u=5103235">
+      Алексей
+      </a>
+    </td>
+  </tr>
+</table>
+<table class="patrons three-bucks">
+  <tr>
+    <td><b>3$/месяц или больше</b></td>
+  </tr>
+  <tr>
     <td>
       <a href="https://www.patreon.com/user?u=5137093">
       <img src="https://cdn3.patreon.com/1/patreon.user/jTOZ1viXem41HypPwJaPf5E2Etfwp08isAkwhhjhXk9gsGeH2L5ApCxNFfoJcmYu.jpeg?w=400&v=1oTQSAeuW6FcVOPn_fipLE8d6g6KT3u9VgvnA8lmkC4%3D" alt='Александр Тарасиков'></a>
