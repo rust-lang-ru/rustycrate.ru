@@ -25,7 +25,7 @@ title: Поддержали нас на Patreon
   <tr>
     <td>
       <a href="http://www.twitter.com/petrmyazin">
-      <img src="https://pbs.twimg.com/profile_images/580259448603553792/dXptb6qX.jpg" alt='Пётр Мязин'></a>
+      {% img 'patrons/petr_myazin.jpg' alt:'Пётр Мязин' magick:resize:64 %}</a>
       <a href="http://www.twitter.com/petrmyazin">
       Пётр Мязин
       </a>
@@ -39,7 +39,7 @@ title: Поддержали нас на Patreon
   <tr>
     <td>
       <a href="https://twitter.com/IlyaDruzhinin">
-      <img src="https://pbs.twimg.com/profile_images/818545635418894337/ipivi5M_.jpg" alt='Илья Дружинин'></a>
+      {% img 'patrons/ilya_druzhinin.jpg' alt:'Илья Дружинин' magick:resize:48 %}</a>
       <a href="https://twitter.com/IlyaDruzhinin">
       Илья Дружинин
       </a>
@@ -53,7 +53,7 @@ title: Поддержали нас на Patreon
     </td>
     <td>
       <a href="https://twitter.com/chessnokov">
-      <img src="https://pbs.twimg.com/profile_images/787020620781514753/-l3ZcB_-.jpg" alt='Андрей Чесноков'></a>
+      {% img 'patrons/andrey_chesnokov.jpg' alt:'Андрей Чесноков' magick:resize:48 %}</a>
       <a href="https://twitter.com/chessnokov">
       Андрей Чесноков
       </a>
@@ -76,7 +76,7 @@ title: Поддержали нас на Patreon
     </td>
     <td>
       <a href="https://twitter.com/Vinatorul">
-      <img src="https://pbs.twimg.com/profile_images/662574376626163713/YqyP_qEe.png" alt='Александр Куваев'></a>
+      {% img 'patrons/alexander_kuvaev.png' alt:'Александр Куваев' magick:resize:48 %}</a>
       <a href="https://twitter.com/Vinatorul">
       Александр Куваев
       </a>
@@ -92,7 +92,7 @@ title: Поддержали нас на Patreon
     </td>
     <td>
       <a href="http://www.twitter.com/nbaksalyar">
-      <img src="https://pbs.twimg.com/profile_images/768947851321831427/CipBwnBI.jpg" alt='Никита Баксаляр'></a>
+      {% img 'patrons/nikita_baksalyar.jpg' alt:'Никита Баксаляр' magick:resize:48 %}</a>
       <a href="http://www.twitter.com/nbaksalyar">
       Никита Баксаляр
       </a>
