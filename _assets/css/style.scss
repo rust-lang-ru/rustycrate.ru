@@ -315,3 +315,80 @@ pre.highlight code {
 div.pagination-area {
     text-align: center;
 }
+
+table.patrons.twenty-five-bucks {
+    tr td {
+        width: 100%;
+        font-size: 1.5em;
+        img {
+            max-width: 96px;
+            max-height: 96px;
+        }
+    }
+}
+
+table.patrons.fifteen-bucks {
+    tr td {
+        width: 50%;
+        font-size: 1.25em;
+        img {
+            max-width: 64px;
+            max-height: 64px;
+        }
+    }
+}
+
+table.patrons.five-bucks {
+    tr td {
+        width: 33%;
+        font-size: 1.15em;
+        img {
+            max-width: 48px;
+            max-height: 48px;
+        }
+    }
+}
+
+table.patrons.three-bucks {
+    tr td {
+        width: 25%;
+        font-size: 1em;
+        img {
+            max-width: 32px;
+            max-height: 32px;
+        }
+    }
+}
+
+table.patrons {
+    width: 100%;
+    tr td {
+        padding: 5px;
+        border: none;
+        margin: 0px;
+        overflow: hidden;
+    }
+    tr td.fifteen-bucks {
+        font-size: 1.25em;
+        img {
+            max-width: 64px;
+            max-height: 64px;
+        }
+    }
+    tr td.five-bucks {
+        font-size: 1.15em;
+        width: 33%;
+        img {
+            max-width: 48px;
+            max-height: 48px;
+        }
+    }
+    tr td.three-bucks {
+        font-size: 1em;
+        width: 25%;
+        img {
+            max-width: 32px;
+            max-height: 32px;
+        }
+    }
+}
