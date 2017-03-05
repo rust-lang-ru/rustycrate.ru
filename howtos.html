@@ -6,13 +6,4 @@ sitemap:
   changefreq: 'daily'
 
 ---
-<div class="page-header">
-    <h1>{{ site.title }} <br/><small>Русскоязычный сайт о языке программирования Rust</small></h1>
-</div>
-{% for post in site.posts %}
-{% if post.categories contains "руководства" %}
-{% include archive-item.html %}
-{% endif %}
-{% endfor %}
-
-<script id="dsq-count-scr" src="//rustycrate.disqus.com/count.js" async></script>
+{% include category-index.html category="руководства" %}
