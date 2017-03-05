@@ -111,7 +111,7 @@ title: Поддержали нас на Patreon
 </table>
 <table class="patrons three-bucks">
   <tr>
-    <td><b>3$/месяц</b></td>
+    <td><b>3$/месяц или больше</b></td>
   </tr>
   <tr>
     <td>
