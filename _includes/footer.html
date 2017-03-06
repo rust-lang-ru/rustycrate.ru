@@ -61,10 +61,12 @@
     </div>
     <div class="gitter-button">Открыть чат</div>
 </nav>
+<script>function load_bootstrap() {
+    // Include all compiled plugins (below), or include individual files as needed
+    $.getScript("{{site.baseurl}}/js/bootstrap.min.js");
+}</script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{ site.baseurl}}/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async onload="load_bootstrap()"></script>
 <!-- Gitter Sidecar -->
 <script>
   ((window.gitter = {}).chat = {}).options = {
