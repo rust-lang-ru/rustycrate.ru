@@ -213,12 +213,12 @@ impl DPTable {
 }
 ```
 
+После запуска, мы можем преобразовать таблицу `DPTable` обратно в `GradientBuffer`, и записать его в файл. Пиксели в изображении ниже - веса пути, разделенные на 128.
+
 {% img '2017-03-01-Content-Aware-Image-Resize/sample-image-paths.jpeg' alt:'sample image paths' magick:resize:800 %}
 
-После запуска, мы можем преобразовать таблицу `DPTable` обратно в `GradientBuffer`, и записать его в файл. На картинке ниже, один пиксель – это вес пути, разделенный на 128.
-
 Эту картинку можно описать так: белые пиксели - это клетки, которые имеют наибольший вес. Градиент этих пикселей более детализирован, что говорит о высокой скорости изменений цвета (и именно эти участки картинки мы хотели бы сохранить).
-Поскольку путь алгоритма поиска будет искать наименьшие веса, которые представлены здесь “более темными путями”, то алгоритм будет стараться избегать светлых пикселей. То есть белые участки картинки.
+Поскольку алгоритм поиска пути будет искать наименьшие веса, которые представлены здесь “более темными путями”, то алгоритм будет стараться избегать светлых пикселей. То есть белые участки картинки.
 
 # Поиск пути
 Теперь, когда у нас есть вся таблица, поиск лучшего пути не составит труда: это - просто поиск из верхнего ряда и создания vec индексов, всегда выбирая самого маленького по весу соседа из нижней строки:
@@ -289,7 +289,7 @@ impl Path {
 
 По-моему, похоже на правду!
 
-## Удаление
+# Удаление
 Единственное, что осталось сейчас сделать - удалить пути, покрашенные желтым цветом. Так как мы просто хотим сделать что-то работающее, мы можем сделать это очень просто: возьмем сырые байты из нашей картинки и скопируем интервалы между индексами которые мы хотим удалить в новый массив, из которого создадим новое изображение.
 
 ```rust
@@ -325,16 +325,16 @@ for _ in 0..200 {
 }
 ```
 
-{% img '2017-03-01-Content-Aware-Image-Resize/sample-image-cropped.jpeg' alt:'sample image cropped' magick:resize:800 %} 
+{% img '2017-03-01-Content-Aware-Image-Resize/sample-image-cropped.jpeg' alt:'sample image cropped' magick:resize:800 %}
 
 Однако, мы видим, что алгоритм удалил многовато с правой стороны изображения, хотя изображение более или менее уменьшено, это одна из проблем, которую надо устранить! Быстрое и немного грязное исправление, чтобы просто немного изменить градиент, путем явного задания границ на некоторое большое число, скажем 100.
 
-{% img '2017-03-01-Content-Aware-Image-Resize/sample-image-200.jpeg' alt:'sample image 200' magick:resize:800 %}  
+{% img '2017-03-01-Content-Aware-Image-Resize/sample-image-200.jpeg' alt:'sample image 200' magick:resize:800 %}
 
 Тадам!
 Здесь немало косяков, что делает конечный результат немного менее удовлетворительным. Однако птичка, почти не пострадала, и великолепно выглядит (по-моему). Вы можете сказать, что мы уничтожили весь смысл композиции в процессе уменьшения изображения. На это я скажу .... нуууу.... так-то да.
 
-## Смотрящий да уверует
+# Смотрящий да уверует
 
 Сохранять изображения в файл и смотреть на них это прикольно, но это не супер-крутое-изменение-размера-изображения-в-реальном-времени! Последним рывком, попробуем хакнуть что-нибудь вместе.
 Во-первых, нам необходимо загрузить, получить, и изменить размеры изображения за пределами крейта. Мы постараемся сделать что-то вроде нашего первоначального плана:
@@ -370,7 +370,7 @@ impl Image {
 
     pub fn resize_to(&mut self, dimensions: Dimensions) {
         let (mut xs, mut _ys) = self.size_difference(dimensions);
-	// Пока только горизонтальные изменение размеров
+        // Пока только горизонтальные изменение размеров
         if xs < 0 { panic!("Only downsizing is supported.") }
         if _ys != 0 { panic!("Only horizontal resizing is supported.") }
         while xs > 0 {
@@ -405,7 +405,7 @@ fn main() {
     let mut image = car::Image::load_image(Path::new("sample-image.jpeg"));
     let (mut w, h) = image.dimmensions();
 
-    // Настроим эту sdl2 штуковину и получим окно
+    // Инициализируем sdl2 и создадим окно
     let sdl_ctx = sdl2::init().unwrap();
     let video = sdl_ctx.video().unwrap();
     let window = video.window("Context Aware Resize", w, h)
@@ -432,13 +432,13 @@ fn main() {
     let mut event_pump = sdl_ctx.event_pump().unwrap();
     'running: loop {
         for event in event_pump.poll_iter() {
-	    // Обработка выхода и событий изменения размеров
+            // Обработка выхода и событий изменения размеров
             match event {
                 Event::Quit {..}
                 | Event::KeyDown { keycode: Some(Keycode::Escape), .. } => { break 'running },
-                Event::Window {win_event: WindowEvent::Resized(new_w, _h), .. } => {                    
-		     // Определим на сколько пикселей мы уменьшаем картинку, 
-		     // и на столько же уменьшим изображение
+                Event::Window {win_event: WindowEvent::Resized(new_w, _h), .. } => {
+                    // Определим на сколько пикселей мы уменьшаем картинку,
+                    // и на столько же уменьшим изображение
                     let x_diff = new_w as isize - w as isize;
                     if x_diff < 0 {
                         image.resize_to(car::Dimensions::Relative(x_diff, 0));
@@ -449,7 +449,7 @@ fn main() {
                 _ => {}
             }
         }
-	// Очищаем, копируем и показываем.
+        // Очищаем, копируем и показываем.
         renderer.clear();
         renderer.copy(&texture, None, Some(Rect::new(0, 0, w, h))).unwrap();
         renderer.present();
@@ -457,13 +457,13 @@ fn main() {
 }
 ```
 
-И это все. Дни работы, только очень мало знаний по `sdl2`, `image`, и в блоге пишу. 
+Вот и все. Работа одного дня, только очень мало знаний по `sdl2`, `image`, и опыта написания блогов.
 Надеюсь вам понравилось, хотя бы совсем немножко :)
 
-•	Git repository
-•	/r/Rust thread
-•	/r/Programming thread
-•	HackerNews
+•       [Git repository](https://www.github.com/martinhath/content-aware-resize)
+•       [/r/Rust thread](https://www.reddit.com/r/rust/comments/5ttzb4/implementing_content_aware_image_resizing/)
+•       [/r/Programming thread](https://www.reddit.com/r/programming/comments/5ttz9g/implementing_content_aware_image_resizing/)
+•       [HackerNews](https://news.ycombinator.com/item?id=13636706)
 ________________________________________
 1. <a name='ref1'></a>Почему-то, duckduck-коед не работает, и гугль тоже, если используется глагол. [[↑]](#ref1ret)
 2. <a name='ref2'></a>http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg [[↑]](#ref2ret)
