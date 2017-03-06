@@ -1,7 +1,11 @@
 ## Content Aware Image Resize - изменение размеров картинки по содержимому.
 “Content Aware Image Resize”, “liquid resizing”, “retargeting” или “seam carving”, относятся к методу изменения размеров изображения, где можно вставлять или удалять *швы*, или “наименее важные пути”, для уменьшения или наращивания изображения. Об этой идее я узнал [На YouTube, авторов](https://www.youtube.com/watch?v=qadw0BRKeMk), авторы Shai Avidan и Ariel Shamir.
 В этой статье я покажу простую реализацию концепции изменения размеров изображения на основе содержания, естественно на языке Rust :)
-В качестве подопытной картинки, я погуглил[1]  `"sample image"`, и нашел его[2]:
+
+В качестве подопытной картинки, я <a name='ref1ret'></a>погуглил[[1]](#ref1)  "sample image", и нашел <a name='ref2ret'></a>его[[2]](#ref2):
+
+
+
 {% img '2017-03-01-Content-Aware-Image-Resize/sample-image.jpeg' alt:'sample image' magick:resize:800 %}
 
 ## Делаем наброски сверху вниз.
@@ -80,7 +84,11 @@ impl Image {
 }
 ```
 
+
+
+
 Естественным следующим шагом необходимо узнать как получить значение градиента из `image::DynamicImage`. Крейт image не может этого сделать, но крейт [`imageproc`](https://crates.io/crates/imageproc) может: `imageproc::gradients::sobel_gradients`. Однако нас поджидает небольшая проблема[3]. Функция `sobel_gradient` прнимает 8-битное изображение в градациях серого, и возвращает 16-битное изображение в градациях серого. Изображение, которое мы загрузили - это изображение RGB с 8 битами на канал. Так что придется разложить каналы на R, G, B, затем преобразовать каждый канал в отдельные изображения в оттенках серого и вычислить градиенты каждого из них. А затем объединить градиенты вместе в одно изображение, в котором мы и будем искать путь.
+
 Это элегантно? Нет. Это будет работать? Возможно :)
 
 ```rust
@@ -440,7 +448,7 @@ fn main() {
 •	/r/Programming thread
 •	HackerNews
 ________________________________________
-1.	Somehow, duckduckgoed doesn’t work as well as googled when used as a verb. [return]
-2.	http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg [return]
-3.	I’d like to know if there is an easier way to do this! In addition, saving the resulting gradient is seemingly not possible at the moment, as the function returns an ImageBuffer over u16, while ImageBuffer::save requires the underlying data to be u8. I also couldn’t figure out how to create a DynamicImage (which also has a ::save, with a slightly cleaner interface) from an ImageBuffer, but this might be possible. [return]
+1. <a name='ref1'></a>Somehow, duckduckgoed doesn’t work as well as googled when used as a verb. [[↑]](#ref1ret)
+2. <a name='ref2'></a>http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg [[↑]](#ref2ret)
+3. <a name='ref3'></a>I’d like to know if there is an easier way to do this! In addition, saving the resulting gradient is seemingly not possible at the moment, as the function returns an ImageBuffer over u16, while ImageBuffer::save requires the underlying data to be u8. I also couldn’t figure out how to create a DynamicImage (which also has a ::save, with a slightly cleaner interface) from an ImageBuffer, but this might be possible. [[↑]](#ref3ret)
 
