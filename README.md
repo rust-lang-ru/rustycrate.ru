@@ -4,6 +4,7 @@
 [![ruRust/rustycrate.ru](http://issuestats.com/github/ruRust/rustycrate.ru/badge/pr?style=flat)](http://issuestats.com/github/ruRust/rustycrate.ru)
 [![ruRust/rustycrate.ru](http://issuestats.com/github/ruRust/rustycrate.ru/badge/issue?style=flat)](http://issuestats.com/github/ruRust/rustycrate.ru)
 [![Join the chat at https://gitter.im/ruRust/rustycrate.ru](https://badges.gitter.im/ruRust/rustycrate.ru.svg)](https://gitter.im/ruRust/rustycrate.ru?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Проверка правописания: [Яндекс.Спеллер](https://tech.yandex.ru/speller/)
 
 # Обзор проекта
 
