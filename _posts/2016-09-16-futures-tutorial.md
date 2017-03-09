@@ -116,7 +116,7 @@ let mut core = Core::new().unwrap();
 let addr = "www.rust-lang.org:443".to_socket_addrs().unwrap().next().unwrap();
 ```
 
-[Здесь создается цикл событий](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Core.html#method.new), в
+[Здесь создаётся цикл событий](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Core.html#method.new), в
 котором будет выполняться весь ввод/вывод. После преобразуем имя хоста
 ["www.rust-lang.org"](https://www.rust-lang.org) с использованием метода `to_socket_addrs` из стандартной библиотеки.
 
@@ -131,7 +131,7 @@ let socket = TcpStream::connect(&addr, &core.handle());
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect).
 Примечательно, что
 [TcpStream::connect](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect) возвращает
-future. В действительности, сокет не подключен, но подключение произойдёт позже.
+future. В действительности, сокет не подключён, но подключение произойдёт позже.
 
 После того, как сокет станет доступным, нам необходимо выполнить три шага для загрузки домашней страницы rust-lang.org:
 
@@ -238,7 +238,7 @@ println!("{}", String::from_utf8_lossy(&data));
 выполнение future](https://tokio-rs.github.io/tokio-core/tokio_core/reactor/struct.Core.html#method.run).
 Цикл событий будет выполняться, пока не будет получен результат.
 
-Примечательно, что вызов `core.run(..)` блокирует вызывающий поток, пока future не сможет быть возвращен. Это
+Примечательно, что вызов `core.run(..)` блокирует вызывающий поток, пока future не сможет быть возвращён. Это
 означает, что `data` имеет тип `Vec<u8>`. Тогда мы можем напечатать это в stdout как обычно.
 
 Фух! Мы рассмотрели futures,
@@ -713,7 +713,7 @@ fn foo() -> Box<Future<Item = u32, Error = io::Error>> {
 ```
 
 Достоинством этого подхода является простая запись и создание. Этот подход максимально гибок с точки зрения изменений
-future, так как любой тип future может быть возвращен в непрозрачном, упакованном виде.
+future, так как любой тип future может быть возвращён в непрозрачном, упакованном виде.
 
 Обратите внимание, что метод [boxed](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.boxed)
 возвращает `BoxFuture`, который на самом деле является всего лишь псевдонимом для `Box<Future + Send>`:

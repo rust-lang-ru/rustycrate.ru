@@ -19,7 +19,7 @@ title: Проекты участников нашего сообщества
     * [named-pipe](https://crates.io/crates/named_pipe/) — обёртка для
       асинхронного ввода-вывода в именованные каналы Windows
     * [rabbit](https://crates.io/crates/rabbit/) — реализация Rabbit Stream
-      Cipher Algorithmс поддержкой окружения без стандартной библиотеки
+      Cipher Algorithm с поддержкой окружения без стандартной библиотеки
       (no_std)
 * [@defuz](https://github.com/defuz/)
     * [onig](https://crates.io/crates/onig) — обёртка для библиотеки
@@ -34,7 +34,7 @@ title: Проекты участников нашего сообщества
       (music player daemon)
     * [pb](https://crates.io/crates/pb/) — клиент REST API сервиса
       PUSH-уведомлений [Pushbullet](https://www.pushbullet.com/)
-    * [vkrs](https://crates.io/crates/vkrs/) — клиент API Вконтакте
+    * [vkrs](https://crates.io/crates/vkrs/) — клиент API ВКонтакте
     * …и другие
 * [@mkpankov](https://github.com/mkpankov/)
     * [bread](https://crates.io/crates/bread/) — библиотека для
