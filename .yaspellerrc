@@ -149,7 +149,7 @@
     "report": [
         "console"
     ],
-    "checkYo": true,
+    "checkYo": false,
     "ignoreDigits": true,
     "ignoreUppercase": true
 }
