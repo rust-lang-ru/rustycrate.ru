@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <!-- Page last generated {{ site.time }} -->
 <html lang="ru">
-    {% include head.html %}
+    <head>
+        {% include head.html %}
+        {% if page.math %}
+            <link rel="dns-prefetch" href="//cdn.mathjax.org">
+            <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+        {% endif %}
+    </head>
     <body>
         {% include header.html %}
 
