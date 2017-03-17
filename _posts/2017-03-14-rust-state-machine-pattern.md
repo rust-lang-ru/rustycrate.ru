@@ -6,7 +6,7 @@ translator: Илья Богданов
 categories: обучение
 ---
 
-{% img '2017-03-14-rust-state-machine-pattern/teaser.png' alt:'тизер' %}
+{% img '2017-03-14-rust-state-machine-pattern/teaser.png' alt:'teaser' %}
 
 Последнее время я много размышлял о шаблонах проектирования и приемах, которые
 мы используем в программировании. Это и в самом деле прекрасно - начать
