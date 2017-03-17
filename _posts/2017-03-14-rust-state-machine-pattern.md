@@ -808,5 +808,5 @@ Rust позволяет нам представлять конечные авт�
 предлагаю вам посмотреть на нижний колонтитул для получения контактов. Я также
 тусуюсь в IRC Mozilla под ником Hoverbear.
 
-By Andrew Hobden
+Написано Andrew Hobden
 [andrew@hoverbear.org](mailto:andrew@hoverbear.org), [@Hoverbear](https://github.com/Hoverbear) на Github, [@andrewhobden](https://twitter.com/andrewhobden) на Twitter
