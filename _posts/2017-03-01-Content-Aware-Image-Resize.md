@@ -8,7 +8,7 @@ translator: Gexon
 
 # Изменение размера изображения с учётом содержимого
 Изменение размера изображения с учётом содержимого (Content Aware Image Resize),
-Жидкое растяжение (liquid resizing), ретаргетинг (retargeting) или вырезание шва
+Жидкое растяжение (liquid resizing), ретаргетинг (retargeting) или вырезание шва<!-- yaspeller ignore -->
 (seam carving), относятся к методу изменения размера изображения, где можно
 вставлять или удалять *швы*, или наименее важные пути, для уменьшения или
 наращивания изображения. Об этой идее я узнал из [ролика на YouTube](https://www.youtube.com/watch?v=qadw0BRKeMk), от Shai Avidan и Ariel Shamir.<!-- yaspeller ignore -->
@@ -519,7 +519,7 @@ fn main() {
 •       [/r/Programming thread](https://www.reddit.com/r/programming/comments/5ttz9g/implementing_content_aware_image_resizing/)
 •       [HackerNews](https://news.ycombinator.com/item?id=13636706)
 ________________________________________
-1. <a name='ref1'></a>Почему-то, duckduck-коед не работает, и гугль тоже, если
+1. <a name='ref1'></a>Почему-то, duckduck-коед не работает, и гугль тоже, если<!-- yaspeller ignore -->
 используется глагол. [[↑]](#ref1ret)<!-- yaspeller ignore -->
 2. <a name='ref2'></a>http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg [[↑]](#ref2ret)
 3. <a name='ref3'></a>Мне интересно, есть ли более простой способ! Кроме того,
