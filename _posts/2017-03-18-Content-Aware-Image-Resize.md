@@ -15,8 +15,8 @@ translator: Gexon
 размера изображения с учётом содержимого, естественно на языке Rust :)
 
 Для подопытной картинки, я <a name='ref1ret'></a>поискал по запросу [[1]]({{
-page.url }}/#ref1) `"sample image"`, и нашел <a name='ref2ret'></a>её
-[[2]]({{ page.url }}/#ref2):
+page.url }}#ref1) `"sample image"`, и нашел <a name='ref2ret'></a>её
+[[2]]({{ page.url }}#ref2):
 
 {% img '2017-03-18-Content-Aware-Image-Resize/sample-image.jpeg' alt:'sample image' magick:resize:800 %}
 
