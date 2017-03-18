@@ -155,7 +155,7 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 После запуска, `Image::gradient_magnitune` берёт наше изображение птицы и
 возвращает это:
 
-{% img '2017-03-18-Content-Aware-Image-Resize/sample-image-gradient.jpeg' alt:'sample image gradient' magick:resize:800 %}
+{% img '2017-03-18-Content-Aware-Image-Resize/sample-image-gradient.jpeg' alt:'sample image gradient' %}
 
 # Путь наименьшего сопротивления
 Теперь мы должны реализовать, пожалуй, самую сложную часть программы: DP -
@@ -164,13 +164,28 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 вертикального пути. Представьте, что в таблице ниже это градиент изображения 6х6
 пикселей.
 
-{% img '2017-03-18-Content-Aware-Image-Resize/matrix1.png' alt:'просто матрица' magick:resize:800 %}
+{% img '2017-03-18-Content-Aware-Image-Resize/matrix1.png' alt:'просто матрица' class:'formula' %}
 
-Суть алгоритма состоит в поиске пути {% img '2017-03-18-Content-Aware-Image-Resize/pp1p6.png' magick:resize:800 %}
-от одной из верхних ячеек {% img '2017-03-18-Content-Aware-Image-Resize/g1i.png' magick:resize:800 %} в одну из нижних {% img '2017-03-18-Content-Aware-Image-Resize/g6j.png' magick:resize:800 %}, так, чтобы минимизировать {% img '2017-03-18-Content-Aware-Image-Resize/e1i6pi.png' magick:resize:800 %}. Это может быть сделано путем создания новой таблицы S
-используя следующее рекуррентное соотношение (без учета границы):
+Суть алгоритма состоит в поиске пути
 
-{% img '2017-03-18-Content-Aware-Image-Resize/s6ig6i.png' magick:resize:800 %}
+{% img '2017-03-18-Content-Aware-Image-Resize/pp1p6.png' class:'formula' %}
+
+от одной из верхних ячеек
+
+{% img '2017-03-18-Content-Aware-Image-Resize/g1i.png' class:'formula' %}
+
+в одну из нижних
+
+{% img '2017-03-18-Content-Aware-Image-Resize/g6j.png' class:'formula' %}
+
+так, чтобы минимизировать
+
+{% img '2017-03-18-Content-Aware-Image-Resize/e1i6pi.png' class:'formula' %}
+
+Это может быть сделано путем создания новой таблицы S используя следующее
+рекуррентное соотношение (без учета границы):
+
+{% img '2017-03-18-Content-Aware-Image-Resize/s6ig6i.png' class:'formula' %}
 
 То есть, каждая ячейка в таблице S это минимальная сумма от текущей ячейки до
 самой нижней ячейки. Каждая ячейка выбирает одну из трех соседних ячеек,
@@ -179,7 +194,7 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 число в самой верхней строке в качестве начальной ячейки.
 Давайте найдем S:
 
-{% img '2017-03-18-Content-Aware-Image-Resize/matrix6.png.png' magick:resize:800 %}
+{% img '2017-03-18-Content-Aware-Image-Resize/matrix6.png.png' class:'formula' %}
 
 И вот оно! Мы видим, что есть путь, с суммой всех ячеек пути равной 8, и то, что
 этот путь начинается в верхнем правом углу. Для того, чтобы найти путь, мы могли
@@ -515,11 +530,12 @@ fn main() {
 написания постов в блоге.
 Надеюсь вам понравилось, хотя бы совсем немножко :)
 
-•       [Git repository](https://www.github.com/martinhath/content-aware-resize)
-•       [/r/Rust thread](https://www.reddit.com/r/rust/comments/5ttzb4/implementing_content_aware_image_resizing/)
-•       [/r/Programming thread](https://www.reddit.com/r/programming/comments/5ttz9g/implementing_content_aware_image_resizing/)
-•       [HackerNews](https://news.ycombinator.com/item?id=13636706)
-________________________________________
+* [Репозиторий Git](https://www.github.com/martinhath/content-aware-resize)
+* [Ветка /r/Rust](https://www.reddit.com/r/rust/comments/5ttzb4/implementing_content_aware_image_resizing/)
+* [Ветка /r/Programming](https://www.reddit.com/r/programming/comments/5ttz9g/implementing_content_aware_image_resizing/)
+* [HackerNews](https://news.ycombinator.com/item?id=13636706)
+
+<hr/>
 1. <a name='ref1'></a>Почему-то, duckduck-коед не работает, и гугль тоже, если<!-- yaspeller ignore -->
 используется глагол. [[↑]](#ref1ret)<!-- yaspeller ignore -->
 2. <a name='ref2'></a>http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg [[↑]](#ref2ret)
@@ -529,4 +545,3 @@ ________________________________________
  основные данные были в `u8`. Я также не мог разобраться, как создать
  `DynamicImage` (у которого также есть `a::save` с более понятным интерфейсом)
  от `ImageBuffer`, ведь это возможно. [[↑]](#ref3ret)
-
