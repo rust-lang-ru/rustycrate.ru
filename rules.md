@@ -57,8 +57,6 @@ title: Правила сообщества
 В отличие от правил, несоблюдение рекомендаций не наказывается,
 но их соблюдение тоже крайне желательно.
 
-* Соблюдать ["Нормы поведения сообщества Rust"].
-
 * Придерживаться ["Как правильно задавать вопросы"]
   и ["Как задать хороший вопрос"].
 
@@ -95,7 +93,6 @@ title: Правила сообщества
 [webdev]: https://gitter.im/ruRust/webdev
 [offtopic]: https://gitter.im/ruRust/offtopic
 [general]: https://gitter.im/ruRust/general
-["Нормы поведения сообщества Rust"]: https://www.rust-lang.org/en-US/conduct.html
 ["Как правильно задавать вопросы"]: http://maddog.sitengine.ru/smart-question-ru.html
 ["Как задать хороший вопрос"]: http://ru.stackoverflow.com/help/how-to-ask
 [MCVE]: http://ru.stackoverflow.com/help/mcve
