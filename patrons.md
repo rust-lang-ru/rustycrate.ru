@@ -24,6 +24,13 @@ title: Поддержали нас на Patreon
   </tr>
   <tr>
     <td>
+      <a href="http://www.twitter.com/nbaksalyar">
+      {% img 'patrons/nikita_baksalyar.jpg' alt:'Никита Баксаляр' magick:resize:64 %}</a>
+      <a href="http://www.twitter.com/nbaksalyar">
+      Никита Баксаляр
+      </a>
+    </td>
+    <td>
       <a href="http://www.twitter.com/petrmyazin">
       {% img 'patrons/petr_myazin.jpg' alt:'Пётр Мязин' magick:resize:64 %}</a>
       <a href="http://www.twitter.com/petrmyazin">
@@ -38,6 +45,13 @@ title: Поддержали нас на Patreon
   </tr>
   <tr>
     <td>
+      <a href="https://www.patreon.com/user/creators?u=5394421">
+      <img src="https://cdn3.patreon.com/1/patreon.user/nJOJc6kNtAJiADtgI5xuL48c4bh8papr6czc3fTxdNXJsd3r88RcUeBeNSG0CRIg.jpg?w=400&v=MS7OcRQgDgLTpNRRjTMnSh4_0GZG2BSoSyutJEckiBs%3D" alt="Михаил Лубинец"></a>
+      <a href="https://www.patreon.com/user/creators?u=5394421">
+      Михаил Лубинец
+      </a>
+    </td>
+    <td>
       <a href="https://twitter.com/IlyaDruzhinin">
       {% img 'patrons/ilya_druzhinin.jpg' alt:'Илья Дружинин' magick:resize:48 %}</a>
       <a href="https://twitter.com/IlyaDruzhinin">
@@ -51,6 +65,8 @@ title: Поддержали нас на Patreon
       funkill
       </a>
     </td>
+  </tr>
+  <tr>
     <td>
       <a href="https://twitter.com/chessnokov">
       {% img 'patrons/andrey_chesnokov.jpg' alt:'Андрей Чесноков' magick:resize:48 %}</a>
@@ -58,8 +74,6 @@ title: Поддержали нас на Patreon
       Андрей Чесноков
       </a>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href="https://twitter.com/ozkriff">
       {% img 'patrons/ozkriff.jpg' alt:'ozkriff' magick:resize:48 %}</a>
@@ -74,6 +88,8 @@ title: Поддержали нас на Patreon
       Константин Степанов
       </a>
     </td>
+  </tr>
+  <tr>
     <td>
       <a href="https://twitter.com/Vinatorul">
       {% img 'patrons/alexander_kuvaev.png' alt:'Александр Куваев' magick:resize:48 %}</a>
@@ -81,20 +97,11 @@ title: Поддержали нас на Patreon
       Александр Куваев
       </a>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href="https://www.patreon.com/user?u=328843">
       <img src="https://cdn3.patreon.com/1/patreon.user/Ed4w4TQHjngzeVHuu6zFUTVeJAuQ1ZUaFKyHWrY1J3bTpUtodKp9hADIH94kHN6u_large_2.jpeg?w=400&v=m5H6q3Qa_vs73eu9sJ9hyjDqOyY7YcCriJv9cWN-DHs%3D" alt='Евгений Яковлев'></a>
       <a href="https://www.patreon.com/user?u=328843">
       Евгений Яковлев
-      </a>
-    </td>
-    <td>
-      <a href="http://www.twitter.com/nbaksalyar">
-      {% img 'patrons/nikita_baksalyar.jpg' alt:'Никита Баксаляр' magick:resize:48 %}</a>
-      <a href="http://www.twitter.com/nbaksalyar">
-      Никита Баксаляр
       </a>
     </td>
     <td>
@@ -128,12 +135,28 @@ title: Поддержали нас на Patreon
       </a>
     </td>
     <td>
+      <a href="https://www.patreon.com/user/u=5293047">
+      <img src="https://cdn3.patreon.com/1/patreon.user/IypINoVf6JN73pyNcxdi54coAap4W2ETTZd7CySs1eTpjDvFbxCg9tGOyufKdIBn.jpeg?w=400&v=u7iFgl1YE2Pok7CUeC8VU_DQxxyCVMsUPEY6L_AMDJY%3D" alt='Дмитрий Бочкарев'></a>
+      <a href="https://www.patreon.com/user/u=5293047">
+      Дмитрий Бочкарев
+      </a>
+    </td>
+    <td>
+      <a href="https://www.patreon.com/user/?u=849152">
+      <img src="https://cdn8.patreon.com/400/849152" alt='Дмитрий Бочкарев'></a>
+      <a href="https://www.patreon.com/user/?u=849152">
+      Олег Щелыкалнов
+      </a>
+    </td>
+    <td>
       <a href="https://www.patreon.com/user?u=3754889">
       <img src="https://cdn8.patreon.com/400/3754889" alt='Nick Linker'></a>
       <a href="https://www.patreon.com/user?u=3754889">
       Nick Linker
       </a>
     </td>
+  </tr>
+  <tr>
     <td>
       <a href="https://www.patreon.com/user?u=5207959">
       <img src="https://cdn3.patreon.com/1/patreon.user/93T0CkAY2BNHwlx4ojwYZ9712lmQBoXol01eDbFAplepSuJ0omAXMnHiByVWiUAZ.jpeg?w=400&v=a1OGOt7FXSPO8MEh7G13qk83r-jvjcf5uQrOLtX2sCA%3D" alt='Кирилл Гольдштейн'></a>
