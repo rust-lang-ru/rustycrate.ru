@@ -1,30 +1,58 @@
-
-# Communicating Intent
-
-Rust is an elegant language, that is quite different from many other popular languages. For example, instead of using classes and inheritance, Rust has a trait-based system. However I believe, that many programmers new to Rust (including myself) are unfamiliar with common Rust patterns.
-
-In this post, I want to discuss the *newtype*-pattern, as well as the `From` and `Into` traits , which help with conversion between types.
-
+---
+title: Передача намерений
+author: Jasper 'jaheba' Schulz
+original: https://github.com/jaheba/stuff/blob/master/communicating_intent.md
+translator: Илья Богданов
+categories: обучение
 ---
 
-Let's say we work for a european company building fancy, digital, IoT-ready thermostats for heaters. To ensure that water in heaters doesn't freeze (and thus damages heaters) we ensure in our software, that if there is a danger of freezing, we let hot water through. Thus somewhere in our software we have this function:
+Rust — элегантный язык, который несколько отличается от многих других популярных
+языков. Например, в противовес использованию классов и наследования, у Rust есть
+собственная система типов на основе типажей. Однако я считаю, что многие
+программисты, не знакомые с Rust (включая меня), не знакомы с принятыми
+шаблонами проектирования.
+
+В этой статье, я хочу обсудить шаблон проектирования *новый тип*, а также типажи
+`From` и `Into`, которые помогают в преобразовании типов.
+
+<!--cut-->
+
+Скажем, вы работаете в европейской компании, создающей замечательные цифровые,
+готовые к использованию в Интернете Вещей, термостаты для обогревателей. Чтобы
+вода в обогревателях не замерзала (и не повреждала таким образом обогреватели),
+мы гарантируем в нашем программном обеспечении, что если есть опасность
+замерзания, мы пустим по радиатору горячую воду. Таким образом, где-то в нашей
+программе есть следующая функция:
 
 ```rust
 fn danger_of_freezing(temp: f64) -> bool;
 ```
 
-It takes some temperature (provided by some WiFi-connected sensors) and adjusts the flow of water accordingly.
+Она принимает некоторую температуру (полученную с датчиков по WiFi) и управляет
+потоком воды соответствующим образом.
 
-Everything goes well, customers are happy and no damaged heaters are found. Management decides to expand to the US and our company finds a local partner, which bundles their sensors with our state-of-the art thermostat.
+Все идет отлично, покупатели довольны и ни один обогреватель не пострадал.
+Руководство приняло решение перейти на рынок США и наша компания находит
+местного партнера, который связывает свои датчики с нашим замечательным
+термостатом.
 
-It's a disaster.
+Это катастрофа.
 
-After some investigation it is revealed that the American sensors reported temperatures in Fahrenheit, whilst the software for our thermostats works with Celsius. The software starts heating as soon as the temperature falls below 3° Celsius. Unfortunately, 3° Fahrenheit is way below the freezing point. Luckily, after a software update we can fix the problem and the damage is limited to just a few 10-thousands US-Dollars. [Others weren't so lucky.](https://en.wikipedia.org/wiki/Mars_Climate_Orbiter)
+После расследования выясняется, что американские датчики сообщают температуру в
+градусах Фаренгейта, в то время как наше программное обеспечение работает с
+градусами Цельсия. Программа начинает подогрев как только температура опускается
+ниже 3° Цельсия. К несчастью, 3° по Фаренгейту ниже точки замерзания. Впрочем,
+после обновления программы мы сможем справиться с проблемой и ущерб составит
+всего несколько десятков тысяч долларов.
+[Другим повезло меньше](https://en.wikipedia.org/wiki/Mars_Climate_Orbiter)
 
+## Новые типы
 
-## Newtypes
-
-The problem occurred, because we associated floating-point numbers with something more than just numbers. We have given these numbers a meaning without communicating it explicitly. Thus, instead of using plain numbers to represent temperature, we basically want to bundle them with a unit. Types to the rescue! 
+Проблема возникла из-за того, что мы использовали числа с плавающей запятой,
+имея в виду нечто большее, чем просто числа. Мы присвоили этим числам смысл без
+явного сообщения об этом. Таким образом, вместо работы с обычными числами для
+представления температуры, мы в основном хотим работать с единицами измерения.
+Типы, на помощь!
 
 ```rust
 #[derive(Debug, Clone, Copy)]
@@ -34,19 +62,23 @@ struct Celsius(f64);
 struct Fahrenheit(f64);
 ```
 
-This is what Rustaceans call the `newtype`-pattern. It is a struct boxing a single value in a tuple-struct. In the example we created two newtypes, one each for Celsius and Fahrenheit.
+Программисты Rust называют это шаблоном проектирования `новый тип`. Это
+структура-кортеж, содержащая единственное значение. В этом примере мы создали
+два новых типа, по одному для градусов Цельсия и Фаренгейта.
 
-Using these, our function in question now has this type-signature:
+Используя это, наша функция теперь имеет такой тип:
 
 ```rust
 fn danger_of_freezing(temp: Celsius) -> bool;
 ```
 
-Using this function with anything but Celsius-values results in compile time errors. Success!
+Использование этой функции с чем-любо кроме градусов Цельсия приводит к ошибкам
+во время компиляции. Успех!
 
-### Conversions
+### Преобразования
 
-All we have to do now is to write conversion functions, which can turn one unit into the other.
+Все что нам остается - это написать функции преобразования, которые будут
+переводить одни единицы измерения в другие.
 
 ```rust
 impl Celsius {
@@ -62,39 +94,42 @@ impl Fahrenheit {
 }
 ```
 
-And then use them like this:
+А потом использовать их примерно так:
 
 ```rust
 let temp: Fahrenheit = sensor.read_temperature();
 let is_freezing = danger_of_freezing(temp.to_celsius());
 ```
 
-## From And Into
+## From и Into
 
-Conversion between different types is quite common in rust. For example we can turn `&str` to `String` using `to_string`, similarly to above:
-
-```rust
-// "Hello" has the type &'static str
-let s = "Hello".to_string();
-```
-
-However, it is also possible to use ``String::from`` to create a string like this:
+Преобразования между различными типами - обычное дело в Rust. Например, мы можем
+превратить `&str` в `String`, используя `to_string`, например:
 
 ```rust
-let s = String::from("hello");
+// "Привет" имеет тип &'static str
+let s = "Привет".to_string();
 ```
 
-And even this:
+Однако, также возможно использовать `String::from` для создания строк так:
 
 ```rust
-let s: String = "hello".into();
+let s = String::from("привет");
 ```
 
-So why all these functions, when they are seemingly doing the same?
+Или даже так:
 
-### Into the Wild
+```rust
+let s: String = "привет".into();
+```
 
-Rust offers traits, which unify conversions from one type into another. ``std::convert`` describes among others the `From` and `Into` traits.
+Зачем же все эти функции, когда они делают одно и то же, на первый взгляд?
+
+### В дикой природе
+*Примечание переводчика: в этом заголовке содержалась непереводимая игра слов*
+
+Rust предлагает типажи, которые унифицируют преобразования из одного типа в
+другой. `std::convert` описывает, помимо других, типажи `From` и `Into`.
 
 ```rust
 pub trait From<T> {
@@ -106,10 +141,12 @@ pub trait Into<T> {
 }
 ```
 
-As we can see above, ``String`` implements ``From<&str>`` and similarly ``&str`` implements ``Into<String>``. Actually, one has to only implement one of those two traits to gain both, since they are basically the same thing. To be more precise, [From implies Into](https://doc.rust-lang.org/src/core/up/src/libcore/convert.rs.html#267).
+Как мы можем увидеть выше, `String` реализует `From<&str>`, а `&str` реализует
+`Into<String>`. Фактически, достаточно реализовать один из этих типажей, чтобы
+получить оба, так как их можно считать одним и тем же. Точнее,
+[From реализует Into](https://doc.rust-lang.org/src/core/convert.rs.html#275)
 
-
-So let's do the same for temperatures:
+Так что давайте сделаем то же самое для температур:
 
 ```rust
 impl From<Celsius> for Fahrenheit {
@@ -125,23 +162,27 @@ impl From<Fahrenheit> for Celsius {
 }
 ```
 
-Applied to our function-call:
+Применяем это в нашем вызове функции:
+
 ```rust
 let temp: Fahrenheit = sensor.read_temperature();
 let is_freezing = danger_of_freezing(temp.into());
-// or
+// или
 let is_freezing = danger_of_freezing(Celsius::from(temp));
 
 ```
 
-### Your Wish Is My Command
+### Твое желание для меня закон
+*Примечание переводчика: и вновь игра слов*
 
-Now, one could say that not much is gained by using the `From` trait over just implementing conversion functions -- as we did before. One could even argue the opposite, ``into`` is much less descriptive than ``to_celsius``.
+Сейчас можно сказать, что не так уж и много мы получаем от использования типажа
+`From` вместо реализации функций преобразования, как мы делали раньше. Можно
+даже утверждать обратное, что `into` - гораздо менее очевидно, чем `to_celsius`.
 
-What we can do though, is to move the unit-conversion into the function:
+Что мы можем сделать, так это переместить преобразование величин внутрь функции:
 
 ```rust
-// T is anything which can be turned into Celsius
+// T - любой тип, который можно перевести в градусы Цельсия
 fn danger_of_freezing<T>(temp: T) -> bool
 where T: Into<Celsius> {
     let celsius = Celsius::from(temp);
@@ -149,16 +190,21 @@ where T: Into<Celsius> {
 }
 ```
 
-This function now magically accepts both Celsius and Fahrenheit as inputs, whilst remaining type-safe:
+Эта функция теперь волшебным образом принимает и градусы Цельсия, и Фаренгейта,
+оставаясь при этом типобезопасной:
 
 ```rust
 danger_of_freezing(Celsius(20.0));
 danger_of_freezing(Fahrenheit(68.0));
 ```
 
-We can even go a step further. Not only can we process a multitude of convertible inputs, but also produce several output-types in the same way.
+Мы можем пойти еще дальше. Можно не только обрабатывать множество
+преобразуемых входных данных, но и производить несколько выходных типов схожим
+образом.
 
-Let's say we want a function, that returns the freezing point. It should return either Celsius or Fahrenheit -- depending on the context.
+Допустим, мы хотим функцию, которая возвращает точку замерзания. Она должна
+возвращать градусы Цельсия или Фаренгейта - в зависимости от контекста.
+
 ```rust
 fn freezing_point<T>() -> T
 where T: From<Celsius> {
@@ -166,40 +212,48 @@ where T: From<Celsius> {
 }
 ```
 
-Calling this function is a bit different from other functions where we easily know the return type. Here we have to *request* the type we want.
+Вызов этой функции немного отличается от других функций, где мы точно знаем
+возвращаемый тип. Здесь же мы должны *запросить* тип, который нам нужен.
 
 ```rust
-// kindly requesting Fahrenheit
+// вежливо просим градусы Фаренгейта
 let temp: Fahrenheit = freezing_point();
 ```
 
-There is a second, more explicit way to call the function:
+Есть второй, более явный способ вызвать функцию:
 
 ```rust
-// calling the function that returns Celsius
+// вызываем функцию, которая возвращает градусы Цельсия
 let temp = freezing_point::<Celsius>();
 ```
 
-### Boxed Values
+### Упакованные значения
 
-This technique is not only useful to convert units into each other, but can simplify handling of boxed values, e.g. query results from [databases](https://github.com/sfackler/rust-postgres).
+Эта техника не только полезна для преобразования величин друг в друга, но также
+упрощает обработку упакованных значений, например результатов из
+[баз данных](https://github.com/sfackler/rust-postgres)
 
 ```rust
 let name: String = row.get(0);
 let age: i32 = row.get(1);
 
-// instead of
+// вместо
 let name = row.get_string(0);
 let age = row.get_integer(1);
 ```
 
-## Summary
+## Заключение
 
-Python has a beautiful [Zen](https://www.python.org/dev/peps/pep-0020/). It first two lines say:
->Beautiful is better than ugly.
-> Explicit is better than implicit.
+У Python есть замечательный [Дзен](https://www.python.org/dev/peps/pep-0020/).
+Его первые две строки гласят:
+> Красивое лучше, чем уродливое.
+> Явное лучше, чем неявное.
 
-Programming is the act of communicating intention to the computer. And we should be explicit with what we actually mean, when we write programs. For example, it is un-descriptive to use a boolean value to encode sort-order. In Rust we can just use an enum, to eliminate any ambiguity:
+Программирование - это акт передачи намерений компьютеру. И мы должны явно
+указывать, что именно мы имеем в виду, когда мы пишем программы. Например,
+нецелесообразно использовать булево значение для указания порядка сортировки.
+В Rust мы можем просто использовать перечисление, чтобы избавиться от любой
+двусмысленности:
 
 ```rust
 enum SortOrder {
@@ -208,4 +262,7 @@ enum SortOrder {
 }
 ```
 
-In the same way newtypes help to attach meaning to plain values. A ``Celsius(f64)`` is different from ``Miles(f64)`` although they may share the same internal representation (``f64``). On the other hand the use of ``from`` and ``into`` help us, to keep programs and interfaces simpler. 
+Таким же образом *новые типы* помогают придать смысл простым значениям.
+`Celsius(f64)` отличается от `Miles(f64)`, хотя они могут иметь одно и то же
+внутреннее представление (`f64`). С другой стороны, использование `From` и `Into`
+помогает нам упрощать программы и интерфейсы.
