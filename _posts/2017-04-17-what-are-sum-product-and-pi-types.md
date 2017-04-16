@@ -1,5 +1,5 @@
 ---
-title: "Что такое тип-сумма, тип-произведение и тип-𝜋?"
+title: "Что такое тип-сумма, тип-произведение и тип-π?"
 author: Manish Goregaokar
 original: https://manishearth.github.io/blog/2017/03/04/what-are-sum-product-and-pi-types/
 translator: Сергей Веселков
@@ -17,8 +17,7 @@ Much like fezzes and bow ties, sum types are indeed cool.
 
 img
 
-These days, I’ve also seen people asking about “Pi types”, because of [this Rust RFC]
-(https://github.com/ticki/rfcs/blob/pi-types-2/text/0000-pi-types.md).
+These days, I’ve also seen people asking about “Pi types”, because of [this Rust RFC](https://github.com/ticki/rfcs/blob/pi-types-2/text/0000-pi-types.md).
 
 But what does “sum type” mean? And why is it called that? And what, in the name of sanity, is a Pi type?
 
@@ -358,15 +357,9 @@ or “const generics” :)
 Thanks to Zaki, Avi Weinstock, Corey Richardson, and Peter Atashian for reviewing drafts of this post.
 
 [^1]: Rust, Swift, sort of Typescript, and all the functional languages who had it before it was cool.
-
 [^2]: Lookin’ at you, Go.
-
 [^3]: Moooooooooooooooonads
-
 [^4]: Types are not exactly sets due to some differences, but for the purposes of this post we can think of them like sets.
-
 [^5]: Though you can argue that strings often have their length bounded by the pointer size of the platform, so it’s still a finite set.
-
 [^6]: This even holds for zero-sized types, for more examples, check out this blog post
-
 [^7]: Like with strings, in practice this would probably be bounded by the integer type chosen

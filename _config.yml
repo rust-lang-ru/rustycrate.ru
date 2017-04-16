@@ -30,6 +30,7 @@ markdown: kramdown
 
 kramdown:
   transliterated_header_ids: true
+  smart_quotes: ["apos", "apos", "quot", "quot"]
 
 gems:
   - jekyll-assets
