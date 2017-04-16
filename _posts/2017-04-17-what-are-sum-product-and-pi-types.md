@@ -7,27 +7,24 @@ categories: обучение
 math: true
 ---
 
-# What Are Sum, Product, and Pi Types?
+Вы часто слышите, как люди говорят "У языка X[^1] есть тип-сумма", или "Я хотел бы, что бы в языке X были тип-суммы"[^2],
+или "Тип-суммы - это круто".
 
-See also: [Tony’s post on the same topic](https://tonyarcieri.com/a-quick-tour-of-rusts-type-system-part-1-sum-types-a-k-a-tagged-unions)
-
-You often hear people saying “Language X[^1] has sum types” or “I wish language X had sum types”[^2], or “Sum types are cool”.
-
-Much like fezzes and bow ties, sum types are indeed cool.
+Так же, как и фески или галстуки-бабочки, тип-суммы - это действительно круто.
 
 img
 
-These days, I’ve also seen people asking about “Pi types”, because of [this Rust RFC](https://github.com/ticki/rfcs/blob/pi-types-2/text/0000-pi-types.md).
+Сейчас также встречаються люди, которые спрашивают о "тип-π" из-за этого [RFC][pi-types-rfc].
 
-But what does “sum type” mean? And why is it called that? And what, in the name of sanity, is a Pi type?
+Но что такое "тип-сумма"? Почему это так назывваеться? И что, чёрт побери, такое "тип-π"?!
 
-Before I start, I’ll mention that while I will be covering some type theory to explain the names “sum” and “product”,
-you don’t need to understand these names to use these things! Far too often do people have trouble understanding
-relatively straightforward concepts in languages because they have confusing names with confusing mathematical backgrounds[^3].
+Прежде чем начать, стоит отметить, что пока мы будем рассматривать некоторую часть теории типов для объяснения терминов "сумма" и
+"произведение", вам не нужно понимать эти термины для использования этих вещей! Слишком часто у людей возникают проблемы с пониманием
+относительно простых понятий в языках, из-за того что они имеют сложные названия с запутаными математическими обоснованиями[^3].
 
-# So what’s a sum type? (the no-type-theory version)
+# Что же такое тип-сумма? (версия без теории типов)
 
-In it’s essence, a sum type is basically an “or” type. Let’s first look at structs.
+По сути "тип-сумма" это обычный тип "или". Давайте сначала рассмотрим структуры.
 
 ```
 struct Foo {
@@ -36,11 +33,11 @@ struct Foo {
 }
 ```
 
-`Foo` is a `bool` AND a `String`. You need one of each to make one. This is an “and” type, or a “product” type
-(I’ll explain the name later).
+`Foo` состоит из `bool` И `String`. Вам нужно по одному для каждого экземпляра. Это и есть тип "и", или "тип-произведение"
+(мы разберём этот термин позже).
 
-So what would an “or” type be? It would be one where the value can be a `bool` OR a `String`.
-You can achieve this with C++ with a union:
+Чем же тогда будет тип "или"? Это тип, значение которого может быть либо `bool`, либо `String`.
+В C++ вы можете достичь этого с помощью объединений:
 
 ```
 union Foo {
@@ -48,14 +45,14 @@ union Foo {
     string y;
 }
 
-foo.x = true; // set it to a bool
-foo.y = "blah"; // set it to a string
+foo.x = true; // присваиваем логический тип
+foo.y = "blah"; // присваиваем строковый тип
 ```
 
-However, this isn’t exactly right, since the value doesn’t store the information of which variant it is.
-You could store `false` and the reader wouldn’t know if you had stored an empty `string` or a `false` `bool`.
+Однако это не совсем правильно, поскольку экземпляр не хранит информацию о том, какого он типа.
+Вы можете записать туда `false` и при обращении будет неизвестно, хранится ли там пустая строка или логическое `false`.
 
-There’s a pattern called “tagged union” (or “discriminated union”) in C++ which bridges this gap.
+В C++ для решения этой проблемы есть шаблон проектирования "меченое объединение" (или "дизъюнктное объединение").
 
 ```
 union FooUnion {
@@ -72,21 +69,21 @@ struct Foo {
     FooTag tag;
 }
 
-// set it to a bool
+// присваиваем логический тип
 foo.data.x = true;
 foo.tag = BOOL;
 
-// set it to a string
+// присваиваем строковый тип
 foo.data.y = "blah";
 foo.tag = STRING;
 ```
 
-Here, you manually set the tag when setting the value. C++ also has `std::variant` (or `boost::variant`)
-that encapsulates this pattern with a better API.
+В данном примере вам нужно самостоятельно присвоить тэг при присвавании значения. В C++ также есть `std::variant`
+(или `boost::variant`), который реализуют данный шаблон с более удобным API.
 
-While I’m calling these “or” types here, the technical term for such types is “sum” types. Other languages have built-in sum types.
+Техническое название типа "или" - тип-сумма. Часть других языков имеют встроенную поддержку тип-суммы.
 
-Rust has them and calls them “enums”. These are a more generalized version of the enums you see in other languages.
+В Rust есть встроенная поддержка тип-сумм, их называют "перечисления". Это более обощённая версия перечислений по сравнению с другими языками.
 
 ```
 enum Foo {
@@ -96,14 +93,14 @@ enum Foo {
 
 let foo = Foo::Bool(true);
 
-// "pattern matching"
+// "сопоставление с образцом"
 match foo {
-    Str(s) => /* do something with string `s` */,
-    Bool(b) => /* do something with bool `b` */,
+    Str(s) => /* делаем что-то со строкой `s` */,
+    Bool(b) => /* делаем что-то с логической `b` */,
 }
 ```
 
-Swift is similar, and also calls them enums
+В Swift тип-суммы так же называются перечислениями
 
 ```
 enum Foo {
@@ -114,68 +111,69 @@ enum Foo {
 let foo = Foo.boolean(true);
 switch foo {
     case .str(let s):
-        // do something with string `s`
+        // делаем что-то со строкой `s`
     case .boolean(let b):
-        // do something with boolean `b`
+        // делаем что-то с логической `b`
 }
 ```
 
-You can fake these in Go using interfaces, as well. Typescript has built-in unions which can be typechecked
-without any special effort, but you need to add a tag (like in C++) to pattern match on them.
+В Go вы можете представить тип-сумму в виде интерфейсов. Typescript имеют встроенную поддержку объединений с
+возможностью проверки типов, но вам нужно добавить тег (как и в C++) для того чтобы сопосталять их.
 
-Of course, Haskell has them:
+В Haskell конечно же есть тип-суммы:
 
 ```
 data Foo = B Bool | S String
 
--- define a function
+-- определяем функцию
 doThing :: Foo -> SomeReturnType
-doThing (B b) = -- do something with boolean b
-doThing (S s) = -- do something with string s
+doThing (B b) = -- делаем что-то с логической b
+doThing (S s) = -- делаем что-то со строкой s
 
--- call it
+-- вызываем функцию
 doThing (S "blah")
 doThing (B True)
 ```
 
-One of the very common things that languages with sum types do is express nullability as a sum type;
+Одна из самых распростарннёных вещей, которая реализуеца в языках с поддержкой тип-сумм, это выражение типа
+с возможным отсутствием значения через тип-сумму:
 
 ```
-// an Option is either "something", containing a type, or "nothing"
+// `Option` является либо "чем-то" содержащим тип, либо "ничем"
 enum Option<T> {
     Some(T),
     None
 }
 
-let x = Some("hello");
+let x = Some("привет");
 match x {
     Some(s) => println!("{}", s),
-    None => println!("no string for you"),
+    None => println!("для вас нет строки"),
 }
 ```
 
-Generally, these languages have “pattern matching”, which is like a `switch` statement on steroids. It lets you match on and
-destructure all kinds of things, sum types being one of them. Usually, these are “exhaustive”, which means that you are forced
-to handle all possible cases. In Rust, if you remove that `None` branch, the program won’t compile. So you’re forced to deal
-with the none case, somehow.
+У большинства таких языков есть "сопоставление с образцом", которое работает как `switch` на стероидах. Оно позваоляет вам сопоставлять
+и обрабатывать все возможные вещи, тип-сумма являеться одной из них. Обычно сопоставление являеться "исчерпывающим". Это означает, что
+вы обязаны обработать все возможные варианты. Например, если в Rust вы удалите ветку с `None`, то программа не скомпилируется. В итоге
+вам нужно как-то обработать вариант с отсутствием значения.
 
-In general sum types are a pretty neat and powerful tool. Languages with them built-in tend to make heavy use of them,
-almost as much as they use structs.
+В целом тип-суммы довольно изящный и мощный инструмент. Языки со встроенной поддержкой тип-сумм стараются активно их использовать.
+Фактически они используют их так же часто, как и структуры.
 
-# Why do we call it a sum type?
+# Почему мы назваем это тип-сумма?
 
-Here be (type theory) [dragons](https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools)
+[Драконы][dragons] (теория типов) здесь.
 
-Let’s step back a bit and figure out what a type is.
+Давайте вернёмся немного назад и разберёмся, что это за тип.
 
-It’s really a restriction on the values allowed. It can have things like methods and whatnot dangling off it, but that’s not
-so important here.
+На самом деле этот тип являеться ограничением допустимых значений. У него так же могут быть методы и всякая всячина к нему привязаная,
+но сейчас это не так важно.
 
-In other words, it’s like[^4] a [set](https://en.wikipedia.org/wiki/Set_(mathematics)). A boolean is the set \`{tt"true",tt"false"}\`.
-An 8-bit unsigned integer (`u8` in Rust) is the set \`{0,1,2,3,.... 254,255}\`. A string is a set with infinite elements, containing all
-possible valid strings[^5].
+Другими словами этот тип похож[^4] на [множество][set]. Логический тип - это множество \`{tt"true",tt"false"}\`.
+8-битное беззнаковое целое (`u8` в Rust) - это множество \`{0,1,2,3,.... 254,255}\`. Строка - это множество с бесконечным количеством элементов,
+включающим в себя все возможные строки[^5].
 
-What’s a struct? A struct with two fields contains every possible combination of elements from the two sets.
+А что на счёт структуры? Структура с двумя полями включает в себя все возможные комбинации элементов из множеств этих полей.
 
 ```
 struct Foo {
@@ -184,17 +182,17 @@ struct Foo {
 }
 ```
 
-The set of possible values of `Foo` is
+Множество возможных значений `Foo`
 
 \`{(tt"x", tt"y"): tt"x" in tt"bool", tt"y" in tt"u8"}\`
 
-(Read as “The set of all \`(tt"x", tt"y")\` where \`tt"x"\` is in \`tt"bool"\` and \`tt"y"\` is in \`tt"u8"\`”)
+(Читается как "Множество всех \`(tt"x", tt"y")\` где \`tt"x"\` принадлежит \`tt"bool"\` и \`tt"y"\` принадлежит \`tt"u8"\`")
 
-This is called a Cartesian product, and is often represented as \`tt"Foo" = tt"bool" xx tt"u8"\`. An easy way to view this as
-a product is to count the possible values: The number of possible values of `Foo` is the number of possible values of `bool` (2)
-times the number of possible values of `u8` (256).
+Это называеться декартовым произведением и обычно записывается в виде \`tt"Foo" = tt"bool" xx tt"u8"\`. Простой способ представить
+структуру в виде произведения - это посчитать её возможные значения. Например, количество возможных значений `Foo` - это количество
+возможных значений `bool` (2) и количество возможных значений `u8` (256).
 
-A general struct would be a “product” of the types of each field, so something like
+В общем случае структура будет "произведением" её типов между собой. Например
 
 ```
 struct Bar {
@@ -205,11 +203,12 @@ struct Bar {
 }
 ```
 
-is \`tt"Bar" = tt"bool" xx tt"u8" xx tt"bool" xx tt"Sting"\`
+будет \`tt"Bar" = tt"bool" xx tt"u8" xx tt"bool" xx tt"Sting"\`
 
-This is why structs are called “product types”[^6].
+Из-за этого структуры и называют "тип-произведение"[^6].
 
-You can probably guess what comes next – Rust/Swift enums are “sum types”, because they are the sum of the two sets.
+Вы, наверное, догадываетесь, что будет дальше - объединения в Rust/Swift называют "тип-суммами", поскольку они являютя
+суммой двух множеств.
 
 ```
 enum Foo {
@@ -218,11 +217,11 @@ enum Foo {
 }
 ```
 
-is a set of all values which are valid booleans, and all values which are valid integers. This is a sum of sets,
-\`tt"Foo" = tt"bool" + tt"u8"\`. More accurately, it’s a disjoint union, where if the input sets have overlap,
-the overlap is “discriminated” out.
+это множество всех логических значений и всех 8-битных беззнаковых целых. Это сумма множеств: \`tt"Foo" = tt"bool" + tt"u8"\`.
+Точнее, это дизъюнктное объединение - объединение при котором пересекающиеся элементы входных множеств сохраняют свою
+уникальность.
 
-An example of this being a disjoint union is:
+Примером этого будет дизъюнктное объединение:
 
 ```
 enum Bar {
@@ -232,25 +231,25 @@ enum Bar {
 }
 ```
 
-This is not \`tt"Bar" = tt"bool" + tt"bool" + tt"u8"\`, because \`tt"bool" + tt"bool" = tt"bool"\`,
-(regular set addition doesn’t duplicate the overlap).
+Утверждение \`tt"Bar" = tt"bool" + tt"bool" + tt"u8"\` неверно, поскольку \`tt"bool" + tt"bool" = tt"bool"\`
+(обычное объединение множеств не сохраняет уникальность пересекающихся элементов).
 
-Instead, it’s something like
+Вместо этого, его нужно представить в виде:
 
 \`tt"Bar" = tt"bool" + tt"otherbool" + tt"u8"\`
 
-where \`tt"otherbool"\` is also a set \`{tt"true", tt"false"}\`, except that these elements are different from those
-in \`tt"bool"\`. You can look at it as if
+где \`tt"otherbool"\` это тоже множество \`{tt"true", tt"false"}\`, за исключением того, что эти элементы отличаются от тех,
+которые в \`tt"bool"\`. Мы можем посмотреть на это как на
 
 \`tt"otherbool" = {tt"true"_2, tt"false"_2}\`
 
-so that
+таким образом
 
 \`tt"bool" + tt"otherbool" = {tt"true", tt"false", tt"true"_2, tt"false"_2}\`
 
-For sum types, the number of possible values is the sum of the number of possible values of each of its component types.
+Для тип-суммы количесвто возможных значений - это сумма количества значений каждого из его компоненотв.
 
-So, Rust/Swift enums are “sum types”.
+Так что в Rust/Swift объединения - это "тип-суммы".
 
 You may often notice the terminology “algebraic datatypes” (ADT) being used, usually that’s just talking about sum and
 product types together – a language with ADTs will have both.
@@ -363,3 +362,6 @@ Thanks to Zaki, Avi Weinstock, Corey Richardson, and Peter Atashian for reviewin
 [^5]: Though you can argue that strings often have their length bounded by the pointer size of the platform, so it’s still a finite set.
 [^6]: This even holds for zero-sized types, for more examples, check out this blog post
 [^7]: Like with strings, in practice this would probably be bounded by the integer type chosen
+[pi-types-rfc]: https://github.com/ticki/rfcs/blob/pi-types-2/text/0000-pi-types.md
+[dragons]: https://ru.wikipedia.org/wiki/Компиляторы:_принципы,_технологии_и_инструменты
+[set]: https://ru.wikipedia.org/wiki/Множество
