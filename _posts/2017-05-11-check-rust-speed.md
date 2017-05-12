@@ -1,5 +1,5 @@
 ---
-title: "Головоломка Lights Off"
+title: "Проверяем скорость Rust"
 categories: размышления
 author: Павел Никитин
 ---
