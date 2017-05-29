@@ -86,3 +86,9 @@ ed25519-dalek, macaroons, parity. Введение в RustCrypto: история
 {% img '2016-04-25-colaboratory-rust/button.png' alt:'зарегистрироваться'
    width:'248' height:'60' %}
 </a>
+
+**Обновлено**. Доступно видео докладов.
+
+[Есть ли ООП в Rust?](https://youtu.be/jEKNApzzu8c)
+[Тонкости работы с FFI](https://youtu.be/ViuQbka0Uoc)
+[RustCrypto и другие криптографические проекты](https://youtu.be/mRppbXZ3fc0)
