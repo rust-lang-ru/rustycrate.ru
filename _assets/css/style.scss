@@ -311,6 +311,15 @@ pre.highlight code {
     white-space: pre;
 }
 
+div.highlight table tbody tr td pre {
+    border: none;
+    background-color: inherit;
+}
+
+div.highlight table tbody tr td.code {
+    width: 100%;
+}
+
 div.pagination-area {
     text-align: center;
 }
