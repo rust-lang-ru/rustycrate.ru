@@ -51,7 +51,7 @@ title: Проекты участников нашего сообщества
       XML, полностью на Rust
 * [@ozkriff](https://github.com/ozkriff)
     * [Zone of Control](https://github.com/ozkriff/zoc) — пошаговая стратегическая игра
-* [@SCareAngel](https://github.com/SCareAngel)
+* @SCareAngel
     * [functional](https://crates.io/crates/functional/) — типажи для
       реализации функционального программирования на Rust (привет, монады!)
     * [future](https://crates.io/crates/future/) — разделяемый асинхронный
