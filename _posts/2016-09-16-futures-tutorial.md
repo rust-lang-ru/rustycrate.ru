@@ -200,10 +200,10 @@ let request = tls_handshake.and_then(|socket| {
 
 Здесь мы получили future из предыдущего шага (`tls_handshake`) и использовали
 [and_then](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then) снова, чтобы продолжить
-вычисление. Комбинатор [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html) полностью
+вычисление. Комбинатор [write_all](https://docs.rs/tokio-core/0.1.9/tokio_core/io/fn.write_all.html) полностью
 записывает HTTP запрос, производя многократные записи по необходимости.
 
-Future, возвращаемый методом [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html), будет
+Future, возвращаемый методом [write_all](https://docs.rs/tokio-core/0.1.9/tokio_core/io/fn.write_all.html), будет
 выполнен, как только все данные будут записаны в сокет. Примечательно, что
 [TlsStream](https://tokio-rs.github.io/tokio-tls/tokio_tls/struct.TlsStream.html) скрыто шифрует все данные, которые
 мы записывали, перед тем как отправить в сокет.
@@ -217,7 +217,7 @@ let response = request.and_then(|(socket, _)| {
 ```
 
 Предыдущий future `request` снова связан, на этот раз с результатом выполнения комбинатора
-[read_to_end](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.read_to_end.html). Этот future будет читать все
+[read_to_end](https://docs.rs/tokio-core/0.1.9/tokio_core/io/fn.read_to_end.html). Этот future будет читать все
 данные из сокета и помещать их в предоставленный буфер и вернёт буфер, когда обрабатываемое соединение передаст EOF.
 
 Как и ранее, чтение из сокета на самом деле скрыто расшифровывает данные, полученные от сервера, так что мы читаем
@@ -244,7 +244,7 @@ println!("{}", String::from_utf8_lossy(&data));
 Фух! Мы рассмотрели futures,
 [инициализирующие TCP соединение](https://tokio-rs.github.io/tokio-core/tokio_core/net/struct.TcpStream.html#method.connect),
 [создающие цепочки вычислений](https://docs.rs/futures/0.1.3/futures/trait.Future.html#method.and_then) и
-[читающие данные из сокета](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.read_to_end.html). Но это только
+[читающие данные из сокета](https://docs.rs/tokio-core/0.1.9/tokio_core/io/fn.read_to_end.html). Но это только
 пример возможностей futures, далее рассмотрим нюансы.
 
 # Типаж Future
@@ -568,7 +568,7 @@ let welcomes = clients.and_then(|(socket, _peer_addr)| {
 [and_then](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html#method.and_then) типажа
 [Stream](https://docs.rs/futures/0.1.3/futures/stream/trait.Stream.html), чтобы выполнить действие над каждым
 элементом потока. В данном случае мы формируем цепочку вычислений для каждого элемента потока (`TcpStream`). Мы видели
-метод [write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html) ранее, он записывает
+метод [write_all](https://docs.rs/tokio-core/0.1.9/tokio_core/io/fn.write_all.html) ранее, он записывает
 переданный буфер данных в переданный сокет.
 
 Этот блок означает, что `welcomes` теперь является потоком сокетов, в которые записана последовательность символов
@@ -583,7 +583,7 @@ welcomes.for_each(|(_socket, _welcome)| {
 ```
 
 Здесь мы принимаем результаты предыдущего future,
-[write_all](https://tokio-rs.github.io/tokio-core/tokio_core/io/fn.write_all.html), и отбрасываем их, в результате чего
+[write_all](https://docs.rs/tokio-core/0.1.9/tokio_core/io/fn.write_all.html), и отбрасываем их, в результате чего
 сокет закрывается.
 
 Следует отметить, что важным ограничением этого сервера является отсутствие параллельности. Потоки
