@@ -11,6 +11,12 @@ categories: обучение
 Как зарегистрироваться на AppVeyor, подключить туда свой проект на Rust и
 сделать первую сборку.
 
+Это цикл статей:
+* [Как настроить сборку и тестирование для Open Source проекта на Rust под Linux
+  с помощью Travis](/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2017/07/30/rust-travis.html)
+* Как настроить сборку и тестирование для Open Source проекта на Rust под Windows
+  с помощью AppVeyor (эта статья)
+
 <!--cut-->
 
 # Содержание
@@ -275,6 +281,13 @@ install:
 
 На этом всё. Успешных сборок!
 
-Задавайте
-вопросы
-[на форуме](!!!!!).
+<hr/>
+
+Другие статьи цикла:
+* [Как настроить сборку и тестирование для Open Source проекта на Rust под Linux
+  с помощью Travis](/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2017/07/30/rust-travis.html)
+* Как настроить сборку и тестирование для Open Source проекта на Rust под Windows
+  с помощью AppVeyor (эта статья)
+
+Задавайте вопросы
+[на форуме](https://forum.rustycrate.ru/t/obsuzhdenie-stati-kak-nastroit-sborku-i-testirovanie-dlya-open-source-proekta-na-rust-pod-windows-s-pomoshhyu-appveyor/248).
