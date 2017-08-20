@@ -36,7 +36,7 @@ categories: обучение
 
 ## Регистрируемся на AppVeyor
 
-Заходим на [AppVeyor](https://www.appveyor.com/). Нажимаем "Sign Up For Free".
+Заходим на [AppVeyor](https://www.appveyor.com/). Нажимаем `Sign Up For Free`.
 
 Открывается окно регистрации. Выбираем бесплатный тариф для проектов с открытыми
 исходниками: в поле `1 - Plan` выбираем `Free for open-source projects`. Если не
