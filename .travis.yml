@@ -14,11 +14,10 @@ before_script:
 - nvm install v6.9.5
 - node --version
 - npm --version
-- npm install typograf
-- npm install typograf-cli
-- npm install eyo
-- npm install yaspeller
-- echo "$PATH"
+- npm install -g typograf
+- npm install -g typograf-cli
+- npm install -g eyo
+- npm install -g yaspeller
 - typograf --version
 - eyo --version
 - yaspeller --version
