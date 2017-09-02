@@ -18,6 +18,7 @@ before_script:
 - npm install typograf-cli
 - npm install eyo
 - npm install yaspeller
+- echo "$PATH"
 - typograf --version
 - eyo --version
 - yaspeller --version
