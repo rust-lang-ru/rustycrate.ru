@@ -7,8 +7,9 @@ original: http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html
 translator: Norman Ritchie
 ---
 
-Будучи новичком в Rust, я запутывался в различных способах обозначить строку. В книге Rust
-есть глава [“References and Borrowing”][ref], в которой используется три различных типа строковых переменных в примерах: `String`, `&String` и `&str`.
+Будучи новичком в Rust, я запутывался в различных способах обозначить строку.
+В книге о языке Rust есть глава [“References and Borrowing”][ref], в которой
+используется три различных типа строковых переменных в примерах: `String`, `&String` и `&str`.
 
 [ref]: https://doc.rust-lang.org/book/second-edition/ch04-02-references-and-borrowing.html
 
