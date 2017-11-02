@@ -132,7 +132,7 @@ cargo install clippy
 
 0. Плагин Rust для [IntelliJ IDEA](https://intellij-rust.github.io/)
 
-{% img '2015-12-04-ide-for-rust/intellij-rust.png' alt: 'Intellij-Rust' %} 
+{% img '2015-12-04-ide-for-rust/intellij-rust.png' alt:'Intellij-Rust' %} 
 
 {% endspoiler %}
 
