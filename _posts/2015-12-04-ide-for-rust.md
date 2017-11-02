@@ -153,7 +153,7 @@ cargo install clippy
 
 {% spoiler Emacs %}
 
-1. Emacs для редакторования кода на Rust
+1. Emacs для редактирования кода на Rust
   * [Rust-mode](https://github.com/rust-lang/rust-mode)
 
 {% img '2015-12-04-ide-for-rust/emacs_rust.png' alt:'Emacs with Rust' %}
