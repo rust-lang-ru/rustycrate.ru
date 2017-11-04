@@ -171,6 +171,13 @@ title: Поддержали нас на Patreon
       Константин Грибов
       </a>
     </td>
+    <td>
+      <a href="https://www.patreon.com/arkada38">
+      {% img 'patrons/arkadiy.png' alt:'Аркадий' magick:resize:32 %}</a>
+      <a href="https://www.patreon.com/arkada38">
+      Аркадий
+      </a>
+    </td>
   </tr>
 </table>
 
