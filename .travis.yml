@@ -25,7 +25,9 @@ before_script:
 - bundle exec htmlproofer --version
 - convert -version
 script:
-- yaspeller --only-errors *.md _posts
+# https://github.com/hcodes/yaspeller/issues/83
+# https://github.com/hcodes/yaspeller/issues/84
+#- yaspeller --only-errors *.md _posts
 - JEKYLL_ENV=production RUSTYCRATE_MODE=production RUSTYCRATE_ENABLE_EYO=yes
   bundle exec jekyll build
 - bundle exec htmlproofer ./_site
