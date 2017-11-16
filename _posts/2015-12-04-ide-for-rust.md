@@ -10,6 +10,8 @@ _Это вики-статья. Последнее обновление: 15 ок�
 Это руководство для тех, кто хочет быстро начать работу с Rust в IDE с
 подсветкой синтаксиса, автодополнением и прочими возможностями.
 
+<!--cut-->
+
 # Содержание
 
 * TOC
@@ -81,6 +83,7 @@ cargo 0.22.0 (3423351a5 2017-10-06)
 
 ```text
 $ rustup install nightly
+$ rustup default nightly
 ```
 
 [Подробнее об установке ночной версии](https://github.com/rust-lang-nursery/rustup.rs#working-with-nightly-rust).
@@ -111,6 +114,14 @@ $ rustup install nightly
 
 ### Настройка редактора
 
+{% spoiler IntelliJ IDEA %}
+
+0. Устанавливаем [расширение](https://intellij-rust.github.io/)
+
+{% img '2015-12-04-ide-for-rust/intellij-rust.png' alt:'Intellij-Rust' %} 
+
+{% endspoiler %}
+
 {% spoiler Sublime Text 3 %}
 
 0. Устанавливаем расширение [Rust Enhanced](https://packagecontrol.io/packages/Rust%20Enhanced)
@@ -132,16 +143,6 @@ $ rustup install nightly
 
 {% img '2015-12-04-ide-for-rust/sublime-3-rust.png' alt:'Sublime 3 with Rust' %}
 {% endspoiler %}
-
-{% spoiler IntelliJ IDEA %}
-
-0. Устанавливаем [расширение](https://intellij-rust.github.io/)
-
-{% img '2015-12-04-ide-for-rust/intellij-rust.png' alt:'Intellij-Rust' %} 
-
-{% endspoiler %}
-
-<!--cut-->
 
 {% spoiler Emacs %}
 
