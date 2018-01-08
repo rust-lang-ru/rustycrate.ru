@@ -25,9 +25,12 @@ translator: bmusin
 (`unsafe` код) за безопасными внешними абстракциями.
 
 Данная заметка представляет ключевое слово `unsafe` и идею ограниченной "небезопасности".
-Фактически это предвестник заметки, которую я надеюсь написать чуть позже.
+Фактически это предвестник [заметки][prev_item], которую я надеюсь написать чуть позже.
 Она обсуждает модель памяти Rust, которая указывает, что
 можно, а что нельзя делать в `unsafe` коде.
+
+<!--cut-->
+
 
 ## "Небезопасный" код как плагин
 Я думаю, что то, как интерпретируемые языки, подобные Ruby(или Python) используют
@@ -72,12 +75,12 @@ translator: bmusin
 с неинициализированной памятью. `Rc` и `Arc`, являющиеся счетчиками ссылок, 
 также являются показательным примером. Однако имеются гораздо более
 интересные примеры, как-то: *CrossBeam* и *deque* используют `unsafe` код для
-реализации не блокирующих(*lock-free*) структур данных или *Jobsteal* или *Rayon*
+реализации неблокирующих (*lock-free*) структур данных или *Jobsteal* и *Rayon*
 используют `unsafe` код для реализации пула потоков(thread pool).
 
 В данной заметке мы рассмотрим один простой пример: метод `split_at_mut`,
 который имеется в стандартной библиотеке. Данный метод работает
-с изменяемыми срезами(*mutable slices*). Также он принимает индекс(`mid`)
+с изменяемыми срезами (*mutable slices*). Также он принимает индекс(`mid`)
 и разделяет срез на две части по указанному индексу. Впоследствии он
 возвращает два меньших среза: один с диапазоном `0..mid`, второй - в `mid..`
 
@@ -123,32 +126,31 @@ impl [T] {
 Это также значит, что все ваши значения, которые вы возвращаете, дожны соответствовать
 требованиям системы типов Rust. Находясь же внутри `unsafe` границ, вы можете обходить
 правила по своему усмотрению(разумеется, объем предоставляемых дополнительных
-возможностей является темой для обсуждения; Я надеюсь обсудить это в последующей
-заметке.)
+возможностей является темой для обсуждения; я надеюсь обсудить это в последующей
+заметке).
 
-Давайте посмотри на метод `split_at_mut`, который мы видели в прошлом разделе.
+Давайте посмотрим на метод `split_at_mut`, который мы видели в прошлом разделе.
 Для упрощения понимания, мы будет рассматривать только внешний интерфейс функции,
 представляемый сигнатурой:
 ```rust
 impl [T] {
     pub fn split_at_mut(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
-        // body of the fn omitted so that we can focus on the
-        // public inferface; safe code shouldn't have to care what
-        // goes in here anyway
+        // Тело функции пропущено, так что мы можем сосредоточить внимание
+        // на публичный интерфейсах. В любом случае безопасный код не должен 
+        // интересоваться тем, что здесь находится. 
     }
 }    
 ```
 
 Что мы может понять из этой сигнатуры?
-Начнем с того, что `split_at_mut` может полагать, что все ее входные данные
-являются "валидными"(В safe-коде, компилятор проверяет, что это действительно так)
-Частью написания правил для `unsafe` кода является более точное описние того,
-что это значит, но, говоря общими словами, это выражается так:
+Начнем с того, что `split_at_mut` полагается на то, что все ее входные данные
+являются "валидными" (В safe-коде, компилятор проверяет, что это действительно так).
+`unsafe` семантика метода `split_at_mut` может быть выражена в следующих правилах:
 
 * `self` аргумент имеет тип `mut [T]`. Из этого следует, что мы получим 
 ссылку, которая указыват на некоторое(N) количество элементов типа T.
-Это изменяемая(*mutable*) ссылка, поэтому мы знаем, что к памяти, к которой обращается
-`self`, не можно обращаться больше никто(пока изменяемая ссылка не перестанет
+Это изменяемая (*mutable*) ссылка, поэтому мы знаем, что к памяти, к которой обращается
+`self`, не может обращаться больше никто(пока изменяемая ссылка не перестанет
 существовать). Мы также знаем, что память инициализирована.
 * `mid` аргумент имеет тип `usize`. Все, что мы знаем, так это то, что даная
 переменная представляет собой неотрицательное целое число.
@@ -167,27 +169,26 @@ impl [T] {
 ## Возможные реализации
 Давай посмотрим на несколько возможных реализаций `split_at_mut` и определим,
 являются ли они рабочими вариантами или нет. Мы уже видели, что реализация, написанная
-на "чистом" Rust не работает(не компилируется).
+на "чистом" Rust не работает (не компилируется).
 Попробуем реализовать функцию, используя сырые(*raw*) указатели:
 ```rust
 impl [T] {
     pub fn split_at_mut(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
         use std::slice::from_raw_parts_mut;
         
-        // The unsafe block gives us access to raw pointer
-        // operations. By using an unsafe block, we are claiming
-        // that none of the actions below will trigger
-        // undefined behavior.
+        // `unsafe` блок дает доступ к операциям с *сырым* указателем.
+        // Используя `unsafe` блок, мы заявляем, что никакие наши действия
+        // не будут причиной UB(undefined behaviour).
         unsafe {
-            // get a raw pointer to the first element
+            // получить *сырой* указатель на первый элемент 
             let p: *mut T = &mut self[0]; 
-            // get a pointer to the element `mid`
+            // получить указатель на `mid` элемент
             let q: *mut T = p.offset(mid as isize);
-            // number of elements after `mid`
+            // количество элементов после `mid`
             let remainder = self.len() - mid;
-            // assemble a slice from 0..mid
+            // "собрать" подмассив из элементов в диапазоне `0..mid`
             let left: &mut [T] = from_raw_parts_mut(p, mid);
-            // assemble a slice from mid..
+            // "собрать" подмассив из элементов в диапазоне `mid..`
             let right: &mut [T] = from_raw_parts_mut(q, remainder);
             (left, right)
         }
@@ -213,10 +214,10 @@ impl [T] {
 impl [T] {
     pub fn split_at_mut(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
         use std::slice::from_raw_parts_mut;
-        // check that `mid` is in range:
+        // проверка, что `mid` находится в границах массива:
         assert!(mid <= self.len());
         
-        // as before, with fewer comments:
+        // как и раньше, но без комментариев
         unsafe {
             let p: *mut T = &mut self[0]; 
             let q: *mut T = p.offset(mid as isize);
@@ -248,15 +249,15 @@ impl [T] {
 
 Rust позволяет выражать то, что весь код функции является `unsafe` посредством
 помещения ключевого слова `unsafe` в сигнатуре функции.
-После такого перемещения, `unsafe`ность кода больше не является **внутренней деталью
+После такого перемещения, "небезопасность" кода больше не является **внутренней деталью
 реализации** функции, теперь это часть __интерфейса функции__. Так что мы может
 сделать вариант `split_at_mut` - `split_at_mut_unchecked` - 
 который не проверяет нахождение `mid` в допустимых границах:
  ```rust
  impl [T] {
-     // Here the **fn** is declared as unsafe; calling such a function is
-     // now considered an unsafe action for the caller, because they
-     // must guarantee that `mid <= self.len()`.
+     // Здесь данная функция объявлена как `unsafe`. Вызов данной
+     // функции является `unsafe` действием для вызывающего кода,
+     // потому что они должны гарантировать инвариант: `mid <= self.len()`.
      unsafe pub fn split_at_mut_unchecked(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
          use std::slice::from_raw_parts_mut;
          let p: *mut T = &mut self[0]; 
@@ -289,18 +290,17 @@ impl [T] {
     pub fn split_at_mut(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
         assert!(mid <= self.len());
         
-        // By placing the `unsafe` block in the function, we are
-        // claiming that we know the extra safety conditions
-        // on `split_at_mut_unchecked` are satisfied, and hence calling
-        // this function is a safe thing to do.
+        // Помещая `unsafe`-блок в функции, мы заявляем, что мы знаем
+        // что дополнительные условия, наложенные на `split_at_mut_unchecked`,
+        // выполнены, и поэтому вызов этой функии является безопасным действием.
         unsafe {
             self.split_at_mut_unchecked(mid)
         }
     }
     
-    // **NB:** Requires that `mid <= self.len()`.
+    // **NB:** требует, что `mid <= self.len()`.
     pub unsafe fn split_at_mut_unchecked(&mut self, mid: usize) -> (&mut [T], &mut [T]) {
-        ... // as above
+        ... // как и ранее.
     }
 }
 ```
@@ -359,8 +359,8 @@ pub struct Vec<T> {
 содержит в себе указатель(*pointer*) и емкость(_capacity_):
 ```rust
 pub struct RawVec<T> {
-    // Unique is actually another unsafe helper type
-    // that indicates a uniquely owned raw pointer:
+    // `Unique` является еще одним вспомогательным `unsafe` типом,
+    // который обозначает *сырой* указатель с единственным владельцем(uniquely owned).
     ptr: Unique<T>,
     cap: usize,
 }
@@ -414,6 +414,7 @@ pub struct RawVec<T> {
 
 [aim]: https://github.com/rust-lang/rfcs/issues/1447
 [helix]: http://blog.skylight.io/introducing-helix/
+[prev_item]: http://smallcultfollowing.com/babysteps/blog/2016/05/27/the-tootsie-pop-model-for-unsafe-code/
 [ptr]: https://github.com/rust-lang/rust/blob/cf37af162721f897e6b3565ab368906621955d90/src/liballoc/raw_vec.rs#L143-L145
 [rfc]: https://github.com/rust-lang/rfcs/pull/1578#issuecomment-217184537 
 *Автор перевода: [@bmusin](https://github.com/bmusin).*
