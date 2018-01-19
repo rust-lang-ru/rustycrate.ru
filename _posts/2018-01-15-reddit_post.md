@@ -2,7 +2,7 @@
 layout: post
 categories: размышления
 title: "Rust: Назад к корням"
-author: 0b_0101_001_1010
+author: "0b_0101_001_1010"
 original: https://www.reddit.com/r/rust/comments/7p6n90/rust2018_back_to_the_roots/
 translator: bmusin
 ---
