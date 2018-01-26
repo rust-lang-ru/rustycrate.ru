@@ -7,7 +7,6 @@ original: http://smallcultfollowing.com/babysteps/blog/2016/05/23/unsafe-abstrac
 translator: bmusin
 ---
 
-# Небезопасные (`unsafe`) абстракции
 Ключевое слово `unsafe` является неотъемлемой частью дизайна языка Rust.
 Для тех кто не знаком с ним: `unsafe` - это ключевое слово, которое,
 говоря простым языком, является способом обойти проверку типов (*type checking*) Rust'а.
