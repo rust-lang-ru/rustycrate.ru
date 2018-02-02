@@ -1,9 +1,9 @@
 ---
 layout: post
 categories: обучение
-title: What Are Tokio and Async IO All About?
+title: Что такое Tokio и Async IO и зачем это нужно?
 author: Manish Goregaokar
-original: https://manishearth.github.io/blog/2018/01/10/whats-tokio-and-async-io-all-about/#fnref:2
+original: https://manishearth.github.io/blog/2018/01/10/whats-tokio-and-async-io-all-about/
 translator: bmusin
 ---
 
