@@ -4,7 +4,7 @@ categories: размышления
 title: Неявность
 author: withoutboats
 original: https://boats.gitlab.io/blog/post/2017-12-27-things-explicit-is-not
-translator: bmusin & ozkriff
+translator: bmusin &amp; ozkriff
 ---
 
 Часто, когда я обсуждаю дизайн Rust на [RFCs][rfcs]
