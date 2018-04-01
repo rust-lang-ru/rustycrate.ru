@@ -36,9 +36,9 @@ script:
     fi; 
   done; 
   return $result;
-- markdownlint --output markdownlint.issues *.md _posts/*.md || true
-  [ -f markdownlint.issues ] && [ $(wc -l markdownlint.issues | cut -f 1 -d ' ') -le 2405 ]
-  rm markdownlint.issues
+- markdownlint --output markdownlint.issues *.md _posts/*.md || true;
+  [ -f markdownlint.issues ] && [ $(wc -l markdownlint.issues | cut -f 1 -d ' ') -le 2405 ];
+  rm markdownlint.issues;
 - yaspeller --only-errors *.md _posts
 - JEKYLL_ENV=production RUSTYCRATE_MODE=production RUSTYCRATE_ENABLE_EYO=yes
   bundle exec jekyll build
