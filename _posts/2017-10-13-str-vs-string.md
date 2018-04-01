@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: обучение
 title: "Rust: str vs String"
 author: Ameya

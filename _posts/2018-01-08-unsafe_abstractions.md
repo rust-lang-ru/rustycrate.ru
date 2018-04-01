@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: обучение
 title: "Небезопасные абстракции"
 author: Niko Matsakis

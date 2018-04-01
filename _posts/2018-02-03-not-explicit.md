@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: размышления
 title: Неявность
 author: withoutboats

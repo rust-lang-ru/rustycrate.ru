@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: новости
 title: "Соревнование Underhanded Rust 2016"
 author: The Rust Community Team

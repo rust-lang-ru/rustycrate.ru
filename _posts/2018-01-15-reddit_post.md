@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: размышления
 title: "Rust: Назад к корням"
 author: "0b_0101_001_1010"

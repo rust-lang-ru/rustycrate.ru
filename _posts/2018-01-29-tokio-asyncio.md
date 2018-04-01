@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: обучение
 title: Что такое Tokio и Async IO и зачем это нужно?
 author: Manish Goregaokar

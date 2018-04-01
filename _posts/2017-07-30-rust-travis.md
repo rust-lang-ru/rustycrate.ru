@@ -1,4 +1,6 @@
 ---
+layout: post
+comments_url: https://forum.rustycrate.ru/t/obsuzhdenie-stati-kak-nastroit-sborku-i-testirovanie-dlya-open-source-proekta-na-rust-pod-linux-s-pomoshhyu-travis/240
 title: >
   Как настроить сборку и тестирование для Open Source проекта на Rust под Linux
   с помощью Travis
@@ -255,7 +257,3 @@ script:
   с помощью Travis (эта статья)
 * [Как настроить сборку и тестирование для Open Source проекта на Rust под Windows
   с помощью AppVeyor](/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2017/08/20/rust-appveyor.html)
-
-Задавайте
-вопросы
-[на форуме](https://forum.rustycrate.ru/t/obsuzhdenie-stati-kak-nastroit-sborku-i-testirovanie-dlya-open-source-proekta-na-rust-pod-linux-s-pomoshhyu-travis/240).

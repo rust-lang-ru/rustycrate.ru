@@ -21,11 +21,23 @@
             <div class="buttons">
                 <a href="{{ post.url | prepend: site.baseurl }}#after_cut" class="btn btn-default read-more">читать дальше</a>
                 <!-- Ссылка на комментарии -->
+                {% if post.layout == 'post-deprecated' %}
                 <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
                     <!-- Счётчик комментариев -->
                     <span class="disqus-comment-count" data-disqus-url="{{ post.url | prepend: site.url }}#disqus_thread"></span>
                     {% img 'comments.png' alt:'комментарии' class:'comments-icon' magick:resize:16 %}
                 </a>
+                {% else %}
+                    {% if post.comments_url %}
+                        <a class="btn btn-default" href="{{ post.comments_url }}" target="blank">
+                            {% img 'comments.png' alt:'комментарии' class:'comments-icon' magick:resize:16 %}
+                        </a>
+                    {% else %}
+                        <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
+                            {% img 'comments.png' alt:'комментарии' class:'comments-icon' magick:resize:16 %}
+                        </a>
+                    {% endif %}
+                {% endif %}
             </div>
             <!-- div, который очищает выравнивание (clear: both для отключения float: right) -->
             <div class="float-cleaner"></div>

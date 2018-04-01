@@ -1,0 +1,6 @@
+{% if include.specific_url %}
+<a href="{{ include.specific_url }}" target="blank">Обсуждение статьи.</a>
+{% else %}
+Обсуждение - <a href="https://forum.rustycrate.ru/" target="blank">на форуме</a> 
+или <a href="https://www.reddit.com/r/rustycrate/" target="blank">/r/rustycrate</a>.
+{% endif %}

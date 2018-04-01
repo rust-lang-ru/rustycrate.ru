@@ -19,7 +19,7 @@ defaults:
       path: "" # пустая строка означает "все файлы в проекте"
       type: "posts" # эти настройки влияют на публикации
     values:
-      layout: "post" # шаблон по умолчанию
+      layout: "post-deprecated" # шаблон по умолчанию
       comments: true # включены ли комментарии
       excerpt_separator: <!--cut-->
 

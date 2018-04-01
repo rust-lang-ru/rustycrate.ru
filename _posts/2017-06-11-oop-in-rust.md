@@ -1,4 +1,6 @@
 ---
+layout: post
+comments_url: https://forum.rustycrate.ru/t/obsuzhdenie-stati-est-li-oop-v-rust/220
 title: Есть ли ООП в Rust?
 author: Михаил Панков
 categories: обучение
@@ -1059,11 +1061,6 @@ Rust. Некоторые очень похожи на понятия из дру
 Надеемся, эта статья проясняет способы использования ООП-инструментов Rust.
 
 Спасибо за внимание!
-
-Если у вас есть вопросы --- пожалуйста, задавайте
-их
-[в соответствующей теме](https://forum.rustycrate.ru/t/obsuzhdenie-stati-est-li-oop-v-rust/220) на
-форуме.
 
 *Эта статья --- улучшенная
 версия [доклада "Есть ли ООП в Rust?"](https://youtu.be/jEKNApzzu8c).*

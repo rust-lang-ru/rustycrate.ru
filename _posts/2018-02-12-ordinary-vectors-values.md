@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: размышления
 title: "В Rust векторы - это значения"
 author: Niko Matsakis

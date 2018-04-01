@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: обучение
 title: "futures-rs: асинхронщина на Rust"
 author: Alex Crichton

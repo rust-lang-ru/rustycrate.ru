@@ -1,5 +1,4 @@
 ---
-layout: post
 categories: новости
 title: Русскоязычное сообщество языка Rust в 2016 году
 author: Михаил Панков
