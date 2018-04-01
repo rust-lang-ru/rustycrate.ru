@@ -11,16 +11,19 @@ rvm:
 before_script:
 - . $HOME/.nvm/nvm.sh
 - command -v nvm
-- nvm install v6.9.5
+- nvm install v8.11.1
 - node --version
 - npm --version
 - npm install -g typograf
 - npm install -g typograf-cli
 - npm install -g eyo
 - npm install -g yaspeller
+- npm install -g markdownlint
+- npm install -g markdownlint-cli
 - typograf --version
 - eyo --version
 - yaspeller --version
+- markdownlint --version
 - bundle exec jekyll --version
 - bundle exec htmlproofer --version
 - convert -version
@@ -33,6 +36,9 @@ script:
     fi; 
   done; 
   return $result;
+- markdownlint --output markdownlint.issues *.md _posts/*.md || true
+  [ -f markdownlint.issues ] && [ $(wc -l markdownlint.issues | cut -f 1 -d ' ') -le 2405 ]
+  rm markdownlint.issues
 - yaspeller --only-errors *.md _posts
 - JEKYLL_ENV=production RUSTYCRATE_MODE=production RUSTYCRATE_ENABLE_EYO=yes
   bundle exec jekyll build
