@@ -32,7 +32,7 @@ script:
       result=1; 
     fi; 
   done; 
-  return result;
+  return $result;
 - yaspeller --only-errors *.md _posts
 - JEKYLL_ENV=production RUSTYCRATE_MODE=production RUSTYCRATE_ENABLE_EYO=yes
   bundle exec jekyll build
