@@ -30,22 +30,6 @@
 
                 <hr/>
 
-                {% if site.set == "master" %}
-                    <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-                    <script src="//yastatic.net/share2/share.js"></script>
-                    <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter,reddit,linkedin,pocket" data-counter=""></div>
-                    <hr/>
-                {% endif %}
-                <div class="reddit">
-                    <script>
-                     reddit_url='{{ page.url | prepend: site.url }}';
-                     reddit_target='rustycrate';
-                     reddit_newwindow='1';
-                    </script>
-
-                    <script src="//www.redditstatic.com/button/button1.js"></script>
-                </div>
-                <hr/>
                 <div class="patreon-support">
                     <a href="https://www.patreon.com/mkpankov" target="blank">
                         {% img 'patreon-small.png' alt:'patreon' class:'patreon-support-img' %}
