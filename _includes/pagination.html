@@ -1,35 +1,41 @@
 <div class="pagination-area">
     <nav aria-label="Переход по страницам">
         <ul class="pagination">
-            {% for i in (1..paginator.total_pages) %}
-
-            {% if i == paginator.page %}
-                {% assign class = "active" %}
-            {% else %}
-                {% assign class = false %}
-            {% endif %}
-
-            {% if i == 1 %}
-                {% capture href %}"{{ site.baseurl }}/index.html"{% endcapture %}
-            {% else %}
-                {% capture href %}"{{ site.baseurl }}/page{{ i }}"{% endcapture %}
-            {% endif %}
-
-            {% capture element %}
-            <a href={{ href }}>{{ i }}</a>
-            {% endcapture %}
-
-            {% if class %}
-            <li class={{ class }}>
-                {{ element }}
-            </li>
-            {% else %}
             <li>
-                {{ element }}
+                <a href="{{ paginator.first_page_path }}"><<</a>
             </li>
-            {% endif %}
+            {% for trail in paginator.page_trail %}
+
+                {% if page.url == trail.path %}
+                    {% assign class = "active" %}
+                {% else %}
+                    {% assign class = false %}
+                {% endif %}
+
+                {% if trail.num == 1 %}
+                    {% capture href %}"{{ site.baseurl }}/index.html"{% endcapture %}
+                {% else %}
+                    {% capture href %}"{{ site.baseurl }}/page{{ trail.num }}"{% endcapture %}
+                {% endif %}
+
+                {% capture element %}
+                <a href={{ href }}>{{ trail.num }}</a>
+                {% endcapture %}
+
+                {% if class %}
+                <li class={{ class }}>
+                    {{ element }}
+                </li>
+                {% else %}
+                <li>
+                    {{ element }}
+                </li>
+                {% endif %}
 
             {% endfor %}
+            <li>
+                <a href="{{ paginator.last_page_path }}">>></a>
+            </li>
 
             <li>
                 <a href="/index-full.html">все</a>
