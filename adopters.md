@@ -10,6 +10,9 @@ title: Кто использует Rust
 ## В России и СНГ
 * [Beget](https://habrahabr.ru/post/301892/)
 * [Art System](https://forum.rustycrate.ru/t/vakansiya-programmist-rust-v-ofis/137/1)
+* [Kupibilet](https://hh.ru/vacancy/20723346)
+* [Storiqa](https://hh.ru/vacancy/24099829)
+* [BitFury](https://hh.ru/vacancy/24866535)
 
 ## В мире
 * [Dropbox](http://www.wired.com/2016/03/epic-story-dropboxs-exodus-amazon-cloud-empire/)
