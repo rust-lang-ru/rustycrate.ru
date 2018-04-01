@@ -25,6 +25,14 @@ before_script:
 - bundle exec htmlproofer --version
 - convert -version
 script:
+- result=0; 
+  for f in $(find _posts -name '*md'); do 
+    if ! grep -qe '<!--cut-->' $f; then 
+      echo "Missing cut in $f"; 
+      result=1; 
+    fi; 
+  done; 
+  return result;
 - yaspeller --only-errors *.md _posts
 - JEKYLL_ENV=production RUSTYCRATE_MODE=production RUSTYCRATE_ENABLE_EYO=yes
   bundle exec jekyll build
