@@ -28,13 +28,17 @@ before_script:
 - bundle exec htmlproofer --version
 - convert -version
 script:
-- result=0; 
-  for f in $(find _posts -name '*md'); do 
-    if ! grep -qe '<!--cut-->' $f; then 
-      echo "Missing cut in $f"; 
-      result=1; 
-    fi; 
-  done; 
+- result=0;
+  for f in $(find _posts -name '*md'); do
+    if ! grep -qe '<!--cut-->' "$f"; then
+      echo "Missing cut in $f";
+      result=1;
+    fi;
+    if grep -q $'\xEF\xBB\xBF' "$f"; then
+      echo "Find BOM in $f";
+      result=1;
+    fi;
+  done;
   return $result;
 - markdownlint --output markdownlint.issues *.md _posts/*.md || true;
   [ -f markdownlint.issues ] && [ $(wc -l markdownlint.issues | cut -f 1 -d ' ') -le 2405 ];
