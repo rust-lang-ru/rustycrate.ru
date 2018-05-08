@@ -386,3 +386,28 @@ table.patrons {
         overflow: hidden;
     }
 }
+
+#topBtn {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 60px;
+    height: 100%;
+    opacity: .4;
+    cursor: pointer;
+}
+
+#topBtn:hover {
+    background: #f5f7f8;
+    color: #a6b5ba;
+}
+
+.icon-svg_scroll-up {
+    position: relative;
+    top: 35%;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+}
