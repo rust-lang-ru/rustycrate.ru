@@ -35,7 +35,7 @@ script:
       result=1;
     fi;
     if grep -q $'\xEF\xBB\xBF' "$f"; then
-      echo "Find BOM in $f";
+      echo "Found BOM mark in $f. Please remove it because Jekyll doesn't support them.";
       result=1;
     fi;
   done;
