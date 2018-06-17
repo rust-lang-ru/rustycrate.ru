@@ -43,7 +43,17 @@
         </div>
         <div class="navbar-collapse collapse" id="main-menu">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="{{ site.baseurl }}/">Блог</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Я изучаю Rust<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/books.html">Книги</a></li>
+                        <li><a href="/articles-education.html">Статьи</a></li>
+                        <li><a href="https://rurust.github.io/cargo-docs-ru/" target="blank">Документация по Cargo</a></li>
+                        <li><a href="/does-rust-suit-me.html">Подходит ли мне Rust?</a></li>
+                        <li><a href="/help.html">Мне нужна помощь</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="{{ site.baseurl }}/">Блог</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Книги <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -88,7 +98,7 @@
                 <li><a href="{{ site.baseurl }}/adopters.html">Кто использует Rust</a></li>
                 <li><a href="http://forum.rustycrate.ru" target="blank">Форум</a></li>
                 <li><a href="http://ru.stackoverflow.com/questions/tagged/rust" target="blank">Stackoverflow</a></li>
-            </ul>
+            </ul> -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="https://github.com/ruRust" target="blank">
