@@ -1,0 +1,18 @@
+---
+layout: default
+title: Лента | Обучающие статьи
+sitemap:
+  priority: 0.7
+  changefreq: 'daily'
+
+---
+
+{% include index/header.html %}
+
+{% for post in site.posts %}
+    {% if post.categories contains "обучение" or post.categories contains "руководства" %}
+        {% include index/item.html %}
+    {% endif %}
+{% endfor %}
+
+{% include index/footer.html %}
