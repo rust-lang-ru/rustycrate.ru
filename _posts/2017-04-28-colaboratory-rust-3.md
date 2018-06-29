@@ -1,6 +1,7 @@
 ---
 title: "CoLaboratory: Rust #3. Лаборатория Касперского, 18 мая"
 categories: новости
+tags: [ эксклюзивы ]
 author: Михаил Панков
 ---
 

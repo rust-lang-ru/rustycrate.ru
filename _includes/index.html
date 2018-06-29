@@ -5,10 +5,16 @@
     {% endfor %}
 {% else %}
     {% for post in site.posts %}
-        {% include index/item.html %}
+        {% if include.tag %}
+            {% if post.tags contains include.tag %}
+                {% include index/item.html %}
+            {% endif %}
+        {% else %}
+            {% include index/item.html %}
+        {% endif %}
     {% endfor %}
 {% endif %}
 {% if include.do_paginate %}
-    {% include pagination.html %}
+    {% include pagination.html page_path=include.page_path all_items=include.all_items %}
 {% endif %}
 {% include index/footer.html %}

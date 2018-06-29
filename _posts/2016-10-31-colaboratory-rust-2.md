@@ -1,6 +1,7 @@
 ---
 title: "CoLaboratory: Rust 2. Лаборатория Касперского, 22 ноября"
 categories: новости
+tags: [ эксклюзивы ]
 author: Михаил Панков
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "CoLaboratory: Rust - первая конференция о Rust в Москве"
 categories: новости
+tags: [ эксклюзивы ]
 author: Михаил Панков
 ---
 

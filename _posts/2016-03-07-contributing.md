@@ -1,6 +1,7 @@
 ---
 title: Как сделать свой первый Pull Request
 categories: руководства
+tags: [ эксклюзивы ]
 author: Михаил Панков
 ---
 

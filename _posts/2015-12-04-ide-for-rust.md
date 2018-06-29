@@ -1,6 +1,7 @@
 ---
 title: "IDE для Rust"
 categories: руководства
+tags: [ эксклюзивы ]
 published: true
 author: Олег В. и Norman Ritchie
 ---

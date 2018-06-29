@@ -1,6 +1,7 @@
 ---
 title: "Здравствуй, мир!"
 categories: новости
+tags: [ эксклюзивы ]
 published: true
 author: команда rustycrate
 ---

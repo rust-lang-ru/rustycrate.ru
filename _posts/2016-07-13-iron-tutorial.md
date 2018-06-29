@@ -1,5 +1,6 @@
 ---
 categories: обучение
+tags: [ эксклюзивы ]
 title: "Введение в Iron"
 author: Арсен Галимов aka "Loo Maclin"
 ---

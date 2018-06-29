@@ -4,6 +4,7 @@ comments_url: https://forum.rustycrate.ru/t/obsuzhdenie-stati-est-li-oop-v-rust/
 title: Есть ли ООП в Rust?
 author: Михаил Панков
 categories: обучение
+tags: [ эксклюзивы ]
 ---
 
 {% img '2017-06-11-oop-in-rust/teaser.png' alt:'teaser' %}

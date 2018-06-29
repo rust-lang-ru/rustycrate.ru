@@ -1,6 +1,7 @@
 ---
 title: "Время жизни в Rust (Часть 1)"
 categories: обучение
+tags: [ эксклюзивы ]
 published: true
 author: Александр Яшкин
 ---

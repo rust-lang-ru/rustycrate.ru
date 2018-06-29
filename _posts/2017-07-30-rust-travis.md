@@ -6,6 +6,7 @@ title: >
   с помощью Travis
 author: Михаил Панков
 categories: обучение
+tags: [ эксклюзивы ]
 ---
 
 {% img '2017-07-30-rust-travis/teaser.png' alt:'teaser' width:50% %}

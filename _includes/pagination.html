@@ -1,8 +1,14 @@
+<!-- FIXME: Этот файл наполнен хаками и костылями из-за
+
+    https://github.com/sverrirs/jekyll-paginate-v2/issues/93
+
+-->
 <div class="pagination-area">
     <nav aria-label="Переход по страницам">
         <ul class="pagination">
             <li>
-                <a href="{{ paginator.first_page_path }}"><<</a>
+                <!-- Собираем URL первой страницы вручную, узнавая путь к набору страниц снаружи -->
+                <a href="{{ include.page_path | prepend: '/' | prepend: site.baseurl }}"><<</a>
             </li>
             {% for trail in paginator.page_trail %}
 
@@ -13,9 +19,9 @@
                 {% endif %}
 
                 {% if trail.num == 1 %}
-                    {% capture href %}"{{ site.baseurl }}/index.html"{% endcapture %}
+                    {% capture href %}"{{ paginator.first_page_path | prepend: site.baseurl }}"{% endcapture %}
                 {% else %}
-                    {% capture href %}"{{ site.baseurl }}/page{{ trail.num }}"{% endcapture %}
+                    {% capture href %}"{{ site.baseurl }}/{{ include.page_path }}page{{ trail.num }}/"{% endcapture %}
                 {% endif %}
 
                 {% capture element %}
@@ -34,11 +40,12 @@
 
             {% endfor %}
             <li>
-                <a href="{{ paginator.last_page_path }}">>></a>
+                <!-- Собираем URL последней страницы вручную, узнавая путь к набору страниц снаружи -->
+                <a href="{{ paginator.last_page | prepend: 'page' | prepend: include.page_path | prepend: '/' | prepend: site.baseurl }}">>></a>
             </li>
 
             <li>
-                <a href="/index-full.html">все</a>
+                <a href="{{ include.all_items }}">все</a>
             </li>
         </ul>
     </nav>

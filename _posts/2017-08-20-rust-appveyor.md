@@ -6,6 +6,7 @@ title: >
   с помощью AppVeyor
 author: Михаил Панков
 categories: обучение
+tags: [ эксклюзивы ]
 ---
 
 {% img '2017-08-20-rust-appveyor/teaser.png' alt:'teaser' width:50% %}
