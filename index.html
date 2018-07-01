@@ -1,13 +1,13 @@
 ---
-# Выбор шаблона для страницы. Шаблоны находятся в `_layouts`.
 layout: default
-# Заголовок. Становится тегом <title> в <head>
 title: Лента | Главная
-# Метаданные для карты сайта
 sitemap:
   priority: 0.7
   changefreq: 'daily'
 pagination: 
   enabled: true
+  tag: эксклюзивы
+  indexpage: 'index'
 ---
-{% include index.html do_paginate=true first_page='index.html' all_items='/index-full.html' page_path='' %}
+
+{% include index.html do_paginate=true page_path='' first_page='index.html' all_items='/index-full.html' %}
