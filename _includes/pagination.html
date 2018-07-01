@@ -19,7 +19,7 @@
                 {% endif %}
 
                 {% if trail.num == 1 %}
-                    {% capture href %}"{{ paginator.first_page_path | prepend: site.baseurl }}"{% endcapture %}
+                    {% capture href %}"{{ include.page_path | prepend: '/' | prepend: site.baseurl }}"{% endcapture %}
                 {% else %}
                     {% capture href %}"{{ site.baseurl }}/{{ include.page_path }}page{{ trail.num }}/"{% endcapture %}
                 {% endif %}
