@@ -809,4 +809,4 @@ Rust позволяет нам представлять конечные авт�
 тусуюсь в IRC Mozilla под ником Hoverbear.
 
 Написано Andrew Hobden
-[andrew@hoverbear.org](mailto:andrew@hoverbear.org), [@Hoverbear](https://github.com/Hoverbear) на Github, [@andrewhobden](https://twitter.com/andrewhobden) на Twitter
+[andrew@hoverbear.org](mailto:andrew@hoverbear.org), [@Hoverbear](https://github.com/Hoverbear) на Github, @andrewhobden на Twitter
