@@ -8,7 +8,7 @@ author: Кирилл Пименов
 
 Всем привет!
 
-В грядущее воскресенье (16 декабря) Parity Technologes организует митап в Москве, приуроченый к конференции [RustRush](https://rustycrate.ru/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2018/11/09/rustrush-2018.html)
+В грядущее воскресенье (16 декабря) Parity Technologes организует митап в Москве, приуроченный к конференции [RustRush](https://rustycrate.ru/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2018/11/09/rustrush-2018.html)
 
 От команды Parity на RustRush приезжает с десяток человек; на митапе Пьер Кригер ([@tomaka](https://github.com/tomaka)) будет рассказывать про [rust-libp2p](https://github.com/libp2p/rust-libp2p/), а Джек Френшем ([@Vurich](https://github.com/Vurich)) — про [Parity Substrate](https://github.com/paritytech/substrate).
 Доклады будут на английском, но мы поможем с переводом, если вам будет проще формулировать вопросы по-русски.
