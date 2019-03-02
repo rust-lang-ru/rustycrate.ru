@@ -44,3 +44,19 @@ We will exclude you from interaction if you insult, demean or harass anyone. Tha
 Private harassment is also unacceptable. No matter who you are, if you feel you have been or are being harassed or made uncomfortable by a community member, please contact one of the channel ops or any of the Rust moderation team immediately. Whether you’re a regular contributor or a newcomer, we care about making this community a safe place for you and we’ve got your back.
 
 Likewise any spamming, trolling, flaming, baiting or other attention-stealing behavior is not welcome.
+
+## Unacceptable Behavior (from Citizen Code of Conduct)
+
+The following behaviors are considered harassment and are unacceptable within our community:
+
+* Violence, threats of violence or violent language directed against another person.
+* Sexist, racist, homophobic, transphobic, ableist or otherwise discriminatory jokes and language.
+* Posting or displaying sexually explicit or violent material.
+* Posting or threatening to post other people’s personally identifying information ("doxing").
+* Personal insults, particularly those related to gender, sexual orientation, race, religion, or disability.
+* Inappropriate photography or recording.
+* Inappropriate physical contact. You should have someone’s consent before touching them.
+* Unwelcome sexual attention. This includes, sexualized comments or jokes; inappropriate touching, groping, and unwelcomed sexual advances.
+* Deliberate intimidation, stalking or following (online or in person).
+* Advocating for, or encouraging, any of the above behavior.
+* Sustained disruption of community events, including talks and presentations.
