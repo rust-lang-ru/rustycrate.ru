@@ -21,7 +21,7 @@ author: Михаил Панков
 * [Часть 4]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/18/rustycrate-plans-2017-part4.html) -
   результаты голосования, процесс реализации запланированного и идеи участников.
 
-{% img '2017-02-04-rustycrate-plans-2017-part2/meetup.jpg' alt:'фото с митапа' magick:1/2 %}
+{% asset '2017-02-04-rustycrate-plans-2017-part2/meetup.jpg' alt='фото с митапа' magick:resize="{{ assets['2017-02-04-rustycrate-plans-2017-part2/meetup.jpg'].width / 1 }}x{{ assets['2017-02-04-rustycrate-plans-2017-part2/meetup.jpg'].height / 2 }}" %}
 
 <!--cut-->
 

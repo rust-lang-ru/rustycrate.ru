@@ -74,7 +74,7 @@ cargo 0.22.0 (3423351a5 2017-10-06)
 
 ### Результат настройки
 
-{% img '2015-12-04-ide-for-rust/visual_studio_code_rust.png' alt:'Visual Studio Code with Rust' %}
+{% asset '2015-12-04-ide-for-rust/visual_studio_code_rust.png' alt='Visual Studio Code with Rust' %}
 
 Далее приведены шаги настройки других редакторов.
 
@@ -119,7 +119,7 @@ $ rustup default nightly
 
 0. Устанавливаем [расширение](https://intellij-rust.github.io/)
 
-{% img '2015-12-04-ide-for-rust/intellij-rust.png' alt:'Intellij-Rust' %} 
+{% asset '2015-12-04-ide-for-rust/intellij-rust.png' alt='Intellij-Rust' %}
 
 {% endspoiler %}
 
@@ -142,7 +142,7 @@ $ rustup default nightly
   * [RustFmt](https://packagecontrol.io/packages/RustFmt)
   * [TOML](https://packagecontrol.io/packages/TOML)
 
-{% img '2015-12-04-ide-for-rust/sublime-3-rust.png' alt:'Sublime 3 with Rust' %}
+{% asset '2015-12-04-ide-for-rust/sublime-3-rust.png' alt='Sublime 3 with Rust' %}
 {% endspoiler %}
 
 {% spoiler Emacs %}
@@ -154,7 +154,7 @@ $ rustup default nightly
    * [flycheck](http://www.flycheck.org/en/latest/user/installation.html)
    * [flycheck-rust](http://www.flycheck.org/en/latest/community/extensions.html#rust)
 
-{% img '2015-12-04-ide-for-rust/emacs_rust.png' alt:'Emacs with Rust' %}
+{% asset '2015-12-04-ide-for-rust/emacs_rust.png' alt='Emacs with Rust' %}
 
 {% endspoiler %}
 
@@ -172,7 +172,7 @@ $ rustup default nightly
    let g:rustfmt_autosave = 1
    ```
 
-{% img '2015-12-04-ide-for-rust/vim_rust.gif' alt:'Vim with Rust' %}
+{% asset '2015-12-04-ide-for-rust/vim_rust.gif' alt='Vim with Rust' %}
 
 {% endspoiler %}
 

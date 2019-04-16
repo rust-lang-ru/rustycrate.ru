@@ -13,7 +13,7 @@ author: Михаил Панков
 *Для начала, число посещений сайта год к году (более тёмный цвет обозначает
 2017 год):*
 
-{% img '2018-01-14-rustycrate-results-2017/visits.png' alt:'число посещений по месяцам год к году' %}
+{% asset '2018-01-14-rustycrate-results-2017/visits.png' alt='число посещений по месяцам год к году' %}
 
 <!--cut-->
 
@@ -54,7 +54,7 @@ author: Михаил Панков
 
 Спасибо переводчикам:
 
-{% img '2018-01-14-rustycrate-results-2017/rbe-contributors.png' alt:'участники перевода rbe' %}
+{% asset '2018-01-14-rustycrate-results-2017/rbe-contributors.png' alt='участники перевода rbe' %}
 
 # Выключение форума
 
@@ -111,7 +111,7 @@ author: Михаил Панков
 Спасибо патронам за финансовую поддержку - текущим и тем, 
 кто поддерживал в течение года.
 
-{% img '2018-01-14-rustycrate-results-2017/patrons.png' alt:'патроны' %}
+{% asset '2018-01-14-rustycrate-results-2017/patrons.png' alt='патроны' %}
 
 # Подготовка к написанию статей с оплатой авторам
 
@@ -135,7 +135,7 @@ author: Михаил Панков
 
 Вот [heatmap канала easy](https://gitter.im/ruRust/easy/archives/all):
 
-{% img '2018-01-14-rustycrate-results-2017/easy-heatmap.png' alt:'heatmap канала easy' %}
+{% asset '2018-01-14-rustycrate-results-2017/easy-heatmap.png' alt='heatmap канала easy' %}
 
 В этом году мы никого не забанили в чате.
 
@@ -157,11 +157,11 @@ author: Михаил Панков
 
 *5 самых популярных страниц сайта за год:*
 
-{% img '2018-01-14-rustycrate-results-2017/popular-pages.png' alt:'5 самых популярных страниц сайта за год' %}
+{% asset '2018-01-14-rustycrate-results-2017/popular-pages.png' alt='5 самых популярных страниц сайта за год' %}
 
 Спасибо авторам и переводчикам: 
 
-{% img '2018-01-14-rustycrate-results-2017/rustycrate-contributors.png' alt:'участники rustycrate.ru' %}
+{% asset '2018-01-14-rustycrate-results-2017/rustycrate-contributors.png' alt='участники rustycrate.ru' %}
 
 ## Группы в социальных сетях
 

@@ -6,7 +6,7 @@ translator: Илья Богданов
 categories: обучение
 ---
 
-{% img '2017-04-12-communicating-intent/teaser.png' alt:'teaser' %}
+{% asset '2017-04-12-communicating-intent/teaser.png' alt='teaser' %}
 
 Rust — элегантный язык, который несколько отличается от многих других популярных
 языков. Например, вместо использования классов и наследования, Rust предлагает

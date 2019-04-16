@@ -18,7 +18,7 @@ translator: Gexon
 page.url }}#ref1) `"sample image"`, и нашел <a name='ref2ret'></a>её
 [[2]]({{ page.url }}#ref2):
 
-{% img '2017-03-18-Content-Aware-Image-Resize/sample-image.jpeg' alt:'sample image' magick:resize:800 %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/sample-image.jpeg' alt='sample image' magick:resize=800 %}
 
 <!--cut-->
 
@@ -157,7 +157,7 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 После запуска, `Image::gradient_magnitune` берёт наше изображение птицы и
 возвращает это:
 
-{% img '2017-03-18-Content-Aware-Image-Resize/sample-image-gradient.jpeg' alt:'sample image gradient' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/sample-image-gradient.jpeg' alt='sample image gradient' %}
 
 # Путь наименьшего сопротивления
 Теперь мы должны реализовать, пожалуй, самую сложную часть программы: DP -
@@ -166,28 +166,28 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 вертикального пути. Представьте, что в таблице ниже это градиент изображения 6х6
 пикселей.
 
-{% img '2017-03-18-Content-Aware-Image-Resize/matrix1.png' alt:'просто матрица' class:'formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/matrix1.png' alt='просто матрица' class='formula' %}
 
 Суть алгоритма состоит в поиске пути
 
-{% img '2017-03-18-Content-Aware-Image-Resize/pp1p6.png' class:'formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/pp1p6.png' class='formula' %}
 
 от одной из верхних ячеек
 
-{% img '2017-03-18-Content-Aware-Image-Resize/g1i.png' class:'formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/g1i.png' class='formula' %}
 
 в одну из нижних
 
-{% img '2017-03-18-Content-Aware-Image-Resize/g6j.png' class:'formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/g6j.png' class='formula' %}
 
 так, чтобы минимизировать
 
-{% img '2017-03-18-Content-Aware-Image-Resize/e1i6pi.png' class:'formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/e1i6pi.png' class='formula' %}
 
 Это может быть сделано путем создания новой таблицы S используя следующее
 рекуррентное соотношение (без учета границы):
 
-{% img '2017-03-18-Content-Aware-Image-Resize/s6ig6i.png' class:'formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/s6ig6i.png' class='formula' %}
 
 То есть, каждая ячейка в таблице S это минимальная сумма от текущей ячейки до
 самой нижней ячейки. Каждая ячейка выбирает одну из трех соседних ячеек,
@@ -196,7 +196,7 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 число в самой верхней строке в качестве начальной ячейки.
 Давайте найдем S:
 
-{% img '2017-03-18-Content-Aware-Image-Resize/matrix6.png.png' class:'formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/matrix6.png.png' class='formula' %}
 
 И вот оно! Мы видим, что есть путь, с суммой всех ячеек пути равной 8, и то, что
 этот путь начинается в верхнем правом углу. Для того, чтобы найти путь, мы могли
@@ -261,7 +261,7 @@ impl DPTable {
 `GradientBuffer`, и записать его в файл. Пиксели в изображении ниже - веса пути,
 разделенные на 128.
 
-{% img '2017-03-18-Content-Aware-Image-Resize/sample-image-paths.jpeg' alt:'sample image paths' magick:resize:800 %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/sample-image-paths.jpeg' alt='sample image paths' magick:resize=800 %}
 
 Эту картинку можно описать так: белые пиксели - это клетки, которые имеют
 наибольший вес. Градиент этих пикселей более детализирован, что говорит о
@@ -339,7 +339,7 @@ impl Path {
 Чтобы увидеть, что выбранные пути более-менее правдоподобны, я сгенерировал их
 10 штук, и покрасил жёлтым:
 
-{% img '2017-03-18-Content-Aware-Image-Resize/sample-image-yellow-path.jpeg' alt:'sample image yellow paths' magick:resize:800 %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/sample-image-yellow-path.jpeg' alt='sample image yellow paths' magick:resize=800 %}
 
 По-моему, похоже на правду!
 
@@ -384,14 +384,14 @@ for _ in 0..200 {
 }
 ```
 
-{% img '2017-03-18-Content-Aware-Image-Resize/sample-image-cropped.jpeg' alt:'sample image cropped' magick:resize:800 %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/sample-image-cropped.jpeg' alt='sample image cropped' magick:resize=800 %}
 
 Однако, мы видим, что алгоритм удалил многовато с правой стороны изображения,
 хотя изображение более или менее уменьшено, это одна из проблем, которую надо
 устранить! Быстрое и немного грязное исправление, чтобы просто немного изменить
 градиент, путём явного задания границ на некоторое большое число, скажем 100.
 
-{% img '2017-03-18-Content-Aware-Image-Resize/sample-image-200.jpeg' alt:'sample image 200' magick:resize:800 %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/sample-image-200.jpeg' alt='sample image 200' magick:resize=800 %}
 
 Тадам!<!-- yaspeller ignore -->
 Здесь немало косяков, что делает конечный результат немного менее

@@ -19,9 +19,9 @@
 
 <title>{{ page.title | strip_html | escape_once }} | {{ site.title }} | Сайт о языке программирования Rust</title>
 
-<link rel="icon" type="image/png" href="{% asset_path 'rustycrate-logo-16px.png' %}" />
+<link rel="icon" type="image/png" href="{% asset 'rustycrate-logo-16px.png' @path %}" />
 
-{% css main %}
+{% asset main %}
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
 

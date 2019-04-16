@@ -21,7 +21,7 @@ author: Михаил Панков
 * [Часть 4]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/02/18/rustycrate-plans-2017-part4.html) -
   результаты голосования, процесс реализации запланированного и идеи участников.
 
-{% img '2017-02-11-rustycrate-plans-2017-part3/editing-teaser.gif' alt:'редактирование этой статьи' %}
+{% asset '2017-02-11-rustycrate-plans-2017-part3/editing-teaser.gif' alt='редактирование этой статьи' %}
 
 <!--cut-->
 
@@ -206,7 +206,7 @@ Rust.
 голосования за предложенные идеи.
 
 <a href="https://www.patreon.com/bePatron?u=30685" target="blank">
-{% img '2017-02-11-rustycrate-plans-2017-part3/button.png' alt:'Patreon' %}
+{% asset '2017-02-11-rustycrate-plans-2017-part3/button.png' alt='Patreon' %}
 </a>
 
 <center>

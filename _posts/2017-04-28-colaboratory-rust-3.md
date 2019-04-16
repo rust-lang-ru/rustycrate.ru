@@ -6,12 +6,12 @@ author: Михаил Панков
 ---
 
 <a href="https://events.kaspersky.com/event/rust3" target="blank">
-{% img '2017-04-28-colaboratory-rust-3/colab.jpg' alt:'лого' magick:resize:800 %}
+{% asset '2017-04-28-colaboratory-rust-3/colab.jpg' alt='лого' magick:resize=800 %}
 </a>
 
 <a href="https://events.kaspersky.com/event/rust3" target="blank">
-{% img '2016-04-25-colaboratory-rust/button.png' alt:'зарегистрироваться'
-   width:'248' height:'60' %}
+{% asset '2016-04-25-colaboratory-rust/button.png' alt='зарегистрироваться'
+   width='248' height='60' %}
 </a>
 
 Продолжаем нести знания людям. В этот раз у нас 3 доклада и много новостей,
@@ -84,8 +84,8 @@ ed25519-dalek, macaroons, parity. Введение в RustCrypto: история
 Ждём вас! И обязательно расскажите о событии друзьям.
 
 <a href="https://events.kaspersky.com/event/rust3" target="blank">
-{% img '2016-04-25-colaboratory-rust/button.png' alt:'зарегистрироваться'
-   width:'248' height:'60' %}
+{% asset '2016-04-25-colaboratory-rust/button.png' alt='зарегистрироваться'
+   width='248' height='60' %}
 </a>
 
 **Обновлено**. Доступно видео докладов.
