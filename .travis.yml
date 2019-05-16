@@ -8,6 +8,7 @@ addons:
 sudo: false
 rvm:
 - 2.6.3
+dist: xenial
 before_script:
 - . $HOME/.nvm/nvm.sh
 - command -v nvm
