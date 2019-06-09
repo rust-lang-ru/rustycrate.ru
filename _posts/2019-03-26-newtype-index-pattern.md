@@ -2,7 +2,7 @@
 categories: руководства
 title: "Шаблон индексирования для нового типа"
 author: Aleksey Kladov
-original: https://matklad.github.io/2018/06/03/newtype-index-pattern.html
+original: https://matklad.github.io/2018/06/04/newtype-index-pattern.html
 translator: Александр Андреев
 ---
 
