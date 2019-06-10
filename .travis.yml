@@ -56,8 +56,8 @@ after_success:
     -in travis.trash.id_ed25519.enc -out travis.trash.id_ed25519 -d;
   tar -caf .site.tar.gz _site;
   chmod 600 travis.trash.id_ed25519;
-  scp -i travis.trash.id_rsa .site.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:";
-  ssh -i travis.trash.id_rsa -t $DEPLOY_USER@$DEPLOY_HOST "rm -rf _site && tar -xaf .site.tar.gz
+  scp -i travis.trash.id_ed25519 .site.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:";
+  ssh -i travis.trash.id_ed25519 -t $DEPLOY_USER@$DEPLOY_HOST "rm -rf _site && tar -xaf .site.tar.gz
     && /home/$DEPLOY_USER/deploy.sh";
   fi;
 after_script:
