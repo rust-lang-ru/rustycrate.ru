@@ -4,7 +4,7 @@ env:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
   - secure: lTpJ7845M8qM1jgibmChhQkBfKD/NqKmKdMmStZPyconvI2BuntDcC1tVl9+TSuBrh66TdVQWUUOYvXlT9Q/w7TFcUZmx67Or6VgEQIX2r3TTTUgSdtf0NmGxW3ylxVBeEvheRC0gYe/iyBP19ofcUOe2UJUaGJq3uF3+6SbopXLy8Jkof3gqNEVAXWALsR2XsnZ3wHucvQxGfkXXNuNXMBJrG1dMphzPHFvPIufXs35H+kuFlresETUnj8ZxHwd3yD1aSnW/WGvsa/fPBKOU4rvEaYYAURy7llgEF33zoRB1/tsSHI6Dr0Y2mw10faZfIrSh2H1glKTDtqcPVmtaDkiv1cTk8CluW94v/UIZz/rP3ylOjx+WVvr5nlzJpUb1Xlu9Ua5t3xRqxFpvbgRhwwdHnJnqSzLxd7FTcdCDGIhNbCH6RKSQQVo2eLncBh+jlfMtrj1v/monWLTU+8uYPvHmG0xQx9AtsjSR4GCduxizmKAIzvVgdTHTcWM4P6ihRB5tNLsxVmVxImxJfiMLrgu1en6jzZG7s1eVHSCCz9uUn0Us1sAZ2U2CM0LFeElYqJOfd3+/bUiNTIQXVhuiFSMS54FgiVaI813x+YCto7hHrN+FVYLECH5fLFYgCRmp+2ROUdMCt+O6o2d88ReREyBiuXkTz56CfCQml956J0=
 addons:
-  ssh_known_hosts: rustycrate.ru
+  ssh_known_hosts: newwww.rustycrate.ru
 sudo: false
 rvm:
 - 2.2.3
@@ -53,15 +53,15 @@ script:
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then
   openssl aes-256-cbc -K $encrypted_641cbba37704_key -iv $encrypted_641cbba37704_iv
-    -in travis.trash.id_rsa.enc -out travis.trash.id_rsa -d;
+    -in travis.trash.id_ed25519.enc -out travis.trash.id_ed25519 -d;
   tar -caf .site.tar.gz _site;
-  chmod 600 travis.trash.id_rsa;
+  chmod 600 travis.trash.id_ed25519;
   scp -i travis.trash.id_rsa .site.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:";
   ssh -i travis.trash.id_rsa -t $DEPLOY_USER@$DEPLOY_HOST "rm -rf _site && tar -xaf .site.tar.gz
     && /home/$DEPLOY_USER/deploy.sh";
   fi;
 after_script:
-- if [ -f travis.trash.id_rsa ]; then shred -u travis.trash.id_rsa; fi;
+- if [ -f travis.trash.id_ed25519 ]; then shred -u travis.trash.id_ed25519; fi;
 notifications:
   webhooks:
     urls:
