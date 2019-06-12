@@ -17,7 +17,7 @@ title: Кто использует Rust
 ## В мире
 * [Dropbox](http://www.wired.com/2016/03/epic-story-dropboxs-exodus-amazon-cloud-empire/)
 * [Coursera](https://building.coursera.org/blog/2016/07/07/rust-docker-in-production-coursera/)
-* [Ethcore](https://ethcore.io/parity.html)
+* [Parity](https://www.parity.io)
 * Mozilla:
   * [Firefox](https://hacks.mozilla.org/2016/07/shipping-rust-in-firefox/)
   * [sccache](https://blog.mozilla.org/ted/2016/11/21/sccache-mozillas-distributed-compiler-cache-now-written-in-rust/)
@@ -25,7 +25,6 @@ title: Кто использует Rust
 * [MaidSafe](http://blog.maidsafe.net/2015/07/01/the-ants-are-coming/)
 * [Skylight](http://blog.skylight.io/rust-means-never-having-to-close-a-socket/)
 * [Wit.ai](https://github.com/wit-ai/witd)
-* [Codius](https://codius.org/blog/codius-rust/)
 * [Terminal.com](http://slides.com/jonathanreem/implementing-http-1#/)
 * [Twitter](https://github.com/twitter/rpc-perf)
 
