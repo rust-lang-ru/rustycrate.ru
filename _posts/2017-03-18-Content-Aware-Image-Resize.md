@@ -170,24 +170,24 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 
 Суть алгоритма состоит в поиске пути
 
-{% asset '2017-03-18-Content-Aware-Image-Resize/pp1p6.png' class='formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/pp1p6.png' alt='' class='formula' data-proofer-ignore %}
 
 от одной из верхних ячеек
 
-{% asset '2017-03-18-Content-Aware-Image-Resize/g1i.png' class='formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/g1i.png' alt='' class='formula' data-proofer-ignore %}
 
 в одну из нижних
 
-{% asset '2017-03-18-Content-Aware-Image-Resize/g6j.png' class='formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/g6j.png' alt='' class='formula' data-proofer-ignore %}
 
 так, чтобы минимизировать
 
-{% asset '2017-03-18-Content-Aware-Image-Resize/e1i6pi.png' class='formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/e1i6pi.png' alt='' class='formula' data-proofer-ignore %}
 
 Это может быть сделано путем создания новой таблицы S используя следующее
 рекуррентное соотношение (без учета границы):
 
-{% asset '2017-03-18-Content-Aware-Image-Resize/s6ig6i.png' class='formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/s6ig6i.png' alt='' class='formula' data-proofer-ignore %}
 
 То есть, каждая ячейка в таблице S это минимальная сумма от текущей ячейки до
 самой нижней ячейки. Каждая ячейка выбирает одну из трех соседних ячеек,
@@ -196,7 +196,7 @@ fn decompose(image: &image::DynamicImage) -> (image::DynamicImage,
 число в самой верхней строке в качестве начальной ячейки.
 Давайте найдем S:
 
-{% asset '2017-03-18-Content-Aware-Image-Resize/matrix6.png.png' class='formula' %}
+{% asset '2017-03-18-Content-Aware-Image-Resize/matrix6.png.png' alt='' class='formula' data-proofer-ignore %}
 
 И вот оно! Мы видим, что есть путь, с суммой всех ячеек пути равной 8, и то, что
 этот путь начинается в верхнем правом углу. Для того, чтобы найти путь, мы могли
