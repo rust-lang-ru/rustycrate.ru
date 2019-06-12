@@ -70,8 +70,7 @@ title: Правила сообщества
   обсуждения часто приводят к нарушению правила 1.
 
 * Если на ваш вопрос в Gitter никто не ответил и он "утонул" в переписке,
-  то стоит оформить его или на [stackoverflow], или на [форуме],
-  или на [/r/rustycrate].
+  то стоит оформить его или на [stackoverflow], или на [форуме].
 
   Для привлечения внимания ссылку на вопрос можно скинуть в Gitter.
 
@@ -98,7 +97,6 @@ title: Правила сообщества
 ["Как задать хороший вопрос"]: http://ru.stackoverflow.com/help/how-to-ask
 [MCVE]: http://ru.stackoverflow.com/help/mcve
 [Markdown разметку]: https://guides.github.com/features/mastering-markdown
-[/r/rustycrate]: https://www.reddit.com/r/rustycrate
 [форуме]: https://forum.rustycrate.ru
 [stackoverflow]: http://ru.stackoverflow.com
 [playpen]: https://play.rust-lang.org
