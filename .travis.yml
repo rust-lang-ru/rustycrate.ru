@@ -12,7 +12,7 @@ dist: xenial
 before_script:
 - . $HOME/.nvm/nvm.sh
 - command -v nvm
-- nvm install v8.11.1
+- nvm install v10.16
 - node --version
 - npm --version
 - npm install -g typograf
