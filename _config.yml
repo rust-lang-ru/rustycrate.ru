@@ -40,7 +40,7 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-gems:
+plugins:
   - jekyll-assets
   - jekyll-paginate-v2
   - mini_magick
@@ -53,6 +53,6 @@ pagination:
   limit: 0
   sort_field: 'date'
   sort_reverse: true
-  trail: 
+  trail:
     before: 2
     after: 2

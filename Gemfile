@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'html-proofer'
 gem 'i18n'
-gem 'jekyll', '3.2.1'
+gem 'jekyll', '3.8.5'
 gem 'jekyll-assets'
 gem 'jekyll-paginate-v2'
 gem 'jekyll-sass-converter'

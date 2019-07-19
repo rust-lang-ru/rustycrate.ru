@@ -5,7 +5,7 @@ tags: [ эксклюзивы ]
 author: Михаил Панков
 ---
 
-{% img '2017-02-25-colaboratory-rust-3/colab.jpg' alt:'лого' magick:resize:800 %}
+{% asset '2017-02-25-colaboratory-rust-3/colab.jpg' alt='лого' magick:resize=800 %}
 
 Rust продолжает развиваться с космической скоростью, а мы только и успеваем
 собираться и обсуждать нововведения.

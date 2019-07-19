@@ -174,8 +174,8 @@ fn auth_str() -> String {
 
 ### Проектирование реализации типажа Responder
 
-В `actix-web`, обработчик просто должен реализовать [Handler](https://actix.rs/actix-web/actix_web/dev/trait.Handler.html),
-который уже реализован для любой функции, которая принимает `HttpRequest` и возвращает типаж [Responder](https://actix.rs/actix-web/actix_web/trait.Responder.html).
+В `actix-web`, обработчик просто должен реализовать [Handler](https://docs.rs/actix-web/0.7.19/actix_web/dev/trait.Handler.html),
+который уже реализован для любой функции, которая принимает `HttpRequest` и возвращает типаж [Responder](https://docs.rs/actix-web/0.7.19/actix_web/trait.Responder.html).
 `Json<T>` реализует `FromRequest`, который преобразует `HttpRequest` в `Json<T>` за сценой.
 Взяв первую часть нашего определения функции выше, мы можем теперь закончить ее, зная, что нам нужно вернуть.
 

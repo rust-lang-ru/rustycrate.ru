@@ -6,12 +6,12 @@ author: Михаил Панков
 ---
 
 <a href="https://events.kaspersky.com/event/rust2" target="blank">
-{% img '2016-04-25-colaboratory-rust/splash.jpg' alt:'лого' magick:resize:800 %}
+{% asset '2016-04-25-colaboratory-rust/splash.jpg' alt='лого' magick:resize=800 %}
 </a>
 
 <a href="https://events.kaspersky.com/event/rust2" target="blank">
-{% img '2016-04-25-colaboratory-rust/button.png' alt:'зарегистрироваться'
-   width:'248' height:'60' %}
+{% asset '2016-04-25-colaboratory-rust/button.png' alt='зарегистрироваться'
+   width='248' height='60' %}
 </a>
 
 Rust — современный системный язык программирования. У него мощная система
@@ -85,8 +85,8 @@ Rust.
 Ждём вас! И обязательно расскажите о событии друзьям.
 
 <a href="https://events.kaspersky.com/event/rust2" target="blank">
-{% img '2016-04-25-colaboratory-rust/button.png' alt:'зарегистрироваться'
-   width:'248' height:'60' %}
+{% asset '2016-04-25-colaboratory-rust/button.png' alt='зарегистрироваться'
+   width='248' height='60' %}
 </a>
 
 **Обновлено:** дополнено расписание.

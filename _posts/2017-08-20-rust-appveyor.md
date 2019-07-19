@@ -9,7 +9,7 @@ categories: обучение
 tags: [ эксклюзивы ]
 ---
 
-{% img '2017-08-20-rust-appveyor/teaser.png' alt:'teaser' width:50% %}
+{% asset '2017-08-20-rust-appveyor/teaser.png' alt='teaser' width:50% %}
 
 Как зарегистрироваться на AppVeyor, подключить туда свой проект на Rust и
 сделать первую сборку.
@@ -49,21 +49,21 @@ company news and platform updates`. Затем нажмите на кнопку 
 
 При желании можно зарегистрироваться по email, заполнив три поля справа.
 
-{% img '2017-08-20-rust-appveyor/sign-up.png' alt:'регистрация' %}
+{% asset '2017-08-20-rust-appveyor/sign-up.png' alt='регистрация' %}
 
 После нажатия на кнопку `GitHub` откроется окно авторизации AppVeyor. Нажимаем
 `Authorize AppVeyor`.
 
-{% img '2017-08-20-rust-appveyor/github-auth.png' alt:'авторизация на GitHub' %}
+{% asset '2017-08-20-rust-appveyor/github-auth.png' alt='авторизация на GitHub' %}
 
 После этого GitHub может запросить пароль, чтобы подтвердить предоставление
 доступа AppVeyor.
 
-{% img '2017-08-20-rust-appveyor/github-pass.png' alt:'ввод пароля от GitHub' %}
+{% asset '2017-08-20-rust-appveyor/github-pass.png' alt='ввод пароля от GitHub' %}
 
 После этого вы должны увидеть панель управления AppVeyor.
 
-{% img '2017-08-20-rust-appveyor/dashboard.png' alt:'ввод пароля от GitHub' %}
+{% asset '2017-08-20-rust-appveyor/dashboard.png' alt='ввод пароля от GitHub' %}
 
 Если что-то пошло не так:
 
@@ -78,19 +78,19 @@ company news and platform updates`. Затем нажмите на кнопку 
 
 Нажимаем `New project`.
 
-{% img '2017-08-20-rust-appveyor/dashboard.png' alt:'панель управления' %}
+{% asset '2017-08-20-rust-appveyor/dashboard.png' alt='панель управления' %}
 
 В окне добавления проекта слева (`1`) выбираем расположение репозитория - в
 нашем случае `GitHub`. Если вы хотите подключить частный проект, выберите
 `Private and public repositories` справа (`2`). Затем нажмите `Authorize GitHub`
 (`3`).
 
-{% img '2017-08-20-rust-appveyor/add-project.png' alt:'добавление проекта' %}
+{% asset '2017-08-20-rust-appveyor/add-project.png' alt='добавление проекта' %}
 
 После авторизации GitHub на доступ к репозиториям ищем справа наш проект и
 нажимаем кнопку `Add`.
 
-{% img '2017-08-20-rust-appveyor/project-list.png' alt:'список проектов' %}
+{% asset '2017-08-20-rust-appveyor/project-list.png' alt='список проектов' %}
 
 Теперь нужно настроить добавленный проект.
 
@@ -154,7 +154,7 @@ $ git push
 
 Когда сборка запустится, вы увидите логи внизу:
 
-{% img '2017-08-20-rust-appveyor/build.png' alt:'сборка' %}
+{% asset '2017-08-20-rust-appveyor/build.png' alt='сборка' %}
 
 AppVeyor собирает проект и запускает его тесты, аналогично тому, как это
 делается на локальной машине.
@@ -225,7 +225,7 @@ https://ci.appveyor.com/api/projects/status/github/mkpankov/hello
 
 Результат:
 
-{% img '2017-08-20-rust-appveyor/badge.png' alt:'индикатор' %}
+{% asset '2017-08-20-rust-appveyor/badge.png' alt='индикатор' %}
 
 ## Готово!
 

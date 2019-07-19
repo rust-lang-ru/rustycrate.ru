@@ -7,11 +7,12 @@ addons:
   ssh_known_hosts: newwww.rustycrate.ru
 sudo: false
 rvm:
-- 2.2.3
+- 2.6.3
+dist: xenial
 before_script:
 - . $HOME/.nvm/nvm.sh
 - command -v nvm
-- nvm install v8.11.1
+- nvm install v10.16
 - node --version
 - npm --version
 - npm install -g typograf

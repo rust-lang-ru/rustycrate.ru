@@ -25,16 +25,16 @@
                 <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
                     <!-- Счётчик комментариев -->
                     <span class="disqus-comment-count" data-disqus-url="{{ post.url | prepend: site.url }}#disqus_thread"></span>
-                    {% img 'comments.png' alt:'комментарии' class:'comments-icon' magick:resize:16 %}
+                    {% asset 'comments.png' alt='комментарии' class='comments-icon' magick:resize=16 %}
                 </a>
                 {% else %}
                     {% if post.comments_url %}
                         <a class="btn btn-default" href="{{ post.comments_url }}" target="blank">
-                            {% img 'comments.png' alt:'комментарии' class:'comments-icon' magick:resize:16 %}
+                            {% asset 'comments.png' alt='комментарии' class='comments-icon' magick:resize=16 %}
                         </a>
                     {% else %}
                         <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}#comments">
-                            {% img 'comments.png' alt:'комментарии' class:'comments-icon' magick:resize:16 %}
+                            {% asset 'comments.png' alt='комментарии' class='comments-icon' magick:resize=16 %}
                         </a>
                     {% endif %}
                 {% endif %}

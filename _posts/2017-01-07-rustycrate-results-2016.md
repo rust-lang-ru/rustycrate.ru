@@ -10,25 +10,25 @@ author: Михаил Панков
 
 *Вот для затравки число посетителей сайта за год:*
 
-{% img '2017-01-07-rustycrate-results-2016/visitors.png' alt:'число посетителей за год' %}
+{% asset '2017-01-07-rustycrate-results-2016/visitors.png' alt='число посетителей за год' %}
 
 <!--cut-->
 
 # Содержание
 
 1. Статус задач
-   * [Общие задачи]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#obshchiie-zadachi)
-   * [Книга]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#knigha)
+   * [Общие задачи]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#общие-задачи)
+   * [Книга]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#книга)
    * [mdBook]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#mdbook)
-   * [Другие книги]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#drughiie-knighi)
-   * [Сайт]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#sait)
+   * [Другие книги]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#другие-книги)
+   * [Сайт]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#сайт)
 2. Отчёт о состоянии ресурсов
-   * [Чат]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#chat)
-   * [Форум]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#forum)
-   * [Статьи]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#stati)
-   * [Группы в социальных сетях]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#gruppy-v-sotsialnykh-sietiakh)
-   * [Митапы]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#mitapy)
-   * [Работа]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#rabota)
+   * [Чат]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#чат)
+   * [Форум]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#форум)
+   * [Статьи]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#статьи)
+   * [Группы в социальных сетях]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#группы-в-социальных-сетях)
+   * [Митапы]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#митапы)
+   * [Работа]({{ site.baseurl }}/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2017/01/07/rustycrate-results-2016.html#работа)
 3. Заключение
 
 <hr/>
@@ -44,7 +44,7 @@ author: Михаил Панков
 пользовались. Эта статья на третьем месте в гугле по запросу "что такое Pull
 Request".
 
-{% img '2017-01-07-rustycrate-results-2016/pull-request.png' alt:'статья про pull request' %}
+{% asset '2017-01-07-rustycrate-results-2016/pull-request.png' alt='статья про pull request' %}
 
 Также проставили метки на простые задачи по сайту и книге.
 
@@ -78,7 +78,7 @@ Request".
 
 Ещё в процессе перевода "Rust на примерах" - приходите помогать.
 
-{% img '2017-01-07-rustycrate-results-2016/rust-by-example.png' alt:'rust на примерах' %}
+{% asset '2017-01-07-rustycrate-results-2016/rust-by-example.png' alt='rust на примерах' %}
 
 ## Сайт
 
@@ -125,7 +125,7 @@ Request".
 *К сожалению, GTmetrix меряет время загрузки из Канады, поэтому оно сильно
 колеблется. Вот результаты по числу запросов и размеру страницы:*
 
-{% img '2017-01-07-rustycrate-results-2016/speed.png' alt:'число запросов и размер страницы' %}
+{% asset '2017-01-07-rustycrate-results-2016/speed.png' alt='число запросов и размер страницы' %}
 
 ### Содержимое
 
@@ -137,7 +137,7 @@ Request".
 
 По Cargo тоже перевели документацию.
 
-{% img '2017-01-07-rustycrate-results-2016/cargo.png' alt:'документация по Cargo' %}
+{% asset '2017-01-07-rustycrate-results-2016/cargo.png' alt='документация по Cargo' %}
 
 Ещё сделали каталог проектов от участников сообщества, а раздел ссылок - пока
 нет.
@@ -153,7 +153,7 @@ Request".
 У нас был один основной канал, в котором было 200 человек. Теперь у нас 325 в
 основном, а в новых оффтопе и геймдеве - 100 и 50 соответственно.
 
-{% img '2017-01-07-rustycrate-results-2016/gitter.png' alt:'люди в чате' %}
+{% asset '2017-01-07-rustycrate-results-2016/gitter.png' alt='люди в чате' %}
 
 Число русскоязычных любителей Rust в чате оказалось довольно высоко - учитывая,
 что в официальном англоязычном IRC всего лишь около 1500 человек. Это радует.
@@ -200,7 +200,7 @@ Discourse.
 
 *5 самых популярных страниц сайта за год:*
 
-{% img '2017-01-07-rustycrate-results-2016/site-top5-pages.png' alt:'5 самых популярных страниц сайта за год' %}
+{% asset '2017-01-07-rustycrate-results-2016/site-top5-pages.png' alt='5 самых популярных страниц сайта за год' %}
 
 Всё это значит, что надо писать самим и забить на переводы. Статьи должны быть
 полезными и решать какую-то человеческую проблему. Если можно вообразить, что
@@ -212,7 +212,7 @@ Discourse.
 
 *Поисковики приносят нам треть трафика:*
 
-{% img '2017-01-07-rustycrate-results-2016/traffic-sources.png' alt:'Источники трафика' %}
+{% asset '2017-01-07-rustycrate-results-2016/traffic-sources.png' alt='Источники трафика' %}
 
 ## Группы в социальных сетях
 
@@ -234,7 +234,7 @@ Discourse.
 Порадовало, что нашлись докладчики - суммарно у нас выступило 6 человек с 7
 докладами.
 
-{% img '2017-01-07-rustycrate-results-2016/colab-rust-2.png' alt:'фото с регистрации на второй митап' magick:1/4 %}
+{% asset '2017-01-07-rustycrate-results-2016/colab-rust-2.png' alt='фото с регистрации на второй митап' magick:resize="{{ assets['2017-01-07-rustycrate-results-2016/colab-rust-2.png'].width / 1 }}x{{ assets['2017-01-07-rustycrate-results-2016/colab-rust-2.png'].height / 4 }}" %}
 
 Лучшие 2 доклада были оценены участниками на 4,2 и 4,4 балла по пятибалльной
 шкале. Остальные - ниже четырёх, с аутсайдером в 3,3 балла.
@@ -255,7 +255,7 @@ Discourse.
 
 *К сожалению, у поисковиков до сих пор проблемы с пониманием, что мы программируем, а не играем:*
 
-{% img '2017-01-07-rustycrate-results-2016/vacancy.png' alt:'скриншот из гугла с вакансией' %}
+{% asset '2017-01-07-rustycrate-results-2016/vacancy.png' alt='скриншот из гугла с вакансией' %}
 
 ## Заключение
 

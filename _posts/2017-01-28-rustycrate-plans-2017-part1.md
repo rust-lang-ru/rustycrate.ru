@@ -27,7 +27,7 @@ author: Михаил Панков
 реализации будут сразу заявлены, но исполнитель будет выбран позже. Иными
 словами, кто именно и когда это сделает - в данном голосовании не важно.
 
-{% img '2017-01-28-rustycrate-plans-2017-part1/trello.png' alt:'карточка в трелле' magick:3/4 %}
+{% asset '2017-01-28-rustycrate-plans-2017-part1/trello.png' alt='карточка в трелле' magick:resize="{{ assets['2017-01-28-rustycrate-plans-2017-part1/trello.png'].width / 3 }}x{{ assets['2017-01-28-rustycrate-plans-2017-part1/trello.png'].height / 4 }}" %}
 
 <!--cut-->
 
