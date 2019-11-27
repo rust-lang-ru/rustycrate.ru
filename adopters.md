@@ -3,7 +3,7 @@ layout: page
 title: Кто использует Rust
 
 ---
-Дополнения [приветствуются](https://github.com/ruRust/rustycrate.ru/edit/master/adopters.md).
+Дополнения [приветствуются](https://github.com/rust-lang-ru/rustycrate.ru/edit/master/adopters.md).
 
 # Коммерческие пользователи Rust
 

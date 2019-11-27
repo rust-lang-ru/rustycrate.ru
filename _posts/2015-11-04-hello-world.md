@@ -61,7 +61,7 @@ Rust стабилен, экосистема растёт как на дрожж
 # Что у нас есть
 
 * Этот сайт. Он работает на `jekyll`. Страницы — это файлы Markdown. Его
-репозиторий — [здесь](https://github.com/ruRust/rustycrate.ru).
+репозиторий — [здесь](https://github.com/rust-lang-ru/rustycrate.ru).
 
   Главная сайта — это лента блога. На неё можно
   [подписаться](http://feeds.feedburner.com/rustycrate/yMtS).
@@ -72,7 +72,7 @@ Rust стабилен, экосистема растёт как на дрожж
   У публикаций есть комментарии. Форма написания комментариев — внизу страницы.
   Комментарии работают на Disqus.
 
-* [Книга](http://rurust.github.io/rust_book_ru/). Полностью переведённая на русский
+* [Книга](http://rust-lang-ru.github.io/rust_book_ru/). Полностью переведённая на русский
   язык книга о Rust — «The Rust Programming Language» — от авторов языка.
 
 * [Форум](http://forum.rustycrate.ru/). Он работает на Discourse. Регистрация
@@ -90,7 +90,7 @@ Rust стабилен, экосистема растёт как на дрожж
 * [В работе]({{ site.baseurl }}/in-progress.html). Это список ресурсов, которые кто-то
   взялся переводить (или даже разрабатывать с нуля!). Если хотите
   скоординироваться с сообществом —
-  [добавляйте задачу](https://github.com/ruRust/rustycrate.ru/labels/%D0%B2%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)
+  [добавляйте задачу](https://github.com/rust-lang-ru/rustycrate.ru/labels/%D0%B2%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)
   на GitHub с текстом `[в работе]` в заголовке.
 
 * [Контакты]({{ site.baseurl }}/contacts.html). Список контактов. Пока он просто в
@@ -106,7 +106,7 @@ Rust стабилен, экосистема растёт как на дрожж
 [rustycrate@michaelpankov.com](mailto:rustycrate@michaelpankov.com).
 
 Также можно заглянуть в
-[задачи](https://github.com/ruRust/rustycrate.ru/issues). Если хотите
+[задачи](https://github.com/rust-lang-ru/rustycrate.ru/issues). Если хотите
 делать что-то — отпишитесь в комментариях в задаче, что делаете это.
 Будем ждать pull request'ы!
 

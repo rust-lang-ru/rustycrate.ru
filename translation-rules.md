@@ -86,7 +86,7 @@ http://doc.rust-lang.org/std/primitive.bool.html
 git diff master translate -- index.md
 ```
 
-## [Словарь терминов](https://github.com/ruRust/rust_book_ru/wiki/Словарь-терминов)
+## [Словарь терминов](/dictionary.html)
 
 **Если у вас есть вопросы или предложения по правилам - не стесняйтесь,
 обязательно предлагайте лучшие, на ваш взгляд, варианты!**

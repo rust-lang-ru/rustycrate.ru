@@ -10,7 +10,7 @@ title: Руководство по написанию статей
 Написать новую публикацию можно в веб-интерфейсе GitHub.
 
 Если вы уже знакомы с такими блогами --- нажмите <a
-href="https://github.com/ruRust/rustycrate.ru/new/master/_posts"
+href="https://github.com/rust-lang-ru/rustycrate.ru/new/master/_posts"
 target="blank">здесь</a>, чтобы открыть GitHub в новой вкладке.
 
 Для распознавания файла как публикации, его нужно назвать в формате
@@ -45,11 +45,11 @@ author: Имя Фамилия
 и имя переводчика: `translator: Михаил Панков`
 
 Пример публикации в разметке можно увидеть
-[здесь](https://raw.githubusercontent.com/ruRust/rustycrate.ru/master/_posts/2016-03-03-Rust-1.7.md).
+[здесь](https://raw.githubusercontent.com/rust-lang-ru/rustycrate.ru/master/_posts/2016-03-03-Rust-1.7.md).
 
 После написания публикации нажмите зелёную кнопку "Propose new file"
 внизу страницы.
 
 Для перехода на GitHub в интерфейс написания новой публикации нажмите
-<a href="https://github.com/ruRust/rustycrate.ru/new/master/_posts"
+<a href="https://github.com/rust-lang-ru/rustycrate.ru/new/master/_posts"
 target="blank">здесь</a>.

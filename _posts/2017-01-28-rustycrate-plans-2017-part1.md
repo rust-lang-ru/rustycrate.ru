@@ -72,13 +72,13 @@ author: Михаил Панков
 русском вообще нет.
 
 Начатый перевод находится
-в [репозитории](https://github.com/ruRust/rust-by-example-ru), там есть
+в [репозитории](https://github.com/rust-lang-ru/rust-by-example-ru), там есть
 continuous deployment с помощью Travis
-на [GitHub Pages](https://rurust.github.io/rust-by-example-ru).
+на [GitHub Pages](https://doc.rust-lang.ru/rust-by-example).
 
 Чтобы поучаствовать прямо сейчас, заход**и**те
 в
-[задачу со статусом перевода](https://github.com/ruRust/rust-by-example-ru/issues/1) и
+[задачу со статусом перевода](https://github.com/rust-lang-ru/rust-by-example-ru/issues/1) и
 пишите, за какой раздел вы берётесь. Смотрите, чтобы этот раздел ещё не был
 занят. Ждём Pull Request'ы!
 
