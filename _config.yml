@@ -10,7 +10,7 @@ set: "master"
 url: "https://rustycrate.ru" # базовое имя хоста и протокол
 # Эти параметры могут использоваться темой для Jekyll, чтобы поставить ссылки на профили
 twitter_username:
-github_username:  ruRust
+github_username:  rust-lang-ru
 
 # Настройки по умолчанию для определённых полей front matter
 defaults:
@@ -53,6 +53,6 @@ pagination:
   limit: 0
   sort_field: 'date'
   sort_reverse: true
-  trail: 
+  trail:
     before: 2
     after: 2

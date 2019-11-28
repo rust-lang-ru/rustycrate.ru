@@ -14,7 +14,7 @@ before_script:
 - nvm install v8.11.1
 - node --version
 - npm --version
-- npm install -g typograf
+- npm install -g typograf typograf-cli eyo yaspeller markdownlint markdownlint-cli
 - npm install -g typograf-cli
 - npm install -g eyo
 - npm install -g yaspeller
@@ -48,7 +48,7 @@ script:
   bundle exec jekyll build
 - bundle exec htmlproofer ./_site
   --log-level error --only-4xx --check-favicon --check-html --allow-hash-href
-  --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/,/is.gd/,'/github.com\/ruRust\/rustycrate.ru\/edit\/master/','/github.com\/settings/',/gitter.im/,/www.rust-lang.org/,/blog.rust-lang.org/,/cdn.jsdelivr.net/
+  --url-ignore /crates.io/,/files.gitter.im/,/fonts.googleapis.com/,/www.quora.com/,/is.gd/,'/github.com\/rust-lang-ru\/rustycrate.ru\/edit\/master/','/github.com\/settings/',/gitter.im/,/www.rust-lang.org/,/blog.rust-lang.org/,/cdn.jsdelivr.net/
   --file-ignore /yandex_6b9a121b20becc7c.html/,/googlea5495ce52829dd37.html/
 after_success:
 - if [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ]; then

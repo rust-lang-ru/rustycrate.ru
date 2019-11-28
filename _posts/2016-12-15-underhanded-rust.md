@@ -56,7 +56,7 @@ translator: авторы rustycrate.ru
 [Stripe](https://stripe.com/docs/api), чтобы получить представление
 о том, что используется для реальной обработки платежей.
 Если вам не знаком язык Rust, мы рекомендуем начать с книги
-[Язык программирования Rust](http://rurust.github.io/rust_book_ru/src/INTRODUCTION.html)
+[Язык программирования Rust](http://rust-lang-ru.github.io/rust_book_ru/src/INTRODUCTION.html)
 или [других переводов](https://github.com/ctjhoa/rust-learning#locale-links).
 
 # Подсчёт очков

@@ -1,8 +1,6 @@
 # Неофициальный русскоязычный сайт о Rust
 
-[![Build Status](https://travis-ci.org/ruRust/rustycrate.ru.svg?branch=master)](https://travis-ci.org/ruRust/rustycrate.ru)
-[![ruRust/rustycrate.ru](http://issuestats.com/github/ruRust/rustycrate.ru/badge/pr?style=flat)](http://issuestats.com/github/ruRust/rustycrate.ru)
-[![ruRust/rustycrate.ru](http://issuestats.com/github/ruRust/rustycrate.ru/badge/issue?style=flat)](http://issuestats.com/github/ruRust/rustycrate.ru)
+[![Build Status](https://travis-ci.org/rust-lang-ru/rustycrate.ru.svg?branch=master)](https://travis-ci.org/rust-lang-ru/rustycrate.ru)
 [![Join the chat at https://gitter.im/ruRust/rustycrate.ru](https://badges.gitter.im/ruRust/rustycrate.ru.svg)](https://gitter.im/ruRust/rustycrate.ru?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Проверка правописания: [Яндекс.Спеллер](https://tech.yandex.ru/speller/)
@@ -16,7 +14,7 @@
 Jekyll склеивает файлы, заменяет специальные теги на свойства страниц,
 генерирует определённые элементы в цикле и т.д. Пример шаблонной страницы можно
 увидеть
-[здесь](https://github.com/ruRust/rustycrate.ru/blob/master/index.html) - это
+[здесь](https://github.com/rust-lang-ru/rustycrate.ru/blob/master/index.html) - это
 главная нашего сайта. Этот файл довольно подробно аннотирован комментариями - в
 нём можно разобраться.
 
@@ -111,7 +109,7 @@ rvm use --default 2.2.3
 Затем в том же терминале клонируем и собираем сайт:
 
 ```
-git clone https://github.com/ruRust/rustycrate.ru.git
+git clone https://github.com/rust-lang-ru/rustycrate.ru.git
 cd rustycrate.ru
 gem install bundler
 bundle install --path vendor/bundle

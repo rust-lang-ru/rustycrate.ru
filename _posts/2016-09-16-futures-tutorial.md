@@ -703,7 +703,7 @@ fn main() {
 ## Типажи-объекты
 
 Первое, что можно сделать, это вернуть упакованный
-[типаж-объект](http://rurust.github.io/rust_book_ru/src/trait-objects.html):
+[типаж-объект](http://rust-lang-ru.github.io/rust_book_ru/src/trait-objects.html):
 
 ```rust
 fn foo() -> Box<Future<Item = u32, Error = io::Error>> {
