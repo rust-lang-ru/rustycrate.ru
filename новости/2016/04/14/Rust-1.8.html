@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<!-- Page last generated 2019-07-19 22:46:02 +0000 -->
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<link rel="dns-prefetch" href="//rustycrate.disqus.com">
+<link rel="dns-prefetch" href="//gitter.im">
+<link rel="dns-prefetch" href="//sidecar.gitter.im">
+<link rel="dns-prefetch" href="//ws.gitter.im">
+<link rel="dns-prefetch" href="//cdn01.gitter.im">
+<link rel="dns-prefetch" href="//cdn02.gitter.im">
+<link rel="dns-prefetch" href="//cdn03.gitter.im">
+<link rel="dns-prefetch" href="//files.gitter.im">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+<link rel="alternate" type="application/rss+xml" title="Atom" href="http://feeds.feedburner.com/rustycrate/yMtS">
+
+<title>Анонс Rust 1.8 | rustycrate.ru | Сайт о языке программирования Rust</title>
+
+<link rel="icon" type="image/png" href="/assets/rustycrate-logo-16px-8421918904df27c3a3ff7c1bf8778ab8d9d2b01a23012fb7ff3700042067ab14.png" />
+
+<link type="text/css" rel="stylesheet" href="/assets/main-e70e4af5c9a3d8df8091200cf54891e6e4b4ed5abe9e1d0cbbc05ea272af15c9.css">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<meta name="keywords" content="Rust, язык программирования Rust, язык раст, язык rust, Mozilla Rust, неофициальный сайт, книга о rust, язык программирования rust книга, чат о rust, форум о rust, язык программирования rust чат, язык программирования rust форум, программирование rust, rust уроки">
+<meta name="description" content="
+      
+      Мы рады представить новую версию Rust 1.8. Rust - это системный язык программирования,
+нацеленный на безопасную работу с памятью, скорость и параллельное выполнение кода.
+
+Как обычно, вы можете установить Rust 1.8 с соответствующей страницы официального сайта, 
+а также ознакомиться с подробным списком изменений в этой версии на GitHub. В этот релиз 
+вошло порядка 1400 патчей.
+
+Что вошло в стабильную версию 1.8
+
+В релиз вошли две новые возможности, а ещё у нас есть хорошие новости для пользователей Windows! 
+Также продолжаются работы по замене make в нашей билд-системе на Cargo.
+
+Во-первых, различные операторы составного присваивания, такие как += и -=, теперь могут быть 
+перегружены через соответствующие трейты. Это изменение было результатом RFC 953 и выглядит 
+следующим образом:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21use std::ops:: AddAssign;
+
+#[derive(Debug)]
+struct Count {
+    value: i32,
+}
+   
+impl AddAssign for Count {
+    fn add_assign(&amp;mut self, other: Count) {
+        self.value += other.value;
+    }
+}  
+
+fn main() {
+    let mut c1 = Count { value: 1 };
+    let c2 = Count { value: 5 };
+
+    c1 += c2;
+
+    println!(&quot;{:?}&quot;, c1);
+}
+
+
+
+
+
+      ">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://rustycrate.ru/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2016/04/14/Rust-1.8.html" />
+<meta name="twitter:creator" content="The Rust Core Team" />
+<meta name="twitter:title" content="Анонс Rust 1.8 | rustycrate.ru" />
+<meta name="twitter:site" content="@rustycrate1" />
+<meta name="twitter:description" content="
+      
+      Мы рады представить новую версию Rust 1.8. Rust - это системный язык программирования,
+нацеленный на безопасную работу с памятью, скорость и параллельное выполнение кода.
+
+Как обычно, вы можете установить Rust 1.8 с соответствующей страницы официального сайта, 
+а также ознакомиться с подробным списком изменений в этой версии на GitHub. В этот релиз 
+вошло порядка 1400 патчей.
+
+Что вошло в стабильную версию 1.8
+
+В релиз вошли две новые возможности, а ещё у нас есть хорошие новости для пользователей Windows! 
+Также продолжаются работы по замене make в нашей билд-системе на Cargo.
+
+Во-первых, различные операторы составного присваивания, такие как += и -=, теперь могут быть 
+перегружены через соответствующие трейты. Это изменение было результатом RFC 953 и выглядит 
+следующим образом:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21use std::ops:: AddAssign;
+
+#[derive(Debug)]
+struct Count {
+    value: i32,
+}
+   
+impl AddAssign for Count {
+    fn add_assign(&amp;mut self, other: Count) {
+        self.value += other.value;
+    }
+}  
+
+fn main() {
+    let mut c1 = Count { value: 1 };
+    let c2 = Count { value: 5 };
+
+    c1 += c2;
+
+    println!(&quot;{:?}&quot;, c1);
+}
+
+
+
+
+
+      " />
+
+<script type="text/javascript">
+  (window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wIYQtpjp6fzMM6DJ8Y6DEzeA1DiIuClj3woQCOo9pLMJFpzVlGWMbww1oDg3lLAPlFGo0eCYqRVVkyyy2AAmTG08QD/m4cTp7HZm95Ew1IlCdKdWyLDiBTEmZ4G739IBoT5w0bCqCHe9Qryp/qwF1kWJuetu191aoM3lPlw48mc-&pixel_id=1000030535';
+</script>
+
+    </head>
+    <body>
+        <!-- Yandex.Metrika counter -->
+<script type="text/javascript" data-proofer-ignore>
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35870700 = new Ya.Metrika({
+                    id:35870700,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript data-proofer-ignore><div data-proofer-ignore><img src="https://mc.yandex.ru/watch/35870700" style="position:absolute; left:-9999px;" alt="" data-proofer-ignore/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142155799-1" data-proofer-ignore></script>
+<script data-proofer-ignore>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142155799-1');
+</script>
+<!-- /Global site tag (gtag.js) - Google Analytics -->
+
+<nav class="navbar navbar-default navbar-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="/assets/rustycrate-logo-32px-796d0c5a63c7c579f401b84a35ff31a4df78b81909c966c9e9a68525b82d52d3.png" alt="rust" class=brand-icon width="32" height="32">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="main-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Я изучаю Rust <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/books.html">Книги:</a></li>
+                        <li><a href="https://rustycrate.ru/book" target="blank">— Язык программирования Rust</a></li>
+                        <li><a href="https://github.com/ruRust/tlborm" target="blank">— Маленькая книжка по макросам в Rust</a></li>
+                        <li><a href="https://github.com/ruRust/rustonomicon" target="blank">— Растономикон</a></li>
+                        <li><a href="https://rurust.github.io/rust-by-example-ru" target="blank">— Rust на примерах</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/articles-education.html">Статьи</a></li>
+                        <li><a href="https://rurust.github.io/cargo-docs-ru/" target="blank">Документация по Cargo</a></li>
+                        <li><a href="/does-rust-suit-me.html">Подходит ли мне Rust?</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/help.html">Мне нужна помощь</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy">— Чат для новичков</a></li>
+                        <li><a href="https://gitter.im/ruRust/general">— Чат для сложных вопросов</a></li>
+                        <li><a href="http://ru.stackoverflow.com/questions/tagged/rust">— Stackoverflow на русском</a></li>
+                        <li><a href="https://forum.rustycrate.ru/">— Форум</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Что нового? <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/news.html">Статьи<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>новости)</a></li>
+                            <li><a href="/all/index.html">Новые статьи из всех категорий</a></li>
+                            <li><a href="/feed.xml">Подписка на RSS</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/social.html">Социальные сети</a></li>
+                            <li>
+                                <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                    <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                    <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                    <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://habr.com/hub/rust" target="blank">Хабрахабр</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу пообщаться <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/rules.html">Правила сообщества</a></li>
+                        <li><a href="/charter.html">Устав сообщества</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://forum.rustycrate.ru/">Форум</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/chats.html">Чаты</a></li>
+                        <li><a href="https://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/12/gitter.html">Про Gitter и как подключиться через IRC</a></li>
+                        <li><a href="https://forum.rustycrate.ru/t/kak-obshhatsya-v-nashem-chate-cherez-veb-klient-riot-matrix/354/">Как подключиться через Matrix</a></li>
+                        <li><a href="https://gitter.im/ruRust/home">Список комнат:</a></li>
+                        <li><a href="https://gitter.im/ruRust/general" target="blank">— Rust<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>основной канал)</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy" target="blank">— Простые вопросы о Rust</a></li>
+                        <li><a href="https://gitter.im/ruRust/gamedev" target="blank">— Разработка игр</a></li>
+                        <li><a href="https://gitter.im/ruRust/infosec" target="blank">— Информационная безопасность</a></li>
+                        <li><a href="https://gitter.im/ruRust/webdev" target="blank">— Веб-разработка</a></li>
+                        <li><a href="https://gitter.im/ruRust/algo" target="blank">— Алгоритмы</a></li>
+                        <li><a href="https://gitter.im/ruRust/offtopic" target="blank">— Диван — разговоры обо всём</a></li>
+                        <li><a href="https://gitter.im/ruRust/rustycrate.ru" target="blank">— Об этом сайте</a></li>
+                        <li><a href="https://gitter.im/ruRust/rust_book_ru" target="blank">— О книгах<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>статьях и вопросах перевода</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/meetups.html">Встречи:</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="blank">— В Москве</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9F%D0%B8%D1%82%D0%B5%D1%80%D0%B5/" target="blank">— В Санкт-Петербурге</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/social.html">Социальные сети</a></li>
+                        <li>
+                            <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу поучаствовать в проекте <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Наш GitHub</a></li>
+                        <li><a href="/community-projects.html">Проекты участников нашего сообщества</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Пишу или перевожу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://forum.rustycrate.ru/t/napisanie-statej-dlya-rustycrate-ru/335/" target="blank">Программа поощрения авторов</a></li>
+                        <li><a href="/editing-policy.html">Редакционная политика</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/dictionary.html">Словарь терминов</a></li>
+                        <li><a href="/in-progress.html">Статьи в работе</a></li>
+                        <li><a href="/translation-rules.html">Правила перевода книг</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в переводе</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу помочь сообществу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.patreon.com/mkpankov" target="blank">
+                            <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Поддержать" width="16" height="16">
+                            Поддержать сообщество финансово</a></li>
+                        <li><a href="/patrons.html">Доска почёта патронов</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Поработайте над нашими проектами</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Scroll To Top Button -->
+<a href="#" id="topBtn" title="Наверх" onclick="topFunction()">
+    <svg class="icon-svg icon-svg_scroll-up" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" version="1.1" role="img">
+        <path d="M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm8.412 19.523c-.517.512-1.355.512-1.872 0L16 13.516l-6.54 6.01c-.518.51-1.356.51-1.873 0-.516-.513-.517-1.343 0-1.855l7.476-7.326c.517-.512 1.356-.512 1.873 0l7.476 7.327c.516.513.516 1.342 0 1.854z"></path>
+    </svg>
+</a>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("topBtn").style.display = "block";
+        } else {
+            document.getElementById("topBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+<!-- /Scroll To Top Button -->
+
+        <div class="container" id="content">
+            <div class="well">
+                <h1 class="page-title"><a href="/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2016/04/14/Rust-1.8.html">Анонс Rust 1.8</a></h1>
+                <div class="header-left">
+
+                    <p class="post-header-text">
+
+        <time>
+            14 Апреля 2016
+        </time> •
+
+        <a href=https://blog.rust-lang.org/2016/04/14/Rust-1.8.html target="_blank">оригинал</a>: The Rust Core Team •
+        перевод: Станислав Ткач
+
+     •
+
+<a href="/news.html">новости</a>
+
+    • поддержите на <a href="https://www.patreon.com/mkpankov">Patreon</a>
+
+</p>
+
+                </div>
+                <div class="header-right">
+                </div>
+                <div class="float-cleaner"></div>
+                <div class="post-header"></div>
+
+                <p>Мы рады представить новую версию Rust 1.8. Rust — это системный язык программирования,
+нацеленный на безопасную работу с памятью<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>скорость и параллельное выполнение кода.</p>
+
+<p>Как обычно<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>вы можете <a href="https://www.rust-lang.org/install.html">установить Rust 1.8</a> с соответствующей страницы официального сайта,
+а также ознакомиться с <a href="https://github.com/rust-lang/rust/blob/stable/RELEASES.md#version-180-2016-04-14">подробным списком изменений</a> в этой версии на GitHub. В этот релиз
+вошло порядка 1400 патчей.</p>
+
+<h3 id="chto-voshlo-v-stabilnuiu-viersiiu-18">Что вошло в стабильную версию 1.8</h3>
+
+<p>В релиз вошли две новые возможности<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>а ещё у нас есть хорошие новости для пользователей Windows!
+Также продолжаются работы по замене <code class="highlighter-rouge">make</code> в нашей билд-системе на Cargo.</p>
+
+<p>Во-первых<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>различные операторы составного присваивания<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>такие как <code class="highlighter-rouge">+=</code> и <code class="highlighter-rouge">-=</code>, теперь могут быть
+перегружены через соответствующие трейты. Это изменение было результатом <a href="https://github.com/rust-lang/rfcs/blob/master/text/0953-op-assign.md">RFC 953</a> и выглядит
+следующим образом:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">ops</span><span class="p">::</span> <span class="n">AddAssign</span><span class="p">;</span>
+
+<span class="cp">#[derive(Debug)]</span>
+<span class="k">struct</span> <span class="n">Count</span> <span class="p">{</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">i32</span><span class="p">,</span>
+<span class="p">}</span>
+   
+<span class="k">impl</span> <span class="n">AddAssign</span> <span class="k">for</span> <span class="n">Count</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">add_assign</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Count</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="py">.value</span> <span class="o">+=</span> <span class="n">other</span><span class="py">.value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>  
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Count</span> <span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">Count</span> <span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span> <span class="p">};</span>
+
+    <span class="n">c1</span> <span class="o">+=</span> <span class="n">c2</span><span class="p">;</span>
+
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{:?}"</span><span class="p">,</span> <span class="n">c1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<!--cut-->
+<div id="after_cut"></div>
+
+<p>Данный код выведет <code class="highlighter-rouge">Count { value: 6 }</code>. Подобно другим трейтам-операторам,
+ассоциированные типы позволяют использовать разные типы с обеих сторон оператора.
+За подробностями обращайтесь к RFC.</p>
+
+<p>Вторая возможность намного проще и является результатом <a href="https://github.com/rust-lang/rfcs/blob/master/text/0218-empty-struct-with-braces.md">RFC 218</a>. До версии 1.8
+в Rust структуры<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>не содержащие данных<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>не могли использовать фигурные скобки:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Foo</span><span class="p">;</span> <span class="c">// ок</span>
+<span class="k">struct</span> <span class="n">Bar</span> <span class="p">{</span> <span class="p">}</span> <span class="c">// ошибка</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Отныне второй вариант не приводит к ошибке. Изначально это было запрещено для
+единообразия с другими<span class="typograf-oa-sp-lquote"> </span><span class="typograf-oa-lquote">«</span>пустыми объявлениями» и однозначности парсинга. Однако,
+в следующих за 1.0 версиях Rust проблема неоднозначности была решена<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>а авторы
+макросов сталкивались с дополнительными сложностями из-за необходимости
+поддерживать оба случая. К тому же при активной разработке периодически возникает
+необходимость переходить от пустых структур к непустым и наоборот<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что приводит к
+дополнительной работе и усложняет восприятие изменений в патчах.</p>
+
+<p>Была реализована <a href="https://github.com/rust-lang/rust/pull/30448">раскрутка стека</a> для 32-битных MSVC билдов. Это
+переводит <code class="highlighter-rouge">i686-pc-windows-msvc</code> в разряд основных платформ.</p>
+
+<p>Мы использовали <code class="highlighter-rouge">make</code> для сборки Rust в течении долгого времени<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>при этом
+у нас есть удивительный инструмент для сборки программ на Rust — Cargo.
+В версии 1.8 появилась <a href="https://github.com/rust-lang/rust/pull/31123">начальная поддержка</a> новой системы
+сборки<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>которая написана на Rust и использует Cargo в качестве основы. Эта
+система пока ещё не используется по умолчанию<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>и предстоит проделать ещё
+немало работы. Мы сообщим<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>когда она подойдёт к концу<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>а пока<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>если вас
+интересуют подробности<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>загляните на GitHub.</p>
+
+<h4 id="stabilizatsiia-bibliotiek">Стабилизация библиотек</h4>
+
+<p>В версии 1.8 было стабилизировано порядка 20 функций и методов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>которые можно
+разделить на три основные группы: поддержка UTF-16<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>разнообразные функции для
+работы с временем и дополнительные трейты для упомянутой выше перегрузки операторов.</p>
+
+<h4 id="vozmozhnosti-cargo">Возможности Cargo</h4>
+
+<p>Было сделано несколько улучшений:</p>
+
+<ul>
+  <li>Стало возможным использовать <a href="https://github.com/rust-lang/cargo/pull/2081"><code class="highlighter-rouge">cargo init</code></a>
+для инициализации Cargo-проекта в текущей директории вместо создания новой поддиректории командой <code class="highlighter-rouge">cargo new</code>.</li>
+  <li>Появилась дополнительная команда <a href="https://github.com/rust-lang/cargo/pull/2196"><code class="highlighter-rouge">cargo metadata</code></a>
+для получения информации о проекте.</li>
+  <li>В <code class="highlighter-rouge">.cargo/config</code> теперь можно задавать <a href="https://github.com/rust-lang/cargo/pull/2397">ключи для <code class="highlighter-rouge">-v</code> и <code class="highlighter-rouge">--color</code></a>.</li>
+  <li><a href="https://github.com/rust-lang/cargo/pull/2328">Улучшены</a> возможности по работе
+с специфичными для платформы зависимостями.</li>
+</ul>
+
+<p>Для дополнительной информации смотрите <a href="https://github.com/rust-lang/rust/blob/stable/RELEASES.md#version-180-2016-04-14">полный список изменений</a>.</p>
+
+<h3 id="razrabotchiki-viersii-18">Разработчики версии 1.8</h3>
+
+<p>В релизе версии 1.8 участвовало 126 человек. Большое вам спасибо!</p>
+
+<div class="spoiler"> <input type="checkbox" id="65d70225-fe2e-40d8-9b43-328eeeeee552" /><label for="65d70225-fe2e-40d8-9b43-328eeeeee552"> Список участников </label> <div class="spoiler_body">
+<ul>
+  <li>Aaron Turon</li>
+  <li>Abhishek Chanda</li>
+  <li>Adolfo Ochagavía</li>
+  <li>Aidan Hobson Sayers</li>
+  <li>Alan Somers</li>
+  <li>Alejandro Wainzinger</li>
+  <li>Aleksey Kladov</li>
+  <li>Alex Burka</li>
+  <li>Alex Crichton</li>
+  <li>Amanieu d’Antras</li>
+  <li>Andrea Canciani</li>
+  <li>Andreas Linz</li>
+  <li>Andrew Cantino</li>
+  <li>Andrew Horton</li>
+  <li>Andrew Paseltiner</li>
+  <li>Andrey Cherkashin</li>
+  <li>Angus Lees</li>
+  <li>arcnmx</li>
+  <li>Ariel Ben-Yehuda</li>
+  <li>ashleysommer</li>
+  <li>Benjamin Herr</li>
+  <li>Валерий Лашманов</li>
+  <li>Björn Steinbrink</li>
+  <li>bors</li>
+  <li>Brian Anderson</li>
+  <li>Brian Bowman</li>
+  <li>Christian Wesselhoeft</li>
+  <li>Christopher Serr</li>
+  <li>Corey Farwell</li>
+  <li>Craig M. Brandenburg</li>
+  <li>Cyryl Płotnicki-Chudyk</li>
+  <li>Daniel J Rollins</li>
+  <li>Dave Huseby</li>
+  <li>David AO Lozano</li>
+  <li>David Henningsson</li>
+  <li>Devon Hollowood</li>
+  <li>Dirk Gadsden</li>
+  <li>Doug Goldstein</li>
+  <li>Eduard Burtescu</li>
+  <li>Eduard-Mihai Burtescu</li>
+  <li>Eli Friedman</li>
+  <li>Emanuel Czirai</li>
+  <li>Erick Tryzelaar</li>
+  <li>Evan</li>
+  <li>Felix S. Klock II</li>
+  <li>Florian Berger</li>
+  <li>Geoff Catlin</li>
+  <li>ggomez</li>
+  <li>gohyda</li>
+  <li>Gökhan Karabulut</li>
+  <li>Guillaume Gomez</li>
+  <li>ituxbag</li>
+  <li>James Miller</li>
+  <li>Jeffrey Seyfried</li>
+  <li>John Talling</li>
+  <li>Jonas Schievink</li>
+  <li>Jonathan S</li>
+  <li>Jorge Aparicio</li>
+  <li>Joshua Holmer</li>
+  <li>JP Sugarbroad</li>
+  <li>Kai Noda</li>
+  <li>Kamal Marhubi</li>
+  <li>Katze</li>
+  <li>Kevin Brothaler</li>
+  <li>Kevin Butler</li>
+  <li>Manish Goregaokar</li>
+  <li>Markus Westerlind</li>
+  <li>Marvin Löbel</li>
+  <li>Masood Malekghassemi</li>
+  <li>Matt Brubeck</li>
+  <li>Michael Huynh</li>
+  <li>Michael Neumann</li>
+  <li>Michael Woerister</li>
+  <li>mitaa</li>
+  <li>Ms2ger</li>
+  <li>Nathan Kleyn</li>
+  <li>nicholasf</li>
+  <li>Nick Cameron</li>
+  <li>Niko Matsakis</li>
+  <li>Noah</li>
+  <li>NODA, Kai</li>
+  <li>Novotnik, Petr</li>
+  <li>Oliver Middleton</li>
+  <li>Oliver Schneider</li>
+  <li>petevine</li>
+  <li>Philipp Oppermann</li>
+  <li>pierzchalski</li>
+  <li>Piotr Czarnecki</li>
+  <li>pravic</li>
+  <li>Pyfisch</li>
+  <li>Richo Healey</li>
+  <li>Ruud van Asseldonk</li>
+  <li>Scott Olson</li>
+  <li>Sean McArthur</li>
+  <li>Sebastian Wicki</li>
+  <li>Sébastien Marie</li>
+  <li>Seo Sanghyeon</li>
+  <li>Simonas Kazlauskas</li>
+  <li>Simon Sapin</li>
+  <li>srinivasreddy</li>
+  <li>Steve Klabnik</li>
+  <li>Steven Allen</li>
+  <li>Steven Fackler</li>
+  <li>Stu Black</li>
+  <li>Tang Chenglong</li>
+  <li>Ted Horst</li>
+  <li>Ticki</li>
+  <li>tiehuis</li>
+  <li>Tim Montague</li>
+  <li>Tim Neumann</li>
+  <li>Timon Van Overveldt</li>
+  <li>Tobias Bucher</li>
+  <li>Tobias Müller</li>
+  <li>Todd Lucas</li>
+  <li>Tom Tromey</li>
+  <li>Tshepang Lekhonkhobe</li>
+  <li>ubsan</li>
+  <li>Ulrik Sverdrup</li>
+  <li>Vadim Petrochenkov</li>
+  <li>vagrant</li>
+  <li>Valentin Lorentz</li>
+  <li>Varun Vats</li>
+  <li>vegai</li>
+  <li>vlastachu</li>
+  <li>Wangshan Lu</li>
+  <li>York Xiang</li>
+</ul>
+
+    </div></div>
+
+                <hr/>
+
+                <div class="patreon-support">
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        <img src="/assets/patreon-small-6b0b665cbc85904cb9d62c852677c6e63a3d6057ebf4c223678bb74ddf52d08b.png" alt="patreon" class="patreon-support-img" width="24" height="24">
+                    </a>
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        Поддержите на Patreon
+                    </a>
+                </div>
+            </div>
+
+                <div id="comments">
+                    <div id="disqus_thread"></div>
+                </div>
+                <script type="text/javascript">
+                 /* * * CONFIGURATION VARIABLES * * */
+                 var disqus_shortname = 'rustycrate';
+                 var disqus_config = function () {
+                     this.page.url = "https://rustycrate.ru/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2016/04/14/Rust-1.8.html";
+                     this.page.identifier = "/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2016/04/14/Rust-1.8";
+                 };
+
+                 /* * * DON'T EDIT BELOW THIS LINE * * */
+                 (function() {
+                     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                 })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+            <hr/>
+        </div>
+        <script>
+ var anchorForId = function (id, href) {
+     var anchor = document.createElement("a");
+     anchor.className = "header-link";
+     anchor.href      = href + "#" + id;
+     anchor.innerHTML = "<span class=\"sr-only\">Permalink</span> <i class=\"glyphicon glyphicon-link\"></i>";
+     anchor.title = "постоянная ссылка";
+     return anchor;
+ };
+
+ var linkifyAnchors = function (level, containingElement, href) {
+     var headers = containingElement.getElementsByTagName("h" + level);
+     for (var h = 0; h < headers.length; h++) {
+         var header = headers[h];
+
+         if (typeof header.id !== "undefined" && header.id !== "") {
+             header.appendChild(anchorForId(header.id, href));
+         }
+     }
+ };
+
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+<script>
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+        <nav class="navbar navbar-default navbar-bottom">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#footer-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="footer-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="/patrons.html">
+                        <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Нас поддержало 20 человек" width="16" height="16">
+                        <b>Нас поддержало 20 человек</b>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/новости/2015/11/04/hello-world.html">О сайте</a></li>
+                <li>
+                    <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                        <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                        <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                        <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://feeds.feedburner.com/rustycrate/yMtS" class="navbar-link">
+                        <img src="/assets/rss-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="RSS" width="16" height="16">
+                    </a>
+                </li>
+                <li><a href="/contacts.html">Команда</a></li>
+                <li><p class="navbar-text">2019</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="gitter-button">Открыть чат</div>
+</nav>
+<script>function load_bootstrap() {
+    // Include all compiled plugins (below), or include individual files as needed
+    $.getScript("/js/bootstrap.min.js");
+}</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async onload="load_bootstrap()"></script>
+<!-- Gitter Sidecar -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'ruRust/general',
+    activationElement: '.gitter-button',
+    preload: true
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+    </body>
+</html>

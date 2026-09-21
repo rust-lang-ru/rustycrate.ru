@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<!-- Page last generated 2019-07-19 22:46:02 +0000 -->
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<link rel="dns-prefetch" href="//rustycrate.disqus.com">
+<link rel="dns-prefetch" href="//gitter.im">
+<link rel="dns-prefetch" href="//sidecar.gitter.im">
+<link rel="dns-prefetch" href="//ws.gitter.im">
+<link rel="dns-prefetch" href="//cdn01.gitter.im">
+<link rel="dns-prefetch" href="//cdn02.gitter.im">
+<link rel="dns-prefetch" href="//cdn03.gitter.im">
+<link rel="dns-prefetch" href="//files.gitter.im">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+<link rel="alternate" type="application/rss+xml" title="Atom" href="http://feeds.feedburner.com/rustycrate/yMtS">
+
+<title>Время жизни в Rust (Часть 2) | rustycrate.ru | Сайт о языке программирования Rust</title>
+
+<link rel="icon" type="image/png" href="/assets/rustycrate-logo-16px-8421918904df27c3a3ff7c1bf8778ab8d9d2b01a23012fb7ff3700042067ab14.png" />
+
+<link type="text/css" rel="stylesheet" href="/assets/main-e70e4af5c9a3d8df8091200cf54891e6e4b4ed5abe9e1d0cbbc05ea272af15c9.css">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<meta name="keywords" content="Rust, язык программирования Rust, язык раст, язык rust, Mozilla Rust, неофициальный сайт, книга о rust, язык программирования rust книга, чат о rust, форум о rust, язык программирования rust чат, язык программирования rust форум, программирование rust, rust уроки">
+<meta name="description" content="
+      
+      Введение
+
+В первой части мы рассмотрели простой пример работы времени жизни в Rust. В этой
+части мы рассмотрим пример с более сложным использованием времени жизни.
+Попробуем в экземпляре структуры хранить ссылку на экземпляр другой структуры.
+
+Постановка задачи
+
+Мы создадим структуру Customer, описывающую покупателя, который должен владеть
+экземпляром структуры Car. Покупатель будет иметь возможность покупать,
+продавать и обмениваться с другими покупателями автомобилями.
+
+
+      ">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2015/11/14/lifetime-part2.html" />
+<meta name="twitter:creator" content="Александр Яшкин" />
+<meta name="twitter:title" content="Время жизни в Rust (Часть 2) | rustycrate.ru" />
+<meta name="twitter:site" content="@rustycrate1" />
+<meta name="twitter:description" content="
+      
+      Введение
+
+В первой части мы рассмотрели простой пример работы времени жизни в Rust. В этой
+части мы рассмотрим пример с более сложным использованием времени жизни.
+Попробуем в экземпляре структуры хранить ссылку на экземпляр другой структуры.
+
+Постановка задачи
+
+Мы создадим структуру Customer, описывающую покупателя, который должен владеть
+экземпляром структуры Car. Покупатель будет иметь возможность покупать,
+продавать и обмениваться с другими покупателями автомобилями.
+
+
+      " />
+
+<script type="text/javascript">
+  (window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wIYQtpjp6fzMM6DJ8Y6DEzeA1DiIuClj3woQCOo9pLMJFpzVlGWMbww1oDg3lLAPlFGo0eCYqRVVkyyy2AAmTG08QD/m4cTp7HZm95Ew1IlCdKdWyLDiBTEmZ4G739IBoT5w0bCqCHe9Qryp/qwF1kWJuetu191aoM3lPlw48mc-&pixel_id=1000030535';
+</script>
+
+    </head>
+    <body>
+        <!-- Yandex.Metrika counter -->
+<script type="text/javascript" data-proofer-ignore>
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35870700 = new Ya.Metrika({
+                    id:35870700,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript data-proofer-ignore><div data-proofer-ignore><img src="https://mc.yandex.ru/watch/35870700" style="position:absolute; left:-9999px;" alt="" data-proofer-ignore/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142155799-1" data-proofer-ignore></script>
+<script data-proofer-ignore>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142155799-1');
+</script>
+<!-- /Global site tag (gtag.js) - Google Analytics -->
+
+<nav class="navbar navbar-default navbar-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="/assets/rustycrate-logo-32px-796d0c5a63c7c579f401b84a35ff31a4df78b81909c966c9e9a68525b82d52d3.png" alt="rust" class=brand-icon width="32" height="32">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="main-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Я изучаю Rust <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/books.html">Книги:</a></li>
+                        <li><a href="https://rustycrate.ru/book" target="blank">— Язык программирования Rust</a></li>
+                        <li><a href="https://github.com/ruRust/tlborm" target="blank">— Маленькая книжка по макросам в Rust</a></li>
+                        <li><a href="https://github.com/ruRust/rustonomicon" target="blank">— Растономикон</a></li>
+                        <li><a href="https://rurust.github.io/rust-by-example-ru" target="blank">— Rust на примерах</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/articles-education.html">Статьи</a></li>
+                        <li><a href="https://rurust.github.io/cargo-docs-ru/" target="blank">Документация по Cargo</a></li>
+                        <li><a href="/does-rust-suit-me.html">Подходит ли мне Rust?</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/help.html">Мне нужна помощь</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy">— Чат для новичков</a></li>
+                        <li><a href="https://gitter.im/ruRust/general">— Чат для сложных вопросов</a></li>
+                        <li><a href="http://ru.stackoverflow.com/questions/tagged/rust">— Stackoverflow на русском</a></li>
+                        <li><a href="https://forum.rustycrate.ru/">— Форум</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Что нового? <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/news.html">Статьи<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>новости)</a></li>
+                            <li><a href="/all/index.html">Новые статьи из всех категорий</a></li>
+                            <li><a href="/feed.xml">Подписка на RSS</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/social.html">Социальные сети</a></li>
+                            <li>
+                                <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                    <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                    <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                    <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://habr.com/hub/rust" target="blank">Хабрахабр</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу пообщаться <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/rules.html">Правила сообщества</a></li>
+                        <li><a href="/charter.html">Устав сообщества</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://forum.rustycrate.ru/">Форум</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/chats.html">Чаты</a></li>
+                        <li><a href="https://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/12/gitter.html">Про Gitter и как подключиться через IRC</a></li>
+                        <li><a href="https://forum.rustycrate.ru/t/kak-obshhatsya-v-nashem-chate-cherez-veb-klient-riot-matrix/354/">Как подключиться через Matrix</a></li>
+                        <li><a href="https://gitter.im/ruRust/home">Список комнат:</a></li>
+                        <li><a href="https://gitter.im/ruRust/general" target="blank">— Rust<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>основной канал)</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy" target="blank">— Простые вопросы о Rust</a></li>
+                        <li><a href="https://gitter.im/ruRust/gamedev" target="blank">— Разработка игр</a></li>
+                        <li><a href="https://gitter.im/ruRust/infosec" target="blank">— Информационная безопасность</a></li>
+                        <li><a href="https://gitter.im/ruRust/webdev" target="blank">— Веб-разработка</a></li>
+                        <li><a href="https://gitter.im/ruRust/algo" target="blank">— Алгоритмы</a></li>
+                        <li><a href="https://gitter.im/ruRust/offtopic" target="blank">— Диван — разговоры обо всём</a></li>
+                        <li><a href="https://gitter.im/ruRust/rustycrate.ru" target="blank">— Об этом сайте</a></li>
+                        <li><a href="https://gitter.im/ruRust/rust_book_ru" target="blank">— О книгах<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>статьях и вопросах перевода</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/meetups.html">Встречи:</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="blank">— В Москве</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9F%D0%B8%D1%82%D0%B5%D1%80%D0%B5/" target="blank">— В Санкт-Петербурге</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/social.html">Социальные сети</a></li>
+                        <li>
+                            <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу поучаствовать в проекте <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Наш GitHub</a></li>
+                        <li><a href="/community-projects.html">Проекты участников нашего сообщества</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Пишу или перевожу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://forum.rustycrate.ru/t/napisanie-statej-dlya-rustycrate-ru/335/" target="blank">Программа поощрения авторов</a></li>
+                        <li><a href="/editing-policy.html">Редакционная политика</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/dictionary.html">Словарь терминов</a></li>
+                        <li><a href="/in-progress.html">Статьи в работе</a></li>
+                        <li><a href="/translation-rules.html">Правила перевода книг</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в переводе</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу помочь сообществу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.patreon.com/mkpankov" target="blank">
+                            <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Поддержать" width="16" height="16">
+                            Поддержать сообщество финансово</a></li>
+                        <li><a href="/patrons.html">Доска почёта патронов</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Поработайте над нашими проектами</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Scroll To Top Button -->
+<a href="#" id="topBtn" title="Наверх" onclick="topFunction()">
+    <svg class="icon-svg icon-svg_scroll-up" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" version="1.1" role="img">
+        <path d="M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm8.412 19.523c-.517.512-1.355.512-1.872 0L16 13.516l-6.54 6.01c-.518.51-1.356.51-1.873 0-.516-.513-.517-1.343 0-1.855l7.476-7.326c.517-.512 1.356-.512 1.873 0l7.476 7.327c.516.513.516 1.342 0 1.854z"></path>
+    </svg>
+</a>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("topBtn").style.display = "block";
+        } else {
+            document.getElementById("topBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+<!-- /Scroll To Top Button -->
+
+        <div class="container" id="content">
+            <div class="well">
+                <h1 class="page-title"><a href="/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2015/11/14/lifetime-part2.html">Время жизни в Rust<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>Часть 2)</a></h1>
+                <div class="header-left">
+
+                    <p class="post-header-text">
+
+        <time>
+            14 Ноября 2015
+        </time> •
+
+        Александр Яшкин
+
+     •
+
+<a href="/tutorials.html">обучение</a>
+
+    • поддержите на <a href="https://www.patreon.com/mkpankov">Patreon</a>
+
+</p>
+
+                </div>
+                <div class="header-right">
+                </div>
+                <div class="float-cleaner"></div>
+                <div class="post-header"></div>
+
+                <h1 id="vviedieniie">Введение</h1>
+
+<p>В первой части мы рассмотрели простой пример работы времени жизни в Rust. В этой
+части мы рассмотрим пример с более сложным использованием времени жизни.
+Попробуем в экземпляре структуры хранить ссылку на экземпляр другой структуры.</p>
+
+<h1 id="postanovka-zadachi">Постановка задачи</h1>
+
+<p>Мы создадим структуру <code class="highlighter-rouge">Customer</code>, описывающую покупателя<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>который должен владеть
+экземпляром структуры <code class="highlighter-rouge">Car</code>. Покупатель будет иметь возможность покупать,
+продавать и обмениваться с другими покупателями автомобилями.</p>
+
+<!--cut-->
+<div id="after_cut"></div>
+
+<h1 id="pishiem-kod">Пишем код</h1>
+
+<p>Тип <code class="highlighter-rouge">Car</code> будет лишь включать в себя название модели:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Car</span> <span class="p">{</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>При описании структуры <code class="highlighter-rouge">Customer</code> возникает вопрос о хранении в себе экземпляра
+структуры <code class="highlighter-rouge">Car</code>. Для начала попробуем сделать так:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Customer</span> <span class="p">{</span>
+    <span class="n">car</span><span class="p">:</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="n">Car</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Этот вариант самый простой. Но здесь есть большая проблема. Автомобиль не
+является частью клиента. Покупка и продажа будет создавать копии автомобилей,
+что приводит к большему увеличению памяти и затраты процессора на копирование.
+Хотелось бы хранить не экземпляр структуры <code class="highlighter-rouge">Car</code>, а ссылку на экземпляр. Вот тут
+всё становится гораздо сложнее.</p>
+
+<h1 id="ssylka-v-strukturie">Ссылка в структуре</h1>
+
+<p>В Rust ссылка должна всегда указывать на выделенный участок памяти<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>чтобы
+избежать проблем. Это означает<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что время жизни экземпляра структуры должно быть
+не больше чем у ссылки<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>указывающей на переменную внутри этого экземпляра. Это
+означает<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что ссылка<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>хранящаяся внутри структуры <code class="highlighter-rouge">Customer</code>, требует явного
+указания параметров времени жизни. Добавим параметры времени жизни:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Customer</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">car</span><span class="p">:</span> <span class="nb">Option</span><span class="o">&lt;&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Car</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Здесь в <strong><code class="highlighter-rouge">Customer&lt;'a&gt;</code></strong> мы задаём имя <code class="highlighter-rouge">a</code> для времени жизни.</p>
+
+<p>В <strong><code class="highlighter-rouge">Option&lt;&amp;'a Car&gt;</code></strong> указываем<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что экземпляр структуры <code class="highlighter-rouge">Car</code> имеет время
+жизни <code class="highlighter-rouge">a</code>.</p>
+
+<p>Теперь компилятор будет знать<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что у экземпляра структуры <code class="highlighter-rouge">Customer</code> время жизни
+должно быть таким же как и у экземпляра структуры <code class="highlighter-rouge">Car</code> или меньше. В противном
+случае мы будем ссылаться на освобождённый участок памяти.</p>
+
+<h1 id="mietody">Методы</h1>
+
+<p>После того<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>как мы объявили структуры<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>можем приступить к написанию методов для
+структуры <code class="highlighter-rouge">Customer</code>:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre><span class="k">impl</span> <span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">Customer</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">new</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">Customer</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="n">Customer</span> <span class="p">{</span>
+            <span class="n">car</span><span class="p">:</span> <span class="nb">None</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">fn</span> <span class="nf">buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="k">self</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="o">&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Car</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="py">.car</span> <span class="o">=</span> <span class="nf">Some</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">fn</span> <span class="nf">sell_car</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="k">self</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="py">.car</span> <span class="o">=</span> <span class="nb">None</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>В этом коде мы реализовали покупку и продажу автомобиля. Обмен между
+покупателями мы напишем чуть позже в этой статье.</p>
+
+<p>Обратите внимание на объявление <code class="highlighter-rouge">impl &lt;'a&gt; Customer&lt;'a&gt;</code>. Как вы могли заметить,
+объявления параметров времени жизни очень похоже на <a href="https://rurust.gitbooks.io/rust_book_ru/content/src/generics.html">обобщённое
+программирование</a>.
+В этом объявлении после ключевого слова <code class="highlighter-rouge">impl</code> задаём имена для параметров
+времён жизни. Их может быть несколько. В нашем примере используется один
+параметр времени жизни <code class="highlighter-rouge">a</code>.</p>
+
+<h1 id="ispolzovaniie">Использование</h1>
+
+<p>Отлично! У нас есть две структуры <code class="highlighter-rouge">Customer</code> и <code class="highlighter-rouge">Car</code>. Давайте попробуем
+использовать эти структуры в программе:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="c">// Боб покупает машину</span>
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">car</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Этот код рабочий и компилируется. Но если мы поменяем две строчки местами<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>то
+код перестанет компилироваться:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+    <span class="k">let</span> <span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">car</span><span class="p">);</span> <span class="c">// Ошибка!</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Причина ошибки в том<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что время жизни у <code class="highlighter-rouge">bob</code><span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>экземпляр структуры <code class="highlighter-rouge">Customer</code>)
+больше чем у <code class="highlighter-rouge">car</code><span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>экземпляр структуры <code class="highlighter-rouge">Car</code>). В Rust выделение и освобождение
+объектов происходит в порядке<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>обратном порядку объявления. Таким образом<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>на
+непродолжительное время <code class="highlighter-rouge">bob</code> будет хранить в себе ссылку на уже освобождённый
+<code class="highlighter-rouge">car</code>. Rust не может нам такое позволить.</p>
+
+<p>Система времени жизни в Rust не может знать<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>когда ссылка будет не нужна. Давайте
+посмотрим на ещё один пример:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">logan</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Renault Logan"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="p">{</span>
+        <span class="c">// Внутренняя область видимости</span>
+
+        <span class="k">let</span> <span class="n">fabia</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+
+        <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fabia</span><span class="p">);</span>    <span class="c">// ОШИБКА!</span>
+        <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logan</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Этот код не компилируется<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>т. к. время жизни ссылки <code class="highlighter-rouge">fabia</code> меньше<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>чем у <code class="highlighter-rouge">bob</code>.
+С точки зрения разработчика код безопасен<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>т. к. после внутренней области
+видимости <code class="highlighter-rouge">bob</code> больше не ссылается на <code class="highlighter-rouge">fabia</code>. Компилятор строго следует нашему
+объявлению метода <code class="highlighter-rouge">buy_car(&amp;mut self, c: &amp;'a Car)</code>, где мы указали<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что
+экземпляр структуры <code class="highlighter-rouge">Car</code> имеет время жизни <code class="highlighter-rouge">a</code>, и экземпляр <code class="highlighter-rouge">Customer</code> не может
+иметь время жизни больше<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>чем у экземпляра <code class="highlighter-rouge">Car</code>.</p>
+
+<h1 id="torghovlia-miezhdu-pokupatieliami">Торговля между покупателями</h1>
+
+<p>Торговля в нашей задаче подразумевает обмен машинами между экземплярами структур
+<code class="highlighter-rouge">Customer</code>. Добавим метод для <code class="highlighter-rouge">Customer</code>:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">trade_with</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">Customer</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">other</span><span class="py">.car</span><span class="p">;</span>
+    
+    <span class="n">other</span><span class="py">.car</span> <span class="o">=</span> <span class="k">self</span><span class="py">.car</span><span class="p">;</span>
+    <span class="k">self</span><span class="py">.car</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Здесь нет ничего особенного. Хочется лишь отметить<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что параметр времени жизни
+является частью типа данных. Переменная <code class="highlighter-rouge">other</code> имеет тип данных <code class="highlighter-rouge">&amp;mut
+Customer&lt;'a&gt;</code>.</p>
+
+<p>Теперь попробуем воспользоваться этим методом:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">fabia</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">();</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="n">logan</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Renault Logan"</span><span class="nf">.to_string</span><span class="p">();</span> <span class="p">};</span>
+
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">alice</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fabia</span><span class="p">);</span>
+    <span class="n">alice</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logan</span><span class="p">);</span>
+
+    <span class="n">bob</span><span class="nf">.trade_with</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="n">alice</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Экземпляры структуры <code class="highlighter-rouge">Car</code> требуется создавать перед созданием экземпляров
+структур <code class="highlighter-rouge">Customer</code>. Но не имеет значение очерёдность объявлений <code class="highlighter-rouge">bob</code> и
+<code class="highlighter-rouge">alice</code>.</p>
+
+<h1 id="primienieniie-pravil-zaimstvovaniia">Применение правил заимствования</h1>
+
+<p>Когда экземпляр хранит в себе ссылку на другой экземпляр<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>то он <em>заимствует</em>
+ссылку и применяются правила заимствования<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>мы перечисляли их в первой части
+статьи).</p>
+
+<p>Можно <strong>позаимствовать множество неизменяемых ссылок</strong> на экземпляр<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>если
+не создаются ссылки с правом изменения.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">fabia</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fabia</span><span class="p">);</span>    <span class="c">// bob заимствует неизменяемую ссылку на fabia </span>
+
+    <span class="k">let</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fabia</span><span class="p">;</span>        <span class="c">// Можем заимствовать дополнительные неизменяемые ссылки</span>
+    <span class="k">let</span> <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fabia</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Можно иметь лишь <strong>одно заимствование изменяемой ссылки</strong> на экземпляр при<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>этом
+на этот экземпляр не должно быть каких-либо других заимствований.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">fabia</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fabia</span><span class="p">);</span>    <span class="c">// bob заимствует изменяемую ссылку на fabia</span>
+
+    <span class="k">let</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">fabia</span><span class="p">;</span>    <span class="c">// Ошибка!</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Вы не можете <strong>передать владение</strong> экземпляром пока существует заимствование на
+данный экземпляр.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">fabia</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fabia</span><span class="p">);</span>    <span class="c">// bob заимствует ссылку на fabia</span>
+
+    <span class="k">let</span> <span class="n">f</span> <span class="o">=</span> <span class="n">fabia</span><span class="p">;</span>          <span class="c">// Ошибка! Нельзя передать владение.</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Этот код<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>неожиданно для программиста<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>не будет компилироваться:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">fabia</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Skoda Fabia"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">logan</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"Renault Logan"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">bob</span> <span class="o">=</span> <span class="nn">Customer</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fabia</span><span class="p">);</span>
+    <span class="n">bob</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logan</span><span class="p">);</span>
+
+    <span class="k">let</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">fabia</span><span class="p">;</span>    <span class="c">// Ошибка!</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>С точки зрения программиста код является безопасным. <code class="highlighter-rouge">bob</code> больше не нуждается в
+заимствовании ссылки на <code class="highlighter-rouge">fabia</code> и заимствует ссылку на <code class="highlighter-rouge">logan</code>, но компилятор не
+может догадаться об этом.</p>
+
+<h1 id="zakliuchieniie">Заключение</h1>
+
+<p>Отлично! Мы рассмотрели модель хранения ссылок в структурах. Плохо то<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что не
+всегда эта модель работает. Добавим функцию в наш код:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">shop_for_car</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">Customer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">{</span> <span class="n">model</span><span class="p">:</span> <span class="s">"BMW M4 Coupe"</span><span class="nf">.to_string</span><span class="p">()</span> <span class="p">};</span>
+
+    <span class="n">c</span><span class="nf">.buy_car</span><span class="p">(</span><span class="o">&amp;</span><span class="n">car</span><span class="p">);</span>    <span class="c">// Ошибка!</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Здесь ошибка заключается в том<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что созданный экземпляр структуры <code class="highlighter-rouge">Car</code> будет
+освобождён по завершению локальной области видимости функции. Здесь требуется
+выделить память в куче<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>heap) и разместить в ней экземпляр <code class="highlighter-rouge">car</code>. В Rust это
+можно сделать с помощью контейнера
+<a href="https://doc.rust-lang.org/stable/std/boxed/"><code class="highlighter-rouge">Box&lt;T&gt;</code></a>. Но об этом мы поговорим
+в третьей части серии статей о времени жизни в Rust.</p>
+
+                <hr/>
+
+                <div class="patreon-support">
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        <img src="/assets/patreon-small-6b0b665cbc85904cb9d62c852677c6e63a3d6057ebf4c223678bb74ddf52d08b.png" alt="patreon" class="patreon-support-img" width="24" height="24">
+                    </a>
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        Поддержите на Patreon
+                    </a>
+                </div>
+            </div>
+
+                <div id="comments">
+                    <div id="disqus_thread"></div>
+                </div>
+                <script type="text/javascript">
+                 /* * * CONFIGURATION VARIABLES * * */
+                 var disqus_shortname = 'rustycrate';
+                 var disqus_config = function () {
+                     this.page.url = "https://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2015/11/14/lifetime-part2.html";
+                     this.page.identifier = "/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2015/11/14/lifetime-part2";
+                 };
+
+                 /* * * DON'T EDIT BELOW THIS LINE * * */
+                 (function() {
+                     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                 })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+            <hr/>
+        </div>
+        <script>
+ var anchorForId = function (id, href) {
+     var anchor = document.createElement("a");
+     anchor.className = "header-link";
+     anchor.href      = href + "#" + id;
+     anchor.innerHTML = "<span class=\"sr-only\">Permalink</span> <i class=\"glyphicon glyphicon-link\"></i>";
+     anchor.title = "постоянная ссылка";
+     return anchor;
+ };
+
+ var linkifyAnchors = function (level, containingElement, href) {
+     var headers = containingElement.getElementsByTagName("h" + level);
+     for (var h = 0; h < headers.length; h++) {
+         var header = headers[h];
+
+         if (typeof header.id !== "undefined" && header.id !== "") {
+             header.appendChild(anchorForId(header.id, href));
+         }
+     }
+ };
+
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+<script>
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+        <nav class="navbar navbar-default navbar-bottom">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#footer-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="footer-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="/patrons.html">
+                        <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Нас поддержало 20 человек" width="16" height="16">
+                        <b>Нас поддержало 20 человек</b>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/новости/2015/11/04/hello-world.html">О сайте</a></li>
+                <li>
+                    <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                        <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                        <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                        <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://feeds.feedburner.com/rustycrate/yMtS" class="navbar-link">
+                        <img src="/assets/rss-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="RSS" width="16" height="16">
+                    </a>
+                </li>
+                <li><a href="/contacts.html">Команда</a></li>
+                <li><p class="navbar-text">2019</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="gitter-button">Открыть чат</div>
+</nav>
+<script>function load_bootstrap() {
+    // Include all compiled plugins (below), or include individual files as needed
+    $.getScript("/js/bootstrap.min.js");
+}</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async onload="load_bootstrap()"></script>
+<!-- Gitter Sidecar -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'ruRust/general',
+    activationElement: '.gitter-button',
+    preload: true
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+    </body>
+</html>

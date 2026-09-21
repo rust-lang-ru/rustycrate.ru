@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<!-- Page last generated 2019-07-19 22:46:02 +0000 -->
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<link rel="dns-prefetch" href="//rustycrate.disqus.com">
+<link rel="dns-prefetch" href="//gitter.im">
+<link rel="dns-prefetch" href="//sidecar.gitter.im">
+<link rel="dns-prefetch" href="//ws.gitter.im">
+<link rel="dns-prefetch" href="//cdn01.gitter.im">
+<link rel="dns-prefetch" href="//cdn02.gitter.im">
+<link rel="dns-prefetch" href="//cdn03.gitter.im">
+<link rel="dns-prefetch" href="//files.gitter.im">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+<link rel="alternate" type="application/rss+xml" title="Atom" href="http://feeds.feedburner.com/rustycrate/yMtS">
+
+<title>Выпуск Rust 1.27 | rustycrate.ru | Сайт о языке программирования Rust</title>
+
+<link rel="icon" type="image/png" href="/assets/rustycrate-logo-16px-8421918904df27c3a3ff7c1bf8778ab8d9d2b01a23012fb7ff3700042067ab14.png" />
+
+<link type="text/css" rel="stylesheet" href="/assets/main-e70e4af5c9a3d8df8091200cf54891e6e4b4ed5abe9e1d0cbbc05ea272af15c9.css">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<meta name="keywords" content="Rust, язык программирования Rust, язык раст, язык rust, Mozilla Rust, неофициальный сайт, книга о rust, язык программирования rust книга, чат о rust, форум о rust, язык программирования rust чат, язык программирования rust форум, программирование rust, rust уроки">
+<meta name="description" content="
+      
+      Команда разработчиков Rust рада сообщить о выпуске новой версии Rust: 1.27.0.
+Rust - это системный язык программирования, нацеленный на безопасность, скорость
+и параллельное выполнение кода.
+
+Если у вас установлена предыдущая версия Rust с помощью rustup, то для обновления
+Rust до версии 1.27.0 вам достаточно выполнить:
+
+1$ rustup update stable
+
+
+
+
+Если у вас ещё не установлен rustup, вы можете установить его с соответствующей
+страницы нашего веб-сайта. С подробными примечаниями к выпуску Rust 1.27.0
+можно ознакомиться на GitHub.
+
+Также мы хотим обратить ваше внимание вот на что: перед выпуском версии 1.27.0
+мы обнаружили ошибку в улучшении
+сопоставлений match, введённом в версии 1.26.0, которая может привести к некорректному
+поведению. Поскольку она была обнаружена очень поздно, уже в процессе
+выпуска данной версии, хотя присутствует с версии 1.26.0, мы решили не нарушать заведённый
+порядок и подготовить исправленную версию 1.27.1, которая выйдет в ближайшее время.
+И дополнительно, если потребуется, версию 1.26.3. Подробности вы сможете узнать из соответствующих
+примечаний к выпуску.
+
+Что вошло в стабильную версию 1.27.0
+
+В этом выпуске выходят два больших и долгожданных улучшения языка. Но сначала небольшой
+комментарий относительно документации: во всех книгах в библиотечке Rust
+теперь доступен поиск! Например, так можно
+найти “заимствование” (“borrow”) в книге “Язык программирования Rust”
+Надеемся, это облегчит поиск нужной вам информации. Кроме того, появилась новая
+Книга о rustc. В этой книге объясняется, как напрямую использовать
+rustc, а также как получить другую полезную информацию, такую как список всех
+статических проверок.
+
+SIMD
+
+Итак, теперь о важном: отныне в Rust доступны базовые возможности использования SIMD!
+SIMD означает “одиночный поток команд, множественный поток данных” (single instruction,
+multiple data). Рассмотрим функцию:
+
+1
+2
+3
+4
+5pub fn foo(a: &amp;[u8], b: &amp;[u8], c: &amp;mut [u8]) {
+    for ((a, b), c) in a.iter().zip(b).zip(c) {
+        *c = *a + *b;
+    }
+}
+
+
+
+
+
+      ">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://rustycrate.ru/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2018/06/21/rust-1.27.html" />
+<meta name="twitter:creator" content="The Rust Core Team" />
+<meta name="twitter:title" content="Выпуск Rust 1.27 | rustycrate.ru" />
+<meta name="twitter:site" content="@rustycrate1" />
+<meta name="twitter:description" content="
+      
+      Команда разработчиков Rust рада сообщить о выпуске новой версии Rust: 1.27.0.
+Rust - это системный язык программирования, нацеленный на безопасность, скорость
+и параллельное выполнение кода.
+
+Если у вас установлена предыдущая версия Rust с помощью rustup, то для обновления
+Rust до версии 1.27.0 вам достаточно выполнить:
+
+1$ rustup update stable
+
+
+
+
+Если у вас ещё не установлен rustup, вы можете установить его с соответствующей
+страницы нашего веб-сайта. С подробными примечаниями к выпуску Rust 1.27.0
+можно ознакомиться на GitHub.
+
+Также мы хотим обратить ваше внимание вот на что: перед выпуском версии 1.27.0
+мы обнаружили ошибку в улучшении
+сопоставлений match, введённом в версии 1.26.0, которая может привести к некорректному
+поведению. Поскольку она была обнаружена очень поздно, уже в процессе
+выпуска данной версии, хотя присутствует с версии 1.26.0, мы решили не нарушать заведённый
+порядок и подготовить исправленную версию 1.27.1, которая выйдет в ближайшее время.
+И дополнительно, если потребуется, версию 1.26.3. Подробности вы сможете узнать из соответствующих
+примечаний к выпуску.
+
+Что вошло в стабильную версию 1.27.0
+
+В этом выпуске выходят два больших и долгожданных улучшения языка. Но сначала небольшой
+комментарий относительно документации: во всех книгах в библиотечке Rust
+теперь доступен поиск! Например, так можно
+найти “заимствование” (“borrow”) в книге “Язык программирования Rust”
+Надеемся, это облегчит поиск нужной вам информации. Кроме того, появилась новая
+Книга о rustc. В этой книге объясняется, как напрямую использовать
+rustc, а также как получить другую полезную информацию, такую как список всех
+статических проверок.
+
+SIMD
+
+Итак, теперь о важном: отныне в Rust доступны базовые возможности использования SIMD!
+SIMD означает “одиночный поток команд, множественный поток данных” (single instruction,
+multiple data). Рассмотрим функцию:
+
+1
+2
+3
+4
+5pub fn foo(a: &amp;[u8], b: &amp;[u8], c: &amp;mut [u8]) {
+    for ((a, b), c) in a.iter().zip(b).zip(c) {
+        *c = *a + *b;
+    }
+}
+
+
+
+
+
+      " />
+
+<script type="text/javascript">
+  (window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wIYQtpjp6fzMM6DJ8Y6DEzeA1DiIuClj3woQCOo9pLMJFpzVlGWMbww1oDg3lLAPlFGo0eCYqRVVkyyy2AAmTG08QD/m4cTp7HZm95Ew1IlCdKdWyLDiBTEmZ4G739IBoT5w0bCqCHe9Qryp/qwF1kWJuetu191aoM3lPlw48mc-&pixel_id=1000030535';
+</script>
+
+    </head>
+    <body>
+        <!-- Yandex.Metrika counter -->
+<script type="text/javascript" data-proofer-ignore>
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35870700 = new Ya.Metrika({
+                    id:35870700,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript data-proofer-ignore><div data-proofer-ignore><img src="https://mc.yandex.ru/watch/35870700" style="position:absolute; left:-9999px;" alt="" data-proofer-ignore/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142155799-1" data-proofer-ignore></script>
+<script data-proofer-ignore>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142155799-1');
+</script>
+<!-- /Global site tag (gtag.js) - Google Analytics -->
+
+<nav class="navbar navbar-default navbar-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="/assets/rustycrate-logo-32px-796d0c5a63c7c579f401b84a35ff31a4df78b81909c966c9e9a68525b82d52d3.png" alt="rust" class=brand-icon width="32" height="32">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="main-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Я изучаю Rust <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/books.html">Книги:</a></li>
+                        <li><a href="https://rustycrate.ru/book" target="blank">— Язык программирования Rust</a></li>
+                        <li><a href="https://github.com/ruRust/tlborm" target="blank">— Маленькая книжка по макросам в Rust</a></li>
+                        <li><a href="https://github.com/ruRust/rustonomicon" target="blank">— Растономикон</a></li>
+                        <li><a href="https://rurust.github.io/rust-by-example-ru" target="blank">— Rust на примерах</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/articles-education.html">Статьи</a></li>
+                        <li><a href="https://rurust.github.io/cargo-docs-ru/" target="blank">Документация по Cargo</a></li>
+                        <li><a href="/does-rust-suit-me.html">Подходит ли мне Rust?</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/help.html">Мне нужна помощь</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy">— Чат для новичков</a></li>
+                        <li><a href="https://gitter.im/ruRust/general">— Чат для сложных вопросов</a></li>
+                        <li><a href="http://ru.stackoverflow.com/questions/tagged/rust">— Stackoverflow на русском</a></li>
+                        <li><a href="https://forum.rustycrate.ru/">— Форум</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Что нового? <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/news.html">Статьи<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>новости)</a></li>
+                            <li><a href="/all/index.html">Новые статьи из всех категорий</a></li>
+                            <li><a href="/feed.xml">Подписка на RSS</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/social.html">Социальные сети</a></li>
+                            <li>
+                                <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                    <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                    <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                    <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://habr.com/hub/rust" target="blank">Хабрахабр</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу пообщаться <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/rules.html">Правила сообщества</a></li>
+                        <li><a href="/charter.html">Устав сообщества</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://forum.rustycrate.ru/">Форум</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/chats.html">Чаты</a></li>
+                        <li><a href="https://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/12/gitter.html">Про Gitter и как подключиться через IRC</a></li>
+                        <li><a href="https://forum.rustycrate.ru/t/kak-obshhatsya-v-nashem-chate-cherez-veb-klient-riot-matrix/354/">Как подключиться через Matrix</a></li>
+                        <li><a href="https://gitter.im/ruRust/home">Список комнат:</a></li>
+                        <li><a href="https://gitter.im/ruRust/general" target="blank">— Rust<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>основной канал)</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy" target="blank">— Простые вопросы о Rust</a></li>
+                        <li><a href="https://gitter.im/ruRust/gamedev" target="blank">— Разработка игр</a></li>
+                        <li><a href="https://gitter.im/ruRust/infosec" target="blank">— Информационная безопасность</a></li>
+                        <li><a href="https://gitter.im/ruRust/webdev" target="blank">— Веб-разработка</a></li>
+                        <li><a href="https://gitter.im/ruRust/algo" target="blank">— Алгоритмы</a></li>
+                        <li><a href="https://gitter.im/ruRust/offtopic" target="blank">— Диван — разговоры обо всём</a></li>
+                        <li><a href="https://gitter.im/ruRust/rustycrate.ru" target="blank">— Об этом сайте</a></li>
+                        <li><a href="https://gitter.im/ruRust/rust_book_ru" target="blank">— О книгах<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>статьях и вопросах перевода</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/meetups.html">Встречи:</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="blank">— В Москве</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9F%D0%B8%D1%82%D0%B5%D1%80%D0%B5/" target="blank">— В Санкт-Петербурге</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/social.html">Социальные сети</a></li>
+                        <li>
+                            <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу поучаствовать в проекте <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Наш GitHub</a></li>
+                        <li><a href="/community-projects.html">Проекты участников нашего сообщества</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Пишу или перевожу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://forum.rustycrate.ru/t/napisanie-statej-dlya-rustycrate-ru/335/" target="blank">Программа поощрения авторов</a></li>
+                        <li><a href="/editing-policy.html">Редакционная политика</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/dictionary.html">Словарь терминов</a></li>
+                        <li><a href="/in-progress.html">Статьи в работе</a></li>
+                        <li><a href="/translation-rules.html">Правила перевода книг</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в переводе</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу помочь сообществу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.patreon.com/mkpankov" target="blank">
+                            <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Поддержать" width="16" height="16">
+                            Поддержать сообщество финансово</a></li>
+                        <li><a href="/patrons.html">Доска почёта патронов</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Поработайте над нашими проектами</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Scroll To Top Button -->
+<a href="#" id="topBtn" title="Наверх" onclick="topFunction()">
+    <svg class="icon-svg icon-svg_scroll-up" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" version="1.1" role="img">
+        <path d="M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm8.412 19.523c-.517.512-1.355.512-1.872 0L16 13.516l-6.54 6.01c-.518.51-1.356.51-1.873 0-.516-.513-.517-1.343 0-1.855l7.476-7.326c.517-.512 1.356-.512 1.873 0l7.476 7.327c.516.513.516 1.342 0 1.854z"></path>
+    </svg>
+</a>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("topBtn").style.display = "block";
+        } else {
+            document.getElementById("topBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+<!-- /Scroll To Top Button -->
+
+        <div class="container" id="content">
+            <div class="well">
+                <h1 class="page-title"><a href="/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2018/06/21/rust-1.27.html">Выпуск Rust 1.27</a></h1>
+                <div class="header-left">
+
+                    <p class="post-header-text">
+
+        <time>
+            21 Июня 2018
+        </time> •
+
+        <a href=https://blog.rust-lang.org/2018/06/21/Rust-1.27.html target="_blank">оригинал</a>: The Rust Core Team •
+        перевод: XX
+
+     •
+
+<a href="/news.html">новости</a>
+
+    • поддержите на <a href="https://www.patreon.com/mkpankov">Patreon</a>
+
+</p>
+
+                </div>
+                <div class="header-right">
+                </div>
+                <div class="float-cleaner"></div>
+                <div class="post-header"></div>
+
+                <p>Команда разработчиков Rust рада сообщить о выпуске новой версии Rust: 1.27.0.
+Rust — это системный язык программирования<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>нацеленный на безопасность<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>скорость
+и параллельное выполнение кода.</p>
+
+<p>Если у вас установлена предыдущая версия Rust с помощью rustup, то для обновления
+Rust до версии 1.27.0 вам достаточно выполнить:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="gp">$ </span>rustup update stable
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Если у вас ещё не установлен rustup, вы можете <a href="https://www.rust-lang.org/install.html">установить его</a> с соответствующей
+страницы нашего веб-сайта. С <a href="https://github.com/rust-lang/rust/blob/master/RELEASES.md#version-1270-2018-06-21">подробными примечаниями к выпуску Rust 1.27.0</a>
+можно ознакомиться на GitHub.</p>
+
+<p>Также мы хотим обратить ваше внимание вот на что: перед выпуском версии 1.27.0
+мы обнаружили <a href="https://github.com/rust-lang/rust/pull/51686">ошибку</a> в улучшении
+сопоставлений <code class="highlighter-rouge">match</code>, введённом в версии 1.26.0<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>которая может привести к некорректному
+поведению. Поскольку она была обнаружена очень поздно<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>уже в процессе
+выпуска данной версии<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>хотя присутствует с версии 1.26.0<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>мы решили не нарушать заведённый
+порядок и подготовить исправленную версию 1.27.1<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>которая выйдет в ближайшее время.
+И дополнительно<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>если потребуется<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>версию 1.26.3. Подробности вы сможете узнать из соответствующих
+примечаний к выпуску.</p>
+
+<h2 id="chto-voshlo-v-stabilnuiu-viersiiu-1270">Что вошло в стабильную версию 1.27.0</h2>
+
+<p>В этом выпуске выходят два больших и долгожданных улучшения языка. Но сначала небольшой
+комментарий относительно документации: во всех книгах в <a href="https://doc.rust-lang.org/">библиотечке Rust</a>
+теперь <a href="https://github.com/rust-lang/rust/pull/49623/">доступен поиск</a>! Например<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>так можно
+<a href="https://doc.rust-lang.org/book/second-edition/?search=borrow">найти<span class="typograf-oa-sp-lquote"> </span><span class="typograf-oa-lquote">«</span>заимствование»<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>«borrow») в книге<span class="typograf-oa-sp-lquote"> </span><span class="typograf-oa-lquote">«</span>Язык программирования Rust»</a>
+Надеемся<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>это облегчит поиск нужной вам информации. Кроме того<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>появилась новая
+<a href="https://github.com/rust-lang/rust/pull/49707/">Книга о <code class="highlighter-rouge">rustc</code></a>. В этой книге объясняется<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>как напрямую использовать
+<code class="highlighter-rouge">rustc</code>, а также как получить другую полезную информацию<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>такую как список всех
+статических проверок.</p>
+
+<h3 id="simd">SIMD</h3>
+
+<p>Итак<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>теперь о важном: отныне в Rust доступны <a href="https://github.com/rust-lang/rust/pull/49664/">базовые возможности использования SIMD</a>!
+SIMD означает<span class="typograf-oa-sp-lquote"> </span><span class="typograf-oa-lquote">«</span>одиночный поток команд<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>множественный поток данных»<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>single instruction,
+multiple data). Рассмотрим функцию:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="k">pub</span> <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="o">&amp;</span><span class="p">[</span><span class="nb">u8</span><span class="p">],</span> <span class="n">b</span><span class="p">:</span> <span class="o">&amp;</span><span class="p">[</span><span class="nb">u8</span><span class="p">],</span> <span class="n">c</span><span class="p">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="p">[</span><span class="nb">u8</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">c</span><span class="p">)</span> <span class="n">in</span> <span class="n">a</span><span class="nf">.iter</span><span class="p">()</span><span class="nf">.zip</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="nf">.zip</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<!--cut-->
+<div id="after_cut"></div>
+
+<p>Здесь мы берём два целочисленных среза<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>суммируем их элементы и помещаем
+результат в третий срез. Приведённый выше код демонстрирует самый простой
+способ сделать это: нужно пройтись по всему набору элементов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>сложить их
+вместе и сохранить результат. Однако<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>компиляторы зачастую находят решение
+получше. LLVM часто<span class="typograf-oa-sp-lquote"> </span><span class="typograf-oa-lquote">«</span>автоматически векторизует» подобный код<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>где такая
+затейливая формулировка означает просто<span class="typograf-oa-sp-lquote"> </span><span class="typograf-oa-lquote">«</span>использует SIMD». Представьте,
+что срезы <code class="highlighter-rouge">a</code> и <code class="highlighter-rouge">b</code> имеют длину в 16 элементов оба. Каждый элемент — это
+<code class="highlighter-rouge">u8</code>, а значит срезы будут содержать по 128 бит данных каждый. Используя
+SIMD, мы можем разместить <em>оба</em> среза <code class="highlighter-rouge">a</code> и <code class="highlighter-rouge">b</code> в 128-битных регистрах,
+сложить их вместе <em>одной</em> инструкцией и затем скопировать результирующие 128
+бит в <code class="highlighter-rouge">c</code>. Это будет работать намного быстрее!</p>
+
+<p>Несмотря на то<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что стабильная версия Rust всегда была в состоянии
+использовать преимущества автоматической векторизации<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>иногда компилятор
+просто недостаточно умён<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>чтобы понять<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что можно её применить в данном
+случае. Кроме того<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>не все CPU поддерживают такие возможности. Поэтому LLVM
+не может использовать их всегда<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>так как ваша программа может работать на самых
+разных аппаратных платформах. Поэтому в Rust 1.27<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>с добавлением
+<a href="https://doc.rust-lang.org/1.27.0/std/arch/">модуля <code class="highlighter-rouge">std::arch</code></a>, стало возможно использовать
+эти виды инструкций <em>напрямую</em>, то есть теперь мы не обязаны полагаться только
+на интеллектуальную компиляцию. Дополнительно у нас появилась возможность
+выбирать конкретную реализацию в зависимости от различных критериев. Например:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td><td class="code"><pre><span class="err">#</span><span class="p">[</span><span class="nf">cfg</span><span class="p">(</span><span class="nf">all</span><span class="p">(</span><span class="nf">any</span><span class="p">(</span><span class="n">target_arch</span> <span class="o">=</span> <span class="s">"x86"</span><span class="p">,</span> <span class="n">target_arch</span> <span class="o">=</span> <span class="s">"x86_64"</span><span class="p">),</span>
+      <span class="n">target_feature</span> <span class="o">=</span> <span class="s">"avx2"</span><span class="p">))]</span>
+<span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="cp">#[cfg(target_arch</span> <span class="cp">=</span> <span class="s">"x86"</span><span class="cp">)]</span>
+    <span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">arch</span><span class="p">::</span><span class="nn">x86</span><span class="p">::</span><span class="n">_mm256_add_epi64</span><span class="p">;</span>
+    <span class="cp">#[cfg(target_arch</span> <span class="cp">=</span> <span class="s">"x86_64"</span><span class="cp">)]</span>
+    <span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">arch</span><span class="p">::</span><span class="nn">x86_64</span><span class="p">::</span><span class="n">_mm256_add_epi64</span><span class="p">;</span>
+
+    <span class="k">unsafe</span> <span class="p">{</span>
+        <span class="nf">_mm256_add_epi64</span><span class="p">(</span><span class="err">...</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Здесь мы используем флаги <code class="highlighter-rouge">cfg</code> для выбора правильной версии кода в зависимости
+от целевой платформы: на <code class="highlighter-rouge">x86</code> будет использоваться своя версия<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>а на <code class="highlighter-rouge">x86_64</code> —
+своя. Мы также можем выбирать и во время выполнения:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="cp">#[cfg(any(target_arch</span> <span class="cp">=</span> <span class="s">"x86"</span><span class="cp">,</span> <span class="cp">target_arch</span> <span class="cp">=</span> <span class="s">"x86_64"</span><span class="cp">))]</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="nd">is_x86_feature_detected!</span><span class="p">(</span><span class="s">"avx2"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">unsafe</span> <span class="p">{</span> <span class="nf">foo_avx2</span><span class="p">()</span> <span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nf">foo_fallback</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Здесь у нас имеется две версии функции: одна использует <code class="highlighter-rouge">AVX2</code> — специфический вид
+SIMD, который позволяет выполнять 256-битные операции. Макрос <code class="highlighter-rouge">is_x86_feature_detected!</code>
+сгенерирует код<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>который проверит<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>поддерживает ли процессор AVX2<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>и если да,
+то будет вызвана функция <code class="highlighter-rouge">foo_avx2</code>. Если нет<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>то мы прибегнем к реализации без AVX,
+<code class="highlighter-rouge">foo_fallback</code>. Значит наш код будет работать очень быстро на процессорах,
+поддерживающих AVX2<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но также будет работать и на остальных процессорах<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>хотя и медленнее.</p>
+
+<p>Все это выглядит слегка низкоуровневым и неудобным — да<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>так и есть! <code class="highlighter-rouge">std::arch</code> — это
+именно <em>примитивы</em> для такого рода вещей. Мы надеемся<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что в будущем мы все-таки
+стабилизируем модуль <code class="highlighter-rouge">std::simd</code> с высокоуровневыми возможностями. Но появление базовых
+возможностей работы с SIMD позволяет теперь экспериментировать с высокоуровневой поддержкой
+различным библиотекам. Например<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>посмотрите пакет <a href="https://github.com/AdamNiederer/faster">faster</a>.
+Вот фрагмент кода без SIMD:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="k">let</span> <span class="n">lots_of_3s</span> <span class="o">=</span> <span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="o">-</span><span class="mf">123.456f32</span><span class="p">;</span> <span class="mi">128</span><span class="p">][</span><span class="err">..</span><span class="p">])</span><span class="nf">.iter</span><span class="p">()</span>
+    <span class="nf">.map</span><span class="p">(|</span><span class="n">v</span><span class="p">|</span> <span class="p">{</span>
+        <span class="mf">9.0</span> <span class="o">*</span> <span class="n">v</span><span class="nf">.abs</span><span class="p">()</span><span class="nf">.sqrt</span><span class="p">()</span><span class="nf">.sqrt</span><span class="p">()</span><span class="nf">.recip</span><span class="p">()</span><span class="nf">.ceil</span><span class="p">()</span><span class="nf">.sqrt</span><span class="p">()</span> <span class="o">-</span> <span class="mf">4.0</span> <span class="o">-</span> <span class="mf">2.0</span>
+    <span class="p">})</span>
+    <span class="py">.collect</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">f32</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Для использования SIMD в этом коде с помощью <code class="highlighter-rouge">faster</code>, вам потребуется изменить его так:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="k">let</span> <span class="n">lots_of_3s</span> <span class="o">=</span> <span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="o">-</span><span class="mf">123.456f32</span><span class="p">;</span> <span class="mi">128</span><span class="p">][</span><span class="err">..</span><span class="p">])</span><span class="nf">.simd_iter</span><span class="p">()</span>
+    <span class="nf">.simd_map</span><span class="p">(</span><span class="nf">f32s</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="p">|</span><span class="n">v</span><span class="p">|</span> <span class="p">{</span>
+        <span class="nf">f32s</span><span class="p">(</span><span class="mf">9.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span><span class="nf">.abs</span><span class="p">()</span><span class="nf">.sqrt</span><span class="p">()</span><span class="nf">.rsqrt</span><span class="p">()</span><span class="nf">.ceil</span><span class="p">()</span><span class="nf">.sqrt</span><span class="p">()</span> <span class="o">-</span> <span class="nf">f32s</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span> <span class="o">-</span> <span class="nf">f32s</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="nf">.scalar_collect</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Он выглядит почти таким же: <code class="highlighter-rouge">simd_iter</code> вместо <code class="highlighter-rouge">iter</code>, <code class="highlighter-rouge">simd_map</code> вместо
+<code class="highlighter-rouge">map</code>, <code class="highlighter-rouge">f32s(2.0)</code> вместо <code class="highlighter-rouge">2.0</code>. Но в итоге вы получаете SIMD-версию вашего кода.</p>
+
+<p>Помимо <em>этого</em>, вы можете никогда не писать такое сами<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>как всегда<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>это
+могут делать библиотеки<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>от которых вы зависите. Например,
+<a href="https://github.com/rust-lang/regex/pull/456">в пакет <code class="highlighter-rouge">regex</code> уже добавили поддержку</a>,
+и его новая версия будет иметь SIMD-ускорение без необходимости вам вообще
+что-либо делать!</p>
+
+<h3 id="dyn-trait"><code class="highlighter-rouge">dyn Trait</code></h3>
+
+<p>В конечном итоге мы пожалели о выбранном изначально синтаксисе типажей-объектов
+в Rust. Как вы помните<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>для типажа <code class="highlighter-rouge">Foo</code> можно так определить типаж-объект:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nb">Box</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Однако<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>если <code class="highlighter-rouge">Foo</code> — была бы структура<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>это означало бы просто размещение
+структуры внутри <code class="highlighter-rouge">Box&lt;T&gt;</code>. При разработке языка мы думали<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что такое сходство
+будет хорошей идеей<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но опыт показал<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что это приводит к путанице. И дело не
+только в <code class="highlighter-rouge">Box&lt;Trait&gt;</code>: <code class="highlighter-rouge">impl SomeTrait for SomeOtherTrait</code> также является
+формально корректным синтаксисом<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но вам почти всегда требуется написать
+<code class="highlighter-rouge">impl&lt;T&gt; SomeTrait for T where T: SomeOtherTrait</code> вместо этого. То же самое
+и с <code class="highlighter-rouge">impl SomeTrait</code>, который выглядит так<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>будто добавляет методы или
+возможную реализацию по умолчанию в типаж<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но на самом деле он добавляет
+собственные методы в типаж-объект. Наконец<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>по сравнению с недавно добавленным
+синтаксисом <code class="highlighter-rouge">impl Trait</code>, синтаксис <code class="highlighter-rouge">Trait</code> выглядит короче и предпочтительней к
+использованию<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но на самом деле это не всегда верно.</p>
+
+<p>Поэтому в Rust 1.27 мы стабилизировали новый синтаксис <a href="https://github.com/rust-lang/rfcs/blob/master/text/2113-dyn-trait-syntax.md"><code class="highlighter-rouge">dyn Trait</code></a>. Типажи-объекты
+теперь выглядят так:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="c">// было =&gt; стало</span>
+<span class="nb">Box</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="k">=&gt;</span> <span class="nb">Box</span><span class="o">&lt;</span><span class="n">dyn</span> <span class="n">Foo</span><span class="o">&gt;</span>
+<span class="o">&amp;</span><span class="n">Foo</span> <span class="k">=&gt;</span> <span class="o">&amp;</span><span class="n">dyn</span> <span class="n">Foo</span>
+<span class="o">&amp;</span><span class="k">mut</span> <span class="n">Foo</span> <span class="k">=&gt;</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">dyn</span> <span class="n">Foo</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Аналогично и для других типов-указателей: <code class="highlighter-rouge">Arc&lt;Foo&gt;</code> теперь <code class="highlighter-rouge">Arc&lt;dyn Foo&gt;</code> и т. д.
+Из-за требования обратной совместимости мы не можем удалить старый синтаксис<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но
+мы добавили статическую проверку <a href="https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#bare-trait-object"><code class="highlighter-rouge">bare-trait-object</code></a>, которая по умолчанию разрешает
+старый синтаксис. Если вы хотите запретить его<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>то вы можете активировать данную
+проверку. Мы подумали<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что с проверкой<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>включённой по умолчанию<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>сейчас будет выводиться
+слишком много предупреждений.</p>
+
+<blockquote>
+  <p>Кстати<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>мы работаем над инструментом под названием <code class="highlighter-rouge">rustfix</code>, который сможет
+автоматически обновлять ваш код до более новых идиом. Он будет использовать
+подобные статические проверки для этого. Следите за сообщениями о <code class="highlighter-rouge">rustfix</code>
+в будущих анонсах.</p>
+</blockquote>
+
+<h3 id="mustuse-dlia-funktsii"><code class="highlighter-rouge">#[must_use]</code> для функций</h3>
+
+<p>В заключении<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>было расширено действие атрибута <code class="highlighter-rouge">#[must_use]</code>:
+<a href="https://github.com/rust-lang/rust/pull/48925/">теперь он может использоваться для функций</a>.</p>
+
+<p>Раньше он применялся только к типам<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>таким как <code class="highlighter-rouge">Result &lt;T, E&gt;</code>. Но теперь вы можете делать так:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="err">#</span><span class="p">[</span><span class="n">must_use</span><span class="p">]</span>
+<span class="k">fn</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">i32</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">i32</span> <span class="p">{</span>
+    <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">double</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c">// warning: unused return value of `double` which must be used</span>
+
+    <span class="k">let</span> <span class="n">_</span> <span class="o">=</span> <span class="nf">double</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c">// (no warning)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>С этим атрибутом мы также <a href="https://github.com/rust-lang/rust/pull/49533/">слегка улучшили стандартную библиотеку</a>:
+<code class="highlighter-rouge">Clone::clone</code>, <code class="highlighter-rouge">Iterator::collect</code> и <code class="highlighter-rouge">ToOwned::to_owned</code> будут выдавать предупреждения,
+если вы не используете их возвращаемые значения<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что поможет вам заметить дорогостоящие
+операции<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>результат которых вы случайно игнорируете.</p>
+
+<p>Подробности смотрите <a href="https://github.com/rust-lang/rust/blob/master/RELEASES.md#version-1270-2018-06-21">в примечаниях к выпуску</a>.</p>
+
+<h3 id="stabilizatsiia-bibliotiek">Стабилизация библиотек</h3>
+
+<p>В этом выпуске были стабилизированы следующие новые API:</p>
+
+<ul>
+  <li><a href="https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html#method.rfind"><code class="highlighter-rouge">DoubleEndedIterator::rfind</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html#method.rfold"><code class="highlighter-rouge">DoubleEndedIterator::rfold</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html#method.try_rfold"><code class="highlighter-rouge">DoubleEndedIterator::try_rfold</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/time/struct.Duration.html#method.from_micros"><code class="highlighter-rouge">Duration::from_micros</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/time/struct.Duration.html#method.from_nanos"><code class="highlighter-rouge">Duration::from_nanos</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/time/struct.Duration.html#method.subsec_micros"><code class="highlighter-rouge">Duration::subsec_micros</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/time/struct.Duration.html#method.subsec_millis"><code class="highlighter-rouge">Duration::subsec_millis</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.remove_entry"><code class="highlighter-rouge">HashMap::remove_entry</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.try_fold"><code class="highlighter-rouge">Iterator::try_fold</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.try_for_each"><code class="highlighter-rouge">Iterator::try_for_each</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/ptr/struct.NonNull.html#method.cast"><code class="highlighter-rouge">NonNull::cast</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/option/enum.Option.html#method.filter"><code class="highlighter-rouge">Option::filter</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/string/struct.String.html#method.replace_range"><code class="highlighter-rouge">String::replace_range</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/io/struct.Take.html#method.set_limit"><code class="highlighter-rouge">Take::set_limit</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/hint/fn.unreachable_unchecked.html"><code class="highlighter-rouge">hint::unreachable_unchecked</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/os/unix/process/fn.parent_id.html"><code class="highlighter-rouge">os::unix::process::parent_id</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/process/fn.id.html"><code class="highlighter-rouge">process::id</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/ptr/fn.swap_nonoverlapping.html"><code class="highlighter-rouge">ptr::swap_nonoverlapping</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/primitive.slice.html#method.rsplit_mut"><code class="highlighter-rouge">slice::rsplit_mut</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/primitive.slice.html#method.rsplit"><code class="highlighter-rouge">slice::rsplit</code></a></li>
+  <li><a href="https://doc.rust-lang.org/std/primitive.slice.html#method.swap_with_slice"><code class="highlighter-rouge">slice::swap_with_slice</code></a></li>
+</ul>
+
+<p>Подробности смотрите <a href="https://github.com/rust-lang/rust/blob/master/RELEASES.md#version-1270-2018-06-21">в примечаниях к выпуску</a>.</p>
+
+<h3 id="uluchshieniia-v-cargo">Улучшения в Cargo</h3>
+
+<p>В этом выпуске Cargo получил два небольших улучшения. Во-первых,
+появился <a href="https://github.com/rust-lang/cargo/pull/5393/">новый флаг <code class="highlighter-rouge">--target-dir</code></a>,
+который можно использовать для изменения целевой директории выполнения.</p>
+
+<p>Дополнительно<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>доработан подход Cargo к тому<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>как обрабатывать цели. Cargo
+пытается обнаружить тесты<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>примеры и исполняемые файлы в рамках вашего
+проекта. Однако иногда требуется явная конфигурация. Но в первоначальной
+реализации это сделать было проблематично. Скажем<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>у вас есть два примера,
+и Cargo их оба обнаруживает. Вы хотите сконфигурировать один из них<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>для чего
+добавляете <code class="highlighter-rouge">[[example]]</code> в <code class="highlighter-rouge">Cargo.toml</code>, чтобы указать параметры примера.
+В настоящее время Cargo увидит<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что вы определили пример явно<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>и поэтому не
+будет пытаться делать автоматическое определение других. Это слегка огорчает.</p>
+
+<p>Поэтому мы <a href="https://github.com/rust-lang/cargo/pull/5335/">добавили несколько ‘auto’-ключей в <code class="highlighter-rouge">Cargo.toml</code></a>.
+Мы не можем исправить такое поведение без возможной поломки проектов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>которые
+по неосторожности на него полагались. Поэтому если вы хотите сконфигурировать
+некоторые цели<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но не все<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>вы можете установить ключ <code class="highlighter-rouge">autoexamples</code> в <code class="highlighter-rouge">true</code>
+в секции <code class="highlighter-rouge">[package]</code>.</p>
+
+<p>Подробности смотрите <a href="https://github.com/rust-lang/rust/blob/master/RELEASES.md#version-1270-2018-06-21">в примечаниях к выпуску</a>.</p>
+
+<h2 id="razrabotchiki-1270">Разработчики 1.27.0</h2>
+
+<p>Множество людей участвовало в разработке Rust 1.27. Мы не смогли бы
+завершить работу без участия каждого из вас.</p>
+
+<p><a href="https://thanks.rust-lang.org/rust/1.27.0">Спасибо!</a></p>
+
+                <hr/>
+
+                <div class="patreon-support">
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        <img src="/assets/patreon-small-6b0b665cbc85904cb9d62c852677c6e63a3d6057ebf4c223678bb74ddf52d08b.png" alt="patreon" class="patreon-support-img" width="24" height="24">
+                    </a>
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        Поддержите на Patreon
+                    </a>
+                </div>
+            </div>
+
+            <div id="comments">
+
+<a href="https://forum.rustycrate.ru/" target="blank">Обсуждение на форуме.</a>
+
+            </div>
+
+            <hr/>
+        </div>
+        <script>
+ var anchorForId = function (id, href) {
+     var anchor = document.createElement("a");
+     anchor.className = "header-link";
+     anchor.href      = href + "#" + id;
+     anchor.innerHTML = "<span class=\"sr-only\">Permalink</span> <i class=\"glyphicon glyphicon-link\"></i>";
+     anchor.title = "постоянная ссылка";
+     return anchor;
+ };
+
+ var linkifyAnchors = function (level, containingElement, href) {
+     var headers = containingElement.getElementsByTagName("h" + level);
+     for (var h = 0; h < headers.length; h++) {
+         var header = headers[h];
+
+         if (typeof header.id !== "undefined" && header.id !== "") {
+             header.appendChild(anchorForId(header.id, href));
+         }
+     }
+ };
+
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+<script>
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+        <nav class="navbar navbar-default navbar-bottom">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#footer-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="footer-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="/patrons.html">
+                        <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Нас поддержало 20 человек" width="16" height="16">
+                        <b>Нас поддержало 20 человек</b>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/новости/2015/11/04/hello-world.html">О сайте</a></li>
+                <li>
+                    <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                        <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                        <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                        <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://feeds.feedburner.com/rustycrate/yMtS" class="navbar-link">
+                        <img src="/assets/rss-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="RSS" width="16" height="16">
+                    </a>
+                </li>
+                <li><a href="/contacts.html">Команда</a></li>
+                <li><p class="navbar-text">2019</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="gitter-button">Открыть чат</div>
+</nav>
+<script>function load_bootstrap() {
+    // Include all compiled plugins (below), or include individual files as needed
+    $.getScript("/js/bootstrap.min.js");
+}</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async onload="load_bootstrap()"></script>
+<!-- Gitter Sidecar -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'ruRust/general',
+    activationElement: '.gitter-button',
+    preload: true
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+    </body>
+</html>

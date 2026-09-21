@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!-- Page last generated 2019-07-19 22:46:02 +0000 -->
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<link rel="dns-prefetch" href="//rustycrate.disqus.com">
+<link rel="dns-prefetch" href="//gitter.im">
+<link rel="dns-prefetch" href="//sidecar.gitter.im">
+<link rel="dns-prefetch" href="//ws.gitter.im">
+<link rel="dns-prefetch" href="//cdn01.gitter.im">
+<link rel="dns-prefetch" href="//cdn02.gitter.im">
+<link rel="dns-prefetch" href="//cdn03.gitter.im">
+<link rel="dns-prefetch" href="//files.gitter.im">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+<link rel="alternate" type="application/rss+xml" title="Atom" href="http://feeds.feedburner.com/rustycrate/yMtS">
+
+<title>Как пользоваться типажами From и Into | rustycrate.ru | Сайт о языке программирования Rust</title>
+
+<link rel="icon" type="image/png" href="/assets/rustycrate-logo-16px-8421918904df27c3a3ff7c1bf8778ab8d9d2b01a23012fb7ff3700042067ab14.png" />
+
+<link type="text/css" rel="stylesheet" href="/assets/main-e70e4af5c9a3d8df8091200cf54891e6e4b4ed5abe9e1d0cbbc05ea272af15c9.css">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<meta name="keywords" content="Rust, язык программирования Rust, язык раст, язык rust, Mozilla Rust, неофициальный сайт, книга о rust, язык программирования rust книга, чат о rust, форум о rust, язык программирования rust чат, язык программирования rust форум, программирование rust, rust уроки">
+<meta name="description" content="
+      
+      (Эта статья написана для Rust 1.4, и код по-прежнему работает в 1.7 без
+изменений)
+
+Пришло время поговорить про типажи From и Into (и некоторые с ними связанные) и
+задать вопрос, где и когда их использовать. Заметьте, что есть ещё
+специфические типажи (например, IntoIterator) и более конкретные их варианты
+(например, FromStr); надо быть в курсе всего этого при написании кода на Rust.
+
+
+      ">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2016/04/13/where-are-you-from.html" />
+<meta name="twitter:creator" content="llogic" />
+<meta name="twitter:title" content="Как пользоваться типажами From и Into | rustycrate.ru" />
+<meta name="twitter:site" content="@rustycrate1" />
+<meta name="twitter:description" content="
+      
+      (Эта статья написана для Rust 1.4, и код по-прежнему работает в 1.7 без
+изменений)
+
+Пришло время поговорить про типажи From и Into (и некоторые с ними связанные) и
+задать вопрос, где и когда их использовать. Заметьте, что есть ещё
+специфические типажи (например, IntoIterator) и более конкретные их варианты
+(например, FromStr); надо быть в курсе всего этого при написании кода на Rust.
+
+
+      " />
+
+<script type="text/javascript">
+  (window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wIYQtpjp6fzMM6DJ8Y6DEzeA1DiIuClj3woQCOo9pLMJFpzVlGWMbww1oDg3lLAPlFGo0eCYqRVVkyyy2AAmTG08QD/m4cTp7HZm95Ew1IlCdKdWyLDiBTEmZ4G739IBoT5w0bCqCHe9Qryp/qwF1kWJuetu191aoM3lPlw48mc-&pixel_id=1000030535';
+</script>
+
+    </head>
+    <body>
+        <!-- Yandex.Metrika counter -->
+<script type="text/javascript" data-proofer-ignore>
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35870700 = new Ya.Metrika({
+                    id:35870700,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript data-proofer-ignore><div data-proofer-ignore><img src="https://mc.yandex.ru/watch/35870700" style="position:absolute; left:-9999px;" alt="" data-proofer-ignore/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142155799-1" data-proofer-ignore></script>
+<script data-proofer-ignore>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142155799-1');
+</script>
+<!-- /Global site tag (gtag.js) - Google Analytics -->
+
+<nav class="navbar navbar-default navbar-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="/assets/rustycrate-logo-32px-796d0c5a63c7c579f401b84a35ff31a4df78b81909c966c9e9a68525b82d52d3.png" alt="rust" class=brand-icon width="32" height="32">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="main-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Я изучаю Rust <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/books.html">Книги:</a></li>
+                        <li><a href="https://rustycrate.ru/book" target="blank">— Язык программирования Rust</a></li>
+                        <li><a href="https://github.com/ruRust/tlborm" target="blank">— Маленькая книжка по макросам в Rust</a></li>
+                        <li><a href="https://github.com/ruRust/rustonomicon" target="blank">— Растономикон</a></li>
+                        <li><a href="https://rurust.github.io/rust-by-example-ru" target="blank">— Rust на примерах</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/articles-education.html">Статьи</a></li>
+                        <li><a href="https://rurust.github.io/cargo-docs-ru/" target="blank">Документация по Cargo</a></li>
+                        <li><a href="/does-rust-suit-me.html">Подходит ли мне Rust?</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/help.html">Мне нужна помощь</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy">— Чат для новичков</a></li>
+                        <li><a href="https://gitter.im/ruRust/general">— Чат для сложных вопросов</a></li>
+                        <li><a href="http://ru.stackoverflow.com/questions/tagged/rust">— Stackoverflow на русском</a></li>
+                        <li><a href="https://forum.rustycrate.ru/">— Форум</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Что нового? <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/news.html">Статьи<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>новости)</a></li>
+                            <li><a href="/all/index.html">Новые статьи из всех категорий</a></li>
+                            <li><a href="/feed.xml">Подписка на RSS</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/social.html">Социальные сети</a></li>
+                            <li>
+                                <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                    <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                    <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                    <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://habr.com/hub/rust" target="blank">Хабрахабр</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу пообщаться <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/rules.html">Правила сообщества</a></li>
+                        <li><a href="/charter.html">Устав сообщества</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://forum.rustycrate.ru/">Форум</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/chats.html">Чаты</a></li>
+                        <li><a href="https://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/12/gitter.html">Про Gitter и как подключиться через IRC</a></li>
+                        <li><a href="https://forum.rustycrate.ru/t/kak-obshhatsya-v-nashem-chate-cherez-veb-klient-riot-matrix/354/">Как подключиться через Matrix</a></li>
+                        <li><a href="https://gitter.im/ruRust/home">Список комнат:</a></li>
+                        <li><a href="https://gitter.im/ruRust/general" target="blank">— Rust<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>основной канал)</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy" target="blank">— Простые вопросы о Rust</a></li>
+                        <li><a href="https://gitter.im/ruRust/gamedev" target="blank">— Разработка игр</a></li>
+                        <li><a href="https://gitter.im/ruRust/infosec" target="blank">— Информационная безопасность</a></li>
+                        <li><a href="https://gitter.im/ruRust/webdev" target="blank">— Веб-разработка</a></li>
+                        <li><a href="https://gitter.im/ruRust/algo" target="blank">— Алгоритмы</a></li>
+                        <li><a href="https://gitter.im/ruRust/offtopic" target="blank">— Диван — разговоры обо всём</a></li>
+                        <li><a href="https://gitter.im/ruRust/rustycrate.ru" target="blank">— Об этом сайте</a></li>
+                        <li><a href="https://gitter.im/ruRust/rust_book_ru" target="blank">— О книгах<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>статьях и вопросах перевода</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/meetups.html">Встречи:</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="blank">— В Москве</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9F%D0%B8%D1%82%D0%B5%D1%80%D0%B5/" target="blank">— В Санкт-Петербурге</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/social.html">Социальные сети</a></li>
+                        <li>
+                            <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу поучаствовать в проекте <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Наш GitHub</a></li>
+                        <li><a href="/community-projects.html">Проекты участников нашего сообщества</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Пишу или перевожу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://forum.rustycrate.ru/t/napisanie-statej-dlya-rustycrate-ru/335/" target="blank">Программа поощрения авторов</a></li>
+                        <li><a href="/editing-policy.html">Редакционная политика</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/dictionary.html">Словарь терминов</a></li>
+                        <li><a href="/in-progress.html">Статьи в работе</a></li>
+                        <li><a href="/translation-rules.html">Правила перевода книг</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в переводе</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу помочь сообществу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.patreon.com/mkpankov" target="blank">
+                            <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Поддержать" width="16" height="16">
+                            Поддержать сообщество финансово</a></li>
+                        <li><a href="/patrons.html">Доска почёта патронов</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Поработайте над нашими проектами</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Scroll To Top Button -->
+<a href="#" id="topBtn" title="Наверх" onclick="topFunction()">
+    <svg class="icon-svg icon-svg_scroll-up" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" version="1.1" role="img">
+        <path d="M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm8.412 19.523c-.517.512-1.355.512-1.872 0L16 13.516l-6.54 6.01c-.518.51-1.356.51-1.873 0-.516-.513-.517-1.343 0-1.855l7.476-7.326c.517-.512 1.356-.512 1.873 0l7.476 7.327c.516.513.516 1.342 0 1.854z"></path>
+    </svg>
+</a>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("topBtn").style.display = "block";
+        } else {
+            document.getElementById("topBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+<!-- /Scroll To Top Button -->
+
+        <div class="container" id="content">
+            <div class="well">
+                <h1 class="page-title"><a href="/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2016/04/13/where-are-you-from.html">Как пользоваться типажами From и Into</a></h1>
+                <div class="header-left">
+
+                    <p class="post-header-text">
+
+        <time>
+            13 Апреля 2016
+        </time> •
+
+        <a href=https://llogiq.github.io/2015/11/27/from-into.html target="_blank">оригинал</a>: llogic •
+        перевод: Сергей Ефремов
+
+     •
+
+<a href="/tutorials.html">обучение</a>
+
+    • поддержите на <a href="https://www.patreon.com/mkpankov">Patreon</a>
+
+</p>
+
+                </div>
+                <div class="header-right">
+                </div>
+                <div class="float-cleaner"></div>
+                <div class="post-header"></div>
+
+                <p>(Эта статья написана для Rust 1.4<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>и код по-прежнему работает в 1.7 без
+изменений)</p>
+
+<p>Пришло время поговорить про типажи From и Into<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>и некоторые с ними связанные) и
+задать вопрос<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>где и когда их использовать. Заметьте<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что есть ещё
+специфические типажи<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>например<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>IntoIterator) и более конкретные их варианты
+<span class="typograf-oa-n-lbracket">(</span>например<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>FromStr); надо быть в курсе всего этого при написании кода на Rust.</p>
+
+<!--cut-->
+<div id="after_cut"></div>
+
+<p>From и Into зеркально похожи. From является абстракцией над исходным типом<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>а
+Into над целевым. Для каждого T, реализующего From<_>, есть общая форма
+реализации Into<T>, поэтому если вы пишете библиотеку<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>то для ваших типов
+реализуйте From<_>, прибегая к реализации Into<_> только для тех типов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>которым
+нельзя реализовать From из-за правила сироты<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>orphan rule)<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>оно очень бедно
+описано в официальной документации. Если хотите узнать больше,
+[Error E0117](https://doc.rust-lang.org/error-index.html#E0117) содержит его
+описание).</_></_></T></_></p>
+
+<p>Но реализация From/Into это только полдела. Важно ещё знать<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>где их использовать.
+Если вы долго программируете на Rust, вы должно быть заметили<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что мы,
+Rustaceans, очень интенсивно используем систему типов; в результате у нас
+есть очень много типов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что в свою очередь означает<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что есть огромное число
+мест<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>где необходимо преобразовывать одни типы в другие.</p>
+
+<h1 id="vriemia-dlia-primiera">Время для примера!</h1>
+
+<p>Предположим<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что у нас есть очень скучная функция foo(bar: &amp; Bar), в которой Bar
+является действительным типом<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>не типажом). Ещё у нас есть тип Blob,
+содержащий Bar, и тип Buzz, который можно преобразовать в Bar.</p>
+
+<p>Мы ожидаем<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что клиенты<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>использующие Blob, будут использовать функцию foo,
+поэтому реализуем From&lt;&amp; Blob&gt; для &amp; Bar и заодно<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>реализуем ещё
+From&lt;&amp; Buzz&gt; для Bar<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>а также<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>наверное<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>и From<Buzz>. Если Buzz реализует
+Copy, мы можем опустить реализацию для &amp; Buzz и положиться на неявное приведение
+типа при разыменовании). [Код](https://play.rust-lang.org/?gist=13e3caea0066b4864ec9&amp;version=stable) выглядит так:</Buzz></p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">convert</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Bar</span> <span class="p">{</span> <span class="n">num</span><span class="p">:</span> <span class="nb">i32</span> <span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Blob</span> <span class="p">{</span> <span class="n">bar</span><span class="p">:</span> <span class="n">Bar</span> <span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Buzz</span> <span class="p">{</span> <span class="n">num</span><span class="p">:</span> <span class="nb">i16</span> <span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">From</span><span class="o">&lt;&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Blob</span><span class="o">&gt;</span> <span class="k">for</span> <span class="o">&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Bar</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">from</span><span class="p">(</span><span class="n">blob</span><span class="p">:</span> <span class="o">&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Blob</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="o">&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Bar</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">blob</span><span class="py">.bar</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">From</span><span class="o">&lt;&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Buzz</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">Bar</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">from</span><span class="p">(</span><span class="n">buzz</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">Buzz</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="n">Bar</span> <span class="p">{</span> <span class="n">num</span><span class="p">:</span> <span class="n">buzz</span><span class="py">.num</span> <span class="k">as</span> <span class="nb">i32</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">Bar</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">_num</span> <span class="o">=</span> <span class="n">bar</span><span class="py">.num</span><span class="p">;</span>
+    <span class="cm">/* какой-то дополнительный код */</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Итак<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>у наших клиентов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>вызывающих foo(_), есть два варианта: foo(&amp; blob.into())
+и foo(buzz.into()). Если у нас будет больше<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>чем два экземпляра<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>эти вызовы
+.into() станут вызывающе повторяющимися. Если все вызовы происходят внутри
+нашего кода<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>можем скрепя сердце согласиться с их ценой и двигаться дальше.
+Однако<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>для API библиотеки нужно сделать что-нибудь получше.</p>
+
+<p>Может нам поместить.into() внутрь нашей функции foo? Возможно<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>используя типаж
+Into? Попробуем. Поменяем foo(_) <a href="https://play.rust-lang.org/?gist=26282e6764552ce8e55f&amp;version=stable">следующим образом</a>:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="c">// теперь foo обобщённый: он принимает все, что может превратиться в ссылку на Bar</span>
+<span class="c">// с любым временем жизни (что, помимо всего прочего, не позволит нам вернуть ссылку на Bar)</span>
+<span class="k">fn</span> <span class="n">foo</span><span class="o">&lt;</span><span class="err">'</span><span class="n">b</span><span class="p">,</span> <span class="n">B</span><span class="p">:</span> <span class="n">Into</span><span class="o">&lt;&amp;</span><span class="err">'</span><span class="n">b</span> <span class="n">Bar</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">_num</span> <span class="o">=</span> <span class="n">bar</span><span class="nf">.into</span><span class="p">()</span><span class="py">.num</span><span class="p">;</span>
+    <span class="cm">/* some code here */</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Теперь можем поменять наш вызов foo(blob.into()) на foo(blob), получилось классно.
+К сожалению<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>появилась ошибка при вызове foo(buzz.into()):</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre>conv.rs:30:15: 30:21 error: unable to infer enough type information about `_`; type annotations or generic parameter binding required [E0282]
+conv.rs:30     foo(&amp;buzz.into());
+                         ^~~~~~
+conv.rs:30:15: 30:21 help: run `rustc --explain E0282` to see a detailed explanation
+error: aborting due to previous error
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Ок<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>rustc не нашёл подходящей реализации Into, потому что вызов требует
+автоматического создания ссылок<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>чего нет в Rust<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>по понятным причинам<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>хочу
+добавить). Проблема тут в различии между Bar and &amp; Bar. В примере попроще этого
+бы не произошло. Увы<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>в реальности все не так просто.</p>
+
+<h1 id="rasputie">Распутье</h1>
+
+<p>Итак<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>у нас есть несколько вариантов решения этой проблемы. Можем реализовывать
+Copy для нашего Bar, дописав ему #[derive(Copy, Clone)], и поменять нашу
+реализацию From&lt;&amp; Blob&gt; так<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>чтобы она создавала новый Bar без ссылки. Также
+придётся поменять foo(_) для приёма любых &lt;B: Into<Bar>&gt;<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>удалить &amp; ’b) и
+[получим](https://play.rust-lang.org/?gist=cea08895a3e1ce1e98db&amp;version=stable):</Bar></p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="k">impl</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">From</span><span class="o">&lt;&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Blob</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">Bar</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">from</span><span class="p">(</span><span class="n">blob</span><span class="p">:</span> <span class="o">&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Blob</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="n">blob</span><span class="py">.bar</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="n">foo</span><span class="o">&lt;</span><span class="n">B</span><span class="p">:</span> <span class="n">Into</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span> <span class="err">..</span> <span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Теперь можем удалить вызов into() из наших вызовов foo и все чудненько
+<span class="typograf-oa-n-lbracket">(</span>Заметьте<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что наш foo будет создавать копию bar, содержащегося в любом blob,
+что для четырёх байт на стеке не так уж и дорого. Для других типов такой
+компромисс может и не подойти). From спас положение<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>и теперь мы можем вызывать
+foo для всех blob и buzz как только нашей душе угодно. Также пользователи нашего
+foo могут реализовать Into<Bar>, чтобы спокойно использовать наш foo(_) с их
+собственными типами. Сплошь радуги и единороги!</Bar></p>
+
+<p>Другой вариант решения — пойти поискать на пастбище корову<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>std: borrow: Cow)
+<span class="typograf-oa-n-lbracket">(</span><a href="https://llogiq.github.io/2015/07/09/cow.html">вспомнили</a>?), заплатив небольшую
+плату во время исполнения за получение большей гибкости. Нам здесь этот вариант
+не нужен<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но для более сложных Bar это может быть лучшим решением:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">convert</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">borrow</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+
+<span class="c">// нам по-прежнему надо написать derive Clone или создать собственную реализацию ToOwned,</span>
+<span class="c">// хотя она нам здесь и не нужна.</span>
+<span class="cp">#[derive(Clone)]</span>
+<span class="k">struct</span> <span class="n">Bar</span> <span class="p">{</span>
+    <span class="n">num</span><span class="p">:</span> <span class="nb">i32</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Blob</span> <span class="p">{</span> <span class="n">bar</span><span class="p">:</span> <span class="n">Bar</span> <span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Buzz</span> <span class="p">{</span> <span class="n">num</span><span class="p">:</span> <span class="nb">i16</span> <span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">From</span><span class="o">&lt;&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Blob</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">Cow</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="p">,</span> <span class="n">Bar</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">from</span><span class="p">(</span><span class="n">blob</span><span class="p">:</span> <span class="o">&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Blob</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Cow</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="p">,</span> <span class="n">Bar</span><span class="o">&gt;</span> <span class="p">{</span> <span class="nn">Cow</span><span class="p">::</span><span class="nf">Borrowed</span><span class="p">(</span><span class="o">&amp;</span><span class="n">blob</span><span class="nf">.borrow</span><span class="p">()</span><span class="py">.bar</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="err">'</span><span class="n">a</span><span class="p">,</span> <span class="err">'</span><span class="n">b</span><span class="o">&gt;</span> <span class="n">From</span><span class="o">&lt;&amp;</span><span class="err">'</span><span class="n">a</span> <span class="n">Buzz</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">Cow</span><span class="o">&lt;</span><span class="err">'</span><span class="n">b</span><span class="p">,</span> <span class="n">Bar</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">from</span><span class="p">(</span><span class="n">buzz</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">Buzz</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Cow</span><span class="o">&lt;</span><span class="err">'</span><span class="n">b</span><span class="p">,</span> <span class="n">Bar</span><span class="o">&gt;</span> <span class="p">{</span> <span class="nn">Cow</span><span class="p">::</span><span class="nf">Owned</span><span class="p">(</span><span class="n">Bar</span><span class="p">{</span> <span class="n">num</span><span class="p">:</span> <span class="n">buzz</span><span class="py">.num</span> <span class="k">as</span> <span class="nb">i32</span> <span class="p">})</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="n">foo</span><span class="o">&lt;</span><span class="err">'</span><span class="n">b</span><span class="p">,</span> <span class="n">B</span><span class="p">:</span> <span class="n">Into</span><span class="o">&lt;</span><span class="n">Cow</span><span class="o">&lt;</span><span class="err">'</span><span class="n">b</span><span class="p">,</span> <span class="n">Bar</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span> <span class="err">..</span> <span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Теперь <a href="https://play.rust-lang.org/?gist=31396809b2b5efadb834&amp;version=stable">код</a>
+обобщает во время компиляции тип<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>который во время исполнения обобщает все типы,
+которые могут быть преобразованы в заимствованный или обладаемый Bar. В
+зависимости от того насколько сложна foo(_) и насколько велик Bar, цена во время
+компиляции может стать ничтожно малой.</p>
+
+<p>(В дополнение<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>участник reddit <a href="https://www.reddit.com/user/doener">doener</a>
+напомнил мне<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что это хорошая идея использовать нашу новую foo(.) как обёртку
+вокруг предыдущей функции foo(_: Bar). Это будет гарантировать<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что во время
+мономорфизации<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>когда создаётся обобщённая функция для каждого типа<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>с которым
+она вызывается<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>будет клонировано минимум кода)</p>
+
+<p>В конце концов мы можем отказаться от Into и создать собственный типаж AsBar,
+который и &amp; Blob, и &amp; Buzz будут реализовывать<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что даст нам ещё лучшую гибкость.
+Однако<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>это означает<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что и другие контейнеры<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>которые захотят использовать нашу
+foo(_), должны будут реализовывать наш типаж AsBar для своих типов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>поэтому нам
+надо сделать его публичным и хорошо задокументировать. Я оставлю эту версию
+читателю как домашнее задание.</p>
+
+<h1 id="sviazyvaiem-vsie-vmiestie">Связываем все вместе</h1>
+
+<p>Что мы выучили? При реализации нашей библиотеки Into может сыграть важную роль
+для нашей функции<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>сделав её более гибкой и предоставив нашим клиентам более
+пригодный к использованию интерфейс. Недостатком является то<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что обобщения
+усложняют документирование<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>но этот недостаток нивелируется доказанной простотой
+в использовании — особенно в тех случаях<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>когда наша функция будет использована
+для нескольких типов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>и мы не хотим определять для каждого из них отдельную
+реализацию нашей функции.</p>
+
+<p>Повторное использование From/Into экономит нам часть работы по созданию,
+документированию и тестированию наших собственных типажей для обобщённых
+преобразований внутри методов<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>а наши интерфейсы становятся легки для
+понимания. Собственные типажи следует реализовывать<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>только когда вам нужна ещё
+большая гибкость.</p>
+
+<h1 id="bonus">Бонус!</h1>
+
+<p>Участник Reddit <a href="https://www.reddit.com/user/flying-sheep">flying-sheep</a> попросил
+меня отметить<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>что реализация From очень полезна во время обработки ошибок<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>его
+пример идёт дальше):</p>
+
+<p>обычная обёртка Error выглядит как-то так<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>если вам лень реализовывать std: error: Error):</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="err">#</span><span class="p">[</span><span class="nf">derive</span><span class="p">(</span><span class="n">Debug</span><span class="p">)]</span>
+<span class="k">pub</span> <span class="k">enum</span> <span class="n">Error</span> <span class="p">{</span> <span class="nf">TooLong</span><span class="p">(</span><span class="nb">usize</span><span class="p">),</span> <span class="nf">Io</span><span class="p">(</span><span class="nn">io</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">From</span><span class="o">&lt;</span><span class="nn">io</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">Error</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">from</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nn">io</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Error</span> <span class="p">{</span> <span class="nn">Error</span><span class="p">::</span><span class="nf">Io</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>тогда вы можете просто использовать try!<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>_) для оборачивания других ошибок в ваши.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foobar</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span> <span class="n">Error</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">foo</span> <span class="o">=</span> <span class="nd">try!</span><span class="p">(</span><span class="nf">some_io_operation</span><span class="p">());</span>
+    <span class="k">match</span> <span class="n">foo</span><span class="nf">.len</span><span class="p">()</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="err">..</span><span class="mi">12</span> <span class="k">=&gt;</span> <span class="nf">Ok</span><span class="p">(</span><span class="n">foo</span><span class="p">),</span>
+        <span class="n">n</span> <span class="k">=&gt;</span> <span class="nf">Err</span><span class="p">(</span><span class="nn">Error</span><span class="p">::</span><span class="nf">TooLong</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Также участник reddit killercup <a href="https://www.reddit.com/r/rust/comments/3ughsf/blog_where_are_you_fromfrom/cxestlh">рекомендовал</a> контейнер <a href="https://crates.io/crates/quick-error">quick-error</a>, который позволяет очень быстро добавлять обработку перехвата ошибок.</p>
+
+<p>Обсуждение <a href="https://www.reddit.com/r/rust/comments/3ughsf/blog_where_are_you_fromfrom/">/r/rust</a> и/или <a href="https://users.rust-lang.org/t/blog-where-are-you-from-from/3794/1">rust-users</a>.</p>
+
+<p><a href="https://github.com/llogiq">Профиль автора статьи на GitHub</a></p>
+
+                <hr/>
+
+                <div class="patreon-support">
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        <img src="/assets/patreon-small-6b0b665cbc85904cb9d62c852677c6e63a3d6057ebf4c223678bb74ddf52d08b.png" alt="patreon" class="patreon-support-img" width="24" height="24">
+                    </a>
+                    <a href="https://www.patreon.com/mkpankov" target="blank">
+                        Поддержите на Patreon
+                    </a>
+                </div>
+            </div>
+
+                <div id="comments">
+                    <div id="disqus_thread"></div>
+                </div>
+                <script type="text/javascript">
+                 /* * * CONFIGURATION VARIABLES * * */
+                 var disqus_shortname = 'rustycrate';
+                 var disqus_config = function () {
+                     this.page.url = "https://rustycrate.ru/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2016/04/13/where-are-you-from.html";
+                     this.page.identifier = "/%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/2016/04/13/where-are-you-from";
+                 };
+
+                 /* * * DON'T EDIT BELOW THIS LINE * * */
+                 (function() {
+                     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                 })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+            <hr/>
+        </div>
+        <script>
+ var anchorForId = function (id, href) {
+     var anchor = document.createElement("a");
+     anchor.className = "header-link";
+     anchor.href      = href + "#" + id;
+     anchor.innerHTML = "<span class=\"sr-only\">Permalink</span> <i class=\"glyphicon glyphicon-link\"></i>";
+     anchor.title = "постоянная ссылка";
+     return anchor;
+ };
+
+ var linkifyAnchors = function (level, containingElement, href) {
+     var headers = containingElement.getElementsByTagName("h" + level);
+     for (var h = 0; h < headers.length; h++) {
+         var header = headers[h];
+
+         if (typeof header.id !== "undefined" && header.id !== "") {
+             header.appendChild(anchorForId(header.id, href));
+         }
+     }
+ };
+
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+<script>
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+        <nav class="navbar navbar-default navbar-bottom">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#footer-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="footer-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="/patrons.html">
+                        <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Нас поддержало 20 человек" width="16" height="16">
+                        <b>Нас поддержало 20 человек</b>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/новости/2015/11/04/hello-world.html">О сайте</a></li>
+                <li>
+                    <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                        <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                        <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                        <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://feeds.feedburner.com/rustycrate/yMtS" class="navbar-link">
+                        <img src="/assets/rss-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="RSS" width="16" height="16">
+                    </a>
+                </li>
+                <li><a href="/contacts.html">Команда</a></li>
+                <li><p class="navbar-text">2019</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="gitter-button">Открыть чат</div>
+</nav>
+<script>function load_bootstrap() {
+    // Include all compiled plugins (below), or include individual files as needed
+    $.getScript("/js/bootstrap.min.js");
+}</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async onload="load_bootstrap()"></script>
+<!-- Gitter Sidecar -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'ruRust/general',
+    activationElement: '.gitter-button',
+    preload: true
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+    </body>
+</html>

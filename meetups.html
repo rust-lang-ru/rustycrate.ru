@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!-- Page last generated 2019-07-19 22:46:02 +0000 -->
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<link rel="dns-prefetch" href="//rustycrate.disqus.com">
+<link rel="dns-prefetch" href="//gitter.im">
+<link rel="dns-prefetch" href="//sidecar.gitter.im">
+<link rel="dns-prefetch" href="//ws.gitter.im">
+<link rel="dns-prefetch" href="//cdn01.gitter.im">
+<link rel="dns-prefetch" href="//cdn02.gitter.im">
+<link rel="dns-prefetch" href="//cdn03.gitter.im">
+<link rel="dns-prefetch" href="//files.gitter.im">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+<link rel="alternate" type="application/rss+xml" title="Atom" href="http://feeds.feedburner.com/rustycrate/yMtS">
+
+<title>Встречи | rustycrate.ru | Сайт о языке программирования Rust</title>
+
+<link rel="icon" type="image/png" href="/assets/rustycrate-logo-16px-8421918904df27c3a3ff7c1bf8778ab8d9d2b01a23012fb7ff3700042067ab14.png" />
+
+<link type="text/css" rel="stylesheet" href="/assets/main-e70e4af5c9a3d8df8091200cf54891e6e4b4ed5abe9e1d0cbbc05ea272af15c9.css">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<meta name="keywords" content="Rust, язык программирования Rust, язык раст, язык rust, Mozilla Rust, неофициальный сайт, книга о rust, язык программирования rust книга, чат о rust, форум о rust, язык программирования rust чат, язык программирования rust форум, программирование rust, rust уроки">
+<meta name="description" content="
+      
+      Язык программирования Rust.
+      Системный язык программирования, который быстро работает, предотвращает почти все падения, и не допускает гонок данных. Неофициальный сайт.
+      ">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://rustycrate.ru/meetups.html" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:title" content="Встречи | rustycrate.ru" />
+<meta name="twitter:site" content="@rustycrate1" />
+<meta name="twitter:description" content="
+      
+      Язык программирования Rust.
+      Системный язык программирования, который быстро работает, предотвращает почти все падения, и не допускает гонок данных. Неофициальный сайт.
+      " />
+
+<script type="text/javascript">
+  (window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=wIYQtpjp6fzMM6DJ8Y6DEzeA1DiIuClj3woQCOo9pLMJFpzVlGWMbww1oDg3lLAPlFGo0eCYqRVVkyyy2AAmTG08QD/m4cTp7HZm95Ew1IlCdKdWyLDiBTEmZ4G739IBoT5w0bCqCHe9Qryp/qwF1kWJuetu191aoM3lPlw48mc-&pixel_id=1000030535';
+</script>
+
+    </head>
+    <body>
+        <!-- Yandex.Metrika counter -->
+<script type="text/javascript" data-proofer-ignore>
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35870700 = new Ya.Metrika({
+                    id:35870700,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript data-proofer-ignore><div data-proofer-ignore><img src="https://mc.yandex.ru/watch/35870700" style="position:absolute; left:-9999px;" alt="" data-proofer-ignore/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142155799-1" data-proofer-ignore></script>
+<script data-proofer-ignore>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142155799-1');
+</script>
+<!-- /Global site tag (gtag.js) - Google Analytics -->
+
+<nav class="navbar navbar-default navbar-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="/assets/rustycrate-logo-32px-796d0c5a63c7c579f401b84a35ff31a4df78b81909c966c9e9a68525b82d52d3.png" alt="rust" class=brand-icon width="32" height="32">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="main-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Я изучаю Rust <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/books.html">Книги:</a></li>
+                        <li><a href="https://rustycrate.ru/book" target="blank">— Язык программирования Rust</a></li>
+                        <li><a href="https://github.com/ruRust/tlborm" target="blank">— Маленькая книжка по макросам в Rust</a></li>
+                        <li><a href="https://github.com/ruRust/rustonomicon" target="blank">— Растономикон</a></li>
+                        <li><a href="https://rurust.github.io/rust-by-example-ru" target="blank">— Rust на примерах</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/articles-education.html">Статьи</a></li>
+                        <li><a href="https://rurust.github.io/cargo-docs-ru/" target="blank">Документация по Cargo</a></li>
+                        <li><a href="/does-rust-suit-me.html">Подходит ли мне Rust?</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/help.html">Мне нужна помощь</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy">— Чат для новичков</a></li>
+                        <li><a href="https://gitter.im/ruRust/general">— Чат для сложных вопросов</a></li>
+                        <li><a href="http://ru.stackoverflow.com/questions/tagged/rust">— Stackoverflow на русском</a></li>
+                        <li><a href="https://forum.rustycrate.ru/">— Форум</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Что нового? <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/news.html">Статьи<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>новости)</a></li>
+                            <li><a href="/all/index.html">Новые статьи из всех категорий</a></li>
+                            <li><a href="/feed.xml">Подписка на RSS</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/social.html">Социальные сети</a></li>
+                            <li>
+                                <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                    <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                    <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                    <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                    <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://habr.com/hub/rust" target="blank">Хабрахабр</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу пообщаться <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/rules.html">Правила сообщества</a></li>
+                        <li><a href="/charter.html">Устав сообщества</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://forum.rustycrate.ru/">Форум</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/chats.html">Чаты</a></li>
+                        <li><a href="https://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/12/gitter.html">Про Gitter и как подключиться через IRC</a></li>
+                        <li><a href="https://forum.rustycrate.ru/t/kak-obshhatsya-v-nashem-chate-cherez-veb-klient-riot-matrix/354/">Как подключиться через Matrix</a></li>
+                        <li><a href="https://gitter.im/ruRust/home">Список комнат:</a></li>
+                        <li><a href="https://gitter.im/ruRust/general" target="blank">— Rust<span class="typograf-oa-sp-lbracket"> </span><span class="typograf-oa-lbracket">(</span>основной канал)</a></li>
+                        <li><a href="https://gitter.im/ruRust/easy" target="blank">— Простые вопросы о Rust</a></li>
+                        <li><a href="https://gitter.im/ruRust/gamedev" target="blank">— Разработка игр</a></li>
+                        <li><a href="https://gitter.im/ruRust/infosec" target="blank">— Информационная безопасность</a></li>
+                        <li><a href="https://gitter.im/ruRust/webdev" target="blank">— Веб-разработка</a></li>
+                        <li><a href="https://gitter.im/ruRust/algo" target="blank">— Алгоритмы</a></li>
+                        <li><a href="https://gitter.im/ruRust/offtopic" target="blank">— Диван — разговоры обо всём</a></li>
+                        <li><a href="https://gitter.im/ruRust/rustycrate.ru" target="blank">— Об этом сайте</a></li>
+                        <li><a href="https://gitter.im/ruRust/rust_book_ru" target="blank">— О книгах<span class="typograf-oa-comma">,</span><span class="typograf-oa-comma-sp"> </span>статьях и вопросах перевода</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/meetups.html">Встречи:</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="blank">— В Москве</a></li>
+                        <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9F%D0%B8%D1%82%D0%B5%D1%80%D0%B5/" target="blank">— В Санкт-Петербурге</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/social.html">Социальные сети</a></li>
+                        <li>
+                            <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                                <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16"> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16"> VK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                                <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16"> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                                <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16"> Telegram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                                <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16"> Meetup
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу поучаствовать в проекте <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Наш GitHub</a></li>
+                        <li><a href="/community-projects.html">Проекты участников нашего сообщества</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Пишу или перевожу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://forum.rustycrate.ru/t/napisanie-statej-dlya-rustycrate-ru/335/" target="blank">Программа поощрения авторов</a></li>
+                        <li><a href="/editing-policy.html">Редакционная политика</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/dictionary.html">Словарь терминов</a></li>
+                        <li><a href="/in-progress.html">Статьи в работе</a></li>
+                        <li><a href="/translation-rules.html">Правила перевода книг</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в переводе</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-proofer-ignore>Хочу помочь сообществу <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.patreon.com/mkpankov" target="blank">
+                            <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Поддержать" width="16" height="16">
+                            Поддержать сообщество финансово</a></li>
+                        <li><a href="/patrons.html">Доска почёта патронов</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://github.com/ruRust" target="blank">
+                            <img src="/assets/github-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Github" width="16" height="16">
+                            Поработайте над нашими проектами</a></li>
+                        <li><a href="/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html">Как поучаствовать в проекте</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Scroll To Top Button -->
+<a href="#" id="topBtn" title="Наверх" onclick="topFunction()">
+    <svg class="icon-svg icon-svg_scroll-up" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" version="1.1" role="img">
+        <path d="M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm8.412 19.523c-.517.512-1.355.512-1.872 0L16 13.516l-6.54 6.01c-.518.51-1.356.51-1.873 0-.516-.513-.517-1.343 0-1.855l7.476-7.326c.517-.512 1.356-.512 1.873 0l7.476 7.327c.516.513.516 1.342 0 1.854z"></path>
+    </svg>
+</a>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("topBtn").style.display = "block";
+        } else {
+            document.getElementById("topBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+<!-- /Scroll To Top Button -->
+
+        <div class="container" id="content">
+            <div class="well">
+                <div class="header-left">
+                    <h1 class="page-title"><a href="/meetups.html">Встречи</a></h1>
+                </div>
+                <div class="header-right">
+                </div>
+                <div class="float-cleaner"></div>
+                <div class="page-layout-header"></div>
+
+                <ul>
+  <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/">В Москве</a></li>
+  <li><a href="https://www.meetup.com/ru-RU/Rust-%D0%B2-%D0%9F%D0%B8%D1%82%D0%B5%D1%80%D0%B5/">В Санкт-Петербурге</a></li>
+</ul>
+
+            </div>
+
+        </div>
+
+        <script>
+ var anchorForId = function (id, href) {
+     var anchor = document.createElement("a");
+     anchor.className = "header-link";
+     anchor.href      = href + "#" + id;
+     anchor.innerHTML = "<span class=\"sr-only\">Permalink</span> <i class=\"glyphicon glyphicon-link\"></i>";
+     anchor.title = "постоянная ссылка";
+     return anchor;
+ };
+
+ var linkifyAnchors = function (level, containingElement, href) {
+     var headers = containingElement.getElementsByTagName("h" + level);
+     for (var h = 0; h < headers.length; h++) {
+         var header = headers[h];
+
+         if (typeof header.id !== "undefined" && header.id !== "") {
+             header.appendChild(anchorForId(header.id, href));
+         }
+     }
+ };
+
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+<script>
+ document.onreadystatechange = function () {
+     if (this.readyState === "complete") {
+         var wells = document.getElementsByClassName("well");
+         for (var i = 0; i < wells.length; i++) {
+             var well = wells[i];
+             var contentBlock = well;
+             var h1 = contentBlock.getElementsByTagName("h1")[0];
+             var a = h1.getElementsByTagName("a")[0];
+             var href = a.getAttribute("href");
+             if (!contentBlock) {
+                 continue;
+             }
+             for (var level = 1; level <= 6; level++) {
+                 linkifyAnchors(level, contentBlock, href);
+             }
+         }
+     }
+ };
+</script>
+
+        <nav class="navbar navbar-default navbar-bottom">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#footer-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="footer-menu">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="/patrons.html">
+                        <img src="/assets/patreon-c4e434ed6fe0be4837e76b3a93941a3337ec773d0f5c4b6a9b7837524faf40f9.png" alt="Нас поддержало 20 человек" width="16" height="16">
+                        <b>Нас поддержало 20 человек</b>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/новости/2015/11/04/hello-world.html">О сайте</a></li>
+                <li>
+                    <a href="https://twitter.com/rustycrate1" target="_blank" class="navbar-link">
+                        <img src="/assets/twitter-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Twitter" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vk.com/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/vk-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="VK" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/rustycrate/" target="_blank" class="navbar-link">
+                        <img src="/assets/fb-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Facebook" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/rustycrate" target="_blank" class="navbar-link">
+                        <img src="/assets/telegram-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="Telegram" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.meetup.com/Rust-%D0%B2-%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5/" target="_blank" class="navbar-link">
+                        <img src="/assets/meetup-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.jpg" alt="Meetup" width="16" height="16">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://feeds.feedburner.com/rustycrate/yMtS" class="navbar-link">
+                        <img src="/assets/rss-174edcd06f4589318713e969156c2f93303cac05f2a33bc3c9e704e84eea710d.png" alt="RSS" width="16" height="16">
+                    </a>
+                </li>
+                <li><a href="/contacts.html">Команда</a></li>
+                <li><p class="navbar-text">2019</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="gitter-button">Открыть чат</div>
+</nav>
+<script>function load_bootstrap() {
+    // Include all compiled plugins (below), or include individual files as needed
+    $.getScript("/js/bootstrap.min.js");
+}</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async onload="load_bootstrap()"></script>
+<!-- Gitter Sidecar -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'ruRust/general',
+    activationElement: '.gitter-button',
+    preload: true
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+    </body>
+</html>
